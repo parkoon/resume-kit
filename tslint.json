@@ -1,0 +1,29 @@
+{
+  "extends": [
+    "tslint-config-airbnb",
+    "tslint-react-hooks",
+    "tslint:latest",
+    "tslint-config-prettier"
+  ],
+  "rules": {
+    "no-console": false,
+    "import-name": false,
+    "no-implicit-dependencies": false,
+    "align": false,
+    "no-submodule-imports": false,
+    "function-name": [
+      true,
+      {
+        "function-regex": "^[a-zA-Z$][\\w\\d]+$",
+        "method-regex": "^[a-z$][\\w\\d]+$",
+        "private-method-regex": "^[a-z$][\\w\\d]+$",
+        "protected-method-regex": "^[a-z$][\\w\\d]+$",
+        "static-method-regex": "^[a-z$][\\w\\d]+$"
+      }
+    ],
+    "variable-name": {
+      "options": ["ban-keywords", "check-format", "allow-leading-underscore", "allow-pascal-case"]
+    },
+    "react-hooks-nesting": true
+  }
+}
