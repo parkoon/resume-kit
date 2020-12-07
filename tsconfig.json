@@ -15,7 +15,9 @@
     "jsx": "preserve",
     "baseUrl": "./",
     "paths": {
-      "@/*": ["./src/*"]
+      "@Resume/*": ["./src/resume/*"],
+      "@Shared/*": ["./src/shared/*"],
+      "@Admin/*": ["./src/admin/*"]
     }
   },
   "exclude": ["node_modules", "server/server.ts"],

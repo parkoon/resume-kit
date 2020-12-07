@@ -6,12 +6,9 @@
       {
         "root": ["./"],
         "alias": {
-          "@": "./src",
-          "@components": "./src/components",
-          "@container": "./src/container",
-          "@helpers": "./src/helpers",
-          "@store": "./src/store",
-          "@server": "./server"
+          "@Resume": "./src/resume/",
+          "@Shared": "./src/shared/",
+          "@Admin": "./src/admin/"
         }
       }
     ],
