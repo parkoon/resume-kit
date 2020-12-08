@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle, css } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -103,4 +103,22 @@ body {
 
 `
 
-export { GlobalStyle }
+const sizes: { [key: string]: number } = {
+  huge: 1440,
+  large: 1170,
+  medium: 768,
+  small: 450,
+}
+
+// Ref. https://medium.com/@samuelresua/easy-media-queries-in-styled-components-690b78f50053
+const Media = Object.keys(sizes).reduce((acc, label) => {
+  acc[label] = (literals: TemplateStringsArray, ...placeholders: any[]) =>
+    css`
+      @media (max-width: ${sizes[label]}px) {
+        ${css(literals, ...placeholders)};
+      }
+    `.join('')
+  return acc
+}, {} as Record<keyof typeof sizes, (l: TemplateStringsArray, ...p: any) => string>)
+
+export { GlobalStyle, Media }
