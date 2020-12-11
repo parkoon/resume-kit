@@ -25,8 +25,16 @@ function AdminLayout({ children }: AdminLayoutProps) {
           ))}
         </Menu>
       </Header>
-      <Content style={{ padding: '0 50px' }}>
-        <div className="site-layout-content">{children}</div>
+      <Content
+        style={{
+          padding: '0 50px',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          width: '100%',
+        }}
+      >
+        {children}
       </Content>
       <Footer style={{ textAlign: 'center' }}>©{moment().format('YYYY')} Created by pk</Footer>
     </Layout>
