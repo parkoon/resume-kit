@@ -8,11 +8,14 @@ const NAV_ITEMS = ['introduce', 'skill', 'experience', 'project', 'education', '
 
 type AdminLayoutProps = {
   children: React.ReactNode
+  center?: boolean
 }
-function AdminLayout({ children }: AdminLayoutProps) {
+function AdminLayout({ children, center }: AdminLayoutProps) {
   const router = useRouter()
 
-  console.log()
+  const centerStyle = center
+    ? { display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%' }
+    : {}
   return (
     <Layout style={{ height: '100%' }}>
       <Header>
@@ -28,10 +31,7 @@ function AdminLayout({ children }: AdminLayoutProps) {
       <Content
         style={{
           padding: '0 50px',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          width: '100%',
+          ...centerStyle,
         }}
       >
         {children}

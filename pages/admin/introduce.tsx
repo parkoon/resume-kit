@@ -8,7 +8,7 @@ function IntroduceManagement() {
   }
 
   return (
-    <AdminLayout>
+    <AdminLayout center>
       <Card style={{ width: '50%' }}>
         <Form initialValues={{ remember: true }} onFinish={onFinish}>
           <Form.Item
