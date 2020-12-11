@@ -1,5 +1,5 @@
 import { Row, Col } from 'antd'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { useState } from 'react'
 
 import { tuple } from '@Shared/helpers'
@@ -13,7 +13,8 @@ const Container = styled.div`
     margin-bottom: 0.5rem;
   }
 `
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ dashed?: boolean; hovered?: boolean }>`
+  position: relative;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -21,17 +22,46 @@ const Wrapper = styled.div`
   min-height: 4rem;
   padding: 1rem;
   border-radius: 4px;
+
+  border: 3px solid #333;
+
+  ${({ dashed }) =>
+    dashed &&
+    css`
+      border: 3px dashed blue;
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: red;
+      }
+    `}
+  ${({ hovered }) =>
+    hovered &&
+    css`
+      &::after {
+        background: blue;
+      }
+    `}
 `
 interface DragContainerProps extends React.HTMLAttributes<HTMLDivElement> {
   children?: React.ReactNode
   title: string
+  dashed?: boolean
+  hovered?: boolean
 }
-function DragContainer({ children, title, ...props }: DragContainerProps) {
+function DragContainer({ children, title, dashed, hovered, ...props }: DragContainerProps) {
   return (
     <Container {...props}>
       <h2>{title}</h2>
 
-      <Wrapper>{children}</Wrapper>
+      <Wrapper dashed={dashed} hovered={hovered}>
+        {children}
+      </Wrapper>
     </Container>
   )
 }
@@ -46,7 +76,8 @@ type Skill = {
 }
 
 function SkillManagement() {
-  const [draggingTag, setDraggingTag] = useState<Skill | null>(null)
+  const [draggingSkill, setDraggingSkill] = useState<Skill>()
+  const [dragoverField, setDragoverField] = useState<SkillType>()
 
   const [skills, setSkills] = useState<Skill[]>([
     { id: 1, title: 'Node.js', type: 'none', level: 1 },
@@ -85,30 +116,29 @@ function SkillManagement() {
   ])
 
   const handleDragStart = (skill: Skill) => () => {
-    setDraggingTag(skill)
+    setDraggingSkill(skill)
   }
 
-  const handleDragEnd = () => {
-    setDraggingTag(null)
-  }
-
-  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+  const dragOver = (field: SkillType) => (e: React.DragEvent<HTMLDivElement>) => {
+    setDragoverField(field)
     e.preventDefault()
   }
 
   const drop = (type: SkillType) => {
-    if (!draggingTag) return
+    if (!draggingSkill) return
 
-    const index = skills.findIndex((skill) => skill.id === draggingTag.id)
+    const index = skills.findIndex((skill) => skill.id === draggingSkill.id)
 
     setSkills([
       ...skills.slice(0, index),
       ...skills.slice(index + 1),
       {
-        ...draggingTag,
+        ...draggingSkill,
         type,
       },
     ])
+
+    setDraggingSkill(undefined)
   }
 
   const handleLevelChange = (id: number, level: number) => {
@@ -132,11 +162,13 @@ function SkillManagement() {
           <DragContainer
             id="skills"
             title="Skill Set"
-            onDragOver={handleDragOver}
+            onDragOver={dragOver('none')}
             onDrop={() => drop('none')}
+            dashed={draggingSkill && draggingSkill.type !== 'none'}
+            hovered={dragoverField && dragoverField === 'none'}
           >
             {skills.map(
-              (skill, index) =>
+              (skill) =>
                 skill.type === 'none' && (
                   <SkillCard
                     key={skill.id}
@@ -145,7 +177,6 @@ function SkillManagement() {
                     onLevelChange={(level) => handleLevelChange(skill.id, level)}
                     draggable
                     onDragStart={handleDragStart(skill)}
-                    onDragEnd={handleDragEnd}
                   />
                 )
             )}
@@ -159,7 +190,13 @@ function SkillManagement() {
           .map((type) => {
             return (
               <Col span={24}>
-                <DragContainer title={type} onDragOver={handleDragOver} onDrop={() => drop(type)}>
+                <DragContainer
+                  title={type}
+                  onDragOver={dragOver(type)}
+                  onDrop={() => drop(type)}
+                  dashed={draggingSkill && draggingSkill.type !== type}
+                  hovered={dragoverField && dragoverField === type}
+                >
                   {skills.map(
                     (skill, index) =>
                       skill.type === type && (
@@ -170,7 +207,6 @@ function SkillManagement() {
                           onLevelChange={(level) => handleLevelChange(skill.id, level)}
                           draggable
                           onDragStart={handleDragStart(skill)}
-                          onDragEnd={handleDragEnd}
                         />
                       )
                   )}
