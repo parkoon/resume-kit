@@ -1,16 +1,14 @@
 import { useState } from 'react'
 import { Row, Col } from 'antd'
 
-import { tuple } from '@Shared/helpers'
 import AdminLayout from '@Admin/components/AdminLayout'
 import SkillCard from '@Admin/components/SKillCard'
 import DragContainer from '@Admin/components/DropContainer'
+import { SkillTitle, SkillType } from '@Shared/constants'
 
-const skillTypes = tuple('none', 'backend', 'frontend', 'database', 'etc', 'devOps')
-type SkillType = typeof skillTypes[number]
 type Skill = {
   id: number
-  title: string
+  title: SkillTitle
   type: SkillType
   level: number
 }
