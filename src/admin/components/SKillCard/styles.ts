@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { levelColor } from '@Shared/styles'
 
 export const Wrapper = styled.div`
-  background: #ebecf0;
+  background: #fff;
   border-radius: 4px;
   display: flex;
   align-items: center;
@@ -10,6 +10,11 @@ export const Wrapper = styled.div`
   margin-bottom: 7px;
   padding: 0.7rem 1rem;
   cursor: move;
+  transition: 0.3s;
+
+  &:hover {
+    background: #ebecf0;
+  }
 `
 
 export const Title = styled.span`
