@@ -1,12 +1,12 @@
 import moment, { Moment } from 'moment'
 
 export const tuple = <T extends string[]>(...args: T) => args
-export const calcCareerYearAndMonth = (dates: Moment | Moment[]) => {
-  if (!dates) return
-
+export const calcCareerYearAndMonth = (
+  dates: Moment | Moment[]
+): { years: number; months: number } => {
   if (Array.isArray(dates) && dates.length !== 2) {
     console.warn('dates length must be 2 [startDate, endDate]')
-    return
+    return { years: 0, months: 0 }
   }
 
   const startDate = Array.isArray(dates) ? dates[0] : dates
