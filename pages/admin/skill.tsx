@@ -4,7 +4,7 @@ import { Row, Col } from 'antd'
 import AdminLayout from '@Admin/components/AdminLayout'
 import SkillCard from '@Admin/components/SKillCard'
 import DragContainer from '@Admin/components/DropContainer'
-import { SkillTitle, SkillType } from '@Shared/constants'
+import { SkillTitle, SkillType, skillTypes } from '@Shared/constants'
 
 type Skill = {
   id: number
