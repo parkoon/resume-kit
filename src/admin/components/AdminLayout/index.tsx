@@ -4,7 +4,7 @@ import moment from 'moment'
 import { Footer, Header, Content } from 'antd/lib/layout/layout'
 import { useRouter } from 'next/dist/client/router'
 
-const NAV_ITEMS = ['introduce', 'skill', 'experience', 'career', 'education', 'etc', 'article']
+const NAV_ITEMS = ['introduce', 'skill', 'project', 'career', 'education', 'etc', 'article']
 
 type AdminLayoutProps = {
   children: React.ReactNode

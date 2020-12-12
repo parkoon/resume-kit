@@ -5,10 +5,10 @@ import moment from 'moment'
 
 import AdminLayout from '@Admin/components/AdminLayout'
 import { Date, DateString } from '@Admin/components/DatePickers'
-import ExperienceForm from '@Admin/components/ExperienceForm'
+import ProjectForm from '@Admin/components/ProjectForm'
 import { calcCareerYearAndMonth } from '@Shared/helpers'
-import ExperienceDescription from '@Admin/components/ExperienceDescription'
-import { Experience } from '@Shared/types/Experience'
+import ProjectDescription from '@Admin/components/ProjectDescription'
+import { Project } from '@Shared/types/Project'
 
 const { Title } = Typography
 // 1. 달력으로 일한 기간 선택!
@@ -21,25 +21,27 @@ const { Title } = Typography
 // 7. 업데이트 모드 읽기 보드 지원!
 // 8. 회사 추가하기
 
-const experiences: Experience[] = [
+const projects: Project[] = [
   {
     corp: '퀄슨 (퀄슨)',
-    period: calcCareerYearAndMonth([moment(), moment('2021/02/22')]),
     startedAt: moment().toString(),
     resignedAt: moment('2021/02/22').toString(),
-    position: '프론트엔드 개발자',
-    resigned: true,
+    title: '프론트엔드 개발자',
+    completed: true,
     skills: ['Node.js', 'Oracle', 'Python'],
     tasks: ['가나다라마바사', '아자차카타파다', '칼퇴근하기', '한시간일찍오기'],
+    description:
+      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Similique rem fuga harum blanditiis labore incidunt quam, reiciendis ratione, exercitationem molestiae optio unde aliquam voluptatibus eligendi? Perferendis eos facere itaque delectus.',
   },
   {
     corp: '퀄슨 (퀄슨)',
-    period: calcCareerYearAndMonth([moment('2009/10/10')]),
     startedAt: moment().toString(),
-    position: '프론트엔드 개발자',
-    resigned: false,
+    title: '프론트엔드 개발자',
+    completed: false,
     skills: ['Node.js', 'Oracle', 'Python'],
     tasks: ['가나다라마바사', '아자차카타파다', '칼퇴근하기', '한시간일찍오기'],
+    description:
+      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Similique rem fuga harum blanditiis labore incidunt quam, reiciendis ratione, exercitationem molestiae optio unde aliquam voluptatibus eligendi? Perferendis eos facere itaque delectus.',
   },
 ]
 
@@ -87,11 +89,11 @@ function ExperienceManagement() {
         </Space>
       }
     >
-      {experiences.map((experience, index) => (
-        <ExperienceDescription key={index} experience={experience} />
+      {projects.map((experience, index) => (
+        <ProjectDescription key={index} experience={experience} />
       ))}
 
-      {/* Experience Form Modal */}
+      {/* Project Form Modal */}
       <Modal
         title="경험 만들기"
         visible={isModalVisible}
@@ -105,7 +107,7 @@ function ExperienceManagement() {
           </Button>,
         ]}
       >
-        <ExperienceForm />
+        <ProjectForm />
       </Modal>
     </AdminLayout>
   )
