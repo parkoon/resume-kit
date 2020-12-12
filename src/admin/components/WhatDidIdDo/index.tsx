@@ -2,40 +2,35 @@ import { Form, Input, Button, Space } from 'antd'
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons'
 import styled from 'styled-components'
 
-const ListWrapper = styled.div`
-  position: relative;
-  display: flex;
-  width: 100%;
-  align-items: center;
-  padding-right: 2rem;
-`
-
 function WhatDidIDo() {
   const onFinish = (values: any) => {
     console.log('Received values of form:', values)
   }
 
   return (
-    <Form onFinish={onFinish} autoComplete="off">
-      <Form.List name="users">
+    <>
+      <Form.List name="tasks">
         {(fields, { add, remove }) => (
           <>
-            {fields.map((field) => (
-              <ListWrapper>
+            {fields.map((field, index) => (
+              <>
                 <Form.Item
                   {...field}
-                  name={[field.name, 'first']}
-                  fieldKey={[field.fieldKey, 'first']}
+                  label={index === 0 ? 'Passengers' : ''}
                   rules={[{ required: true, message: '어떤 일을 하셨는지 잘 생각해보세요.' }]}
-                  style={{ flex: 1, marginRight: '1rem' }}
+                  style={{ position: 'relative' }}
                 >
-                  <Input size="large" placeholder="어떤 일을 하셨습니까?" />
+                  <Input
+                    size="large"
+                    placeholder="어떤 일을 하셨습니까?"
+                    style={{ paddingRight: '40px' }}
+                  />
+                  <MinusCircleOutlined
+                    style={{ fontSize: '2rem', position: 'absolute', top: '10px', right: '10px' }}
+                    onClick={() => remove(field.name)}
+                  />
                 </Form.Item>
-                <MinusCircleOutlined
-                  style={{ fontSize: '2rem', position: 'absolute', top: '5px', right: 0 }}
-                  onClick={() => remove(field.name)}
-                />
-              </ListWrapper>
+              </>
             ))}
             <Form.Item>
               <Button type="dashed" onClick={() => add()} block icon={<PlusOutlined />}>
@@ -45,12 +40,7 @@ function WhatDidIDo() {
           </>
         )}
       </Form.List>
-      <Form.Item>
-        <Button type="primary" htmlType="submit">
-          Submit
-        </Button>
-      </Form.Item>
-    </Form>
+    </>
   )
 }
 

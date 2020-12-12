@@ -30,7 +30,7 @@ function AdminLayout({ children, center }: AdminLayoutProps) {
       </Header>
       <Content
         style={{
-          padding: '0 50px',
+          padding: '2rem 4rem',
           ...centerStyle,
         }}
       >

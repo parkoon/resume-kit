@@ -17,7 +17,6 @@ function CareerDatePicker({ resigned, onChange }: CareerDatePickerProps) {
     <>
       {resigned ? (
         <RangePicker
-          size="large"
           placeholder={['입사일', '퇴사일']}
           format={'YYYY. MM'}
           picker="month"
@@ -25,7 +24,6 @@ function CareerDatePicker({ resigned, onChange }: CareerDatePickerProps) {
         />
       ) : (
         <DatePicker
-          size="large"
           placeholder="입사일"
           format={'YYYY. MM'}
           picker="month"

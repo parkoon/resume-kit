@@ -1,13 +1,13 @@
-import AdminLayout from '@Admin/components/AdminLayout'
-import CareerDatePicker, { Date, DateString } from '@Admin/components/CareerDatePicker'
-import { Switch, Input, Select } from 'antd'
-import { HomeOutlined, IdcardOutlined } from '@ant-design/icons'
 import { useState } from 'react'
-import { calcCareerYearAndMonth } from '@Shared/helpers'
-import { Option } from 'antd/lib/mentions'
-import { skillTitles } from '@Shared/constants'
-import WhatDidIDo from '@Admin/components/WhatDidIdDo'
+import { Button, Space, Typography } from 'antd'
+import Modal from 'antd/lib/modal/Modal'
 
+import AdminLayout from '@Admin/components/AdminLayout'
+import { Date, DateString } from '@Admin/components/CareerDatePicker'
+import ExperienceForm from '@Admin/components/ExperienceForm'
+import { calcCareerYearAndMonth } from '@Shared/helpers'
+
+const { Title } = Typography
 // 1. 달력으로 일한 기간 선택!
 // 2. 재직중인지 퇴사했는지 토글 필요
 // 3. 재직중이라면 현재까지 얼마나 일했는지 보여주면 좋을듯 (이건 파일로 관리못하고, 재직중인지 퇴사했는지 프론트에서 판단해서 보여주는게 맞을듯)
@@ -20,6 +20,20 @@ import WhatDidIDo from '@Admin/components/WhatDidIdDo'
 
 function ExperienceManagement() {
   const [resigned, setResigned] = useState(true)
+
+  const [isModalVisible, setIsModalVisible] = useState(false)
+
+  const showModal = () => {
+    setIsModalVisible(true)
+  }
+
+  const handleOk = () => {
+    setIsModalVisible(false)
+  }
+
+  const handleCancel = () => {
+    setIsModalVisible(false)
+  }
 
   const [dateString, setDateString] = useState<DateString>('')
   const [career, setCareer] = useState<{ years: number; months: number }>()
@@ -37,32 +51,31 @@ function ExperienceManagement() {
   }
   return (
     <AdminLayout>
-      <CareerDatePicker onChange={handleCareerDateChange} resigned={resigned} />
-      <Switch
-        onChange={(checked) => setResigned(!checked)}
-        checkedChildren="재직중"
-        unCheckedChildren="퇴사"
-      />
-      <Input size="large" placeholder="회사명 (ex, 퀄슨 (Qualson))" prefix={<HomeOutlined />} />
-      <Input
-        size="large"
-        placeholder="직책 (ex, 개발팀 프론트엔드 개발자)"
-        prefix={<IdcardOutlined />}
-      />
-      <span>
-        얼마동안 일함..? {dateString}, {career?.years}년 {career?.months}개월
-      </span>
-      <Select
-        mode="multiple"
-        size="large"
-        style={{ width: '100%' }}
-        placeholder="회사에서 배운 기술을 선택해주세요."
-        defaultValue={['zzz']}
-        onChange={handleSkillChange}
-        options={skillTitles.map((title) => ({ value: title }))}
-      />
+      <Space style={{ display: 'flex', alignItems: 'center', marginBottom: 8 }}>
+        <Title level={2} style={{ marginBottom: 0 }}>
+          경험
+        </Title>
+        <Button type="primary" onClick={showModal}>
+          만들기
+        </Button>
+      </Space>
 
-      <WhatDidIDo />
+      {/* Experience Form Modal */}
+      <Modal
+        title="경험 만들기"
+        visible={isModalVisible}
+        onOk={handleOk}
+        onCancel={handleCancel}
+        bodyStyle={{ maxHeight: '70vh', overflow: 'scroll' }}
+        destroyOnClose
+        footer={[
+          <Button form="experience" type="primary" key="submit" htmlType="submit">
+            만들기
+          </Button>,
+        ]}
+      >
+        <ExperienceForm />
+      </Modal>
     </AdminLayout>
   )
 }
