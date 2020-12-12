@@ -16,7 +16,7 @@ function WhatDidIDo() {
               <>
                 <Form.Item
                   {...field}
-                  label={index === 0 ? 'Passengers' : ''}
+                  label={index === 0 ? '내가 한 일' : ''}
                   rules={[{ required: true, message: '어떤 일을 하셨는지 잘 생각해보세요.' }]}
                   style={{ position: 'relative' }}
                 >

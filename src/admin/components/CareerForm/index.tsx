@@ -7,7 +7,10 @@ import WhatDidIDo from '@Admin/components/WhatDidIdDo'
 import { skillTitles } from '@Shared/constants'
 import { calcCareerYearAndMonth } from '@Shared/helpers'
 
-function ExperienceForm() {
+type ProjectFormProps = {
+  id: string
+}
+function ProjectForm({ id }: ProjectFormProps) {
   const [resigned, setResigned] = useState(true)
 
   const [dateString, setDateString] = useState<DateString>('')
@@ -30,7 +33,7 @@ function ExperienceForm() {
   }
   return (
     <div>
-      <Form id="experience" onFinish={onFinish} autoComplete="off" layout="vertical">
+      <Form id={id} onFinish={onFinish} autoComplete="off" layout="vertical">
         <Form.Item name="resigned" label="퇴사여부">
           <Switch
             onChange={(checked) => setResigned(!checked)}
@@ -66,24 +69,9 @@ function ExperienceForm() {
         >
           <Input placeholder="직책 (ex, 개발팀 프론트엔드 개발자)" prefix={<IdcardOutlined />} />
         </Form.Item>
-        <Form.Item
-          name="skills"
-          label="기술 스펙"
-          rules={[{ required: true, message: '회사에서의 직책을 입력해주세요.' }]}
-        >
-          <Select
-            mode="multiple"
-            style={{ width: '100%' }}
-            placeholder="회사에서 배운 기술을 선택해주세요."
-            onChange={handleSkillChange}
-            options={skillTitles.map((title) => ({ value: title }))}
-          />
-        </Form.Item>
-
-        <WhatDidIDo />
       </Form>
     </div>
   )
 }
 
-export default ExperienceForm
+export default ProjectForm

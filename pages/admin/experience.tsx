@@ -4,7 +4,7 @@ import Modal from 'antd/lib/modal/Modal'
 import moment from 'moment'
 
 import AdminLayout from '@Admin/components/AdminLayout'
-import { Date, DateString } from '@Admin/components/CareerDatePicker'
+import { Date, DateString } from '@Admin/components/DatePickers'
 import ExperienceForm from '@Admin/components/ExperienceForm'
 import { calcCareerYearAndMonth } from '@Shared/helpers'
 import ExperienceDescription from '@Admin/components/ExperienceDescription'
