@@ -5,26 +5,28 @@ import { DatePicker } from 'antd'
 const { RangePicker } = DatePicker
 export type Date = Moment | Moment[] | null
 export type DateString = string | string[]
-type CareerDatePickerProps = {
+type DatePickersProps = {
   onChange(date: Date, dateString: DateString): void
-  resigned?: boolean
+  multiple?: boolean
+  startDateLabel: string
+  doneDateLabel: string
 }
-function CareerDatePicker({ resigned, onChange }: CareerDatePickerProps) {
+function DatePickers({ multiple, startDateLabel, doneDateLabel, onChange }: DatePickersProps) {
   const handleChange = (date: Moment | any[] | null, dateString: string | string[]) => {
     onChange(date as Date, dateString)
   }
   return (
     <>
-      {resigned ? (
+      {multiple ? (
         <RangePicker
-          placeholder={['입사일', '퇴사일']}
+          placeholder={[startDateLabel, doneDateLabel]}
           format={'YYYY. MM'}
           picker="month"
           onChange={handleChange}
         />
       ) : (
         <DatePicker
-          placeholder="입사일"
+          placeholder={startDateLabel}
           format={'YYYY. MM'}
           picker="month"
           onChange={handleChange}
@@ -34,4 +36,4 @@ function CareerDatePicker({ resigned, onChange }: CareerDatePickerProps) {
   )
 }
 
-export default CareerDatePicker
+export default DatePickers
