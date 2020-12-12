@@ -1,70 +1,10 @@
-import { Row, Col } from 'antd'
-import styled, { css } from 'styled-components'
 import { useState } from 'react'
+import { Row, Col } from 'antd'
 
 import { tuple } from '@Shared/helpers'
 import AdminLayout from '@Admin/components/AdminLayout'
 import SkillCard from '@Admin/components/SKillCard'
-
-const Container = styled.div`
-  h2 {
-    font-weight: bold;
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
-  }
-`
-const Wrapper = styled.div<{ dashed?: boolean; hovered?: boolean }>`
-  position: relative;
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  background: #333;
-  min-height: 4rem;
-  padding: 1rem;
-  border-radius: 4px;
-
-  border: 3px solid #333;
-
-  ${({ dashed }) =>
-    dashed &&
-    css`
-      border: 3px dashed blue;
-
-      &::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: red;
-      }
-    `}
-  ${({ hovered }) =>
-    hovered &&
-    css`
-      &::after {
-        background: blue;
-      }
-    `}
-`
-interface DragContainerProps extends React.HTMLAttributes<HTMLDivElement> {
-  children?: React.ReactNode
-  title: string
-  dashed?: boolean
-  hovered?: boolean
-}
-function DragContainer({ children, title, dashed, hovered, ...props }: DragContainerProps) {
-  return (
-    <Container {...props}>
-      <h2>{title}</h2>
-
-      <Wrapper dashed={dashed} hovered={hovered}>
-        {children}
-      </Wrapper>
-    </Container>
-  )
-}
+import DragContainer from '@Admin/components/DropContainer'
 
 const skillTypes = tuple('none', 'backend', 'frontend', 'database', 'etc', 'devOps')
 type SkillType = typeof skillTypes[number]
@@ -139,6 +79,7 @@ function SkillManagement() {
     ])
 
     setDraggingSkill(undefined)
+    setDragoverField(undefined)
   }
 
   const handleLevelChange = (id: number, level: number) => {
@@ -157,7 +98,7 @@ function SkillManagement() {
 
   return (
     <AdminLayout>
-      <Row style={{ marginBottom: '2rem' }}>
+      <Row style={{ margin: '2rem 0' }}>
         <Col>
           <DragContainer
             id="skills"
@@ -184,7 +125,7 @@ function SkillManagement() {
         </Col>
       </Row>
 
-      <Row>
+      <Row gutter={[0, 12]}>
         {skillTypes
           .filter((type) => type !== 'none')
           .map((type) => {
@@ -198,7 +139,7 @@ function SkillManagement() {
                   hovered={dragoverField && dragoverField === type}
                 >
                   {skills.map(
-                    (skill, index) =>
+                    (skill) =>
                       skill.type === type && (
                         <SkillCard
                           key={skill.id}

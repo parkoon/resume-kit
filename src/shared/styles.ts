@@ -104,6 +104,8 @@ body {
 `
 
 export const palette = {
+  white: '#fff',
+  black: '#000',
   red: {
     50: '#ffebee',
     100: '#ffcdd2',
@@ -209,9 +211,9 @@ export const palette = {
 }
 
 export const levelColor: { [key: string]: string } = {
-  low: 'red',
-  mid: 'blue',
-  high: 'green',
+  low: palette.green[300],
+  mid: palette.teal[400],
+  high: palette.indigo[700],
 }
 
 const sizes: { [key: string]: number } = {
