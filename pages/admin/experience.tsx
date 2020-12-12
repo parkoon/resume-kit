@@ -8,7 +8,7 @@ import { Date, DateString } from '@Admin/components/CareerDatePicker'
 import ExperienceForm from '@Admin/components/ExperienceForm'
 import { calcCareerYearAndMonth } from '@Shared/helpers'
 import ExperienceDescription from '@Admin/components/ExperienceDescription'
-import { Experience } from '@Shared/types'
+import { Experience } from '@Shared/types/Experience'
 
 const { Title } = Typography
 // 1. 달력으로 일한 기간 선택!

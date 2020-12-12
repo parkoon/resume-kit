@@ -1,4 +1,4 @@
-import { SkillTitle } from './constants'
+import { SkillTitle } from '@Shared/constants'
 
 export type Experience = {
   corp: string // 회사명
