@@ -9,8 +9,9 @@ const NAV_ITEMS = ['introduce', 'skill', 'experience', 'project', 'education', '
 type AdminLayoutProps = {
   children: React.ReactNode
   center?: boolean
+  pageTitle?: React.ReactNode
 }
-function AdminLayout({ children, center }: AdminLayoutProps) {
+function AdminLayout({ children, center, pageTitle }: AdminLayoutProps) {
   const router = useRouter()
 
   const centerStyle = center
@@ -28,9 +29,12 @@ function AdminLayout({ children, center }: AdminLayoutProps) {
           ))}
         </Menu>
       </Header>
+
+      <div style={{ padding: '2rem 4rem' }}>{pageTitle}</div>
       <Content
         style={{
-          padding: '2rem 4rem',
+          padding: '0rem 4rem',
+          overflow: 'scroll',
           ...centerStyle,
         }}
       >
