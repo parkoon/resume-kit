@@ -20,13 +20,9 @@ function WhatDidIDo() {
                   rules={[{ required: true, message: '어떤 일을 하셨는지 잘 생각해보세요.' }]}
                   style={{ position: 'relative' }}
                 >
-                  <Input
-                    size="large"
-                    placeholder="어떤 일을 하셨습니까?"
-                    style={{ paddingRight: '40px' }}
-                  />
+                  <Input placeholder="어떤 일을 하셨습니까?" style={{ paddingRight: '40px' }} />
                   <MinusCircleOutlined
-                    style={{ fontSize: '2rem', position: 'absolute', top: '10px', right: '10px' }}
+                    style={{ position: 'absolute', top: 8, right: 8 }}
                     onClick={() => remove(field.name)}
                   />
                 </Form.Item>
