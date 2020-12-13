@@ -5,11 +5,11 @@ import { HomeOutlined, IdcardOutlined } from '@ant-design/icons'
 import DatePickers, { Date, DateString } from '@Admin/components/DatePickers'
 import { calcCareerYearAndMonth } from '@Shared/helpers'
 
-type CareerFormProps = {
+type CommonFormProps = {
   id: string
 }
-function CareerForm({ id }: CareerFormProps) {
-  const [resigned, setResigned] = useState(true)
+function CommonForm({ id }: CommonFormProps) {
+  const [completed, setCompleted] = useState(true)
 
   const [dateString, setDateString] = useState<DateString>('')
   const [career, setCareer] = useState<{ years: number; months: number }>()
@@ -32,44 +32,50 @@ function CareerForm({ id }: CareerFormProps) {
   return (
     <div>
       <Form id={id} onFinish={onFinish} autoComplete="off" layout="vertical">
-        <Form.Item name="resigned" label="퇴사여부">
+        <Form.Item name="completed" label="진행중">
           <Switch
-            onChange={(checked) => setResigned(!checked)}
-            checkedChildren="재직중"
-            unCheckedChildren="퇴사"
+            onChange={(checked) => setCompleted(!checked)}
+            checkedChildren="진행중"
+            unCheckedChildren="종료"
           />
         </Form.Item>
         <Form.Item
-          label="업무 기간"
+          label="기간"
           name="period"
-          rules={[{ required: true, message: '입사일 및 퇴사일을 입력해주세요.' }]}
+          rules={[{ required: true, message: '기간을 입력해주세요.' }]}
         >
           <DatePickers
-            startDateLabel="입사일"
-            doneDateLabel="퇴사일"
+            startDateLabel="시작일"
+            doneDateLabel="종료일"
             onChange={handleCareerDateChange}
-            multiple={resigned}
+            multiple={completed}
           />
         </Form.Item>
 
         <Form.Item
-          name="corp"
-          label="회사명"
-          rules={[{ required: true, message: '회사 이름을 입력해주세요.' }]}
+          name="title"
+          label="타이틀"
+          rules={[{ required: true, message: '타이틀을 입력해주세요.' }]}
         >
-          <Input placeholder="회사명 (ex, 퀄슨 (Qualson))" prefix={<HomeOutlined />} />
+          <Input
+            placeholder="회사명 / 학교명과 같은 타이틀을 입력해주세요."
+            prefix={<HomeOutlined />}
+          />
         </Form.Item>
 
         <Form.Item
-          name="position"
-          label="직책"
-          rules={[{ required: true, message: '회사에서의 직책을 입력해주세요.' }]}
+          name="subtitle"
+          label="서브 타이틀"
+          rules={[{ required: true, message: '서브 타이틀을 입력해주세요.' }]}
         >
-          <Input placeholder="직책 (ex, 개발팀 프론트엔드 개발자)" prefix={<IdcardOutlined />} />
+          <Input
+            placeholder="직책 / 분야와 같은 서브 타이틀을 입력해주세요."
+            prefix={<IdcardOutlined />}
+          />
         </Form.Item>
       </Form>
     </div>
   )
 }
 
-export default CareerForm
+export default CommonForm

@@ -1,30 +1,30 @@
 import AdminLayout from '@Admin/components/AdminLayout'
-import CareerForm from '@Admin/components/Forms/CareerForm'
 import { Space, Typography, Button } from 'antd'
 import { useState } from 'react'
 import Modal from 'antd/lib/modal/Modal'
-import { Career } from '@Shared/types/Career'
 import moment from 'moment'
 import { calcCareerYearAndMonth } from '@Shared/helpers'
 import CareerDescription from '@Admin/components/Descriptions/CareerDesceiption'
+import CommonForm from '@Admin/components/Forms/CommonForm'
+import { CommonSection } from '@Shared/types/CommonSection'
 
 const { Title } = Typography
 
-const careers: Career[] = [
+const careers: CommonSection[] = [
   {
-    corp: '퀄슨 (퀄슨)',
+    title: '퀄슨 (퀄슨)',
+    subtitle: '프론트엔드 개발자',
     period: calcCareerYearAndMonth([moment(), moment('2021/02/22')]),
     startedAt: moment().toString(),
-    resignedAt: moment('2021/02/22').toString(),
-    position: '프론트엔드 개발자',
-    resigned: true,
+    completedAt: moment('2021/02/22').toString(),
+    completed: true,
   },
   {
-    corp: '퀄슨 (퀄슨)',
+    title: '퀄슨 (퀄슨)',
     period: calcCareerYearAndMonth([moment('2009/10/10')]),
     startedAt: moment().toString(),
-    position: '프론트엔드 개발자',
-    resigned: false,
+    subtitle: '프론트엔드 개발자',
+    completed: false,
   },
 ]
 
@@ -67,7 +67,7 @@ function ProjectManagement() {
           </Button>,
         ]}
       >
-        <CareerForm id="career" />
+        <CommonForm id="career" />
       </Modal>
     </AdminLayout>
   )
