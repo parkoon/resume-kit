@@ -1,16 +1,14 @@
 import { useState } from 'react'
-import { Form, Input, Select, Switch } from 'antd'
+import { Form, Input, Switch } from 'antd'
 import { HomeOutlined, IdcardOutlined } from '@ant-design/icons'
 
 import DatePickers, { Date, DateString } from '@Admin/components/DatePickers'
-import WhatDidIDo from '@Admin/components/WhatDidIdDo'
-import { skillTitles } from '@Shared/constants'
 import { calcCareerYearAndMonth } from '@Shared/helpers'
 
-type ProjectFormProps = {
+type CareerFormProps = {
   id: string
 }
-function ProjectForm({ id }: ProjectFormProps) {
+function CareerForm({ id }: CareerFormProps) {
   const [resigned, setResigned] = useState(true)
 
   const [dateString, setDateString] = useState<DateString>('')
@@ -74,4 +72,4 @@ function ProjectForm({ id }: ProjectFormProps) {
   )
 }
 
-export default ProjectForm
+export default CareerForm

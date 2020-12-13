@@ -1,5 +1,5 @@
 import AdminLayout from '@Admin/components/AdminLayout'
-import ProjectForm from '@Admin/components/CareerForm'
+import CareerForm from '@Admin/components/CareerForm'
 import { Space, Typography, Button } from 'antd'
 import { useState } from 'react'
 import Modal from 'antd/lib/modal/Modal'
@@ -67,7 +67,7 @@ function ProjectManagement() {
           </Button>,
         ]}
       >
-        <ProjectForm id="career" />
+        <CareerForm id="career" />
       </Modal>
     </AdminLayout>
   )
