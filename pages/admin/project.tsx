@@ -5,9 +5,9 @@ import moment from 'moment'
 
 import AdminLayout from '@Admin/components/AdminLayout'
 import { Date, DateString } from '@Admin/components/DatePickers'
-import ProjectForm from '@Admin/components/ProjectForm'
+import ProjectForm from '@Admin/components/Forms/ProjectForm'
 import { calcCareerYearAndMonth } from '@Shared/helpers'
-import ProjectDescription from '@Admin/components/ProjectDescription'
+import ProjectDescription from '@Admin/components/Descriptions/ProjectDescription'
 import { Project } from '@Shared/types/Project'
 
 const { Title } = Typography

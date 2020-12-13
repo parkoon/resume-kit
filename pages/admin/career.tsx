@@ -1,12 +1,12 @@
 import AdminLayout from '@Admin/components/AdminLayout'
-import CareerForm from '@Admin/components/CareerForm'
+import CareerForm from '@Admin/components/Forms/CareerForm'
 import { Space, Typography, Button } from 'antd'
 import { useState } from 'react'
 import Modal from 'antd/lib/modal/Modal'
 import { Career } from '@Shared/types/Career'
 import moment from 'moment'
 import { calcCareerYearAndMonth } from '@Shared/helpers'
-import CareerDescription from '@Admin/components/CareerDesceiption'
+import CareerDescription from '@Admin/components/Descriptions/CareerDesceiption'
 
 const { Title } = Typography
 
