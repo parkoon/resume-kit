@@ -4,7 +4,7 @@ import { useState } from 'react'
 import Modal from 'antd/lib/modal/Modal'
 import moment from 'moment'
 import { calcCareerYearAndMonth } from '@Shared/helpers'
-import CareerDescription from '@Admin/components/Descriptions/CareerDesceiption'
+import CommonDescription from '@Admin/components/Descriptions/CommonDescription'
 import CommonForm from '@Admin/components/Forms/CommonForm'
 import { CommonSection } from '@Shared/types/CommonSection'
 
@@ -52,7 +52,7 @@ function ProjectManagement() {
       }
     >
       {careers.map((career, index) => (
-        <CareerDescription key={index} career={career} />
+        <CommonDescription key={index} type="career" source={career} />
       ))}
       <Modal
         title="내가 성장 할 수 있던 곳은 🏢"
