@@ -6,7 +6,7 @@ import moment from 'moment'
 import { calcCareerYearAndMonth } from '@Shared/helpers'
 import CommonDescription from '@Admin/components/Descriptions/CommonDescription'
 import CommonForm from '@Admin/components/Forms/CommonForm'
-import { CommonSection } from '@Shared/types/CommonSection'
+import { CommonSection } from '@Shared/models/CommonSection'
 
 const { Title } = Typography
 

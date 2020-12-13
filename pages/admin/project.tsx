@@ -8,7 +8,7 @@ import { Date, DateString } from '@Admin/components/DatePickers'
 import ProjectForm from '@Admin/components/Forms/ProjectForm'
 import { calcCareerYearAndMonth } from '@Shared/helpers'
 import ProjectDescription from '@Admin/components/Descriptions/ProjectDescription'
-import { Project } from '@Shared/types/Project'
+import { Project } from '@Shared/models/Project'
 
 const { Title } = Typography
 // 1. 달력으로 일한 기간 선택!

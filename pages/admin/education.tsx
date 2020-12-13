@@ -4,7 +4,7 @@ import moment from 'moment'
 import Modal from 'antd/lib/modal/Modal'
 import AdminLayout from '@Admin/components/AdminLayout'
 import CommonForm from '@Admin/components/Forms/CommonForm'
-import { CommonSection } from '@Shared/types/CommonSection'
+import { CommonSection } from '@Shared/models/CommonSection'
 import { calcCareerYearAndMonth } from '@Shared/helpers'
 import CommonDescription from '@Admin/components/Descriptions/CommonDescription'
 
