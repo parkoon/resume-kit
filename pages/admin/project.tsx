@@ -78,15 +78,11 @@ function ExperienceManagement() {
   }
   return (
     <AdminLayout
-      pageTitle={
-        <Space style={{ display: 'flex', alignItems: 'center', marginBottom: 8 }}>
-          <Title level={2} style={{ marginBottom: 0 }}>
-            경험
-          </Title>
-          <Button type="primary" onClick={showModal}>
-            만들기
-          </Button>
-        </Space>
+      pageTitle="경험"
+      pageAction={
+        <Button type="primary" onClick={showModal}>
+          만들기
+        </Button>
       }
     >
       {projects.map((experience, index) => (
