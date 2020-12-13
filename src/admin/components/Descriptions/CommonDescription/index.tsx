@@ -25,8 +25,15 @@ const Label: {
     totalPeriod: '총 재학 일수',
     completed: '졸업여부',
   },
+  etc: {
+    title: '제목',
+    subtitle: '한 줄 설명',
+    period: '기간',
+    totalPeriod: '총 기간',
+    completed: '완료여부',
+  },
 }
-type DescriptionType = 'career' | 'education'
+type DescriptionType = 'career' | 'education' | 'etc'
 type CommonDescriptionProps = {
   source: CommonSection
   type: DescriptionType
