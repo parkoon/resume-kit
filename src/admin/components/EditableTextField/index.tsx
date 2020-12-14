@@ -63,7 +63,7 @@ function EditableTextField({
           </ButtonWrapper>
         </InputWrapper>
       ) : (
-        <Tooltip placement="topLeft" title={tooltipText}>
+        <Tooltip placement="topRight" title={tooltipText}>
           <TextWrapper onClick={() => setUpdateMode(true)} onlyPlaceholder={!value}>
             {value || placeholder}
           </TextWrapper>
