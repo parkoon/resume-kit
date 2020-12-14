@@ -42,12 +42,13 @@ function EtcManagement() {
   }
   return (
     <AdminLayout
-      pageTitle="기타"
-      pageAction={
+      title="기타"
+      subtitle="this is subtitle"
+      actions={[
         <Button type="primary" onClick={showModal}>
           만들기
-        </Button>
-      }
+        </Button>,
+      ]}
     >
       {etcs.map((etc, index) => (
         <CommonDescription key={index} type="etc" source={etc} />

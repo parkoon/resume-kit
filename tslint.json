@@ -12,6 +12,7 @@
     "align": false,
     "no-submodule-imports": false,
     "no-object-literal-type-assertion": false,
+    "no-shadowed-variable": false,
     "function-name": [
       true,
       {

@@ -35,12 +35,13 @@ function ArticleManagement() {
   }
   return (
     <AdminLayout
-      pageTitle="내가 작성한 기사들"
-      pageAction={
+      title="내가 작성한 기사들"
+      subtitle="this is subtitle"
+      actions={[
         <Button type="primary" onClick={showModal}>
           만들기
-        </Button>
-      }
+        </Button>,
+      ]}
     >
       <Card>
         <List

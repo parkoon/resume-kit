@@ -48,13 +48,11 @@ const NAV_ITEMS = [
 
 type AdminLayoutProps = {
   children: React.ReactNode
-  center?: boolean
-  // TODO. title, action prop 변경, action은 배열로 받기
-  // TODO. 추가로 subtitle 받기
-  pageTitle?: string
-  pageAction?: React.ReactNode
+  title: string
+  subtitle: string
+  actions?: React.ReactNode[]
 }
-function AdminLayout({ children, center, pageTitle, pageAction }: AdminLayoutProps) {
+function AdminLayout({ children, title, subtitle, actions = [] }: AdminLayoutProps) {
   const router = useRouter()
   const [visible, setVisible] = useState(false)
 
@@ -80,18 +78,7 @@ function AdminLayout({ children, center, pageTitle, pageAction }: AdminLayoutPro
         </Menu>
       </Sider>
       <Layout className="site-layout">
-        <PageHeader
-          ghost={false}
-          title="Title"
-          subTitle="This is a subtitle"
-          extra={[
-            <Button key="3">Operation</Button>,
-            <Button key="2">Operation</Button>,
-            <Button key="1" type="primary">
-              Primary
-            </Button>,
-          ]}
-        />
+        <PageHeader ghost={false} title={title} subTitle={subtitle} extra={actions} />
         <Content style={{ margin: '0 16px' }}>{children}</Content>
         <Footer style={{ textAlign: 'center' }}>
           ©{moment().format('YYYY')} Created by parkoon

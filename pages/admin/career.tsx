@@ -44,12 +44,13 @@ function ProjectManagement() {
   }
   return (
     <AdminLayout
-      pageTitle="내가 성장 할 수 있었던 곳"
-      pageAction={
+      title="내가 성장 할 수 있었던 곳"
+      subtitle="this is subtitle"
+      actions={[
         <Button type="primary" onClick={showModal}>
           만들기
-        </Button>
-      }
+        </Button>,
+      ]}
     >
       {careers.map((career, index) => (
         <CommonDescription key={index} type="career" source={career} />

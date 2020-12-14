@@ -42,12 +42,13 @@ function EducationManagement() {
   }
   return (
     <AdminLayout
-      pageTitle="교육"
-      pageAction={
+      title="교육"
+      subtitle="this is subtitle"
+      actions={[
         <Button type="primary" onClick={showModal}>
           만들기
-        </Button>
-      }
+        </Button>,
+      ]}
     >
       {educations.map((education, index) => (
         <CommonDescription key={index} type="education" source={education} />

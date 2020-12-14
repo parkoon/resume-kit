@@ -95,7 +95,7 @@ function SkillManagement() {
   }
 
   return (
-    <AdminLayout>
+    <AdminLayout title="내 스펙" subtitle="this is subtitle">
       <Row style={{ margin: '2rem 0' }}>
         <Col>
           <DragContainer

@@ -78,12 +78,13 @@ function ExperienceManagement() {
   }
   return (
     <AdminLayout
-      pageTitle="경험"
-      pageAction={
+      title="경험"
+      subtitle="this is subtitle"
+      actions={[
         <Button type="primary" onClick={showModal}>
           만들기
-        </Button>
-      }
+        </Button>,
+      ]}
     >
       {projects.map((experience, index) => (
         <ProjectDescription key={index} experience={experience} />
