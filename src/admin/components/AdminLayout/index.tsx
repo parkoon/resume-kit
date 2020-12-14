@@ -2,12 +2,49 @@ import React, { useState } from 'react'
 import moment from 'moment'
 import { Layout, Menu, Button, PageHeader } from 'antd'
 import { useRouter } from 'next/dist/client/router'
-import { TeamOutlined } from '@ant-design/icons'
+import {
+  TeamOutlined,
+  UserOutlined,
+  FileTextOutlined,
+  RadarChartOutlined,
+  EllipsisOutlined,
+  FolderOpenOutlined,
+} from '@ant-design/icons'
 
 const { Content, Footer, Sider } = Layout
 
-// TODO. 아이템 구조 변경 (아이콘도 넣어야함, 아이콘 찾기)
-const NAV_ITEMS = ['introduce', 'skill', 'project', 'career', 'education', 'etc', 'article']
+const NAV_ITEMS = [
+  {
+    title: 'introduce',
+    icon: <UserOutlined />,
+    to: 'introduce',
+  },
+  {
+    title: 'skill',
+    icon: <RadarChartOutlined />,
+    to: 'skill',
+  },
+  {
+    title: 'project',
+    icon: <FolderOpenOutlined />,
+    to: 'project',
+  },
+  {
+    title: 'career',
+    icon: <TeamOutlined />,
+    to: 'career',
+  },
+  {
+    title: 'article',
+    icon: <FileTextOutlined />,
+    to: 'article',
+  },
+  {
+    title: 'etc',
+    icon: <EllipsisOutlined />,
+    to: 'etc',
+  },
+]
 
 type AdminLayoutProps = {
   children: React.ReactNode
@@ -35,9 +72,9 @@ function AdminLayout({ children, center, pageTitle, pageAction }: AdminLayoutPro
         />
 
         <Menu theme="dark" mode="inline" defaultSelectedKeys={[router.pathname.split('/')[2]]}>
-          {NAV_ITEMS.map((item) => (
-            <Menu.Item icon={<TeamOutlined />} key={item} onClick={() => router.push(item)}>
-              {item.toUpperCase()}
+          {NAV_ITEMS.map(({ title, to, icon }) => (
+            <Menu.Item icon={icon} key={to} onClick={() => router.push(to)}>
+              {title}
             </Menu.Item>
           ))}
         </Menu>
