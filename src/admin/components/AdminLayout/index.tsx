@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
+import { useRouter } from 'next/router'
 import moment from 'moment'
-import { Layout, Menu, Button, PageHeader } from 'antd'
-import { useRouter } from 'next/dist/client/router'
+import { Layout, Menu, PageHeader } from 'antd'
 import {
   TeamOutlined,
   UserOutlined,
@@ -11,9 +11,11 @@ import {
   FolderOpenOutlined,
 } from '@ant-design/icons'
 
+import { palette } from '@Shared/styles'
+
 const { Content, Footer, Sider } = Layout
 
-const NAV_ITEMS = [
+export const NAV_ITEMS = [
   {
     title: 'introduce',
     icon: <UserOutlined />,
@@ -65,7 +67,7 @@ function AdminLayout({ children, title, subtitle, actions = [] }: AdminLayoutPro
           style={{
             height: '32px',
             margin: '16px',
-            background: 'rgba(255, 255, 255, 0.3)',
+            background: palette.grey[300],
           }}
         />
 
@@ -77,10 +79,10 @@ function AdminLayout({ children, title, subtitle, actions = [] }: AdminLayoutPro
           ))}
         </Menu>
       </Sider>
-      <Layout className="site-layout">
+      <Layout>
         <PageHeader ghost={false} title={title} subTitle={subtitle} extra={actions} />
-        <Content style={{ margin: '0 16px' }}>{children}</Content>
-        <Footer style={{ textAlign: 'center' }}>
+        <Content style={{ margin: '16px 16px' }}>{children}</Content>
+        <Footer style={{ textAlign: 'center', padding: '12px' }}>
           ©{moment().format('YYYY')} Created by parkoon
         </Footer>
       </Layout>
