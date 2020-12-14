@@ -3,7 +3,6 @@ import { palette } from '@Shared/styles'
 
 export const Wrapper = styled.div`
   display: flex;
-  align-items: center;
 `
 export const TextWrapper = styled.div<{ onlyPlaceholder: boolean }>`
   height: 34px;
@@ -27,7 +26,7 @@ export const InputWrapper = styled.div`
 
 export const ButtonWrapper = styled.div`
   right: 0;
-  bottom: calc(-100% - 7px);
+  bottom: -38px;
   position: absolute;
 
   button:first-child {

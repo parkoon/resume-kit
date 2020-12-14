@@ -4,9 +4,12 @@ import { CheckOutlined, CloseOutlined } from '@ant-design/icons'
 
 import { Wrapper, TextWrapper, InputWrapper, ButtonWrapper, IconWrapper } from './styles'
 
+const { TextArea } = Input
+
 type EditableTextFieldProps = {
   icon?: React.ReactNode
   type?: 'text' | 'textarea'
+  tooltipText?: string
   initialValue: string
   placeholder: string
   onSave(text: string): void
@@ -14,6 +17,7 @@ type EditableTextFieldProps = {
 function EditableTextField({
   icon,
   type = 'text',
+  tooltipText = 'Click to edit',
   placeholder,
   initialValue,
   onSave,
@@ -29,25 +33,37 @@ function EditableTextField({
     setUpdateMode(false)
   }
 
+  const renderInput =
+    type === 'text' ? (
+      <Input
+        placeholder={value || placeholder}
+        onBlur={save}
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+      />
+    ) : (
+      <TextArea
+        rows={7}
+        placeholder={value || placeholder}
+        onBlur={save}
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+      />
+    )
+
   return (
     <Wrapper>
       <IconWrapper>{icon}</IconWrapper>
       {isUpdateMode ? (
         <InputWrapper>
-          <Input
-            placeholder={value || placeholder}
-            onBlur={save}
-            value={value}
-            onChange={(e) => setValue(e.target.value)}
-          />
-
+          {renderInput}
           <ButtonWrapper>
             <Button icon={<CheckOutlined />} onClick={save} />
             <Button icon={<CloseOutlined />} onClick={cancel} />
           </ButtonWrapper>
         </InputWrapper>
       ) : (
-        <Tooltip placement="topLeft" title="Click to edit">
+        <Tooltip placement="topLeft" title={tooltipText}>
           <TextWrapper onClick={() => setUpdateMode(true)} onlyPlaceholder={!value}>
             {value || placeholder}
           </TextWrapper>
