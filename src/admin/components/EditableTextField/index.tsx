@@ -26,7 +26,10 @@ function EditableTextField({
   const [isUpdateMode, setUpdateMode] = useState(false)
 
   const save = () => {
-    onSave(value)
+    // 처음 들어왔던 데이터랑 같다면 저장 할 필요 없음
+    if (initialValue !== value) {
+      onSave(value)
+    }
     setUpdateMode(false)
   }
   const cancel = () => {
@@ -36,6 +39,7 @@ function EditableTextField({
   const renderInput =
     type === 'text' ? (
       <Input
+        autoFocus
         placeholder={value || placeholder}
         onBlur={save}
         value={value}
@@ -43,6 +47,7 @@ function EditableTextField({
       />
     ) : (
       <TextArea
+        autoFocus
         rows={7}
         placeholder={value || placeholder}
         onBlur={save}
