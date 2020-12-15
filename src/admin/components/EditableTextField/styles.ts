@@ -5,7 +5,7 @@ export const Wrapper = styled.div`
   display: flex;
 `
 export const TextWrapper = styled.div<{ onlyPlaceholder: boolean }>`
-  height: 34px;
+  min-height: 34px;
   width: 100%;
   padding: 4px 11px;
   font-size: 1.8rem;
