@@ -6,8 +6,6 @@ export const Wrapper = styled.div`
   border-radius: 4px;
   display: flex;
   align-items: center;
-  margin-right: 7px;
-  margin-bottom: 7px;
   padding: 0.7rem 1rem;
   cursor: move;
   transition: 0.3s;

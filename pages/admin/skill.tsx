@@ -95,12 +95,16 @@ function SkillManagement() {
   }
 
   return (
-    <AdminLayout title="내 스펙" subtitle="this is subtitle">
+    <AdminLayout
+      title="다룰 수 있는 기술"
+      subtitle="각 영역에 드래그 하고 기술 정도를 설정해주세요."
+    >
       <Row style={{ margin: '2rem 0' }}>
-        <Col>
+        <Col span={24}>
           <DragContainer
             id="skills"
-            title="Skill Set"
+            title="SPEC SHEET"
+            totalCount={skills.filter((skill) => skill.type === 'none').length}
             onDragOver={dragOver('none')}
             onDrop={() => drop('none')}
             dashed={draggingSkill && draggingSkill.type !== 'none'}
@@ -123,14 +127,19 @@ function SkillManagement() {
         </Col>
       </Row>
 
-      <Row gutter={[0, 12]}>
+      <Row gutter={[12, 0]}>
         {skillTypes
           .filter((type) => type !== 'none')
           .map((type) => {
             return (
-              <Col span={24}>
+              <Col
+                style={{
+                  width: `calc(100% / ${skillTypes.filter((type) => type !== 'none').length})`,
+                }}
+              >
                 <DragContainer
-                  title={type}
+                  title={type.toUpperCase()}
+                  totalCount={skills.filter((skill) => skill.type === type).length}
                   onDragOver={dragOver(type)}
                   onDrop={() => drop(type)}
                   dashed={draggingSkill && draggingSkill.type !== type}

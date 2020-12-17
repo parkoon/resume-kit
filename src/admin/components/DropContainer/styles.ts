@@ -4,21 +4,29 @@ import { palette } from '@Shared/styles'
 export const Container = styled.div`
   h2 {
     font-weight: bold;
-    font-size: 2.5rem;
+    font-size: 2rem;
     margin-bottom: 0.5rem;
+
+    span {
+      display: inline-block;
+      margin-left: 0.5rem;
+      font-size: 1.5rem;
+      color: ${palette.grey[600]};
+    }
   }
 `
 export const Wrapper = styled.div<{ dashed?: boolean; hovered?: boolean }>`
   position: relative;
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  grid-template-rows: 40px;
+  grid-gap: 7px;
+  padding: 5px;
   background: ${palette.grey[300]};
-  min-height: 4rem;
-  padding: 1rem;
   border-radius: 4px;
   border: 3px solid ${palette.grey[300]};
   transition: 0.3s;
+  height: 100%;
 
   ${({ dashed }) =>
     dashed &&
