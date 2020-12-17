@@ -36,5 +36,5 @@ export const ButtonWrapper = styled.div`
 
 export const IconWrapper = styled.div`
   font-size: 2rem;
-  margin-right: 0.5rem;
+  margin-right: 1rem;
 `

@@ -1,111 +1,79 @@
-import { Card } from 'antd'
+import { Card, Row, Col } from 'antd'
 import AdminLayout from '@Admin/components/AdminLayout'
 import EditableTextField from '@Admin/components/EditableTextField'
-import {
-  FacebookFilled,
-  GithubFilled,
-  HomeFilled,
-  InstagramFilled,
-  LinkedinFilled,
-  MailFilled,
-  MessageFilled,
-  PhoneFilled,
-  SnippetsFilled,
-  ToolFilled,
-  TwitterCircleFilled,
-  UserOutlined,
-  YoutubeFilled,
-} from '@ant-design/icons'
+import introduceSections from '@Shared/constants/introduceSections'
+import Notification from '@Admin/helpers/notification'
+import Grid from 'antd/lib/card/Grid'
 
 function IntroduceManagement() {
-  const onFinish = (values: any) => {
-    console.log('Success:', values)
+  const onSave = (name: string, value: string) => {
+    const message = `You've updated your ${name} title`
+    Notification.success(message)
   }
 
   return (
-    <AdminLayout title="내가 누구인가" subtitle="this is subtitle">
-      <Card>
-        <EditableTextField
-          icon={<UserOutlined />}
-          placeholder="이름"
-          initialValue=""
-          onSave={(value) => console.log(value)}
-        />
-        <EditableTextField
-          icon={<ToolFilled />}
-          placeholder="분야 (ex, 프론트엔드 개발자)"
-          initialValue=""
-          onSave={(value) => console.log(value)}
-        />
-        <EditableTextField
-          icon={<MailFilled />}
-          placeholder="이메일"
-          initialValue=""
-          onSave={(value) => console.log(value)}
-        />
-        <EditableTextField
-          icon={<GithubFilled />}
-          placeholder="깃허브"
-          initialValue=""
-          onSave={(value) => console.log(value)}
-        />
-        <EditableTextField
-          icon={<LinkedinFilled />}
-          placeholder="링크드인"
-          initialValue=""
-          onSave={(value) => console.log(value)}
-        />
-        <EditableTextField
-          icon={<FacebookFilled />}
-          placeholder="페이스북"
-          initialValue=""
-          onSave={(value) => console.log(value)}
-        />
-        <EditableTextField
-          icon={<YoutubeFilled />}
-          placeholder="유튜브"
-          initialValue=""
-          onSave={(value) => console.log(value)}
-        />
-        <EditableTextField
-          icon={<SnippetsFilled />}
-          placeholder="개인블로그"
-          initialValue=""
-          onSave={(value) => console.log(value)}
-        />
-        <EditableTextField
-          icon={<PhoneFilled />}
-          placeholder="핸드폰번호"
-          initialValue=""
-          onSave={(value) => console.log(value)}
-        />
-        <EditableTextField
-          icon={<InstagramFilled />}
-          placeholder="인스타그램"
-          initialValue=""
-          onSave={(value) => console.log(value)}
-        />
-        <EditableTextField
-          icon={<TwitterCircleFilled />}
-          placeholder="트위터"
-          initialValue=""
-          onSave={(value) => console.log(value)}
-        />
-        <EditableTextField
-          icon={<HomeFilled />}
-          placeholder="개인홈페이지"
-          initialValue=""
-          onSave={(value) => console.log(value)}
-        />
-        <EditableTextField
-          icon={<MessageFilled />}
-          type="textarea"
-          placeholder="자기소개"
-          initialValue="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ratione impedit laborum
-          perspiciatis doloribus cum id temporibus, voluptate sint deleniti repellendus, hic, illo
-          iusto quam maxime in eius saepe labore modi."
-          onSave={(value) => console.log(value)}
-        />
+    <AdminLayout
+      title="프로필"
+      subtitle="내 정보를 입력해주세요. 입력하지 않은 필드는 노출되지 않습니다."
+    >
+      <Row gutter={7}>
+        <Col span={12}>
+          <Card title="기본정보" style={{ marginBottom: 7 }}>
+            {introduceSections.default.map((section) => (
+              <EditableTextField
+                name={section.name}
+                icon={section.icon}
+                type="text"
+                key={section.name}
+                placeholder={section.placeholder}
+                initialValue=""
+                onSave={onSave}
+              />
+            ))}
+          </Card>
+        </Col>
+        <Col span={12}>
+          <Card title="연락처" style={{ marginBottom: 7 }}>
+            {introduceSections.contact.map((section) => (
+              <EditableTextField
+                name={section.name}
+                icon={section.icon}
+                type="text"
+                key={section.name}
+                placeholder={section.placeholder}
+                initialValue=""
+                onSave={onSave}
+              />
+            ))}
+          </Card>
+        </Col>
+      </Row>
+
+      <Card title="소셜 네트워크" style={{ marginBottom: 7 }}>
+        {introduceSections.social.map((section) => (
+          <EditableTextField
+            name={section.name}
+            icon={section.icon}
+            type="text"
+            key={section.name}
+            placeholder={section.placeholder}
+            initialValue=""
+            onSave={onSave}
+          />
+        ))}
+      </Card>
+      <Card title="추가정보">
+        {introduceSections.more.map((section) => (
+          <EditableTextField
+            name={section.name}
+            icon={section.icon}
+            type={section.name === 'about' ? 'textarea' : 'text'}
+            key={section.name}
+            placeholder={section.placeholder}
+            initialValue=""
+            onSave={onSave}
+          />
+        ))}
       </Card>
     </AdminLayout>
   )

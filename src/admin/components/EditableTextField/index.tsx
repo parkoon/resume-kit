@@ -1,20 +1,23 @@
 import React, { useState } from 'react'
 import { Input, Tooltip, Button } from 'antd'
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons'
+import { SaveFunc } from '@Admin/types/function'
 
 import { Wrapper, TextWrapper, InputWrapper, ButtonWrapper, IconWrapper } from './styles'
 
 const { TextArea } = Input
 
 type EditableTextFieldProps = {
+  name: string
   icon?: React.ReactNode
   type?: 'text' | 'textarea'
   tooltipText?: string
   initialValue: string
   placeholder: string
-  onSave(text: string): void
+  onSave: SaveFunc
 }
 function EditableTextField({
+  name,
   icon,
   type = 'text',
   tooltipText = 'Click to edit',
@@ -28,7 +31,7 @@ function EditableTextField({
   const save = () => {
     // 처음 들어왔던 데이터랑 같다면 저장 할 필요 없음
     if (initialValue !== value) {
-      onSave(value)
+      onSave(name, value)
     }
     setUpdateMode(false)
   }
@@ -39,6 +42,7 @@ function EditableTextField({
   const renderInput =
     type === 'text' ? (
       <Input
+        name={name}
         autoFocus
         placeholder={value || placeholder}
         onBlur={save}
@@ -47,6 +51,7 @@ function EditableTextField({
       />
     ) : (
       <TextArea
+        name={name}
         autoFocus
         rows={7}
         placeholder={value || placeholder}
