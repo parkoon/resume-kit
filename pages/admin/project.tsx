@@ -9,6 +9,7 @@ import ProjectForm from '@Admin/components/Forms/ProjectForm'
 import { calcCareerYearAndMonth } from '@Shared/helpers'
 import ProjectDescription from '@Admin/components/Descriptions/ProjectDescription'
 import { Project } from '@Shared/models/Project'
+import ProjectFilter from '@Admin/components/ProjectFilter'
 
 const { Title } = Typography
 // 1. 달력으로 일한 기간 선택!
@@ -62,6 +63,25 @@ function ExperienceManagement() {
     setIsModalVisible(false)
   }
 
+  const items = [
+    {
+      id: 1,
+      title: '퀄슨 0',
+    },
+    {
+      id: 2,
+      title: '퀄슨 1',
+    },
+    {
+      id: 3,
+      title: '퀄슨 2',
+    },
+    {
+      id: 4,
+      title: '퀄슨 3',
+    },
+  ]
+
   const [dateString, setDateString] = useState<DateString>('')
   const [career, setCareer] = useState<{ years: number; months: number }>()
 
@@ -86,6 +106,13 @@ function ExperienceManagement() {
         </Button>,
       ]}
     >
+      <ProjectFilter
+        items={items}
+        onChange={(values) => {
+          console.log(values)
+        }}
+      />
+
       {projects.map((experience, index) => (
         <ProjectDescription key={index} experience={experience} />
       ))}
