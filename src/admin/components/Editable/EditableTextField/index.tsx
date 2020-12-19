@@ -83,7 +83,7 @@ function EditableTextField({
         <HoverText
           tooltip={tooltipText}
           onClick={() => setUpdateMode(true)}
-          value={value || '없음'}
+          value={value}
           bold={bold}
           size={size}
         />

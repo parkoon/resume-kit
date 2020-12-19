@@ -15,14 +15,14 @@ function HoverText({ tooltip, value, onClick, ...props }: HoverTextProps) {
   if (!tooltip) {
     return (
       <Text onClick={onClick} onlyPlaceholder={!value} {...props}>
-        {value}
+        {value || '없음'}
       </Text>
     )
   }
   return (
     <Tooltip placement="topRight" title={tooltip}>
       <Text onClick={onClick} onlyPlaceholder={!value} {...props}>
-        {value}
+        {value || '없음'}
       </Text>
     </Tooltip>
   )
