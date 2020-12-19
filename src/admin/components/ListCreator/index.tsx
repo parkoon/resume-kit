@@ -3,10 +3,14 @@ import { Input, Button } from 'antd'
 
 import randomId from '@Admin/helpers/randomId'
 
+import { Wrapper } from './styles'
+
 type Item = {
   id: string
   title: string
 }
+
+type ListCreatorProps = {}
 function ListCreator() {
   const [values, setValues] = useState<Item[]>([])
   const [value, setValue] = useState('')
@@ -15,7 +19,7 @@ function ListCreator() {
 
   const handleEnter = (e: React.KeyboardEvent) => {
     if (e.keyCode !== 13) return
-
+    if (!value) return
     setValues([...values, { id: randomId(), title: value }])
     setValue('')
     setUpdatingValue(null)
@@ -26,7 +30,6 @@ function ListCreator() {
   }
 
   const save = (id: string) => () => {
-    console.log(id)
     setValues(
       values.map((value) => {
         if (value.id === id) {
@@ -43,7 +46,13 @@ function ListCreator() {
   }
 
   return (
-    <div>
+    <Wrapper>
+      <Input
+        value={value}
+        onKeyUp={handleEnter}
+        onFocus={() => setUpdatingValue(null)}
+        onChange={(e) => setValue(e.target.value)}
+      />
       <ul>
         {values.map(({ id, title }) => (
           <div key={id}>
@@ -86,13 +95,7 @@ function ListCreator() {
           </div>
         ))}
       </ul>
-      <Input
-        value={value}
-        onKeyUp={handleEnter}
-        onFocus={() => setUpdatingValue(null)}
-        onChange={(e) => setValue(e.target.value)}
-      />
-    </div>
+    </Wrapper>
   )
 }
 

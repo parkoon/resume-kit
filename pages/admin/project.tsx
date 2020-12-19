@@ -10,6 +10,7 @@ import { calcCareerYearAndMonth } from '@Shared/helpers'
 import ProjectDescription from '@Admin/components/Descriptions/ProjectDescription'
 import { Project } from '@Shared/models/Project'
 import ProjectFilter from '@Admin/components/ProjectFilter'
+import EditableDescriptionWithSummary from '@Admin/components/EditableDescriptionWithSummary'
 
 const { Title } = Typography
 // 1. 달력으로 일한 기간 선택!
@@ -113,9 +114,10 @@ function ExperienceManagement() {
         }}
       />
 
-      {projects.map((experience, index) => (
+      <EditableDescriptionWithSummary />
+      {/* {projects.map((experience, index) => (
         <ProjectDescription key={index} experience={experience} />
-      ))}
+      ))} */}
 
       {/* Project Form Modal */}
       <Modal

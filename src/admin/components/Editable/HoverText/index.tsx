@@ -11,17 +11,17 @@ type HoverTextProps = {
   size?: ComponentSize
   onClick?(): void
 }
-function HoverText({ tooltip, value, bold, size, onClick }: HoverTextProps) {
+function HoverText({ tooltip, value, onClick, ...props }: HoverTextProps) {
   if (!tooltip) {
     return (
-      <Text onClick={onClick} onlyPlaceholder={!value}>
+      <Text onClick={onClick} onlyPlaceholder={!value} {...props}>
         {value}
       </Text>
     )
   }
   return (
     <Tooltip placement="topRight" title={tooltip}>
-      <Text onClick={onClick} onlyPlaceholder={!value} bold={bold} size={size}>
+      <Text onClick={onClick} onlyPlaceholder={!value} {...props}>
         {value}
       </Text>
     </Tooltip>

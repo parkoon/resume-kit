@@ -4,10 +4,14 @@ import moment, { Moment } from 'moment'
 import { Wrapper } from './styles'
 import { DatePicker } from 'antd'
 import HoverText from '../HoverText'
+import { ComponentSize } from '@Admin/types/size'
 
 const DATE_FORMAT = 'YYYY/MM'
 
-function EditableDatePicker() {
+type EditableDatePickerProps = {
+  size?: ComponentSize
+}
+function EditableDatePicker({ size = 'md' }: EditableDatePickerProps) {
   const [updateMode, setUpdateMode] = useState(false)
   const [value, setValue] = useState<Moment | null>(null)
 
@@ -39,6 +43,7 @@ function EditableDatePicker() {
         <HoverText
           value={value ? moment(value).format(DATE_FORMAT) : '없음'}
           onClick={() => setUpdateMode(true)}
+          size={size}
         />
       )}
     </Wrapper>
