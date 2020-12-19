@@ -18,7 +18,7 @@ export const NAV_ITEMS = [
   {
     title: '프로필',
     icon: <IdcardOutlined />,
-    to: 'introduce',
+    to: 'profile',
   },
   {
     title: '기술',
