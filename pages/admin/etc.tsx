@@ -7,6 +7,7 @@ import CommonForm from '@Admin/components/Forms/CommonForm'
 import { CommonSection } from '@Shared/models/CommonSection'
 import { calcCareerYearAndMonth } from '@Shared/helpers'
 import CommonDescription from '@Admin/components/Descriptions/CommonDescription'
+import EditableDescriptionWithSummary from '@Admin/components/EditableDescriptionWithSummary'
 
 const etcs: CommonSection[] = [
   {
@@ -50,9 +51,8 @@ function EtcManagement() {
         </Button>,
       ]}
     >
-      {etcs.map((etc, index) => (
-        <CommonDescription key={index} type="etc" source={etc} />
-      ))}
+      <EditableDescriptionWithSummary />
+
       <Modal
         title="기타 만들기"
         visible={isModalVisible}
