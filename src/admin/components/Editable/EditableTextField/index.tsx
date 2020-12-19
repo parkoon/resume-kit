@@ -66,7 +66,7 @@ function EditableTextField({
 
   return (
     <Wrapper>
-      <IconWrapper>{icon}</IconWrapper>
+      {icon && <IconWrapper>{icon}</IconWrapper>}
       {isUpdateMode ? (
         <InputWrapper>
           {renderInput}
