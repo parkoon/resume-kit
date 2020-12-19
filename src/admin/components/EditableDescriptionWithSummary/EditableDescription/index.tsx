@@ -1,7 +1,7 @@
 import React from 'react'
 import { Select, Space, Typography } from 'antd'
 
-import EditableTextField from '@Admin/components/Editable/EditableTextField'
+import EditableText from '@Admin/components/Editable/EditableText'
 import { skillTitles } from '@Shared/constants'
 import ListCreator from '@Admin/components/ListCreator'
 import EditableDatePicker from '@Admin/components/Editable/EditableDatePicker'
@@ -10,7 +10,7 @@ import { Wrapper, Title, Section, Body } from './styles'
 function EditableDescription() {
   return (
     <Wrapper>
-      <EditableTextField
+      <EditableText
         name="title"
         type="text"
         initialValue="팝송패키지 구매의 경우 이지펜 관련 안내문구가 노출"
@@ -21,7 +21,7 @@ function EditableDescription() {
       <Body>
         <Section>
           <Title>회사</Title>
-          <EditableTextField
+          <EditableText
             name="corp"
             type="text"
             placeholder="예: 퀄슨 (Qualson)"
@@ -39,7 +39,7 @@ function EditableDescription() {
         </Section>
         <Section>
           <Title>설명</Title>
-          <EditableTextField
+          <EditableText
             name="title"
             type="textarea"
             initialValue="팝송패키지 구매의 경우 이지펜 관련 안내문구가 노출"

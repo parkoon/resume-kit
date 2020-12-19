@@ -1,13 +1,13 @@
 import { Card, Row, Col } from 'antd'
+
 import AdminLayout from '@Admin/layout'
-import EditableTextField from '@Admin/components/Editable/EditableTextField'
+import EditableText from '@Admin/components/Editable/EditableText'
 import introduceSections from '@Shared/constants/introduceSections'
 import Notification from '@Admin/helpers/notification'
-import Grid from 'antd/lib/card/Grid'
 
 function IntroduceManagement() {
   const onSave = (name: string, value: string) => {
-    const message = `You've updated your ${name} title`
+    const message = `변경사항이 저장되었습니다.`
     Notification.success(message)
   }
 
@@ -20,7 +20,7 @@ function IntroduceManagement() {
         <Col span={12}>
           <Card title="기본정보" style={{ marginBottom: 7 }}>
             {introduceSections.default.map((section) => (
-              <EditableTextField
+              <EditableText
                 name={section.name}
                 icon={section.icon}
                 type="text"
@@ -35,7 +35,7 @@ function IntroduceManagement() {
         <Col span={12}>
           <Card title="연락처" style={{ marginBottom: 7 }}>
             {introduceSections.contact.map((section) => (
-              <EditableTextField
+              <EditableText
                 name={section.name}
                 icon={section.icon}
                 type="text"
@@ -51,7 +51,7 @@ function IntroduceManagement() {
 
       <Card title="소셜 네트워크" style={{ marginBottom: 7 }}>
         {introduceSections.social.map((section) => (
-          <EditableTextField
+          <EditableText
             name={section.name}
             icon={section.icon}
             type="text"
@@ -64,7 +64,7 @@ function IntroduceManagement() {
       </Card>
       <Card title="추가정보">
         {introduceSections.more.map((section) => (
-          <EditableTextField
+          <EditableText
             name={section.name}
             icon={section.icon}
             type={section.name === 'about' ? 'textarea' : 'text'}

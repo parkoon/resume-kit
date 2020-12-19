@@ -21,7 +21,7 @@ type EditableTextFieldProps = {
   bold?: boolean
   size?: ComponentSize
 }
-function EditableTextField({
+function EditableText({
   name,
   icon,
   type = 'text',
@@ -92,4 +92,4 @@ function EditableTextField({
   )
 }
 
-export default EditableTextField
+export default EditableText
