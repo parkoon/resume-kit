@@ -81,10 +81,7 @@ function AdminLayout({ children, title, subtitle, actions = [] }: AdminLayoutPro
       </Sider>
       <Layout>
         <PageHeader ghost={false} title={title} subTitle={subtitle} extra={actions} />
-        <Content style={{ margin: '16px 16px' }}>{children}</Content>
-        <Footer style={{ textAlign: 'center', padding: '12px' }}>
-          ©{moment().format('YYYY')} Created by parkoon
-        </Footer>
+        <Content style={{ padding: '16px 16px' }}>{children}</Content>
       </Layout>
     </Layout>
   )
