@@ -4,6 +4,21 @@ import AdminLayout from '@Admin/layout'
 import EditableText from '@Admin/components/Editable/EditableText'
 import introduceSections from '@Shared/constants/introduceSections'
 import Notification from '@Admin/helpers/notification'
+import { Profile } from '@Shared/types/Profile'
+
+const DummyProfile: Profile = {
+  name: 'string',
+  position: 'string',
+  email: 'string',
+  phone: 'string',
+  github: 'string',
+  linkedin: 'string',
+  facebook: 'string',
+  twitter: 'string',
+  about: 'string',
+  homepage: 'string',
+  blog: 'string',
+}
 
 function IntroduceManagement() {
   const onSave = (name: string, value: string) => {
@@ -18,7 +33,7 @@ function IntroduceManagement() {
     >
       <Row gutter={7}>
         <Col span={12}>
-          <Card title="기본정보" style={{ marginBottom: 7 }}>
+          <Card title="기본정보 (이름, 직책)" style={{ marginBottom: 7 }}>
             {introduceSections.default.map((section) => (
               <EditableText
                 name={section.name}
@@ -26,14 +41,14 @@ function IntroduceManagement() {
                 type="text"
                 key={section.name}
                 placeholder={section.placeholder}
-                initialValue=""
+                initialValue={DummyProfile[section.name]}
                 onSave={onSave}
               />
             ))}
           </Card>
         </Col>
         <Col span={12}>
-          <Card title="연락처" style={{ marginBottom: 7 }}>
+          <Card title="연락처 (이메일, 핸드폰번호)" style={{ marginBottom: 7 }}>
             {introduceSections.contact.map((section) => (
               <EditableText
                 name={section.name}
@@ -41,7 +56,7 @@ function IntroduceManagement() {
                 type="text"
                 key={section.name}
                 placeholder={section.placeholder}
-                initialValue=""
+                initialValue={DummyProfile[section.name]}
                 onSave={onSave}
               />
             ))}
@@ -57,12 +72,12 @@ function IntroduceManagement() {
             type="text"
             key={section.name}
             placeholder={section.placeholder}
-            initialValue=""
+            initialValue={DummyProfile[section.name]}
             onSave={onSave}
           />
         ))}
       </Card>
-      <Card title="추가정보">
+      <Card title="추가정보 (소개, 블로그, 홈페이지)">
         {introduceSections.more.map((section) => (
           <EditableText
             name={section.name}
@@ -70,7 +85,7 @@ function IntroduceManagement() {
             type={section.name === 'about' ? 'textarea' : 'text'}
             key={section.name}
             placeholder={section.placeholder}
-            initialValue=""
+            initialValue={DummyProfile[section.name]}
             onSave={onSave}
           />
         ))}

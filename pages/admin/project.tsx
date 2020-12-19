@@ -8,7 +8,7 @@ import { Date, DateString } from '@Admin/components/DatePickers'
 import ProjectForm from '@Admin/components/Forms/ProjectForm'
 import { calcCareerYearAndMonth } from '@Shared/helpers'
 import ProjectDescription from '@Admin/components/Descriptions/ProjectDescription'
-import { Project } from '@Shared/models/Project'
+import { Project } from '@Shared/types/Project'
 import ProjectFilter from '@Admin/components/ProjectFilter'
 import EditableDescriptionWithSummary from '@Admin/components/EditableDescriptionWithSummary'
 

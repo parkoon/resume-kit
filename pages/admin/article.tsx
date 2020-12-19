@@ -3,7 +3,7 @@ import { Button, Modal, List, Typography, Tag, Card } from 'antd'
 
 import AdminLayout from '@Admin/layout'
 import ArticleForm from '@Admin/components/Forms/ArticleForm'
-import { Article } from '@Shared/models/Article'
+import { Article } from '@Shared/types/Article'
 import { palette } from '@Shared/styles'
 
 const articles: Article[] = [
