@@ -2,7 +2,7 @@ import { Card, Row, Col } from 'antd'
 
 import AdminLayout from '@Admin/layout'
 import EditableText from '@Admin/components/Editable/EditableText'
-import introduceSections from '@Shared/constants/introduceSections'
+import profileSection from '@Admin/constants/profileSection'
 import Notification from '@Admin/helpers/notification'
 import { Profile, ProfileSection } from '@Shared/types/Profile'
 import { useState } from 'react'
@@ -43,7 +43,7 @@ function IntroduceManagement() {
       <Row gutter={7}>
         <Col span={12}>
           <Card title="기본정보 (이름, 직책)" style={{ marginBottom: 7 }}>
-            {introduceSections.default.map((section) => (
+            {profileSection.default.map((section) => (
               <EditableText
                 name={section.name}
                 icon={section.icon}
@@ -58,7 +58,7 @@ function IntroduceManagement() {
         </Col>
         <Col span={12}>
           <Card title="연락처 (이메일, 핸드폰번호)" style={{ marginBottom: 7 }}>
-            {introduceSections.contact.map((section) => (
+            {profileSection.contact.map((section) => (
               <EditableText
                 name={section.name}
                 icon={section.icon}
@@ -74,7 +74,7 @@ function IntroduceManagement() {
       </Row>
 
       <Card title="소셜 네트워크" style={{ marginBottom: 7 }}>
-        {introduceSections.social.map((section) => (
+        {profileSection.social.map((section) => (
           <EditableText
             name={section.name}
             icon={section.icon}
@@ -87,7 +87,7 @@ function IntroduceManagement() {
         ))}
       </Card>
       <Card title="추가정보 (소개, 블로그, 홈페이지)">
-        {introduceSections.more.map((section) => (
+        {profileSection.more.map((section) => (
           <EditableText
             name={section.name}
             icon={section.icon}
