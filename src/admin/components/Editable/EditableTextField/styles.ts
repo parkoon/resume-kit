@@ -1,23 +1,10 @@
 import styled from 'styled-components'
 import { palette } from '@Shared/styles'
 
-export const Wrapper = styled.div<{ bold?: boolean }>`
+export const Wrapper = styled.div`
   display: flex;
-
-  font-weight: ${({ bold }) => (bold ? 'bold' : 'normal')};
 `
-export const TextWrapper = styled.div<{ onlyPlaceholder: boolean }>`
-  min-height: 34px;
-  width: 100%;
-  padding: 4px 11px;
-  font-size: 1.8rem;
-  transition: 0.3s;
-  color: ${({ onlyPlaceholder }) => (onlyPlaceholder ? palette.grey[500] : palette.grey[900])};
 
-  &:hover {
-    background: ${palette.grey[300]};
-  }
-`
 export const InputWrapper = styled.div`
   position: relative;
   width: 100%;

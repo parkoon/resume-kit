@@ -3,7 +3,8 @@ import { Input, Tooltip, Button } from 'antd'
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons'
 import { SaveFunc } from '@Admin/types/function'
 
-import { Wrapper, TextWrapper, InputWrapper, ButtonWrapper, IconWrapper } from './styles'
+import { Wrapper, InputWrapper, ButtonWrapper, IconWrapper } from './styles'
+import HoverText from '../HoverText'
 
 const { TextArea } = Input
 
@@ -64,7 +65,7 @@ function EditableTextField({
     )
 
   return (
-    <Wrapper bold={bold}>
+    <Wrapper>
       <IconWrapper>{icon}</IconWrapper>
       {isUpdateMode ? (
         <InputWrapper>
@@ -75,11 +76,12 @@ function EditableTextField({
           </ButtonWrapper>
         </InputWrapper>
       ) : (
-        <Tooltip placement="topRight" title={tooltipText}>
-          <TextWrapper onClick={() => setUpdateMode(true)} onlyPlaceholder={!value}>
-            {value || placeholder}
-          </TextWrapper>
-        </Tooltip>
+        <HoverText
+          tooltip={tooltipText}
+          onClick={() => setUpdateMode(true)}
+          value={value || '없음'}
+          bold
+        />
       )}
     </Wrapper>
   )
