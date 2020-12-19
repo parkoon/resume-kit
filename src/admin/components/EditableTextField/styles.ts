@@ -1,8 +1,10 @@
 import styled from 'styled-components'
 import { palette } from '@Shared/styles'
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.div<{ bold?: boolean }>`
   display: flex;
+
+  font-weight: ${({ bold }) => (bold ? 'bold' : 'normal')};
 `
 export const TextWrapper = styled.div<{ onlyPlaceholder: boolean }>`
   min-height: 34px;

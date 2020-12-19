@@ -12,9 +12,10 @@ type EditableTextFieldProps = {
   icon?: React.ReactNode
   type?: 'text' | 'textarea'
   tooltipText?: string
-  initialValue: string
-  placeholder: string
-  onSave: SaveFunc
+  initialValue?: string
+  placeholder?: string
+  onSave?: SaveFunc
+  bold?: boolean
 }
 function EditableTextField({
   name,
@@ -23,14 +24,15 @@ function EditableTextField({
   tooltipText = 'Click to edit',
   placeholder,
   initialValue,
+  bold = false,
   onSave,
 }: EditableTextFieldProps) {
-  const [value, setValue] = useState(initialValue)
+  const [value, setValue] = useState(initialValue || '')
   const [isUpdateMode, setUpdateMode] = useState(false)
 
   const save = () => {
     // 처음 들어왔던 데이터랑 같다면 저장 할 필요 없음
-    if (initialValue !== value) {
+    if (initialValue !== value && typeof onSave === 'function') {
       onSave(name, value)
     }
     setUpdateMode(false)
@@ -62,7 +64,7 @@ function EditableTextField({
     )
 
   return (
-    <Wrapper>
+    <Wrapper bold={bold}>
       <IconWrapper>{icon}</IconWrapper>
       {isUpdateMode ? (
         <InputWrapper>
