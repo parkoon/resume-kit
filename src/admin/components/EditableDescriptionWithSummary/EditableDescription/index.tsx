@@ -2,11 +2,11 @@ import React from 'react'
 import { Select, Space, Typography } from 'antd'
 
 import EditableText from '@Admin/components/Editable/EditableText'
-import { skillTitles } from '@Shared/constants'
 import ListCreator from '@Admin/components/ListCreator'
 import EditableDatePicker from '@Admin/components/Editable/EditableDatePicker'
 
 import { Wrapper, Title, Section, Body } from './styles'
+import { skillTitles } from '@Shared/types/Skill'
 function EditableDescription() {
   return (
     <Wrapper>

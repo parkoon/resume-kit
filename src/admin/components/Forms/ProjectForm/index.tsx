@@ -4,9 +4,9 @@ import { HomeOutlined, IdcardOutlined } from '@ant-design/icons'
 
 import DatePickers, { Date, DateString } from '@Admin/components/DatePickers'
 import WhatDidIDo from '@Admin/components/WhatDidIdDo'
-import { skillTitles } from '@Shared/constants'
 import { calcCareerYearAndMonth } from '@Shared/helpers'
 import TextArea from 'antd/lib/input/TextArea'
+import { skillTitles } from '@Shared/types/Skill'
 
 const { Option } = Select
 
