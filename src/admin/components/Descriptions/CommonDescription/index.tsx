@@ -1,6 +1,6 @@
 import React from 'react'
 import { Descriptions, Badge, Card, Button, Tag } from 'antd'
-import { CommonSection } from '@Shared/models/CommonSection'
+import { CommonSection } from '@Shared/types/CommonSection'
 
 const Label: {
   [key: string]: {

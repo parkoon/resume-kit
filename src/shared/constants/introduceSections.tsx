@@ -13,9 +13,10 @@ import {
   UserOutlined,
   YoutubeFilled,
 } from '@ant-design/icons'
+import { ProfileSection } from '@Shared/types/Profile'
 
 export type introduceSection = {
-  name: string
+  name: ProfileSection
   icon: React.ReactNode
   placeholder: string
 }
@@ -23,7 +24,7 @@ export type introduceSection = {
 const introduceSections: { [key: string]: introduceSection[] } = {
   default: [
     {
-      name: 'username',
+      name: 'name',
       icon: <UserOutlined />,
       placeholder: '이름',
     },

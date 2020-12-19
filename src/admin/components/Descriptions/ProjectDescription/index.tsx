@@ -1,6 +1,6 @@
 import React from 'react'
 import { Descriptions, Badge, Card, Button, Tag } from 'antd'
-import { Project } from '@Shared/models/Project'
+import { Project } from '@Shared/types/Project'
 
 type ProjectDescriptionProps = {
   experience: Project
