@@ -14,7 +14,6 @@ type EditableTextFieldProps = {
   name: string
   icon?: React.ReactNode
   type?: 'text' | 'textarea'
-  tooltipText?: string
   initialValue?: string
   placeholder?: string
   onSave?: SaveFunc
@@ -25,7 +24,6 @@ function EditableText({
   name,
   icon,
   type = 'text',
-  tooltipText = 'Click to edit',
   placeholder,
   initialValue,
   bold = false,
@@ -37,12 +35,9 @@ function EditableText({
 
   const save = () => {
     // 처음 들어왔던 데이터랑 같다면 저장 할 필요 없음
-    if (initialValue !== value && typeof onSave === 'function') {
-      onSave(name, value)
+    if (initialValue !== value) {
+      typeof onSave === 'function' && onSave(name, value)
     }
-    setUpdateMode(false)
-  }
-  const cancel = () => {
     setUpdateMode(false)
   }
 
@@ -53,6 +48,7 @@ function EditableText({
         autoFocus
         placeholder={value || placeholder}
         onBlur={save}
+        onKeyUp={(e) => e.keyCode === 13 && save()}
         value={value}
         onChange={(e) => setValue(e.target.value)}
       />
@@ -62,6 +58,7 @@ function EditableText({
         autoFocus
         rows={7}
         placeholder={value || placeholder}
+        onKeyUp={(e) => e.keyCode === 13 && save()}
         onBlur={save}
         value={value}
         onChange={(e) => setValue(e.target.value)}
@@ -76,12 +73,11 @@ function EditableText({
           {renderInput}
           <ButtonWrapper>
             <Button icon={<CheckOutlined />} onClick={save} />
-            <Button icon={<CloseOutlined />} onClick={cancel} />
           </ButtonWrapper>
         </InputWrapper>
       ) : (
         <HoverText
-          tooltip={tooltipText}
+          tooltip="클릭해서 변경하세요."
           onClick={() => setUpdateMode(true)}
           value={value}
           bold={bold}

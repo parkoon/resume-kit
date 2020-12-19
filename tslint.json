@@ -13,6 +13,7 @@
     "no-submodule-imports": false,
     "no-object-literal-type-assertion": false,
     "no-shadowed-variable": false,
+    "no-unused-expression": false,
     "function-name": [
       true,
       {

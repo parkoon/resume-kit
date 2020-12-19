@@ -18,10 +18,6 @@ export const ButtonWrapper = styled.div`
   bottom: -38px;
   position: absolute;
   z-index: 9;
-
-  button:first-child {
-    margin-right: 7px;
-  }
 `
 
 export const IconWrapper = styled.div`
