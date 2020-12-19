@@ -1,4 +1,4 @@
-import { tuple } from './helpers'
+import { tuple } from '@Shared/helpers'
 
 /**
  * 스킬 스펙 종류
@@ -45,3 +45,9 @@ export const skillTitles = tuple(
  */
 export type SkillType = typeof skillTypes[number]
 export const skillTypes = tuple('none', 'backend', 'frontend', 'database', 'etc', 'devOps')
+
+type MySkill = {
+  [key in SkillType]: SkillTitle
+}
+
+export default MySkill

@@ -1,12 +1,13 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Row, Col } from 'antd'
 
 import AdminLayout from '@Admin/layout'
 import SkillCard from '@Admin/components/SKillCard'
 import DragContainer from '@Admin/components/DropContainer'
-import { SkillTitle, SkillType, skillTypes } from '@Shared/constants'
 
-type Skill = {
+import { SkillType, skillTypes, SkillTitle } from '@Shared/types/Skill'
+
+export type Skill = {
   id: number
   title: SkillTitle
   type: SkillType
@@ -16,6 +17,7 @@ type Skill = {
 function SkillManagement() {
   const [draggingSkill, setDraggingSkill] = useState<Skill>()
   const [dragoverField, setDragoverField] = useState<SkillType>()
+  const didMountRef = useRef(false)
 
   const [skills, setSkills] = useState<Skill[]>([
     { id: 1, title: 'Node.js', type: 'none', level: 1 },
@@ -93,6 +95,15 @@ function SkillManagement() {
       })
     )
   }
+
+  useEffect(() => {
+    if (didMountRef.current) {
+      // TODO. 스킬 변경 API 호출
+      console.log('skills', skills)
+    } else {
+      didMountRef.current = true
+    }
+  }, [skills])
 
   return (
     <AdminLayout
