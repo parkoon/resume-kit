@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import { Input, Tooltip, Button } from 'antd'
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons'
+
 import { SaveFunc } from '@Admin/types/function'
+import { ComponentSize } from '@Admin/types/size'
 
 import { Wrapper, InputWrapper, ButtonWrapper, IconWrapper } from './styles'
 import HoverText from '../HoverText'
@@ -17,6 +19,7 @@ type EditableTextFieldProps = {
   placeholder?: string
   onSave?: SaveFunc
   bold?: boolean
+  size?: ComponentSize
 }
 function EditableTextField({
   name,
@@ -26,6 +29,7 @@ function EditableTextField({
   placeholder,
   initialValue,
   bold = false,
+  size = 'md',
   onSave,
 }: EditableTextFieldProps) {
   const [value, setValue] = useState(initialValue || '')
@@ -80,7 +84,8 @@ function EditableTextField({
           tooltip={tooltipText}
           onClick={() => setUpdateMode(true)}
           value={value || '없음'}
-          bold
+          bold={bold}
+          size={size}
         />
       )}
     </Wrapper>
