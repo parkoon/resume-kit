@@ -1,5 +1,5 @@
 import { Card, Row, Col } from 'antd'
-import AdminLayout from '@Admin/components/AdminLayout'
+import AdminLayout from '@Admin/layout'
 import EditableTextField from '@Admin/components/Editable/EditableTextField'
 import introduceSections from '@Shared/constants/introduceSections'
 import Notification from '@Admin/helpers/notification'

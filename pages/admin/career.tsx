@@ -1,4 +1,4 @@
-import AdminLayout from '@Admin/components/AdminLayout'
+import AdminLayout from '@Admin/layout'
 import { Space, Typography, Button } from 'antd'
 import { useState } from 'react'
 import Modal from 'antd/lib/modal/Modal'

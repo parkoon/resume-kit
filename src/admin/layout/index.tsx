@@ -1,48 +1,47 @@
 import React, { useState } from 'react'
 import { useRouter } from 'next/router'
-import moment from 'moment'
 import { Layout, Menu, PageHeader } from 'antd'
 import {
-  TeamOutlined,
-  UserOutlined,
-  FileTextOutlined,
   RadarChartOutlined,
   EllipsisOutlined,
   FolderOpenOutlined,
+  IdcardOutlined,
+  ReadOutlined,
+  ShopOutlined,
 } from '@ant-design/icons'
 
 import { palette } from '@Shared/styles'
 
-const { Content, Footer, Sider } = Layout
+const { Content, Sider } = Layout
 
 export const NAV_ITEMS = [
   {
-    title: 'introduce',
-    icon: <UserOutlined />,
+    title: '프로필',
+    icon: <IdcardOutlined />,
     to: 'introduce',
   },
   {
-    title: 'skill',
+    title: '기술',
     icon: <RadarChartOutlined />,
     to: 'skill',
   },
   {
-    title: 'project',
+    title: '프로젝트',
     icon: <FolderOpenOutlined />,
     to: 'project',
   },
   {
-    title: 'career',
-    icon: <TeamOutlined />,
+    title: '회사',
+    icon: <ShopOutlined />,
     to: 'career',
   },
   {
-    title: 'article',
-    icon: <FileTextOutlined />,
+    title: '포스팅',
+    icon: <ReadOutlined />,
     to: 'article',
   },
   {
-    title: 'etc',
+    title: '기타',
     icon: <EllipsisOutlined />,
     to: 'etc',
   },

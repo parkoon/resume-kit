@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Button, Modal, List, Typography, Tag, Card } from 'antd'
 
-import AdminLayout from '@Admin/components/AdminLayout'
+import AdminLayout from '@Admin/layout'
 import ArticleForm from '@Admin/components/Forms/ArticleForm'
 import { Article } from '@Shared/models/Article'
 import { palette } from '@Shared/styles'

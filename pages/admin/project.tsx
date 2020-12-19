@@ -3,7 +3,7 @@ import { Button, Space, Typography } from 'antd'
 import Modal from 'antd/lib/modal/Modal'
 import moment from 'moment'
 
-import AdminLayout from '@Admin/components/AdminLayout'
+import AdminLayout from '@Admin/layout'
 import { Date, DateString } from '@Admin/components/DatePickers'
 import ProjectForm from '@Admin/components/Forms/ProjectForm'
 import { calcCareerYearAndMonth } from '@Shared/helpers'

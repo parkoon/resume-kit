@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Row, Col } from 'antd'
 
-import AdminLayout from '@Admin/components/AdminLayout'
+import AdminLayout from '@Admin/layout'
 import SkillCard from '@Admin/components/SKillCard'
 import DragContainer from '@Admin/components/DropContainer'
 import { SkillTitle, SkillType, skillTypes } from '@Shared/constants'
