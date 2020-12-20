@@ -3,9 +3,10 @@ import { Button, Modal } from 'antd'
 
 import AdminLayout from '@Admin/layout'
 import CommonDescription from '@Admin/components/Descriptions/CommonDescription'
-import CommonForm, { CommonFormValues } from '@Admin/components/Forms/CommonForm'
+import CommonForm from '@Admin/components/Forms/CommonForm'
 import useModal from '@Admin/hooks/useModal'
 import Notification from '@Admin/helpers/notification'
+import { Career } from '@Shared/types/Career'
 
 function ProjectManagement() {
   const { open, close, visible } = useModal({
@@ -13,10 +14,10 @@ function ProjectManagement() {
       setSelectedCareer(undefined)
     },
   })
-  const [careers, setCareers] = useState<CommonFormValues[]>([])
+  const [careers, setCareers] = useState<Career[]>([])
   const didMountRef = useRef(false)
 
-  const [selectedCareer, setSelectedCareer] = useState<CommonFormValues>()
+  const [selectedCareer, setSelectedCareer] = useState<Career>()
 
   useEffect(() => {
     if (didMountRef.current) {
@@ -47,7 +48,6 @@ function ProjectManagement() {
       {careers.map((career) => (
         <CommonDescription
           key={career.id}
-          type="career"
           source={career}
           onModify={(id) => {
             const foundCareer = careers.find((career) => career.id === id)

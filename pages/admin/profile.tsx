@@ -2,10 +2,10 @@ import { Card, Row, Col } from 'antd'
 
 import AdminLayout from '@Admin/layout'
 import EditableText from '@Admin/components/Editable/EditableText'
-import profileSection from '@Admin/constants/profileSection'
 import Notification from '@Admin/helpers/notification'
 import { Profile, ProfileSection } from '@Shared/types/Profile'
 import { useState } from 'react'
+import { PROFILE_SECTIONS } from '@Admin/constants/profile'
 
 // TODO. API 로 사용자 데이터 불러오기
 // TODO. API 로 사용자 데이터 업데이트하기 (각 필드별로 변경 할 수 있는 API 필요)
@@ -43,7 +43,7 @@ function IntroduceManagement() {
       <Row gutter={7}>
         <Col span={12}>
           <Card title="기본정보 (이름, 직책)" style={{ marginBottom: 7 }}>
-            {profileSection.default.map((section) => (
+            {PROFILE_SECTIONS.default.map((section) => (
               <EditableText
                 name={section.name}
                 icon={section.icon}
@@ -58,7 +58,7 @@ function IntroduceManagement() {
         </Col>
         <Col span={12}>
           <Card title="연락처 (이메일, 핸드폰번호)" style={{ marginBottom: 7 }}>
-            {profileSection.contact.map((section) => (
+            {PROFILE_SECTIONS.contact.map((section) => (
               <EditableText
                 name={section.name}
                 icon={section.icon}
@@ -74,7 +74,7 @@ function IntroduceManagement() {
       </Row>
 
       <Card title="소셜 네트워크" style={{ marginBottom: 7 }}>
-        {profileSection.social.map((section) => (
+        {PROFILE_SECTIONS.social.map((section) => (
           <EditableText
             name={section.name}
             icon={section.icon}
@@ -87,7 +87,7 @@ function IntroduceManagement() {
         ))}
       </Card>
       <Card title="추가정보 (소개, 블로그, 홈페이지)">
-        {profileSection.more.map((section) => (
+        {PROFILE_SECTIONS.more.map((section) => (
           <EditableText
             name={section.name}
             icon={section.icon}
