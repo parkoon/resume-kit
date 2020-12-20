@@ -1,4 +1,5 @@
 import express from 'express'
+import cors from 'cors'
 import './db'
 
 const app = express()
@@ -10,6 +11,8 @@ import articleRoute from './modules/article/route'
 import careerRoute from './modules/career/route'
 import educationRoute from './modules/education/route'
 import etcRoute from './modules/etc/route'
+
+app.use(cors())
 
 app.use('/api/profile', profileRoute)
 app.use('/api/project', projectRoute)

@@ -30,6 +30,7 @@
     "@ant-design/icons": "^4.3.0",
     "antd": "^4.9.2",
     "axios": "^0.21.0",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "jsonfile": "^6.1.0",
     "moment": "^2.29.1",
@@ -37,9 +38,11 @@
     "next": "^10.0.3",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "styled-components": "^5.2.1"
+    "styled-components": "^5.2.1",
+    "swr": "^0.3.10"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.9",
     "@types/express": "^4.17.9",
     "@types/jsonfile": "^6.0.0",
     "@types/node": "^14.14.10",
