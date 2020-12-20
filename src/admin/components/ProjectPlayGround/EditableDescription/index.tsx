@@ -9,8 +9,10 @@ import { skillTitles } from '@Shared/types/Skill'
 import { Wrapper, Title, Section, Body } from './styles'
 import ProjectContext from '../context'
 
+const { Option } = Select
+
 function EditableDescription() {
-  const { currentProject, update } = useContext(ProjectContext)
+  const { currentProject, update, careers } = useContext(ProjectContext)
 
   if (!currentProject) {
     return (
@@ -39,19 +41,20 @@ function EditableDescription() {
       <Body>
         <Section>
           <Title>회사</Title>
-          <EditableText
-            name="where"
-            type="text"
-            placeholder="예: 퀄슨 (Qualson)"
-            initialValue={currentProject.where}
-            onSave={(name, value) =>
+
+          <Select
+            defaultValue={currentProject.where.id}
+            onChange={(value) =>
               update({
                 ...currentProject,
-                [name]: value,
+                where: careers.find((career) => career.id === value)!,
               })
             }
-            size="sm"
-          />
+          >
+            {careers.map((career) => (
+              <Option value={career.id}>{career.title}</Option>
+            ))}
+          </Select>
         </Section>
         <Section>
           <Title>시작일</Title>

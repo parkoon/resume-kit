@@ -12,7 +12,7 @@ function Summary() {
         {projects.map((project) => (
           <Item key={project.id} onClick={() => select(project)}>
             <h3>{project.title}</h3>
-            <span>{project.where}</span>
+            <span>{project.where.title}</span>
           </Item>
         ))}
       </Body>

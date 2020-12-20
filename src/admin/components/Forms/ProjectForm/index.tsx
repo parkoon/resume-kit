@@ -24,8 +24,10 @@ function ProjectForm({ id, careers, onComplete }: ProjectFormProps) {
   const onFinish = (values: any) => {
     add({
       ...values,
-      tasks: values.tasks.map((title: string) => ({ title, id: randomId() })),
+      where: careers.find((career) => career.id === values.where),
+      tasks: values.tasks ? values.tasks.map((title: string) => ({ title, id: randomId() })) : [],
     })
+
     onComplete()
   }
   return (
