@@ -12,6 +12,8 @@ import careerRoute from './modules/career/route'
 import educationRoute from './modules/education/route'
 import etcRoute from './modules/etc/route'
 
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 app.use(cors())
 
 app.use('/api/profile', profileRoute)
