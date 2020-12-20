@@ -1,4 +1,4 @@
-import { SkillTitle } from '@Shared/constants'
+import { SkillTitle } from './Skill'
 
 export type Project = {
   corp: string // 회사명
