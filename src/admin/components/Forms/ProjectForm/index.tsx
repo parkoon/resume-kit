@@ -14,12 +14,11 @@ const { Option } = Select
 
 type ProjectFormProps = {
   id: string
-  careers: Career[]
   onComplete(): void
 }
-function ProjectForm({ id, careers, onComplete }: ProjectFormProps) {
+function ProjectForm({ id, onComplete }: ProjectFormProps) {
   const [hasEndDate, setHasEndDate] = useState(true)
-  const { add } = useContext(ProjectContext)
+  const { add, careers } = useContext(ProjectContext)
 
   const onFinish = (values: any) => {
     add({

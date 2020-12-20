@@ -119,7 +119,7 @@ function ExperienceManagement() {
             </Button>,
           ]}
         >
-          <ProjectForm id="project" careers={careers} onComplete={close} />
+          <ProjectForm id="project" onComplete={close} />
         </Modal>
       </ProjectProvider>
     </AdminLayout>
