@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { Input, Button } from 'antd'
+import { Input, Button, Popconfirm } from 'antd'
 
 import randomId from '@Admin/helpers/randomId'
 
@@ -88,7 +88,14 @@ function TaskCreator({ items, onChange }: ListCreatorProps) {
                 >
                   수정
                 </Action>
-                <Action onClick={remove(id)}>삭제</Action>
+                <Popconfirm
+                  title="삭제하시겠습니까?"
+                  okText="삭제"
+                  cancelText="취소"
+                  onConfirm={remove(id)}
+                >
+                  <Action>삭제</Action>
+                </Popconfirm>
               </>
             )}
           </List>

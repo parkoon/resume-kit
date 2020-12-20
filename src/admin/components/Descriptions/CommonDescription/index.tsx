@@ -28,7 +28,7 @@ function CommonDescription({ source, onModify, onDelete }: CommonDescriptionProp
             수정하기
           </Button>,
           <Popconfirm
-            title="정말 지우시겠습니까?"
+            title="삭제하시겠습니까?"
             okText="삭제"
             cancelText="취소"
             onConfirm={() => onDelete && onDelete(source.id)}
