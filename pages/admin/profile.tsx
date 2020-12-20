@@ -2,7 +2,7 @@ import { Card, Row, Col } from 'antd'
 
 import AdminLayout from '@Admin/layout'
 import EditableText from '@Admin/components/Editable/EditableText'
-import profileSection from '@Admin/constants/profileSection'
+import profileSection from '@Admin/constants/profile'
 import Notification from '@Admin/helpers/notification'
 import { Profile, ProfileSection } from '@Shared/types/Profile'
 import { useState } from 'react'

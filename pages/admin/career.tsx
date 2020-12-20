@@ -6,30 +6,26 @@ import moment from 'moment'
 import { calcCareerYearAndMonth } from '@Shared/helpers'
 import CommonDescription from '@Admin/components/Descriptions/CommonDescription'
 import CommonForm from '@Admin/components/Forms/CommonForm'
-import { CommonSection } from '@Shared/types/CommonSection'
-
-const { Title } = Typography
-
-const careers: CommonSection[] = [
-  {
-    title: '퀄슨 (퀄슨)',
-    subtitle: '프론트엔드 개발자',
-    period: calcCareerYearAndMonth([moment(), moment('2021/02/22')]),
-    startedAt: moment().toString(),
-    completedAt: moment('2021/02/22').toString(),
-    completed: true,
-  },
-  {
-    title: '퀄슨 (퀄슨)',
-    period: calcCareerYearAndMonth([moment('2009/10/10')]),
-    startedAt: moment().toString(),
-    subtitle: '프론트엔드 개발자',
-    completed: false,
-  },
-]
 
 function ProjectManagement() {
   const [isModalVisible, setIsModalVisible] = useState(false)
+  const [careers, setCareers] = useState([
+    {
+      title: '퀄슨 (퀄슨)',
+      subtitle: '프론트엔드 개발자',
+      period: calcCareerYearAndMonth([moment(), moment('2021/02/22')]),
+      startedAt: moment().toString(),
+      completedAt: moment('2021/02/22').toString(),
+      completed: true,
+    },
+    {
+      title: '퀄슨 (퀄슨)',
+      period: calcCareerYearAndMonth([moment('2009/10/10')]),
+      startedAt: moment().toString(),
+      subtitle: '프론트엔드 개발자',
+      completed: false,
+    },
+  ])
 
   const showModal = () => {
     setIsModalVisible(true)

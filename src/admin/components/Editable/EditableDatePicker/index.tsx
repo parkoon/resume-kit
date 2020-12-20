@@ -5,8 +5,7 @@ import { Wrapper } from './styles'
 import { DatePicker } from 'antd'
 import HoverText from '../HoverText'
 import { ComponentSize } from '@Admin/types/size'
-
-const DATE_FORMAT = 'YYYY/MM'
+import { DATE_FORMAT } from '@Admin/constants/date'
 
 type EditableDatePickerProps = {
   size?: ComponentSize

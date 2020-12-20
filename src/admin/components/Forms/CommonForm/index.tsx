@@ -1,60 +1,69 @@
 import { useState } from 'react'
-import { Form, Input, Switch } from 'antd'
-import { HomeOutlined, IdcardOutlined } from '@ant-design/icons'
+import moment from 'moment'
+import { DatePicker, Form, Input, Switch } from 'antd'
 
-import DatePickers, { Date, DateString } from '@Admin/components/DatePickers'
-import { calcCareerYearAndMonth } from '@Shared/helpers'
+import { HomeOutlined, IdcardOutlined } from '@ant-design/icons'
+import { DATE_FORMAT } from '@Admin/constants/date'
 
 type CommonFormProps = {
   id: string
+  onComplete(values: FormValues): void
+  initialValue?: FormValues
 }
-function CommonForm({ id }: CommonFormProps) {
-  const [completed, setCompleted] = useState(true)
 
-  const [dateString, setDateString] = useState<DateString>('')
-  const [career, setCareer] = useState<{ years: number; months: number }>()
+type FormValues = {
+  completed: boolean
+  startedAt: string
+  endedAt?: string
+  title: string
+  subtitle: string
+}
+function CommonForm({ id, onComplete, initialValue }: CommonFormProps) {
+  const [hasEndDate, setHasEndDate] = useState(true)
 
-  const handleCareerDateChange = (date: Date, str: DateString) => {
-    setDateString(str)
-
-    if (date) {
-      setCareer(calcCareerYearAndMonth(date))
-    }
-  }
-
-  const handleSkillChange = (values: string[]) => {
+  const onFinish = (values: FormValues) => {
     console.log(values)
-  }
-
-  const onFinish = (values: any) => {
-    console.log('Received values of form:', values)
+    onComplete({
+      ...values,
+      startedAt: moment(values.startedAt).format(DATE_FORMAT),
+      endedAt: moment(values.endedAt).format(DATE_FORMAT),
+    })
   }
   return (
     <div>
       <Form id={id} onFinish={onFinish} autoComplete="off" layout="vertical">
-        <Form.Item name="completed" label="진행중">
+        <Form.Item name="completed" label="진행중" initialValue={false}>
           <Switch
-            onChange={(checked) => setCompleted(!checked)}
+            defaultChecked={true}
+            onChange={(checked) => {
+              setHasEndDate(checked)
+            }}
             checkedChildren="진행중"
             unCheckedChildren="종료"
           />
         </Form.Item>
         <Form.Item
-          label="기간"
-          name="period"
-          rules={[{ required: true, message: '기간을 입력해주세요.' }]}
+          label="시작일"
+          name="startedAt"
+          rules={[{ required: true, message: '시작일 입력해주세요.' }]}
         >
-          <DatePickers
-            startDateLabel="시작일"
-            doneDateLabel="종료일"
-            onChange={handleCareerDateChange}
-            multiple={completed}
-          />
+          <DatePicker placeholder="시작일" format={'YYYY. MM'} picker="month" />
         </Form.Item>
+
+        {hasEndDate && (
+          <Form.Item
+            label="종료일"
+            name="endedAt"
+            rules={[{ required: true, message: '종료일 입력해주세요.' }]}
+          >
+            <DatePicker placeholder="종료일" format={'YYYY. MM'} picker="month" />
+          </Form.Item>
+        )}
 
         <Form.Item
           name="title"
           label="타이틀"
+          initialValue="zz"
           rules={[{ required: true, message: '타이틀을 입력해주세요.' }]}
         >
           <Input
@@ -62,10 +71,10 @@ function CommonForm({ id }: CommonFormProps) {
             prefix={<HomeOutlined />}
           />
         </Form.Item>
-
         <Form.Item
           name="subtitle"
           label="서브 타이틀"
+          initialValue="zz"
           rules={[{ required: true, message: '서브 타이틀을 입력해주세요.' }]}
         >
           <Input
