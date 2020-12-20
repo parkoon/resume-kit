@@ -1,42 +1,62 @@
-import { useState } from 'react'
-import { Button, Modal, List, Typography, Tag, Card } from 'antd'
+import { useState, useEffect } from 'react'
+import { Button, Modal, List, Card, Popconfirm, Space } from 'antd'
 
 import AdminLayout from '@Admin/layout'
 import ArticleForm from '@Admin/components/Forms/ArticleForm'
 import { Article } from '@Shared/types/Article'
 import { palette } from '@Shared/styles'
-
-const articles: Article[] = []
+import useModal from '@Admin/hooks/useModal'
+import { FormCompletedType } from '@Admin/types'
 
 function ArticleManagement() {
-  const [isModalVisible, setIsModalVisible] = useState(false)
+  const [articles, setArticles] = useState<Article[]>([])
+  const [selectedArticle, setSelectedArticle] = useState<Article>()
+  const { visible, close, open } = useModal({
+    afterClose() {
+      setSelectedArticle(undefined)
+    },
+  })
 
-  const showModal = () => {
-    setIsModalVisible(true)
+  const saveOrUpdateArticle = (type: FormCompletedType, values: Article) => {
+    if (type === 'add') {
+      setArticles([...articles, values])
+    } else {
+      setArticles(articles.map((article) => (article.id === values.id ? values : article)))
+    }
+    close()
   }
 
-  const handleOk = () => {
-    setIsModalVisible(false)
+  const updateArticle = (id: string) => {
+    const foundArticle = articles.find((article) => article.id === id)
+    if (foundArticle) {
+      setSelectedArticle(foundArticle)
+    }
+  }
+  const deleteArticle = (id: string) => {
+    setArticles(articles.filter((article) => article.id !== id))
   }
 
-  const handleCancel = () => {
-    setIsModalVisible(false)
-  }
+  useEffect(() => {
+    if (selectedArticle) {
+      open()
+    }
+  }, [selectedArticle])
+
   return (
     <AdminLayout
       title="내가 작성한 기사들"
       subtitle="this is subtitle"
       actions={[
-        <Button type="primary" onClick={showModal}>
-          추가하기
+        <Button type="primary" onClick={open}>
+          만들기
         </Button>,
       ]}
     >
-      <Card>
+      <Card style={{ height: '100%' }}>
         <List
           dataSource={articles}
           renderItem={(item: Article) => (
-            <List.Item style={{ justifyContent: 'flex-start' }}>
+            <List.Item style={{ justifyContent: 'space-between' }}>
               <a
                 href={item.url}
                 target="_blank"
@@ -44,7 +64,19 @@ function ArticleManagement() {
               >
                 {item.title}
               </a>
-              <Button type="dashed">수정하기</Button>
+              <Space>
+                <Button type="dashed" onClick={() => updateArticle(item.id)}>
+                  수정하기
+                </Button>
+                <Popconfirm
+                  title="정말 지우시겠습니까?"
+                  okText="삭제"
+                  cancelText="취소"
+                  onConfirm={() => deleteArticle(item.id)}
+                >
+                  <Button danger>삭제하기</Button>
+                </Popconfirm>
+              </Space>
             </List.Item>
           )}
         />
@@ -52,9 +84,9 @@ function ArticleManagement() {
 
       <Modal
         title="내가 작성한 기사 🏢"
-        visible={isModalVisible}
-        onOk={handleOk}
-        onCancel={handleCancel}
+        visible={visible}
+        onOk={close}
+        onCancel={close}
         bodyStyle={{ maxHeight: '70vh', overflow: 'scroll' }}
         destroyOnClose
         footer={[
@@ -63,7 +95,7 @@ function ArticleManagement() {
           </Button>,
         ]}
       >
-        <ArticleForm id="article" />
+        <ArticleForm id="article" onComplete={saveOrUpdateArticle} initialValue={selectedArticle} />
       </Modal>
     </AdminLayout>
   )
