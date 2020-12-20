@@ -1,5 +1,5 @@
 import React from 'react'
-import { Descriptions, Card, Button } from 'antd'
+import { Descriptions, Card, Button, Tag } from 'antd'
 import moment from 'moment'
 
 import { CommonFormValues } from '@Admin/components/Forms/CommonForm'
@@ -73,10 +73,12 @@ function CommonDescription({ source, type, onModify, onDelete }: CommonDescripti
           {source.startedAt} ~ {source.endedAt}
         </Descriptions.Item>
         <Descriptions.Item label={Label[type].totalPeriod}>
-          {years}년 {months}개월
+          <Tag>
+            {years ? `${years}년 ` : ''} {months}개월
+          </Tag>
         </Descriptions.Item>
         <Descriptions.Item label={Label[type].completed}>
-          {source.completed ? '퇴사' : '재직중'}
+          {source.completed ? <Tag color="volcano">퇴사</Tag> : <Tag color="green">재직중</Tag>}
         </Descriptions.Item>
       </Descriptions>
     </Card>
