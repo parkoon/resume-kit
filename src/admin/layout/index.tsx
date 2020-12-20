@@ -8,6 +8,7 @@ import {
   IdcardOutlined,
   ReadOutlined,
   ShopOutlined,
+  GlobalOutlined,
 } from '@ant-design/icons'
 
 import { palette } from '@Shared/styles'
@@ -34,6 +35,11 @@ export const NAV_ITEMS = [
     title: '회사',
     icon: <ShopOutlined />,
     to: 'career',
+  },
+  {
+    title: '교육',
+    icon: <GlobalOutlined />,
+    to: 'education',
   },
   {
     title: '포스팅',
