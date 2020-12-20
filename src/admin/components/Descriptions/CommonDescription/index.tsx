@@ -5,37 +5,6 @@ import moment from 'moment'
 import { CommonFormValues } from '@Admin/components/Forms/CommonForm'
 import { calcCareerYearAndMonth } from '@Shared/helpers'
 
-const Label: {
-  [key: string]: {
-    title: string
-    subtitle: string
-    period: string
-    totalPeriod: string
-    completed: string
-  }
-} = {
-  career: {
-    title: '회사명',
-    subtitle: '직책',
-    period: '업무기간',
-    totalPeriod: '총 업무 일수',
-    completed: '퇴사여부',
-  },
-  education: {
-    title: '학교명',
-    subtitle: '분야',
-    period: '재학기간',
-    totalPeriod: '총 재학 일수',
-    completed: '졸업여부',
-  },
-  etc: {
-    title: '제목',
-    subtitle: '한 줄 설명',
-    period: '기간',
-    totalPeriod: '총 기간',
-    completed: '완료여부',
-  },
-}
 type DescriptionType = 'career' | 'education' | 'etc'
 type CommonDescriptionProps = {
   source: CommonFormValues
@@ -70,20 +39,20 @@ function CommonDescription({ source, type, onModify, onDelete }: CommonDescripti
           </Popconfirm>,
         ]}
       >
-        <Descriptions.Item label={Label[type].title}>{source.title}</Descriptions.Item>
-        <Descriptions.Item label={Label[type].subtitle} span={2}>
+        <Descriptions.Item label="이름">{source.title}</Descriptions.Item>
+        <Descriptions.Item label="분야" span={2}>
           {source.subtitle}
         </Descriptions.Item>
-        <Descriptions.Item label={Label[type].period}>
+        <Descriptions.Item label="기간">
           {source.startedAt} ~ {source.endedAt}
         </Descriptions.Item>
-        <Descriptions.Item label={Label[type].totalPeriod}>
+        <Descriptions.Item label="총 기간">
           <Tag>
             {years ? `${years}년 ` : ''} {months}개월
           </Tag>
         </Descriptions.Item>
-        <Descriptions.Item label={Label[type].completed}>
-          {source.completed ? <Tag color="volcano">퇴사</Tag> : <Tag color="green">재직중</Tag>}
+        <Descriptions.Item label="종료여부">
+          {source.completed ? <Tag color="volcano">종료</Tag> : <Tag color="green">진행중</Tag>}
         </Descriptions.Item>
       </Descriptions>
     </Card>
