@@ -5,12 +5,18 @@ const Service = {
   async getEtc() {
     try {
       const etc = jsonfile.readFileSync(etcPath)
-      console.log(etc)
+      return etc
     } catch (err) {
       throw Error(err)
     }
   },
-  async saveEtc() {},
+  async saveEtc(etc: any) {
+    try {
+      jsonfile.writeFileSync(etcPath, etc)
+    } catch (err) {
+      throw new Error(err)
+    }
+  },
 }
 
 export default Service

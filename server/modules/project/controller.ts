@@ -5,12 +5,19 @@ const Controller = {
   async getProject(req: Request, res: Response) {
     try {
       const project = await projectService.getProject()
-      return project
+      res.json(project)
     } catch (err) {
-      throw Error(err)
+      res.status(500).json()
     }
   },
-  async saveProject(req: Request, res: Response) {},
+  async saveProject(req: Request, res: Response) {
+    try {
+      await projectService.saveProject(req.body)
+      res.status(200).json()
+    } catch (err) {
+      res.status(500).json()
+    }
+  },
 }
 
 export default Controller

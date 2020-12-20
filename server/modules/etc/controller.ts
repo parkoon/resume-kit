@@ -5,10 +5,19 @@ const Controller = {
   async getEtc(req: Request, res: Response) {
     try {
       const etc = await etcService.getEtc()
-      return etc
-    } catch (err) {}
+      res.json(etc)
+    } catch (err) {
+      res.status(500).end()
+    }
   },
-  async saveEtc(req: Request, res: Response) {},
+  async saveEtc(req: Request, res: Response) {
+    try {
+      await etcService.saveEtc(req.body)
+      res.status(200).end()
+    } catch (err) {
+      res.status(500).end()
+    }
+  },
 }
 
 export default Controller

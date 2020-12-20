@@ -1,16 +1,25 @@
 import jsonfile from 'jsonfile'
+
+import { Project } from '@Shared/types/Project'
+
 import { projectPath } from '../../paths'
 
 const Service = {
   async getProject() {
     try {
       const project = jsonfile.readFileSync(projectPath)
-      console.log(project)
+      return project
     } catch (err) {
-      console.log('??', err)
+      throw new Error(err)
     }
   },
-  async saveProject() {},
+  async saveProject(project: Project) {
+    try {
+      jsonfile.writeFileSync(projectPath, project)
+    } catch (err) {
+      throw new Error(err)
+    }
+  },
 }
 
 export default Service

@@ -5,12 +5,18 @@ const Service = {
   async getEducation() {
     try {
       const education = jsonfile.readFileSync(educationPath)
-      console.log(education)
+      return education
     } catch (err) {
       throw Error(err)
     }
   },
-  async saveEducation() {},
+  async saveEducation(education: any) {
+    try {
+      jsonfile.writeFileSync(educationPath, education)
+    } catch (err) {
+      throw new Error(err)
+    }
+  },
 }
 
 export default Service

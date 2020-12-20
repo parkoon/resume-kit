@@ -5,12 +5,19 @@ const Controller = {
   async getSkill(req: Request, res: Response) {
     try {
       const skill = await skillService.getSkill()
-      return skill
+      res.json(skill)
     } catch (err) {
-      throw Error(err)
+      res.status(500).end()
     }
   },
-  async saveSkill(req: Request, res: Response) {},
+  async saveSkill(req: Request, res: Response) {
+    try {
+      await skillService.saveSkill(req.body)
+      res.status(200).end()
+    } catch (err) {
+      res.status(500).end()
+    }
+  },
 }
 
 export default Controller
