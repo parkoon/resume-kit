@@ -5,14 +5,12 @@ import moment from 'moment'
 import { CommonFormValues } from '@Admin/components/Forms/CommonForm'
 import { calcCareerYearAndMonth } from '@Shared/helpers'
 
-type DescriptionType = 'career' | 'education' | 'etc'
 type CommonDescriptionProps = {
   source: CommonFormValues
-  type: DescriptionType
   onModify?(id: string): void
   onDelete?(id: string): void
 }
-function CommonDescription({ source, type, onModify, onDelete }: CommonDescriptionProps) {
+function CommonDescription({ source, onModify, onDelete }: CommonDescriptionProps) {
   const { years, months } = calcCareerYearAndMonth(
     source.endedAt ? [moment(source.startedAt), moment(source.endedAt)] : moment(source.startedAt)
   )
