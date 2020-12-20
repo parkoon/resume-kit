@@ -15,13 +15,13 @@ import {
 } from '@ant-design/icons'
 import { ProfileSection } from '@Shared/types/Profile'
 
-export type introduceSection = {
+export type profileSection = {
   name: ProfileSection
   icon: React.ReactNode
   placeholder: string
 }
 
-const introduceSections: { [key: string]: introduceSection[] } = {
+export const PROFILE_SECTIONS: { [key: string]: profileSection[] } = {
   default: [
     {
       name: 'name',
@@ -97,5 +97,3 @@ const introduceSections: { [key: string]: introduceSection[] } = {
     },
   ],
 }
-
-export default introduceSections

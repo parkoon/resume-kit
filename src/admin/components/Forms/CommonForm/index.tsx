@@ -6,6 +6,7 @@ import { HomeOutlined, IdcardOutlined } from '@ant-design/icons'
 import { DATE_FORMAT } from '@Admin/constants/date'
 import randomId from '@Admin/helpers/randomId'
 import { FormCompletedType } from '@Admin/types'
+import { Career } from '@Shared/types/Career'
 
 type CommonFormProps = {
   id: string
@@ -13,14 +14,8 @@ type CommonFormProps = {
   initialValue?: CommonFormValues
 }
 
-export type CommonFormValues = {
-  id: string
-  completed: boolean
-  startedAt: string
-  endedAt?: string
-  title: string
-  subtitle: string
-}
+export type CommonFormValues = Career
+
 function CommonForm({ id, onComplete, initialValue }: CommonFormProps) {
   const [hasEndDate, setHasEndDate] = useState(initialValue ? initialValue.completed : true)
 
