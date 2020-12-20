@@ -1,42 +1,62 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { palette } from '@Shared/styles'
 
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   border-radius: 4px;
-  background-color: ${palette.grey[300]};
+  background-color: ${palette.white};
   padding: 8px;
   width: 256px;
 `
 
 export const Body = styled.div`
   position: relative;
-  h3 {
-    font-size: 1.5rem;
-    word-break: keep-all;
-  }
 
-  span {
-    font-weight: bold;
-    color: ${palette.grey[800]};
-  }
+  border: 1px solid ${palette.grey[200]};
+
   height: calc(100vh - 220px);
   overflow: auto;
 `
 
-export const Item = styled.div`
-  background-color: ${palette.grey[100]};
-  border: 1px solid ${palette.grey[300]};
+export const Item = styled.div<{ selected?: boolean }>`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background: ${palette.grey[100]};
+  border-bottom: 1px solid ${palette.grey[200]};
   margin-bottom: -1px;
   padding: 12px;
   cursor: pointer;
-
   transition: 0.2s;
+
+  h3 {
+    font-size: 1.5rem;
+    margin-bottom: 7px;
+    word-break: keep-all;
+  }
+  span.where {
+    font-weight: bold;
+    color: ${palette.grey[800]};
+  }
 
   &:hover {
     background-color: ${palette.grey[200]};
   }
+
+  ${({ selected }) =>
+    selected &&
+    css`
+      background: ${palette.blue[100]};
+      h3,
+      span {
+        color: ${palette.indigo[700]};
+      }
+
+      &:hover {
+        background: ${palette.blue[100]};
+      }
+    `}
 `
 
 export const Footer = styled.div`

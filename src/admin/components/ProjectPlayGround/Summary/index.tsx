@@ -5,16 +5,19 @@ import { Wrapper, Body, Item, Footer } from './styles'
 import ProjectContext from '../context'
 
 function Summary() {
-  const { projects, select } = useContext(ProjectContext)
+  const { projects, select, currentProject } = useContext(ProjectContext)
   return (
     <Wrapper>
       <Body>
-        {projects.map((project) => (
-          <Item key={project.id} onClick={() => select(project)}>
-            <h3>{project.title}</h3>
-            <span>{project.where.title}</span>
-          </Item>
-        ))}
+        {projects.map((project) => {
+          const isSelectedProject = currentProject && currentProject.id === project.id
+          return (
+            <Item key={project.id} onClick={() => select(project)} selected={isSelectedProject}>
+              <h3>{project.title}</h3>
+              <span className="where">{project.where.title}</span>
+            </Item>
+          )
+        })}
       </Body>
       <Footer>
         <Pagination simple total={projects.length} />
