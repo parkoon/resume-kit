@@ -3,7 +3,7 @@ import { Input, Button } from 'antd'
 
 import randomId from '@Admin/helpers/randomId'
 
-import { Wrapper } from './styles'
+import { TaskWrapper, List, Title, Action } from './styles'
 import { Task } from '@Shared/types/Project'
 import useCallbackWithMount from '@Admin/hooks/useCallbackWithMount'
 
@@ -50,16 +50,17 @@ function TaskCreator({ items, onChange }: ListCreatorProps) {
   })
 
   return (
-    <Wrapper>
+    <>
       <Input
         value={value}
         onKeyUp={handleEnter}
         onFocus={() => setUpdatingValue(null)}
         onChange={(e) => setValue(e.target.value)}
+        placeholder="업무 추가..."
       />
-      <ul>
+      <TaskWrapper>
         {values.map(({ id, title }) => (
-          <div key={id}>
+          <List key={id}>
             {updatingValue && updatingValue.id === id ? (
               <>
                 <Input
@@ -68,19 +69,15 @@ function TaskCreator({ items, onChange }: ListCreatorProps) {
                     setUpdatingValue({ id, title: e.target.value })
                   }}
                   autoFocus
+                  style={{ marginBottom: 7 }}
                 />
-                <Button type="text" onClick={save(id)}>
-                  저장
-                </Button>
-                <Button type="text" onClick={() => setUpdatingValue(null)}>
-                  취소
-                </Button>
+                <Action onClick={save(id)}>저장</Action>
+                <Action onClick={() => setUpdatingValue(null)}>취소</Action>
               </>
             ) : (
               <>
-                <li>{title}</li>
-                <Button
-                  type="text"
+                <Title>{title}</Title>
+                <Action
                   onClick={() => {
                     console.log(id)
                     setUpdatingValue({
@@ -90,16 +87,14 @@ function TaskCreator({ items, onChange }: ListCreatorProps) {
                   }}
                 >
                   수정
-                </Button>
-                <Button type="text" onClick={remove(id)}>
-                  삭제
-                </Button>
+                </Action>
+                <Action onClick={remove(id)}>삭제</Action>
               </>
             )}
-          </div>
+          </List>
         ))}
-      </ul>
-    </Wrapper>
+      </TaskWrapper>
+    </>
   )
 }
 
