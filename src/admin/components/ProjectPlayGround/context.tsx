@@ -18,7 +18,25 @@ type ProjectProviderProps = {
 }
 
 export function ProjectProvider({ children }: ProjectProviderProps) {
-  const [projects, setProjects] = useState<Project[]>([])
+  // const [projects, setProjects] = useState<Project[]>([])
+  const [projects, setProjects] = useState<Project[]>([
+    {
+      completed: true,
+      description: '123123123↵sdfasdfsa↵sadfadsf↵asf',
+      endedAt: '2016/2',
+      id: 'lH6Di',
+      skills: ['Ubuntu'],
+      startedAt: '2016/2',
+      tasks: [{ id: 'zzz', title: 'zzz' }],
+      title: '123123123123123',
+      where: { id: 'fasfa', title: 'aaa' },
+      endedAt: '2012/13',
+      id: 'fasfa',
+      startedAt: '2012/12',
+      subtitle: 'hahaha',
+      title: 'Qualson 1',
+    },
+  ])
   const [careers, setCareers] = useState<Career[]>([
     {
       id: 'fasfa',
@@ -57,6 +75,8 @@ export function ProjectProvider({ children }: ProjectProviderProps) {
   }
 
   const add = (value: Project) => {
+    console.log('value', value)
+
     setProjects([...projects, value])
   }
 

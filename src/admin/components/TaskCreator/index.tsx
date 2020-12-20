@@ -8,7 +8,7 @@ import { Task } from '@Shared/types/Project'
 import useCallbackWithMount from '@Admin/hooks/useCallbackWithMount'
 
 type ListCreatorProps = { items: Task[]; onChange(values: Task[]): void }
-function ListCreator({ items, onChange }: ListCreatorProps) {
+function TaskCreator({ items, onChange }: ListCreatorProps) {
   const [values, setValues] = useState<Task[]>(items)
   const [value, setValue] = useState('')
 
@@ -103,4 +103,4 @@ function ListCreator({ items, onChange }: ListCreatorProps) {
   )
 }
 
-export default ListCreator
+export default TaskCreator

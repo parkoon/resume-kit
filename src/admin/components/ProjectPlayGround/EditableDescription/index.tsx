@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { Select, Empty } from 'antd'
 
 import EditableText from '@Admin/components/Editable/EditableText'
-import ListCreator from '@Admin/components/ListCreator'
+import TaskCreator from '@Admin/components/TaskCreator'
 import EditableDatePicker from '@Admin/components/Editable/EditableDatePicker'
 import { skillTitles } from '@Shared/types/Skill'
 import EditableSelect from '@Admin/components/Editable/EditableSelect'
@@ -139,7 +139,7 @@ function EditableDescription() {
         <Section>
           <Title>업무</Title>
           <div style={{ marginLeft: '11px', marginTop: '7px' }}>
-            <ListCreator
+            <TaskCreator
               items={currentProject.tasks}
               onChange={(value) =>
                 update({
