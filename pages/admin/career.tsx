@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import { Button, Modal } from 'antd'
 
 import AdminLayout from '@Admin/layout'
@@ -7,6 +7,7 @@ import CommonForm from '@Admin/components/Forms/CommonForm'
 import useModal from '@Admin/hooks/useModal'
 import Notification from '@Admin/helpers/notification'
 import { Career } from '@Shared/types/Career'
+import useCallbackWithMount from '@Admin/hooks/useCallbackWithMount'
 
 function ProjectManagement() {
   const { open, close, visible } = useModal({
@@ -15,19 +16,17 @@ function ProjectManagement() {
     },
   })
   const [careers, setCareers] = useState<Career[]>([])
-  const didMountRef = useRef(false)
 
   const [selectedCareer, setSelectedCareer] = useState<Career>()
 
-  useEffect(() => {
-    if (didMountRef.current) {
+  useCallbackWithMount({
+    watch: careers,
+    callback() {
       // TODO. API 호출
-      console.log('careers', careers)
+      console.log('educations', careers)
       Notification.success('변경사항이 적용되었습니다')
-    } else {
-      didMountRef.current = true
-    }
-  }, [careers])
+    },
+  })
 
   useEffect(() => {
     if (selectedCareer) {

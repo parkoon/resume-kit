@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import { Button, Modal } from 'antd'
 
 import AdminLayout from '@Admin/layout'
@@ -6,6 +6,7 @@ import CommonDescription from '@Admin/components/Descriptions/CommonDescription'
 import CommonForm, { CommonFormValues } from '@Admin/components/Forms/CommonForm'
 import useModal from '@Admin/hooks/useModal'
 import Notification from '@Admin/helpers/notification'
+import useCallbackWithMount from '@Admin/hooks/useCallbackWithMount'
 
 function EducationManagement() {
   const { open, close, visible } = useModal({
@@ -14,19 +15,17 @@ function EducationManagement() {
     },
   })
   const [educations, setEducations] = useState<CommonFormValues[]>([])
-  const didMountRef = useRef(false)
 
   const [selectedCareer, setSelectedCareer] = useState<CommonFormValues>()
 
-  useEffect(() => {
-    if (didMountRef.current) {
+  useCallbackWithMount({
+    watch: educations,
+    callback() {
       // TODO. API 호출
       console.log('educations', educations)
       Notification.success('변경사항이 적용되었습니다')
-    } else {
-      didMountRef.current = true
-    }
-  }, [educations])
+    },
+  })
 
   useEffect(() => {
     if (selectedCareer) {
