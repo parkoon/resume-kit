@@ -18,27 +18,27 @@ import {
     fs.mkdirSync(dbPath)
   }
 
-  const initObject = { updatedAt: moment(), data: {} }
+  const updatedAt = moment()
 
   if (!fs.existsSync(profilePath)) {
-    jsonfile.writeFileSync(profilePath, initObject)
+    jsonfile.writeFileSync(profilePath, { updatedAt, profile: {} })
   }
   if (!fs.existsSync(projectPath)) {
-    jsonfile.writeFileSync(projectPath, initObject)
+    jsonfile.writeFileSync(projectPath, { updatedAt, projects: [] })
   }
   if (!fs.existsSync(articlePath)) {
-    jsonfile.writeFileSync(articlePath, initObject)
+    jsonfile.writeFileSync(articlePath, { updatedAt, articles: [] })
   }
   if (!fs.existsSync(careerPath)) {
-    jsonfile.writeFileSync(careerPath, initObject)
+    jsonfile.writeFileSync(careerPath, { updatedAt, careers: [] })
   }
   if (!fs.existsSync(educationPath)) {
-    jsonfile.writeFileSync(educationPath, initObject)
+    jsonfile.writeFileSync(educationPath, { updatedAt, educations: [] })
   }
   if (!fs.existsSync(etcPath)) {
-    jsonfile.writeFileSync(etcPath, initObject)
+    jsonfile.writeFileSync(etcPath, { updatedAt, etcs: [] })
   }
   if (!fs.existsSync(skillPath)) {
-    jsonfile.writeFileSync(skillPath, initObject)
+    jsonfile.writeFileSync(skillPath, { updatedAt, skills: [] })
   }
 })()
