@@ -1,103 +1,137 @@
 import { useState } from 'react'
-import { Form, Input, Select, Switch } from 'antd'
-import { HomeOutlined, IdcardOutlined } from '@ant-design/icons'
-
-// import DatePickers, { Date, DateString } from '@Admin/components/DatePickers'
-import WhatDidIDo from '@Admin/components/WhatDidIdDo'
-import { calcCareerYearAndMonth } from '@Shared/helpers'
+import { Button, DatePicker, Form, Input, Select, Switch } from 'antd'
 import TextArea from 'antd/lib/input/TextArea'
+import { IdcardOutlined, MinusCircleOutlined, PlusOutlined } from '@ant-design/icons'
+
+import { DATE_FORMAT } from '@Admin/constants/date'
+import randomId from '@Admin/helpers/randomId'
+import { Career } from '@Shared/types/Career'
+import { Project } from '@Shared/types/Project'
 import { skillTitles } from '@Shared/types/Skill'
 
 const { Option } = Select
 
-function ProjectForm() {
-  const [completed, setCompleted] = useState(true)
+type ProjectFormProps = {
+  id: string
+  careers: Career[]
+  onComplete(value: Project): void
+}
+function ProjectForm({ id, careers, onComplete }: ProjectFormProps) {
+  const [hasEndDate, setHasEndDate] = useState(true)
 
-  const [dateString, setDateString] = useState<DateString>('')
-  const [career, setCareer] = useState<{ years: number; months: number }>()
-
-  const handleCareerDateChange = (date: Date, str: DateString) => {
-    setDateString(str)
-
-    if (date) {
-      setCareer(calcCareerYearAndMonth(date))
-    }
-  }
-
-  const handleSkillChange = (values: string[]) => {
-    console.log(values)
-  }
-
-  const onFinish = (values: any) => {
-    console.log('Received values of form:', values)
+  const onFinish = (values: Project) => {
+    onComplete(values)
   }
   return (
-    <div>
-      <Form id="experience" onFinish={onFinish} autoComplete="off" layout="vertical">
-        <Form.Item
-          name="corp"
-          label="회사"
-          rules={[{ required: true, message: '회사를 선택해주세요.' }]}
-        >
-          <Select defaultValue="lucy" style={{ width: 120 }}>
-            <Option value="jack">Jack</Option>
-            <Option value="lucy">Lucy</Option>
-            <Option value="Yiminghe">yiminghe</Option>
-          </Select>
-        </Form.Item>
+    <Form id={id} onFinish={onFinish} autoComplete="off" layout="vertical">
+      <Form.Item name="id" style={{ display: 'none' }} initialValue={randomId()} />
 
-        <Form.Item name="completed" label="종료여부">
-          <Switch
-            onChange={(checked) => setCompleted(!checked)}
-            checkedChildren="진행중"
-            unCheckedChildren="종료"
-          />
-        </Form.Item>
-        {/* <Form.Item
-          label="프로젝트 기간"
-          name="period"
-          rules={[{ required: true, message: '시작일 및 종료일을 입력해주세요.' }]}
-        >
-          <DatePickers
-            startDateLabel="시작일"
-            doneDateLabel="종료일"
-            onChange={handleCareerDateChange}
-            multiple={completed}
-          />
-        </Form.Item> */}
+      <Form.Item
+        name="where"
+        label="회사"
+        rules={[{ required: true, message: '회사를 선택해주세요.' }]}
+        initialValue={careers[0].id}
+      >
+        <Select defaultValue={careers[0].id} style={{ width: 120 }}>
+          {careers.map((career) => (
+            <Option value={career.id}>{career.title}</Option>
+          ))}
+        </Select>
+      </Form.Item>
 
-        <Form.Item
-          name="title"
-          label="프로젝트명"
-          rules={[{ required: true, message: '프로젝트 이름을 입력해주세요.' }]}
-        >
-          <Input placeholder="프로젝트 이름을 입력해주세요." prefix={<IdcardOutlined />} />
-        </Form.Item>
-        <Form.Item
-          name="description"
-          label="프로젝트 설명"
-          rules={[{ required: true, message: '프로젝트를 간단히 설명해주세요.' }]}
-        >
-          <TextArea placeholder="프로젝트를 간단히 설명해주세요." rows={4} />
-        </Form.Item>
+      <Form.Item name="completed" label="진행여부" initialValue={hasEndDate}>
+        <Switch
+          defaultChecked={hasEndDate}
+          onChange={(checked) => {
+            setHasEndDate(checked)
+          }}
+          checkedChildren="종료"
+          unCheckedChildren="진행중"
+        />
+      </Form.Item>
+      <Form.Item
+        label="시작일"
+        name="startedAt"
+        rules={[{ required: true, message: '시작일 입력해주세요.' }]}
+      >
+        <DatePicker format={DATE_FORMAT} picker="month" placeholder="시작일" />
+      </Form.Item>
 
+      {hasEndDate && (
         <Form.Item
-          name="skills"
-          label="기술 스펙"
-          rules={[{ required: true, message: '프로젝트에 사용된 기술을 선택해주세요.' }]}
+          label="종료일"
+          name="endedAt"
+          rules={[{ required: true, message: '종료일 입력해주세요.' }]}
         >
-          <Select
-            mode="multiple"
-            style={{ width: '100%' }}
-            placeholder="프로젝트에 사용된 기술을 선택해주세요."
-            onChange={handleSkillChange}
-            options={skillTitles.map((title) => ({ value: title }))}
-          />
+          <DatePicker format={DATE_FORMAT} picker="month" placeholder="시작일" />
         </Form.Item>
+      )}
 
-        <WhatDidIDo />
-      </Form>
-    </div>
+      <Form.Item
+        name="title"
+        label="프로젝트명"
+        rules={[{ required: true, message: '프로젝트 이름을 입력해주세요.' }]}
+      >
+        <Input placeholder="프로젝트 이름을 입력해주세요." prefix={<IdcardOutlined />} />
+      </Form.Item>
+      <Form.Item
+        name="description"
+        label="프로젝트 설명"
+        rules={[{ required: true, message: '프로젝트를 간단히 설명해주세요.' }]}
+      >
+        <TextArea placeholder="프로젝트를 간단히 설명해주세요." rows={4} />
+      </Form.Item>
+
+      <Form.Item
+        name="skills"
+        label="기술 스펙"
+        rules={[{ required: true, message: '프로젝트에 사용된 기술을 선택해주세요.' }]}
+      >
+        <Select
+          mode="multiple"
+          style={{ width: '100%' }}
+          placeholder="프로젝트에 사용된 기술을 선택해주세요."
+          options={skillTitles.map((title) => ({ value: title }))}
+        />
+      </Form.Item>
+
+      <Form.List name="tasks">
+        {(fields, { add, remove }) => (
+          <>
+            {fields.map((field, index) => (
+              <Form.Item label={index === 0 ? '내가 한 일' : ''} required key={field.key}>
+                <Form.Item
+                  {...field}
+                  validateTrigger={['onChange', 'onBlur']}
+                  rules={[
+                    {
+                      required: true,
+                      whitespace: true,
+                      message: '프로젝트에서 했던 일을 입력해주세요.',
+                    },
+                  ]}
+                  style={{ position: 'relative', marginBottom: 0 }}
+                >
+                  <Input
+                    style={{ paddingRight: 30 }}
+                    placeholder="프로젝트에서 했던 일을 입력해주세요."
+                  />
+                </Form.Item>
+                <MinusCircleOutlined
+                  style={{ position: 'absolute', top: 10, right: 10 }}
+                  onClick={() => remove(field.name)}
+                />
+              </Form.Item>
+            ))}
+            <Form.Item>
+              <Button block type="dashed" onClick={() => add()} icon={<PlusOutlined />}>
+                Add field
+              </Button>
+            </Form.Item>
+          </>
+        )}
+      </Form.List>
+    </Form>
   )
 }
 
