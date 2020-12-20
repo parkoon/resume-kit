@@ -5,10 +5,18 @@ const Controller = {
   async getProfile(req: Request, res: Response) {
     try {
       const profile = await profileService.getProfile()
-      return profile
-    } catch (err) {}
+      res.json(profile)
+    } catch (err) {
+      res.status(500).end()
+    }
   },
-  async saveProfile(req: Request, res: Response) {},
+  async saveProfile(req: Request, res: Response) {
+    try {
+      await profileService.saveProfile(req.body)
+    } catch (err) {
+      res.status(500).end()
+    }
+  },
 }
 
 export default Controller
