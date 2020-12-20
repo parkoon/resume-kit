@@ -35,7 +35,7 @@ function EditableText({
   const save = () => {
     // 처음 들어왔던 데이터랑 같다면 저장 할 필요 없음
     if (initialValue !== value) {
-      typeof onSave === 'function' && onSave(name, value)
+      typeof onSave === 'function' && onSave(name, value.replace(/(?:\r\n|\r|\n)/g, '\n'))
     }
     setUpdateMode(false)
   }
@@ -57,7 +57,6 @@ function EditableText({
         autoFocus
         rows={7}
         placeholder={value || placeholder}
-        onKeyUp={(e) => e.keyCode === 13 && save()}
         onBlur={save}
         value={value}
         onChange={(e) => setValue(e.target.value)}

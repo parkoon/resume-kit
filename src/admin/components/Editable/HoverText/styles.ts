@@ -11,7 +11,7 @@ export const Text = styled.div<{ onlyPlaceholder: boolean; bold?: boolean; size?
   transition: 0.3s;
   border-radius: 4px;
   color: ${({ onlyPlaceholder }) => (onlyPlaceholder ? palette.grey[500] : palette.grey[900])};
-
+  white-space: pre-line;
   font-weight: ${({ bold }) => (bold ? 'bold' : 'normal')};
 
   &:hover {
