@@ -1,38 +1,27 @@
+import useSWR from 'swr'
 import { Card, Row, Col } from 'antd'
 
 import AdminLayout from '@Admin/layout'
 import EditableText from '@Admin/components/Editable/EditableText'
 import Notification from '@Admin/helpers/notification'
-import { Profile, ProfileSection } from '@Shared/types/Profile'
-import { useState } from 'react'
 import { PROFILE_SECTIONS } from '@Admin/constants/profile'
+import { API, ProfileAPI, ProfileGETResponse } from '@Admin/api'
 
-// TODO. API 로 사용자 데이터 불러오기
-// TODO. API 로 사용자 데이터 업데이트하기 (각 필드별로 변경 할 수 있는 API 필요)
 function IntroduceManagement() {
-  const [dummyUser, setDummyUser] = useState<Profile>({
-    name: 'string',
-    position: 'string',
-    email: 'string',
-    phone: 'string',
-    github: 'string',
-    linkedin: 'string',
-    facebook: 'string',
-    twitter: 'string',
-    about: 'string',
-    homepage: 'string',
-    blog: 'string',
-    instagram: 'string',
-    youtube: 'string',
-  })
-  const onSave = (name: string, value: string) => {
-    const message = `변경사항이 저장되었습니다.`
-    Notification.success(message)
+  const { data } = useSWR<ProfileGETResponse>(ProfileAPI.get(), API)
 
-    setDummyUser({
-      ...dummyUser,
-      [name as ProfileSection]: value,
-    })
+  if (!data) {
+    // TODO. 로딩처리
+    return <span>로딩중</span>
+  }
+
+  const {
+    data: { profile },
+  } = data
+
+  const onSave = (name: string, value: string) => {
+    ProfileAPI.update({ ...profile, [name]: value })
+    Notification.success('변경사항이 저장되었습니다.')
   }
 
   return (
@@ -50,7 +39,7 @@ function IntroduceManagement() {
                 type="text"
                 key={section.name}
                 placeholder={section.placeholder}
-                initialValue={dummyUser[section.name]}
+                initialValue={profile[section.name]}
                 onSave={onSave}
               />
             ))}
@@ -65,7 +54,7 @@ function IntroduceManagement() {
                 type="text"
                 key={section.name}
                 placeholder={section.placeholder}
-                initialValue={dummyUser[section.name]}
+                initialValue={profile[section.name]}
                 onSave={onSave}
               />
             ))}
@@ -81,7 +70,7 @@ function IntroduceManagement() {
             type="text"
             key={section.name}
             placeholder={section.placeholder}
-            initialValue={dummyUser[section.name]}
+            initialValue={profile[section.name]}
             onSave={onSave}
           />
         ))}
@@ -94,7 +83,7 @@ function IntroduceManagement() {
             type={section.name === 'about' ? 'textarea' : 'text'}
             key={section.name}
             placeholder={section.placeholder}
-            initialValue={dummyUser[section.name]}
+            initialValue={profile[section.name]}
             onSave={onSave}
           />
         ))}
