@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Form, Input, Select, Switch } from 'antd'
 import { HomeOutlined, IdcardOutlined } from '@ant-design/icons'
 
-import DatePickers, { Date, DateString } from '@Admin/components/DatePickers'
+// import DatePickers, { Date, DateString } from '@Admin/components/DatePickers'
 import WhatDidIDo from '@Admin/components/WhatDidIdDo'
 import { calcCareerYearAndMonth } from '@Shared/helpers'
 import TextArea from 'antd/lib/input/TextArea'
@@ -53,7 +53,7 @@ function ProjectForm() {
             unCheckedChildren="종료"
           />
         </Form.Item>
-        <Form.Item
+        {/* <Form.Item
           label="프로젝트 기간"
           name="period"
           rules={[{ required: true, message: '시작일 및 종료일을 입력해주세요.' }]}
@@ -64,7 +64,7 @@ function ProjectForm() {
             onChange={handleCareerDateChange}
             multiple={completed}
           />
-        </Form.Item>
+        </Form.Item> */}
 
         <Form.Item
           name="title"

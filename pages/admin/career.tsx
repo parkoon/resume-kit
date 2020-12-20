@@ -1,70 +1,86 @@
+import { useState, useEffect, useRef } from 'react'
+import { Button, Modal } from 'antd'
+
 import AdminLayout from '@Admin/layout'
-import { Space, Typography, Button } from 'antd'
-import { useState } from 'react'
-import Modal from 'antd/lib/modal/Modal'
-import moment from 'moment'
-import { calcCareerYearAndMonth } from '@Shared/helpers'
 import CommonDescription from '@Admin/components/Descriptions/CommonDescription'
-import CommonForm from '@Admin/components/Forms/CommonForm'
+import CommonForm, { CommonFormValues } from '@Admin/components/Forms/CommonForm'
+import useModal from '@Admin/hooks/useModal'
 
 function ProjectManagement() {
-  const [isModalVisible, setIsModalVisible] = useState(false)
-  const [careers, setCareers] = useState([
-    {
-      title: '퀄슨 (퀄슨)',
-      subtitle: '프론트엔드 개발자',
-      period: calcCareerYearAndMonth([moment(), moment('2021/02/22')]),
-      startedAt: moment().toString(),
-      completedAt: moment('2021/02/22').toString(),
-      completed: true,
+  const { open, close, visible } = useModal({
+    afterClose() {
+      setSelectedCareer(undefined)
     },
-    {
-      title: '퀄슨 (퀄슨)',
-      period: calcCareerYearAndMonth([moment('2009/10/10')]),
-      startedAt: moment().toString(),
-      subtitle: '프론트엔드 개발자',
-      completed: false,
-    },
-  ])
+  })
+  const [careers, setCareers] = useState<CommonFormValues[]>([])
+  const didMountRef = useRef(false)
 
-  const showModal = () => {
-    setIsModalVisible(true)
-  }
+  const [selectedCareer, setSelectedCareer] = useState<CommonFormValues>()
 
-  const handleOk = () => {
-    setIsModalVisible(false)
-  }
+  useEffect(() => {
+    if (didMountRef.current) {
+      // TODO. API 호출
+      console.log('careers', careers)
+    } else {
+      didMountRef.current = true
+    }
+  }, [careers])
 
-  const handleCancel = () => {
-    setIsModalVisible(false)
-  }
+  useEffect(() => {
+    if (selectedCareer) {
+      open()
+    }
+  }, [selectedCareer])
+
   return (
     <AdminLayout
       title="내가 성장 할 수 있었던 곳"
       subtitle="this is subtitle"
       actions={[
-        <Button type="primary" onClick={showModal}>
+        <Button type="primary" onClick={open}>
           만들기
         </Button>,
       ]}
     >
       {careers.map((career, index) => (
-        <CommonDescription key={index} type="career" source={career} />
+        <CommonDescription
+          key={index}
+          type="career"
+          source={career}
+          onModify={(id) => {
+            const foundCareer = careers.find((career) => career.id === id)
+            if (foundCareer) {
+              setSelectedCareer(foundCareer)
+            }
+          }}
+        />
       ))}
       <Modal
         title="내가 성장 할 수 있던 곳은 🏢"
-        visible={isModalVisible}
-        onOk={handleOk}
-        onCancel={handleCancel}
+        visible={visible}
+        onOk={close}
+        onCancel={close}
         bodyStyle={{ maxHeight: '70vh', overflow: 'scroll' }}
         destroyOnClose
         footer={[
           <Button form="career" type="primary" key="submit" htmlType="submit">
-            만들기
+            {selectedCareer ? '수정하기' : '만들기'}
           </Button>,
         ]}
       >
-        <CommonForm id="career" />
+        <CommonForm
+          id="career"
+          onComplete={(type, values) => {
+            if (type === 'add') {
+              setCareers([...careers, values])
+            } else {
+              console.log('values', values)
+              setCareers(careers.map((career) => (career.id === values.id ? values : career)))
+            }
+            close()
+          }}
+          initialValue={selectedCareer}
+        />
       </Modal>
     </AdminLayout>
   )

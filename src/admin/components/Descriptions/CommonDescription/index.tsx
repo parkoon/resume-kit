@@ -1,6 +1,9 @@
 import React from 'react'
-import { Descriptions, Badge, Card, Button, Tag } from 'antd'
-import { CommonSection } from '@Shared/types/CommonSection'
+import { Descriptions, Card, Button } from 'antd'
+import moment from 'moment'
+
+import { CommonFormValues } from '@Admin/components/Forms/CommonForm'
+import { calcCareerYearAndMonth } from '@Shared/helpers'
 
 const Label: {
   [key: string]: {
@@ -35,22 +38,42 @@ const Label: {
 }
 type DescriptionType = 'career' | 'education' | 'etc'
 type CommonDescriptionProps = {
-  source: CommonSection
+  source: CommonFormValues
   type: DescriptionType
+  onModify?(id: string): void
+  onDelete?(id: string): void
 }
-function CommonDescription({ source, type }: CommonDescriptionProps) {
+function CommonDescription({ source, type, onModify, onDelete }: CommonDescriptionProps) {
+  const { years, months } = calcCareerYearAndMonth(
+    source.endedAt ? [moment(source.startedAt), moment(source.endedAt)] : moment(source.startedAt)
+  )
   return (
     <Card style={{ marginBottom: '1.5rem' }}>
-      <Descriptions title={source.title} bordered extra={<Button type="dashed">수정하기</Button>}>
+      <Descriptions
+        title={source.title}
+        bordered
+        extra={[
+          <Button
+            type="dashed"
+            style={{ marginRight: 7 }}
+            onClick={() => onModify && onModify(source.id)}
+          >
+            수정하기
+          </Button>,
+          <Button danger onClick={() => onDelete && onDelete(source.id)}>
+            삭제하기
+          </Button>,
+        ]}
+      >
         <Descriptions.Item label={Label[type].title}>{source.title}</Descriptions.Item>
         <Descriptions.Item label={Label[type].subtitle} span={2}>
           {source.subtitle}
         </Descriptions.Item>
         <Descriptions.Item label={Label[type].period}>
-          {source.startedAt} ~ {source.completedAt}
+          {source.startedAt} ~ {source.endedAt}
         </Descriptions.Item>
         <Descriptions.Item label={Label[type].totalPeriod}>
-          {source.period.years}년 {source.period.months}개월
+          {years}년 {months}개월
         </Descriptions.Item>
         <Descriptions.Item label={Label[type].completed}>
           {source.completed ? '퇴사' : '재직중'}
