@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { Button, DatePicker, Form, Input, Select, Switch } from 'antd'
 import TextArea from 'antd/lib/input/TextArea'
 import { IdcardOutlined, MinusCircleOutlined, PlusOutlined } from '@ant-design/icons'
@@ -8,19 +8,25 @@ import randomId from '@Admin/helpers/randomId'
 import { Career } from '@Shared/types/Career'
 import { Project } from '@Shared/types/Project'
 import { skillTitles } from '@Shared/types/Skill'
+import ProjectContext from '@Admin/components/ProjectPlayGround/context'
 
 const { Option } = Select
 
 type ProjectFormProps = {
   id: string
   careers: Career[]
-  onComplete(value: Project): void
+  onComplete(): void
 }
 function ProjectForm({ id, careers, onComplete }: ProjectFormProps) {
   const [hasEndDate, setHasEndDate] = useState(true)
+  const { add } = useContext(ProjectContext)
 
-  const onFinish = (values: Project) => {
-    onComplete(values)
+  const onFinish = (values: any) => {
+    add({
+      ...values,
+      tasks: values.tasks.map((title: string) => ({ title, id: randomId() })),
+    })
+    onComplete()
   }
   return (
     <Form id={id} onFinish={onFinish} autoComplete="off" layout="vertical">

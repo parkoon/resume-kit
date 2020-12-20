@@ -7,7 +7,7 @@ import CommonForm from '@Admin/components/Forms/CommonForm'
 import { CommonSection } from '@Shared/types/CommonSection'
 import { calcCareerYearAndMonth } from '@Shared/helpers'
 import CommonDescription from '@Admin/components/Descriptions/CommonDescription'
-import EditableDescriptionWithSummary from '@Admin/components/EditableDescriptionWithSummary'
+import ProjectPlayGround from '@Admin/components/ProjectPlayGround'
 
 const etcs: CommonSection[] = [
   {
@@ -51,7 +51,7 @@ function EtcManagement() {
         </Button>,
       ]}
     >
-      <EditableDescriptionWithSummary />
+      <ProjectPlayGround />
 
       <Modal
         title="기타 만들기"

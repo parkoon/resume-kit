@@ -3,21 +3,25 @@ import moment, { Moment } from 'moment'
 import { DatePicker } from 'antd'
 
 import { DATE_FORMAT } from '@Admin/constants/date'
-import { ComponentSize } from '@Admin/types'
+import { ComponentSize, SaveFunc } from '@Admin/types'
 
 import { Wrapper } from './styles'
 import HoverText from '../HoverText'
 
 type EditableDatePickerProps = {
+  name: string
   size?: ComponentSize
+  initialValue: string
+  onSave: SaveFunc
 }
-function EditableDatePicker({ size = 'md' }: EditableDatePickerProps) {
+function EditableDatePicker({ name, size = 'md', initialValue, onSave }: EditableDatePickerProps) {
   const [updateMode, setUpdateMode] = useState(false)
-  const [value, setValue] = useState<Moment | null>(null)
+  const [value, setValue] = useState<Moment | null>(moment(initialValue))
 
   const save = (value: Moment | null) => {
     if (value) {
       setValue(value)
+      onSave(name, moment(value).format(DATE_FORMAT))
     }
     setUpdateMode(false)
   }
@@ -30,13 +34,14 @@ function EditableDatePicker({ size = 'md' }: EditableDatePickerProps) {
     <Wrapper>
       {updateMode ? (
         <DatePicker
+          name={name}
           format={DATE_FORMAT}
           picker="month"
           onChange={(value) => save(value)}
           onBlur={cancel}
           autoFocus
           defaultOpen
-          defaultValue={value ? moment(value, DATE_FORMAT) : undefined}
+          defaultValue={value ? value : undefined}
           placeholder="예: 1990/9"
         />
       ) : (

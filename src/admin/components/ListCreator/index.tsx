@@ -1,25 +1,23 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Input, Button } from 'antd'
 
 import randomId from '@Admin/helpers/randomId'
 
 import { Wrapper } from './styles'
+import { Task } from '@Shared/types/Project'
+import useCallbackWithMount from '@Admin/hooks/useCallbackWithMount'
 
-type Item = {
-  id: string
-  title: string
-}
-
-type ListCreatorProps = {}
-function ListCreator() {
-  const [values, setValues] = useState<Item[]>([])
+type ListCreatorProps = { items: Task[]; onChange(values: Task[]): void }
+function ListCreator({ items, onChange }: ListCreatorProps) {
+  const [values, setValues] = useState<Task[]>(items)
   const [value, setValue] = useState('')
 
-  const [updatingValue, setUpdatingValue] = useState<Item | null>(null)
+  const [updatingValue, setUpdatingValue] = useState<Task | null>(null)
 
   const handleEnter = (e: React.KeyboardEvent) => {
     if (e.keyCode !== 13) return
     if (!value) return
+
     setValues([...values, { id: randomId(), title: value }])
     setValue('')
     setUpdatingValue(null)
@@ -41,9 +39,15 @@ function ListCreator() {
         return value
       })
     )
-
     setUpdatingValue(null)
   }
+
+  useCallbackWithMount({
+    watch: values,
+    callback() {
+      onChange(values)
+    },
+  })
 
   return (
     <Wrapper>

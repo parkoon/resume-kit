@@ -2,10 +2,9 @@ import React from 'react'
 
 import Summary from './Summary'
 import EditableDescription from './EditableDescription'
-
 import { Wrapper } from './styles'
 
-function EditableDescriptionWithSummary() {
+function ProjectPlayGround() {
   return (
     <Wrapper>
       <Summary />
@@ -14,4 +13,4 @@ function EditableDescriptionWithSummary() {
   )
 }
 
-export default EditableDescriptionWithSummary
+export default ProjectPlayGround
