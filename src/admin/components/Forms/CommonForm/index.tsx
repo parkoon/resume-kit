@@ -25,29 +25,21 @@ function CommonForm({ id, onComplete, initialValue }: CommonFormProps) {
   const [hasEndDate, setHasEndDate] = useState(initialValue ? initialValue.completed : true)
 
   const onFinish = (values: CommonFormValues) => {
-    if (initialValue) {
-      onComplete('modify', {
-        ...values,
-        id: initialValue.id,
-        startedAt: moment(values.startedAt).format(DATE_FORMAT),
-        endedAt: moment(values.endedAt).format(DATE_FORMAT),
-      })
-    } else {
-      onComplete('add', {
-        ...values,
-        id: randomId(),
-        startedAt: moment(values.startedAt).format(DATE_FORMAT),
-        endedAt: moment(values.endedAt).format(DATE_FORMAT),
-      })
-    }
+    onComplete(initialValue ? 'modify' : 'add', {
+      ...values,
+      startedAt: moment(values.startedAt).format(DATE_FORMAT),
+      endedAt: moment(values.endedAt).format(DATE_FORMAT),
+    })
   }
 
+  const commonId = initialValue ? initialValue.id : randomId()
   const initialStartDate = initialValue ? moment(initialValue.startedAt) : undefined
   const initialEndDate = initialValue ? moment(initialValue.endedAt) : undefined
 
   return (
     <div>
       <Form id={id} onFinish={onFinish} autoComplete="off" layout="vertical">
+        <Form.Item name="id" style={{ display: 'none' }} initialValue={commonId} />
         <Form.Item name="completed" label="진행여부" initialValue={hasEndDate}>
           <Switch
             defaultChecked={hasEndDate}
