@@ -5,6 +5,7 @@ import EditableText from '@Admin/components/Editable/EditableText'
 import ListCreator from '@Admin/components/ListCreator'
 import EditableDatePicker from '@Admin/components/Editable/EditableDatePicker'
 import { skillTitles } from '@Shared/types/Skill'
+import EditableSelect from '@Admin/components/Editable/EditableSelect'
 
 import { Wrapper, Title, Section, Body } from './styles'
 import ProjectContext from '../context'
@@ -42,7 +43,19 @@ function EditableDescription() {
         <Section>
           <Title>회사</Title>
 
-          <Select
+          <EditableSelect
+            name="where"
+            options={careers}
+            initialValue={currentProject.where.id}
+            onChange={(name, value) =>
+              update({
+                ...currentProject,
+                [name]: careers.find((career) => career.id === value),
+              })
+            }
+          />
+
+          {/* <Select
             defaultValue={currentProject.where.id}
             onChange={(value) =>
               update({
@@ -54,7 +67,7 @@ function EditableDescription() {
             {careers.map((career) => (
               <Option value={career.id}>{career.title}</Option>
             ))}
-          </Select>
+          </Select> */}
         </Section>
         <Section>
           <Title>시작일</Title>
