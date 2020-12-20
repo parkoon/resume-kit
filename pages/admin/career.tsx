@@ -5,6 +5,7 @@ import AdminLayout from '@Admin/layout'
 import CommonDescription from '@Admin/components/Descriptions/CommonDescription'
 import CommonForm, { CommonFormValues } from '@Admin/components/Forms/CommonForm'
 import useModal from '@Admin/hooks/useModal'
+import Notification from '@Admin/helpers/notification'
 
 function ProjectManagement() {
   const { open, close, visible } = useModal({
@@ -21,6 +22,7 @@ function ProjectManagement() {
     if (didMountRef.current) {
       // TODO. API 호출
       console.log('careers', careers)
+      Notification.success('변경사항이 적용되었습니다')
     } else {
       didMountRef.current = true
     }
@@ -42,9 +44,9 @@ function ProjectManagement() {
         </Button>,
       ]}
     >
-      {careers.map((career, index) => (
+      {careers.map((career) => (
         <CommonDescription
-          key={index}
+          key={career.id}
           type="career"
           source={career}
           onModify={(id) => {
@@ -52,6 +54,9 @@ function ProjectManagement() {
             if (foundCareer) {
               setSelectedCareer(foundCareer)
             }
+          }}
+          onDelete={(id) => {
+            setCareers(careers.filter((career) => career.id !== id))
           }}
         />
       ))}

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Descriptions, Card, Button, Tag } from 'antd'
+import { Descriptions, Card, Button, Tag, Popconfirm } from 'antd'
 import moment from 'moment'
 
 import { CommonFormValues } from '@Admin/components/Forms/CommonForm'
@@ -60,9 +60,14 @@ function CommonDescription({ source, type, onModify, onDelete }: CommonDescripti
           >
             수정하기
           </Button>,
-          <Button danger onClick={() => onDelete && onDelete(source.id)}>
-            삭제하기
-          </Button>,
+          <Popconfirm
+            title="정말 지우시겠습니까?"
+            okText="삭제"
+            cancelText="취소"
+            onConfirm={() => onDelete && onDelete(source.id)}
+          >
+            <Button danger>삭제하기</Button>
+          </Popconfirm>,
         ]}
       >
         <Descriptions.Item label={Label[type].title}>{source.title}</Descriptions.Item>
