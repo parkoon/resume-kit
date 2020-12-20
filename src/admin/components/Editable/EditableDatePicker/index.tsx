@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import moment, { Moment } from 'moment'
+import { DatePicker } from 'antd'
+
+import { DATE_FORMAT } from '@Admin/constants/date'
+import { ComponentSize } from '@Admin/types'
 
 import { Wrapper } from './styles'
-import { DatePicker } from 'antd'
 import HoverText from '../HoverText'
-import { ComponentSize } from '@Admin/types/size'
-import { DATE_FORMAT } from '@Admin/constants/date'
 
 type EditableDatePickerProps = {
   size?: ComponentSize

@@ -1,15 +1,15 @@
 import { useState } from 'react'
 import moment from 'moment'
 import { DatePicker, Form, Input, Switch } from 'antd'
-
 import { HomeOutlined, IdcardOutlined } from '@ant-design/icons'
+
 import { DATE_FORMAT } from '@Admin/constants/date'
 import randomId from '@Admin/helpers/randomId'
+import { FormCompletedType } from '@Admin/types'
 
-type CompletedType = 'add' | 'modify'
 type CommonFormProps = {
   id: string
-  onComplete(type: CompletedType, values: CommonFormValues): void
+  onComplete(type: FormCompletedType, values: CommonFormValues): void
   initialValue?: CommonFormValues
 }
 

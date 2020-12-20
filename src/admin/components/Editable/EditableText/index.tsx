@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
-import { Input, Tooltip, Button } from 'antd'
-import { CheckOutlined, CloseOutlined } from '@ant-design/icons'
+import { Input, Button } from 'antd'
+import { CheckOutlined } from '@ant-design/icons'
 
-import { SaveFunc } from '@Admin/types/function'
-import { ComponentSize } from '@Admin/types/size'
+import { SaveFunc, ComponentSize } from '@Admin/types'
 
 import { Wrapper, InputWrapper, ButtonWrapper, IconWrapper } from './styles'
 import HoverText from '../HoverText'

@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 import { palette } from '@Shared/styles'
-import { ComponentSize } from '@Admin/types/size'
+import { ComponentSize } from '@Admin/types'
 
 export const Text = styled.div<{ onlyPlaceholder: boolean; bold?: boolean; size?: ComponentSize }>`
   min-height: 34px;

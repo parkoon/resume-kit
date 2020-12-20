@@ -6,18 +6,7 @@ import ArticleForm from '@Admin/components/Forms/ArticleForm'
 import { Article } from '@Shared/types/Article'
 import { palette } from '@Shared/styles'
 
-const articles: Article[] = [
-  {
-    title: '퀄슨 (퀄슨)',
-    url: 'zzz',
-    completed: true,
-  },
-  {
-    title: '퀄슨 (퀄슨)',
-    url: 'zzz',
-    completed: true,
-  },
-]
+const articles: Article[] = []
 
 function ArticleManagement() {
   const [isModalVisible, setIsModalVisible] = useState(false)
@@ -39,7 +28,7 @@ function ArticleManagement() {
       subtitle="this is subtitle"
       actions={[
         <Button type="primary" onClick={showModal}>
-          만들기
+          추가하기
         </Button>,
       ]}
     >
@@ -55,11 +44,6 @@ function ArticleManagement() {
               >
                 {item.title}
               </a>
-              {item.completed ? (
-                <Tag color="geekblue">작성완료</Tag>
-              ) : (
-                <Tag color="gold">작성중</Tag>
-              )}
               <Button type="dashed">수정하기</Button>
             </List.Item>
           )}

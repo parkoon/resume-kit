@@ -1,6 +1,6 @@
 import { Tooltip } from 'antd'
 
-import { ComponentSize } from '@Admin/types/size'
+import { ComponentSize } from '@Admin/types'
 
 import { Text } from './styles'
 
