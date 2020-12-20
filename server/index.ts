@@ -1,4 +1,5 @@
 import express from 'express'
+import morgan from 'morgan'
 import cors from 'cors'
 import './db'
 
@@ -12,6 +13,7 @@ import careerRoute from './modules/career/route'
 import educationRoute from './modules/education/route'
 import etcRoute from './modules/etc/route'
 
+app.use(morgan('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cors())
