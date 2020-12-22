@@ -1,23 +1,30 @@
 import { Request, Response } from 'express'
 import projectService from './service'
+import catchAsync from '@Server/helpers/catchAsync'
 
 const Controller = {
-  async getProject(req: Request, res: Response) {
-    try {
-      const project = await projectService.getProject()
-      res.json(project)
-    } catch (err) {
-      res.status(500).json()
-    }
-  },
-  async saveProject(req: Request, res: Response) {
-    try {
-      await projectService.saveProject(req.body)
-      res.status(200).json()
-    } catch (err) {
-      res.status(500).json()
-    }
-  },
+  getProject: catchAsync(async (req: Request, res: Response) => {
+    const projects = await projectService.getAllProjects()
+    res.json(projects)
+  }),
+  updateProject: catchAsync(async (req: Request, res: Response) => {
+    await projectService.updateProject(req.body)
+    res.status(200).json()
+  }),
+  addProject: catchAsync(async (req: Request, res: Response) => {
+    await projectService.addProject(req.body)
+    res.status(200).end()
+  }),
+  updateProjectById: catchAsync(async (req: Request, res: Response) => {
+    const id = req.params.id
+    await projectService.updateProjectById(id, req.body)
+    res.status(200).end()
+  }),
+  deleteProject: catchAsync(async (req: Request, res: Response) => {
+    const id = req.params.id
+    await projectService.deleteProject(id)
+    res.status(200).end()
+  }),
 }
 
 export default Controller
