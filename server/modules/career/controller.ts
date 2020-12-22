@@ -1,23 +1,27 @@
 import { Request, Response } from 'express'
 import careerService from './service'
+import catchAsync from '@Server/helpers/catchAsync'
 
 const Controller = {
-  async getCareer(req: Request, res: Response) {
-    try {
-      const career = await careerService.getCareer()
-      res.json(career)
-    } catch (err) {
-      res.status(500).end()
-    }
-  },
-  async saveCareer(req: Request, res: Response) {
-    try {
-      await careerService.saveCareer(req.body)
-      res.status(200).end()
-    } catch (err) {
-      res.status(500).end()
-    }
-  },
+  getAllCareers: catchAsync(async (req: Request, res: Response) => {
+    const career = await careerService.getAllCareers()
+    res.json(career)
+  }),
+  addCareer: catchAsync(async (req: Request, res: Response) => {
+    await careerService.addCareer(req.body)
+    res.status(200).end()
+  }),
+
+  deleteCareer: catchAsync(async (req: Request, res: Response) => {
+    const id = req.params.id
+    await careerService.deleteCareer(id)
+    res.status(200).end()
+  }),
+  updateCareer: catchAsync(async (req: Request, res: Response) => {
+    const id = req.params.id
+    await careerService.updateCareer(id, req.body)
+    res.status(200).end()
+  }),
 }
 
 export default Controller
