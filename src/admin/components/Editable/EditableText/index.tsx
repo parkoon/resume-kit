@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Input, Button } from 'antd'
 import { CheckOutlined } from '@ant-design/icons'
 
@@ -39,6 +39,12 @@ function EditableText({
     }
     setUpdateMode(false)
   }
+
+  useEffect(() => {
+    if (initialValue) {
+      setValue(initialValue)
+    }
+  }, [initialValue])
 
   const renderInput =
     type === 'text' ? (
