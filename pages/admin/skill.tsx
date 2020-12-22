@@ -1,59 +1,27 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState } from 'react'
 import { Row, Col } from 'antd'
 
 import AdminLayout from '@Admin/layout'
 import SkillCard from '@Admin/components/SKillCard'
 import DragContainer from '@Admin/components/DropContainer'
 
-import { SkillType, skillTypes, SkillTitle } from '@Shared/types/Skill'
-
-export type Skill = {
-  id: number
-  title: SkillTitle
-  type: SkillType
-  level: number
-}
+import Skill, { SkillType, skillTypes } from '@Shared/types/Skill'
+import { SkillAPI, API, SkillGETResponse } from '@Admin/api'
+import useSWR from 'swr'
 
 function SkillManagement() {
   const [draggingSkill, setDraggingSkill] = useState<Skill>()
   const [dragoverField, setDragoverField] = useState<SkillType>()
-  const didMountRef = useRef(false)
 
-  const [skills, setSkills] = useState<Skill[]>([
-    { id: 1, title: 'Node.js', type: 'none', level: 1 },
-    { id: 2, title: 'TypeScript', type: 'none', level: 1 },
-    { id: 3, title: 'Express.js', type: 'none', level: 1 },
-    { id: 4, title: 'AWS', type: 'none', level: 1 },
-    { id: 5, title: 'nginx', type: 'none', level: 1 },
-    { id: 6, title: 'Apache', type: 'none', level: 1 },
-    { id: 7, title: 'PHP', type: 'none', level: 1 },
-    { id: 8, title: 'Java', type: 'none', level: 1 },
-    { id: 9, title: 'Spring', type: 'none', level: 1 },
-    { id: 10, title: 'Python', type: 'none', level: 1 },
-    { id: 11, title: 'C/C++', type: 'none', level: 1 },
-    { id: 12, title: 'Database', type: 'none', level: 1 },
-    { id: 13, title: 'Redis', type: 'none', level: 1 },
-    { id: 14, title: 'MySQL', type: 'none', level: 1 },
-    { id: 15, title: 'MongoDB', type: 'none', level: 1 },
-    { id: 16, title: 'Oracle', type: 'none', level: 1 },
-    { id: 17, title: 'Front-end', type: 'none', level: 1 },
-    { id: 18, title: 'Next.js', type: 'none', level: 1 },
-    { id: 19, title: 'React.js', type: 'none', level: 1 },
-    { id: 20, title: 'javascript', type: 'none', level: 1 },
-    { id: 21, title: 'HTML/CSS', type: 'none', level: 1 },
-    { id: 23, title: 'Ubuntu', type: 'none', level: 1 },
-    { id: 24, title: 'Vim', type: 'none', level: 1 },
-    { id: 25, title: 'Security', type: 'none', level: 1 },
-    { id: 26, title: 'VS Code', type: 'none', level: 1 },
-    { id: 27, title: 'Jira', type: 'none', level: 1 },
-    { id: 28, title: 'Confluence', type: 'none', level: 1 },
-    { id: 29, title: 'Bitbucket', type: 'none', level: 1 },
-    { id: 30, title: 'DevOps', type: 'none', level: 1 },
-    { id: 31, title: 'Git / Github', type: 'none', level: 1 },
-    { id: 32, title: 'Agile', type: 'none', level: 1 },
-    { id: 33, title: 'Socket.io', type: 'none', level: 1 },
-    { id: 34, title: 'Jenkins', type: 'none', level: 1 },
-  ])
+  const { data, mutate } = useSWR<SkillGETResponse>(SkillAPI.get(), API)
+
+  if (!data) {
+    return <span>로딩중</span>
+  }
+
+  const {
+    data: { skills },
+  } = data
 
   const handleDragStart = (skill: Skill) => () => {
     setDraggingSkill(skill)
@@ -64,46 +32,39 @@ function SkillManagement() {
     e.preventDefault()
   }
 
-  const drop = (type: SkillType) => {
+  const drop = async (type: SkillType) => {
     if (!draggingSkill) return
 
     const index = skills.findIndex((skill) => skill.id === draggingSkill.id)
 
-    setSkills([
+    const updatedSkills = [
       ...skills.slice(0, index),
       ...skills.slice(index + 1),
       {
         ...draggingSkill,
         type,
       },
-    ])
+    ]
 
+    await SkillAPI.update(updatedSkills)
+    mutate()
     setDraggingSkill(undefined)
     setDragoverField(undefined)
   }
 
-  const handleLevelChange = (id: number, level: number) => {
-    setSkills(
-      skills.map((skill) => {
-        if (skill.id === id) {
-          return {
-            ...skill,
-            level,
-          }
+  const handleLevelChange = async (id: number, level: number) => {
+    const updatedSkills = skills.map((skill) => {
+      if (skill.id === id) {
+        return {
+          ...skill,
+          level,
         }
-        return skill
-      })
-    )
+      }
+      return skill
+    })
+    await SkillAPI.update(updatedSkills)
+    mutate()
   }
-
-  useEffect(() => {
-    if (didMountRef.current) {
-      // TODO. 스킬 변경 API 호출
-      console.log('skills', skills)
-    } else {
-      didMountRef.current = true
-    }
-  }, [skills])
 
   return (
     <AdminLayout

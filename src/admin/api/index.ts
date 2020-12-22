@@ -1,5 +1,6 @@
 import axios, { AxiosResponse } from 'axios'
-import { Profile } from '@Shared/types/Profile'
+import Profile from '@Shared/types/Profile'
+import Skill from '@Shared/types/Skill'
 
 export const API = axios.create({
   baseURL: 'http://localhost:1208/api',
@@ -15,6 +16,19 @@ export const ProfileAPI = {
   },
   update(profile: Profile) {
     return API.post('/profile', profile)
+  },
+}
+
+export type SkillGETResponse = AxiosResponse<{
+  updatedAt: string
+  skills: Skill[]
+}>
+export const SkillAPI = {
+  get() {
+    return '/skills'
+  },
+  update(skill: Skill[]) {
+    return API.post('/skills', skill)
   },
 }
 
