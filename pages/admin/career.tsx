@@ -1,13 +1,15 @@
-import { useState, useEffect } from 'react'
 import { Button, Modal } from 'antd'
+import { useState } from 'react'
+import useSWR from 'swr'
 
-import AdminLayout from '@Admin/layout'
+import { API, CareerAPI, CareerGETResponse } from '@Admin/api'
 import CommonDescription from '@Admin/components/Descriptions/CommonDescription'
 import CommonForm from '@Admin/components/Forms/CommonForm'
+import confirm from '@Admin/helpers/confirm'
 import useModal from '@Admin/hooks/useModal'
-import Notification from '@Admin/helpers/notification'
+import AdminLayout from '@Admin/layout'
+import { FormCompletedType } from '@Admin/types'
 import { Career } from '@Shared/types/Career'
-import useCallbackWithMount from '@Admin/hooks/useCallbackWithMount'
 
 function ProjectManagement() {
   const { open, close, visible } = useModal({
@@ -15,24 +17,24 @@ function ProjectManagement() {
       setSelectedCareer(undefined)
     },
   })
-  const [careers, setCareers] = useState<Career[]>([])
+  const { data: careerResponse, mutate } = useSWR<CareerGETResponse>(CareerAPI.get(), API)
 
   const [selectedCareer, setSelectedCareer] = useState<Career>()
 
-  useCallbackWithMount({
-    watch: careers,
-    callback() {
-      // TODO. API 호출
-      console.log('educations', careers)
-      Notification.success('변경사항이 적용되었습니다')
-    },
-  })
-
-  useEffect(() => {
-    if (selectedCareer) {
-      open()
+  const handleComplete = async (type: FormCompletedType, value: Career) => {
+    if (type === 'add') {
+      await CareerAPI.add(value)
+      mutate()
+    } else {
+      await CareerAPI.update(value.id, value)
+      mutate()
     }
-  }, [selectedCareer])
+    close()
+  }
+
+  if (!careerResponse) {
+    return <span>로딩중</span>
+  }
 
   return (
     <AdminLayout
@@ -44,19 +46,27 @@ function ProjectManagement() {
         </Button>,
       ]}
     >
-      {careers.map((career) => (
+      {careerResponse.data.map((career) => (
         <CommonDescription
           key={career.id}
           source={career}
           onModify={(id) => {
-            const foundCareer = careers.find((career) => career.id === id)
+            const foundCareer = careerResponse.data.find((career) => career.id === id)
             if (foundCareer) {
               setSelectedCareer(foundCareer)
+              open()
             }
           }}
-          onDelete={(id) => {
-            setCareers(careers.filter((career) => career.id !== id))
-          }}
+          onDelete={(id: string) =>
+            confirm({
+              title: '이 경력을 삭제하시겠습니까?',
+              content: '이 항목을 삭제하면 영구적으로 제거됩니다.',
+              onConfirm() {
+                CareerAPI.delete(id)
+                mutate()
+              },
+            })
+          }
         />
       ))}
       <Modal
@@ -72,19 +82,7 @@ function ProjectManagement() {
           </Button>,
         ]}
       >
-        <CommonForm
-          id="career"
-          onComplete={(type, values) => {
-            if (type === 'add') {
-              setCareers([...careers, values])
-            } else {
-              console.log('values', values)
-              setCareers(careers.map((career) => (career.id === values.id ? values : career)))
-            }
-            close()
-          }}
-          initialValue={selectedCareer}
-        />
+        <CommonForm id="career" onComplete={handleComplete} initialValue={selectedCareer} />
       </Modal>
     </AdminLayout>
   )

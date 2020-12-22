@@ -27,14 +27,9 @@ function CommonDescription({ source, onModify, onDelete }: CommonDescriptionProp
           >
             수정하기
           </Button>,
-          <Popconfirm
-            title="삭제하시겠습니까?"
-            okText="삭제"
-            cancelText="취소"
-            onConfirm={() => onDelete && onDelete(source.id)}
-          >
-            <Button danger>삭제하기</Button>
-          </Popconfirm>,
+          <Button danger onClick={() => onDelete && onDelete(source.id)}>
+            삭제하기
+          </Button>,
         ]}
       >
         <Descriptions.Item label="이름">{source.title}</Descriptions.Item>
