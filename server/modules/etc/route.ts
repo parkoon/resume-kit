@@ -3,7 +3,9 @@ import profileController from './controller'
 
 const router = express.Router()
 
-router.get('/', profileController.getEtc)
-router.post('/', profileController.saveEtc)
+router.get('/', profileController.getAllEtcs)
+router.post('/', profileController.addEtc)
+router.delete('/:id', profileController.deleteEtc)
+router.put('/:id', profileController.updateEtc)
 
 export default router

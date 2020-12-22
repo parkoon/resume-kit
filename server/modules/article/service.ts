@@ -1,21 +1,42 @@
-import jsonfile from 'jsonfile'
-
 import { Article } from '@Shared/types/Article'
-
-import { articlePath } from '../../paths'
+import { readJSON, updateJSON } from '@Server/helpers/JSONTool'
+import { articlePath } from '@Server/paths'
 
 const Service = {
-  async getArticle() {
+  async getAllArticles() {
     try {
-      const article = jsonfile.readFileSync(articlePath)
-      return article
+      const articles = await readJSON<Article[]>(articlePath)
+      return articles
     } catch (err) {
       throw new Error(err)
     }
   },
-  async saveArticle(article: Article) {
+  async addArticle(article: Article) {
     try {
-      jsonfile.writeFileSync(articlePath, article)
+      const articles = await this.getAllArticles()
+      updateJSON(articlePath, [...articles, article])
+    } catch (err) {
+      throw new Error(err)
+    }
+  },
+  async deleteArticle(id: string) {
+    try {
+      const articles = await this.getAllArticles()
+      updateJSON(
+        articlePath,
+        articles.filter((article) => article.id !== id)
+      )
+    } catch (err) {
+      throw new Error(err)
+    }
+  },
+  async updateArticle(id: string, newCareer: Article) {
+    try {
+      const articles = await this.getAllArticles()
+      updateJSON(
+        articlePath,
+        articles.map((article) => (article.id === id ? newCareer : article))
+      )
     } catch (err) {
       throw new Error(err)
     }

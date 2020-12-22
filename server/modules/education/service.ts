@@ -1,18 +1,42 @@
-import jsonfile from 'jsonfile'
-import { educationPath } from '../../paths'
+import { readJSON, updateJSON } from '@Server/helpers/JSONTool'
+import { Education } from '@Shared/types/Education'
+import { educationPath } from '@Server/paths'
 
 const Service = {
-  async getEducation() {
+  async getAllEducations() {
     try {
-      const education = jsonfile.readFileSync(educationPath)
-      return education
+      const educations = await readJSON<Education[]>(educationPath)
+      return educations
     } catch (err) {
-      throw Error(err)
+      throw new Error(err)
     }
   },
-  async saveEducation(education: any) {
+  async addEducation(education: Education) {
     try {
-      jsonfile.writeFileSync(educationPath, education)
+      const educations = await this.getAllEducations()
+      updateJSON(educationPath, [...educations, education])
+    } catch (err) {
+      throw new Error(err)
+    }
+  },
+  async deleteEducation(id: string) {
+    try {
+      const educations = await this.getAllEducations()
+      updateJSON(
+        educationPath,
+        educations.filter((education) => education.id !== id)
+      )
+    } catch (err) {
+      throw new Error(err)
+    }
+  },
+  async updateEducation(id: string, newCareer: Education) {
+    try {
+      const educations = await this.getAllEducations()
+      updateJSON(
+        educationPath,
+        educations.map((education) => (education.id === id ? newCareer : education))
+      )
     } catch (err) {
       throw new Error(err)
     }

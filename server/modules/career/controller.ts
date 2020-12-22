@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
-import careerService from './service'
 import catchAsync from '@Server/helpers/catchAsync'
+import careerService from './service'
 
 const Controller = {
   getAllCareers: catchAsync(async (req: Request, res: Response) => {

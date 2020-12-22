@@ -1,23 +1,27 @@
 import { Request, Response } from 'express'
+import catchAsync from '@Server/helpers/catchAsync'
 import articleService from './service'
 
 const Controller = {
-  async getArticle(req: Request, res: Response) {
-    try {
-      const article = await articleService.getArticle()
-      res.json(article)
-    } catch (err) {
-      res.status(500).end()
-    }
-  },
-  async saveArticle(req: Request, res: Response) {
-    try {
-      await articleService.saveArticle(req.body)
-      res.status(200).end()
-    } catch (err) {
-      res.status(500).end()
-    }
-  },
+  getAllArticles: catchAsync(async (req: Request, res: Response) => {
+    const career = await articleService.getAllArticles()
+    res.json(career)
+  }),
+  addArticle: catchAsync(async (req: Request, res: Response) => {
+    await articleService.addArticle(req.body)
+    res.status(200).end()
+  }),
+
+  deleteArticle: catchAsync(async (req: Request, res: Response) => {
+    const id = req.params.id
+    await articleService.deleteArticle(id)
+    res.status(200).end()
+  }),
+  updateArticle: catchAsync(async (req: Request, res: Response) => {
+    const id = req.params.id
+    await articleService.updateArticle(id, req.body)
+    res.status(200).end()
+  }),
 }
 
 export default Controller
