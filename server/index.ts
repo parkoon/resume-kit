@@ -1,4 +1,4 @@
-import express from 'express'
+import express, { Request, Response, NextFunction } from 'express'
 import morgan from 'morgan'
 import cors from 'cors'
 import './db'
@@ -19,12 +19,17 @@ app.use(express.urlencoded({ extended: true }))
 app.use(cors())
 
 app.use('/api/profile', profileRoute)
-app.use('/api/project', projectRoute)
+app.use('/api/projects', projectRoute)
 app.use('/api/skills', skillRoute)
-app.use('/api/article', articleRoute)
-app.use('/api/career', careerRoute)
-app.use('/api/education', educationRoute)
-app.use('/api/etc', etcRoute)
+app.use('/api/articles', articleRoute)
+app.use('/api/careers', careerRoute)
+app.use('/api/educations', educationRoute)
+app.use('/api/etcs', etcRoute)
+
+app.use((error: any, req: Request, res: Response, next: NextFunction) => {
+  console.error(error)
+  res.status(500).end()
+})
 
 app.listen(1208, () => {
   console.log('server is running')
