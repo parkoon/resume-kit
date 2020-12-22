@@ -1,46 +1,48 @@
-import { useState, useEffect } from 'react'
-import { Button, Modal, List, Card, Popconfirm, Space } from 'antd'
+import { useState } from 'react'
+import useSWR from 'swr'
+import { Button, Card, List, Modal, Space } from 'antd'
 
-import AdminLayout from '@Admin/layout'
+import { API, ArticleAPI, ArticleGETResponse } from '@Admin/api'
 import ArticleForm from '@Admin/components/Forms/ArticleForm'
-import { Article } from '@Shared/types/Article'
-import { palette } from '@Shared/styles'
+import confirm from '@Admin/helpers/confirm'
 import useModal from '@Admin/hooks/useModal'
+import AdminLayout from '@Admin/layout'
 import { FormCompletedType } from '@Admin/types'
+import { palette } from '@Shared/styles'
+import { Article } from '@Shared/types/Article'
 
 function ArticleManagement() {
-  const [articles, setArticles] = useState<Article[]>([])
+  const { data: articleResponse, mutate } = useSWR<ArticleGETResponse>(ArticleAPI.get(), API)
+
   const [selectedArticle, setSelectedArticle] = useState<Article>()
+
   const { visible, close, open } = useModal({
     afterClose() {
       setSelectedArticle(undefined)
     },
   })
 
-  const saveOrUpdateArticle = (type: FormCompletedType, values: Article) => {
+  const saveOrUpdateArticle = async (type: FormCompletedType, value: Article) => {
     if (type === 'add') {
-      setArticles([...articles, values])
-    } else {
-      setArticles(articles.map((article) => (article.id === values.id ? values : article)))
+      await ArticleAPI.add(value)
     }
+
+    if (type === 'modify') {
+      await ArticleAPI.update(value.id, value)
+    }
+
+    mutate()
     close()
   }
 
-  const updateArticle = (id: string) => {
-    const foundArticle = articles.find((article) => article.id === id)
-    if (foundArticle) {
-      setSelectedArticle(foundArticle)
-    }
-  }
-  const deleteArticle = (id: string) => {
-    setArticles(articles.filter((article) => article.id !== id))
+  const deleteArticle = async (id: string) => {
+    await ArticleAPI.delete(id)
+    mutate()
   }
 
-  useEffect(() => {
-    if (selectedArticle) {
-      open()
-    }
-  }, [selectedArticle])
+  if (!articleResponse) {
+    return <span>로딩중</span>
+  }
 
   return (
     <AdminLayout
@@ -54,7 +56,7 @@ function ArticleManagement() {
     >
       <Card style={{ height: '100%' }}>
         <List
-          dataSource={articles}
+          dataSource={articleResponse.data}
           renderItem={(item: Article) => (
             <List.Item style={{ justifyContent: 'space-between' }}>
               <a
@@ -65,17 +67,34 @@ function ArticleManagement() {
                 {item.title}
               </a>
               <Space>
-                <Button type="dashed" onClick={() => updateArticle(item.id)}>
+                <Button
+                  type="dashed"
+                  onClick={() => {
+                    const foundArticle = articleResponse.data.find(
+                      (article) => article.id === item.id
+                    )
+                    if (foundArticle) {
+                      setSelectedArticle(foundArticle)
+                      open()
+                    }
+                  }}
+                >
                   수정하기
                 </Button>
-                <Popconfirm
-                  title="정말 지우시겠습니까?"
-                  okText="삭제"
-                  cancelText="취소"
-                  onConfirm={() => deleteArticle(item.id)}
+                <Button
+                  danger
+                  onClick={() =>
+                    confirm({
+                      title: '이 기사를 삭제하시겠습니까?',
+                      content: '이 항목을 삭제하면 영구적으로 제거됩니다.',
+                      onConfirm() {
+                        deleteArticle(item.id)
+                      },
+                    })
+                  }
                 >
-                  <Button danger>삭제하기</Button>
-                </Popconfirm>
+                  삭제하기
+                </Button>
               </Space>
             </List.Item>
           )}

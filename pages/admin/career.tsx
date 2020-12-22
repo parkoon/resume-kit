@@ -61,8 +61,8 @@ function ProjectManagement() {
             confirm({
               title: '이 경력을 삭제하시겠습니까?',
               content: '이 항목을 삭제하면 영구적으로 제거됩니다.',
-              onConfirm() {
-                CareerAPI.delete(id)
+              async onConfirm() {
+                await CareerAPI.delete(id)
                 mutate()
               },
             })

@@ -1,12 +1,15 @@
-import { useState, useEffect } from 'react'
 import { Button, Modal } from 'antd'
+import { useState } from 'react'
+import useSWR from 'swr'
 
-import AdminLayout from '@Admin/layout'
+import { API, EducationAPI, EducationGETResponse } from '@Admin/api'
 import CommonDescription from '@Admin/components/Descriptions/CommonDescription'
 import CommonForm, { CommonFormValues } from '@Admin/components/Forms/CommonForm'
 import useModal from '@Admin/hooks/useModal'
-import Notification from '@Admin/helpers/notification'
-import useCallbackWithMount from '@Admin/hooks/useCallbackWithMount'
+import AdminLayout from '@Admin/layout'
+import { FormCompletedType } from '@Admin/types'
+import { Education } from '@Shared/types/Education'
+import confirm from '@Admin/helpers/confirm'
 
 function EducationManagement() {
   const { open, close, visible } = useModal({
@@ -14,24 +17,27 @@ function EducationManagement() {
       setSelectedCareer(undefined)
     },
   })
-  const [educations, setEducations] = useState<CommonFormValues[]>([])
+
+  const { data: educationResponse, mutate } = useSWR<EducationGETResponse>(EducationAPI.get(), API)
 
   const [selectedCareer, setSelectedCareer] = useState<CommonFormValues>()
 
-  useCallbackWithMount({
-    watch: educations,
-    callback() {
-      // TODO. API 호출
-      console.log('educations', educations)
-      Notification.success('변경사항이 적용되었습니다')
-    },
-  })
-
-  useEffect(() => {
-    if (selectedCareer) {
-      open()
+  const handleComplete = async (type: FormCompletedType, value: Education) => {
+    if (type === 'add') {
+      await EducationAPI.add(value)
     }
-  }, [selectedCareer])
+
+    if (type === 'modify') {
+      await EducationAPI.update(value.id, value)
+    }
+
+    mutate()
+    close()
+  }
+
+  if (!educationResponse) {
+    return <span>로딩중</span>
+  }
 
   return (
     <AdminLayout
@@ -43,18 +49,26 @@ function EducationManagement() {
         </Button>,
       ]}
     >
-      {educations.map((education) => (
+      {educationResponse.data.map((education) => (
         <CommonDescription
           key={education.id}
           source={education}
           onModify={(id) => {
-            const foundCareer = educations.find((education) => education.id === id)
+            const foundCareer = educationResponse.data.find((education) => education.id === id)
             if (foundCareer) {
               setSelectedCareer(foundCareer)
+              open()
             }
           }}
           onDelete={(id) => {
-            setEducations(educations.filter((education) => education.id !== id))
+            confirm({
+              title: '이 교육을 삭제하시겠습니까?',
+              content: '이 항목을 삭제하면 영구적으로 제거됩니다.',
+              async onConfirm() {
+                await EducationAPI.delete(id)
+                mutate()
+              },
+            })
           }}
         />
       ))}
@@ -71,21 +85,7 @@ function EducationManagement() {
           </Button>,
         ]}
       >
-        <CommonForm
-          id="education"
-          onComplete={(type, values) => {
-            if (type === 'add') {
-              setEducations([...educations, values])
-            } else {
-              console.log('values', values)
-              setEducations(
-                educations.map((education) => (education.id === values.id ? values : education))
-              )
-            }
-            close()
-          }}
-          initialValue={selectedCareer}
-        />
+        <CommonForm id="education" onComplete={handleComplete} initialValue={selectedCareer} />
       </Modal>
     </AdminLayout>
   )

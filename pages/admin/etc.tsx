@@ -1,12 +1,14 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
+import useSWR from 'swr'
 import { Button, Modal } from 'antd'
 
-import AdminLayout from '@Admin/layout'
+import { API, EtcAPI, EtcGETResponse } from '@Admin/api'
 import CommonDescription from '@Admin/components/Descriptions/CommonDescription'
 import CommonForm, { CommonFormValues } from '@Admin/components/Forms/CommonForm'
 import useModal from '@Admin/hooks/useModal'
-import Notification from '@Admin/helpers/notification'
-import useCallbackWithMount from '@Admin/hooks/useCallbackWithMount'
+import AdminLayout from '@Admin/layout'
+import { FormCompletedType } from '@Admin/types'
+import { Etc } from '@Shared/types/Etc'
 
 function EtcManagement() {
   const { open, close, visible } = useModal({
@@ -14,24 +16,24 @@ function EtcManagement() {
       setSelectedCareer(undefined)
     },
   })
-  const [etcs, setEtcs] = useState<CommonFormValues[]>([])
+  const { data: etcResponse, mutate } = useSWR<EtcGETResponse>(EtcAPI.get(), API)
 
   const [selectedCareer, setSelectedCareer] = useState<CommonFormValues>()
 
-  useCallbackWithMount({
-    watch: etcs,
-    callback() {
-      // TODO. API 호출
-      console.log('etcs', etcs)
-      Notification.success('변경사항이 적용되었습니다')
-    },
-  })
-
-  useEffect(() => {
-    if (selectedCareer) {
-      open()
+  const handleComplete = async (type: FormCompletedType, value: Etc) => {
+    if (type === 'add') {
+      await EtcAPI.add(value)
     }
-  }, [selectedCareer])
+    if (type === 'modify') {
+      await EtcAPI.update(value.id, value)
+    }
+    mutate()
+    close()
+  }
+
+  if (!etcResponse) {
+    return <span>로딩중</span>
+  }
 
   return (
     <AdminLayout
@@ -43,18 +45,20 @@ function EtcManagement() {
         </Button>,
       ]}
     >
-      {etcs.map((education) => (
+      {etcResponse.data.map((education) => (
         <CommonDescription
           key={education.id}
           source={education}
           onModify={(id) => {
-            const foundCareer = etcs.find((education) => education.id === id)
+            const foundCareer = etcResponse.data.find((education) => education.id === id)
             if (foundCareer) {
               setSelectedCareer(foundCareer)
+              close()
             }
           }}
-          onDelete={(id) => {
-            setEtcs(etcs.filter((education) => education.id !== id))
+          onDelete={async (id) => {
+            await EtcAPI.delete(id)
+            mutate()
           }}
         />
       ))}
@@ -71,18 +75,7 @@ function EtcManagement() {
           </Button>,
         ]}
       >
-        <CommonForm
-          id="etc"
-          onComplete={(type, values) => {
-            if (type === 'add') {
-              setEtcs([...etcs, values])
-            } else {
-              setEtcs(etcs.map((education) => (education.id === values.id ? values : education)))
-            }
-            close()
-          }}
-          initialValue={selectedCareer}
-        />
+        <CommonForm id="etc" onComplete={handleComplete} initialValue={selectedCareer} />
       </Modal>
     </AdminLayout>
   )
