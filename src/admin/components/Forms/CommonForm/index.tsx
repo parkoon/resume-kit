@@ -7,6 +7,8 @@ import { DATE_FORMAT } from '@Admin/constants/date'
 import randomId from '@Admin/helpers/randomId'
 import { FormCompletedType } from '@Admin/types'
 import { Career } from '@Shared/types/Career'
+import { Etc } from '@Shared/types/Etc'
+import { Education } from '@Shared/types/Education'
 
 type CommonFormProps = {
   id: string
@@ -14,7 +16,7 @@ type CommonFormProps = {
   initialValue?: CommonFormValues
 }
 
-export type CommonFormValues = Career
+export type CommonFormValues = Career | Etc | Education
 
 function CommonForm({ id, onComplete, initialValue }: CommonFormProps) {
   const [hasEndDate, setHasEndDate] = useState(initialValue ? initialValue.completed : true)
