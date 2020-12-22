@@ -1,19 +1,18 @@
 import React, { useContext } from 'react'
-import { Select, Empty } from 'antd'
+import { Button, Empty, Select } from 'antd'
+
+import EditableDatePicker from '@Admin/components/Editable/EditableDatePicker'
+import EditableSelect from '@Admin/components/Editable/EditableSelect'
+import confirm from '@Admin/helpers/confirm'
 
 import EditableText from '@Admin/components/Editable/EditableText'
 import TaskCreator from '@Admin/components/TaskCreator'
-import EditableDatePicker from '@Admin/components/Editable/EditableDatePicker'
 import { skillTitles } from '@Shared/types/Skill'
-import EditableSelect from '@Admin/components/Editable/EditableSelect'
-
-import { Wrapper, Title, Section, Body } from './styles'
 import ProjectContext from '../context'
-
-const { Option } = Select
+import { Body, Section, Title, Wrapper } from './styles'
 
 function EditableDescription() {
-  const { currentProject, update, careers } = useContext(ProjectContext)
+  const { currentProject, update, careers, remove } = useContext(ProjectContext)
 
   if (!currentProject) {
     return (
@@ -25,24 +24,41 @@ function EditableDescription() {
 
   return (
     <Wrapper>
-      <EditableText
-        name="title"
-        type="text"
-        initialValue={currentProject.title}
-        bold
-        size="lg"
-        onSave={(name, value) =>
-          update({
-            ...currentProject,
-            [name]: value,
-          })
-        }
-      />
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        <EditableText
+          style={{ flex: 1, marginRight: 7 }}
+          name="title"
+          type="text"
+          initialValue={currentProject.title}
+          bold
+          size="lg"
+          onSave={(name, value) =>
+            update({
+              ...currentProject,
+              [name]: value,
+            })
+          }
+        />
+        <Button
+          danger
+          type="dashed"
+          onClick={() =>
+            confirm({
+              title: '이 프로젝트를 삭제하시겠습니까?',
+              content: '이 항목을 삭제하면 영구적으로 제거됩니다.',
+              onConfirm() {
+                remove(currentProject.id)
+              },
+            })
+          }
+        >
+          삭제하기
+        </Button>
+      </div>
 
       <Body>
         <Section>
           <Title>회사</Title>
-
           <EditableSelect
             name="where"
             options={careers}
@@ -54,20 +70,6 @@ function EditableDescription() {
               })
             }
           />
-
-          {/* <Select
-            defaultValue={currentProject.where.id}
-            onChange={(value) =>
-              update({
-                ...currentProject,
-                where: careers.find((career) => career.id === value)!,
-              })
-            }
-          >
-            {careers.map((career) => (
-              <Option value={career.id}>{career.title}</Option>
-            ))}
-          </Select> */}
         </Section>
         <Section>
           <Title>시작일</Title>

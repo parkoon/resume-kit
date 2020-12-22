@@ -18,6 +18,7 @@ type EditableTextFieldProps = {
   onSave?: SaveFunc
   bold?: boolean
   size?: ComponentSize
+  style?: React.CSSProperties
 }
 function EditableText({
   name,
@@ -27,6 +28,7 @@ function EditableText({
   initialValue,
   bold = false,
   size = 'md',
+  style,
   onSave,
 }: EditableTextFieldProps) {
   const [value, setValue] = useState(initialValue || '')
@@ -70,7 +72,7 @@ function EditableText({
     )
 
   return (
-    <Wrapper>
+    <Wrapper style={style}>
       {icon && <IconWrapper>{icon}</IconWrapper>}
       {isUpdateMode ? (
         <InputWrapper>
