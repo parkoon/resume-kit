@@ -57,14 +57,14 @@ export const CareerAPI = {
   get() {
     return this.base
   },
-  add(project: Project) {
-    return API.post(this.base, project)
+  add(career: Career) {
+    return API.post(this.base, career)
   },
   delete(id: string) {
     return API.delete(`${this.base}/${id}`)
   },
-  update(id: string, project: Project) {
-    return API.put(`${this.base}/${id}`, project)
+  update(id: string, career: Career) {
+    return API.put(`${this.base}/${id}`, career)
   },
 }
 
