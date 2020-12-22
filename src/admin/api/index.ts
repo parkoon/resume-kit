@@ -3,6 +3,9 @@ import Profile from '@Shared/types/Profile'
 import Skill from '@Shared/types/Skill'
 import { Project } from '@Shared/types/Project'
 import { Career } from '@Shared/types/Career'
+import { Article } from '@Shared/types/Article'
+import { Education } from '@Shared/types/Education'
+import { Etc } from '@Shared/types/Etc'
 
 export const API = axios.create({
   baseURL: 'http://localhost:1208/api',
@@ -68,9 +71,53 @@ export const CareerAPI = {
   },
 }
 
-// const Article = {}
-// const Education = {}
-// const Etc = {}
-// const Project = {}
-// const Project = {}
-// const Skill = {}
+export type ArticleGETResponse = AxiosResponse<Article[]>
+export const ArticleAPI = {
+  base: '/articles',
+  get() {
+    return this.base
+  },
+  add(article: Article) {
+    return API.post(this.base, article)
+  },
+  delete(id: string) {
+    return API.delete(`${this.base}/${id}`)
+  },
+  update(id: string, article: Article) {
+    return API.put(`${this.base}/${id}`, article)
+  },
+}
+
+export type EducationGETResponse = AxiosResponse<Education[]>
+export const EducationAPI = {
+  base: '/educations',
+  get() {
+    return this.base
+  },
+  add(education: Education) {
+    return API.post(this.base, education)
+  },
+  delete(id: string) {
+    return API.delete(`${this.base}/${id}`)
+  },
+  update(id: string, education: Education) {
+    return API.put(`${this.base}/${id}`, education)
+  },
+}
+
+export type EtcGETResponse = AxiosResponse<Etc[]>
+export const EtcAPI = {
+  base: '/etcs',
+  get() {
+    return this.base
+  },
+  add(etc: Etc) {
+    return API.post(this.base, etc)
+  },
+  delete(id: string) {
+    return API.delete(`${this.base}/${id}`)
+  },
+  update(id: string, etc: Etc) {
+    return API.put(`${this.base}/${id}`, etc)
+  },
+}
