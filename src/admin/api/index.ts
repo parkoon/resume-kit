@@ -2,6 +2,7 @@ import axios, { AxiosResponse } from 'axios'
 import Profile from '@Shared/types/Profile'
 import Skill from '@Shared/types/Skill'
 import { Project } from '@Shared/types/Project'
+import { Career } from '@Shared/types/Career'
 
 export const API = axios.create({
   baseURL: 'http://localhost:1208/api',
@@ -34,22 +35,35 @@ export const SkillAPI = {
 }
 
 export type ProjectGETResponse = AxiosResponse<Project[]>
-
 export const ProjectAPI = {
   base: '/projects',
   get() {
     return this.base
   },
-  // update(projects: Projects[]) {
-  //   return API.post('/projects', skill)
-  // },
   add(project: Project) {
     return API.post(this.base, project)
   },
   delete(id: string) {
     return API.delete(`${this.base}/${id}`)
   },
-  updateById(id: string, project: Project) {
+  update(id: string, project: Project) {
+    return API.put(`${this.base}/${id}`, project)
+  },
+}
+
+export type CareerGETResponse = AxiosResponse<Career[]>
+export const CareerAPI = {
+  base: '/careers',
+  get() {
+    return this.base
+  },
+  add(project: Project) {
+    return API.post(this.base, project)
+  },
+  delete(id: string) {
+    return API.delete(`${this.base}/${id}`)
+  },
+  update(id: string, project: Project) {
     return API.put(`${this.base}/${id}`, project)
   },
 }

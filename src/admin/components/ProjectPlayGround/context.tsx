@@ -58,7 +58,7 @@ export function ProjectProvider({ children }: ProjectProviderProps) {
   }
 
   const update = async (value: Project) => {
-    await ProjectAPI.updateById(value.id, value)
+    await ProjectAPI.update(value.id, value)
     mutate()
   }
 
