@@ -8,7 +8,7 @@ import { PROFILE_SECTIONS } from '@Admin/constants/profile'
 import { API, ProfileAPI, ProfileGETResponse } from '@Admin/api'
 
 function IntroduceManagement() {
-  const { data } = useSWR<ProfileGETResponse>(ProfileAPI.get(), API)
+  const { data, mutate } = useSWR<ProfileGETResponse>(ProfileAPI.get(), API)
 
   if (!data) {
     // TODO. 로딩처리
@@ -19,9 +19,10 @@ function IntroduceManagement() {
     data: { profile },
   } = data
 
-  const onSave = (name: string, value: string) => {
-    ProfileAPI.update({ ...profile, [name]: value })
+  const onSave = async (name: string, value: string) => {
+    await ProfileAPI.update({ ...profile, [name]: value })
     Notification.success('변경사항이 저장되었습니다.')
+    mutate()
   }
 
   return (
