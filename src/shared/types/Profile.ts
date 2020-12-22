@@ -13,6 +13,8 @@ export type ProfileSection =
   | 'youtube'
   | 'instagram'
 
-export type Profile = {
+type Profile = {
   [key in ProfileSection]: string
 }
+
+export default Profile

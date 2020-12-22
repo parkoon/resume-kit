@@ -46,8 +46,11 @@ export const skillTitles = tuple(
 export type SkillType = typeof skillTypes[number]
 export const skillTypes = tuple('none', 'backend', 'frontend', 'database', 'etc', 'devOps')
 
-type MySkill = {
-  [key in SkillType]: SkillTitle
+type Skill = {
+  id: number
+  title: SkillTitle
+  type: SkillType
+  level: number
 }
 
-export default MySkill
+export default Skill
