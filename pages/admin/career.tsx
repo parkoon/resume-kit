@@ -5,7 +5,7 @@ import useSWR from 'swr'
 import { API, CareerAPI, CareerGETResponse } from '@Admin/api'
 import CommonDescription from '@Admin/components/Descriptions/CommonDescription'
 import CommonForm from '@Admin/components/Forms/CommonForm'
-import confirm from '@Admin/helpers/confirm'
+import Confirm from '@Admin/helpers/confirm'
 import useModal from '@Admin/hooks/useModal'
 import AdminLayout from '@Admin/layout'
 import { FormCompletedType } from '@Admin/types'
@@ -58,9 +58,8 @@ function ProjectManagement() {
             }
           }}
           onDelete={(id: string) =>
-            confirm({
-              title: '이 경력을 삭제하시겠습니까?',
-              content: '이 항목을 삭제하면 영구적으로 제거됩니다.',
+            Confirm.delete({
+              title: '경력',
               async onConfirm() {
                 await CareerAPI.delete(id)
                 mutate()

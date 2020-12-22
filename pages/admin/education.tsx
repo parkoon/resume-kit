@@ -9,7 +9,7 @@ import useModal from '@Admin/hooks/useModal'
 import AdminLayout from '@Admin/layout'
 import { FormCompletedType } from '@Admin/types'
 import { Education } from '@Shared/types/Education'
-import confirm from '@Admin/helpers/confirm'
+import Confirm from '@Admin/helpers/confirm'
 
 function EducationManagement() {
   const { open, close, visible } = useModal({
@@ -61,9 +61,8 @@ function EducationManagement() {
             }
           }}
           onDelete={(id) => {
-            confirm({
-              title: '이 교육을 삭제하시겠습니까?',
-              content: '이 항목을 삭제하면 영구적으로 제거됩니다.',
+            Confirm.delete({
+              title: '교육',
               async onConfirm() {
                 await EducationAPI.delete(id)
                 mutate()

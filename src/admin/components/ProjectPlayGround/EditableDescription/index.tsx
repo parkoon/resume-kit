@@ -3,7 +3,7 @@ import { Button, Empty, Select } from 'antd'
 
 import EditableDatePicker from '@Admin/components/Editable/EditableDatePicker'
 import EditableSelect from '@Admin/components/Editable/EditableSelect'
-import confirm from '@Admin/helpers/confirm'
+import Confirm from '@Admin/helpers/confirm'
 
 import EditableText from '@Admin/components/Editable/EditableText'
 import TaskCreator from '@Admin/components/TaskCreator'
@@ -43,9 +43,8 @@ function EditableDescription() {
           danger
           type="dashed"
           onClick={() =>
-            confirm({
-              title: '이 프로젝트를 삭제하시겠습니까?',
-              content: '이 항목을 삭제하면 영구적으로 제거됩니다.',
+            Confirm.delete({
+              title: '프로젝트',
               onConfirm() {
                 remove(currentProject.id)
               },
