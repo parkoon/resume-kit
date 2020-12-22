@@ -1,7 +1,8 @@
 import jsonfile from 'jsonfile'
-import { profilePath } from '../../paths'
 
-import { Profile } from '@Shared/types/Profile'
+import Profile from '@Shared/types/Profile'
+import { profilePath } from '@Server/paths'
+import { updateJSON } from '@Server/helpers/JSONTool'
 
 const Service = {
   async getProfile() {
@@ -14,8 +15,9 @@ const Service = {
   },
   async saveProfile(profile: Profile) {
     try {
-      jsonfile.writeFileSync(profilePath, profile)
+      updateJSON(profilePath, profile)
     } catch (err) {
+      console.error(err)
       throw Error(err)
     }
   },

@@ -12,6 +12,7 @@ const Controller = {
   },
   async saveProfile(req: Request, res: Response) {
     try {
+      console.log('req.body', req.body)
       await profileService.saveProfile(req.body)
       res.status(200).end()
     } catch (err) {

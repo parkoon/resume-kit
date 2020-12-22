@@ -20,7 +20,7 @@ app.use(cors())
 
 app.use('/api/profile', profileRoute)
 app.use('/api/project', projectRoute)
-app.use('/api/skill', skillRoute)
+app.use('/api/skills', skillRoute)
 app.use('/api/article', articleRoute)
 app.use('/api/career', careerRoute)
 app.use('/api/education', educationRoute)

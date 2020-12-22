@@ -1,8 +1,9 @@
 import jsonfile from 'jsonfile'
+import moment from 'moment'
 
-import { SkillTitle } from '@Shared/types/Skill'
-
-import { skillPath } from '../../paths'
+import Skills from '@Shared/types/Skill'
+import { updateJSON } from '@Server/helpers/JSONTool'
+import { skillPath } from '@Server/paths'
 
 const Service = {
   async getSkill() {
@@ -13,9 +14,9 @@ const Service = {
       throw new Error(err)
     }
   },
-  async saveSkill(skill: SkillTitle[]) {
+  async saveSkill(skills: Skills) {
     try {
-      jsonfile.writeFileSync(skillPath, skill)
+      updateJSON(skillPath, skills)
     } catch (err) {
       throw new Error(err)
     }

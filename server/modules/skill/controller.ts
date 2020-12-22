@@ -4,8 +4,8 @@ import skillService from './service'
 const Controller = {
   async getSkill(req: Request, res: Response) {
     try {
-      const skill = await skillService.getSkill()
-      res.json(skill)
+      const skills = await skillService.getSkill()
+      res.json(skills)
     } catch (err) {
       res.status(500).end()
     }
