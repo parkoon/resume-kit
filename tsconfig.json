@@ -17,7 +17,8 @@
     "paths": {
       "@Resume/*": ["./src/resume/*"],
       "@Shared/*": ["./src/shared/*"],
-      "@Admin/*": ["./src/admin/*"]
+      "@Admin/*": ["./src/admin/*"],
+      "@Server/*": ["./server/*"]
     }
   },
   "exclude": ["node_modules", "server/server.ts"],
