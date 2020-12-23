@@ -19,6 +19,7 @@ export const Wrapper = styled.div<{ dashed?: boolean; hovered?: boolean; empty?:
   position: relative;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  grid-template-rows: 48px;
   grid-gap: 7px;
   padding: 5px;
   background: ${palette.grey[300]};
