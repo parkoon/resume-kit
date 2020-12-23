@@ -4,12 +4,13 @@ import { Button, Card, List, Modal, Space } from 'antd'
 
 import { API, ArticleAPI, ArticleGETResponse } from '@Admin/api'
 import ArticleForm from '@Admin/components/Forms/ArticleForm'
-import confirm from '@Admin/helpers/confirm'
 import useModal from '@Admin/hooks/useModal'
 import AdminLayout from '@Admin/layout'
 import { FormCompletedType } from '@Admin/types'
 import { palette } from '@Shared/styles'
 import { Article } from '@Shared/types/Article'
+import Loading from '@Admin/components/Loding'
+import Confirm from '@Admin/helpers/confirm'
 
 function ArticleManagement() {
   const { data: articleResponse, mutate } = useSWR<ArticleGETResponse>(ArticleAPI.get(), API)
@@ -41,7 +42,7 @@ function ArticleManagement() {
   }
 
   if (!articleResponse) {
-    return <span>로딩중</span>
+    return <Loading />
   }
 
   return (
@@ -84,9 +85,8 @@ function ArticleManagement() {
                 <Button
                   danger
                   onClick={() =>
-                    confirm({
-                      title: '이 기사를 삭제하시겠습니까?',
-                      content: '이 항목을 삭제하면 영구적으로 제거됩니다.',
+                    Confirm.delete({
+                      title: '기사',
                       onConfirm() {
                         deleteArticle(item.id)
                       },

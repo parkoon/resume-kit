@@ -1,13 +1,13 @@
 import { useState } from 'react'
+import useSWR from 'swr'
 import { Row, Col } from 'antd'
 
 import AdminLayout from '@Admin/layout'
 import SkillCard from '@Admin/components/SKillCard'
 import DragContainer from '@Admin/components/DropContainer'
-
 import Skill, { SkillType, skillTypes } from '@Shared/types/Skill'
 import { SkillAPI, API, SkillGETResponse } from '@Admin/api'
-import useSWR from 'swr'
+import Loading from '@Admin/components/Loding'
 
 function SkillManagement() {
   const [draggingSkill, setDraggingSkill] = useState<Skill>()
@@ -16,7 +16,7 @@ function SkillManagement() {
   const { data, mutate } = useSWR<SkillGETResponse>(SkillAPI.get(), API)
 
   if (!data) {
-    return <span>로딩중</span>
+    return <Loading />
   }
 
   const {

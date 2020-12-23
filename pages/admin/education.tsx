@@ -10,6 +10,7 @@ import AdminLayout from '@Admin/layout'
 import { FormCompletedType } from '@Admin/types'
 import { Education } from '@Shared/types/Education'
 import Confirm from '@Admin/helpers/confirm'
+import Loading from '@Admin/components/Loding'
 
 function EducationManagement() {
   const { open, close, visible } = useModal({
@@ -36,7 +37,7 @@ function EducationManagement() {
   }
 
   if (!educationResponse) {
-    return <span>로딩중</span>
+    return <Loading />
   }
 
   return (

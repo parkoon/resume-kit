@@ -42,7 +42,7 @@ const careers: Career[] = [
   },
 ]
 
-function ExperienceManagement() {
+function ProjectManagement() {
   const { visible, open, close } = useModal()
   const router = useRouter()
 
@@ -126,4 +126,4 @@ function ExperienceManagement() {
   )
 }
 
-export default ExperienceManagement
+export default ProjectManagement

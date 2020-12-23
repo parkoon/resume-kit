@@ -6,13 +6,15 @@ import EditableText from '@Admin/components/Editable/EditableText'
 import Notification from '@Admin/helpers/notification'
 import { PROFILE_SECTIONS } from '@Admin/constants/profile'
 import { API, ProfileAPI, ProfileGETResponse } from '@Admin/api'
+import Loading from '@Admin/components/Loding'
 
 function IntroduceManagement() {
-  const { data, mutate } = useSWR<ProfileGETResponse>(ProfileAPI.get(), API)
+  const { data, mutate } = useSWR<ProfileGETResponse>(ProfileAPI.get(), API, {
+    loadingTimeout: 9000,
+  })
 
   if (!data) {
-    // TODO. 로딩처리
-    return <span>로딩중</span>
+    return <Loading />
   }
 
   const {
