@@ -15,11 +15,10 @@ export const Container = styled.div`
     }
   }
 `
-export const Wrapper = styled.div<{ dashed?: boolean; hovered?: boolean }>`
+export const Wrapper = styled.div<{ dashed?: boolean; hovered?: boolean; empty?: boolean }>`
   position: relative;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  grid-template-rows: 40px;
   grid-gap: 7px;
   padding: 5px;
   background: ${palette.grey[300]};
@@ -27,6 +26,13 @@ export const Wrapper = styled.div<{ dashed?: boolean; hovered?: boolean }>`
   border: 3px solid ${palette.grey[300]};
   transition: 0.3s;
   height: 100%;
+  min-height: 284px;
+
+  ${({ empty }) =>
+    empty &&
+    css`
+      align-items: center;
+    `}
 
   ${({ dashed }) =>
     dashed &&

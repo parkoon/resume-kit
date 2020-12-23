@@ -1,4 +1,5 @@
 import React from 'react'
+import { Empty } from 'antd'
 import { Container, Wrapper } from './styles'
 
 interface DragContainerProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -16,6 +17,7 @@ function DragContainer({
   hovered,
   ...props
 }: DragContainerProps) {
+  const hasData = totalCount > 0
   return (
     <Container {...props}>
       <h2>
@@ -23,8 +25,8 @@ function DragContainer({
         <span>({totalCount})</span>
       </h2>
 
-      <Wrapper dashed={dashed} hovered={hovered}>
-        {children}
+      <Wrapper dashed={dashed} hovered={hovered} empty={!hasData}>
+        {hasData ? <>{children}</> : <Empty description="" />}
       </Wrapper>
     </Container>
   )

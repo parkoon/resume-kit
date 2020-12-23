@@ -9,6 +9,7 @@ export const Wrapper = styled.div`
   padding: 0.7rem 1rem;
   cursor: move;
   transition: 0.3s;
+  height: 48px;
 
   &:hover {
     background: ${palette.grey[200]};
