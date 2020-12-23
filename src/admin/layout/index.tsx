@@ -65,7 +65,12 @@ function AdminLayout({ children, title, subtitle, actions = [] }: AdminLayoutPro
 
   return (
     <Layout style={{ minHeight: '100vh' }}>
-      <Sider collapsible collapsed={visible} onCollapse={(collapsed) => setVisible(collapsed)}>
+      <Sider
+        collapsible
+        width={150}
+        collapsed={visible}
+        onCollapse={(collapsed) => setVisible(collapsed)}
+      >
         {/* TODO. LOGO */}
         <div
           className="logo"
