@@ -14,7 +14,7 @@ export const Title = styled.h5`
 `
 export const Body = styled.div`
   margin-top: 20px;
-  height: calc(100vh - 220px);
+  height: calc(100vh - 160px);
   overflow: auto;
 `
 export const Section = styled.div`
