@@ -13,8 +13,11 @@ export type ProfileSection =
   | 'youtube'
   | 'instagram'
 
-type Profile = {
+export type Profile = {
   [key in ProfileSection]: string
 }
 
-export default Profile
+export type ProfileJSON = {
+  profiles: Profile[]
+  updatedAt: string
+}

@@ -16,3 +16,7 @@ export type Project = {
   skills: SkillTitle[] // 기술 스펙
   tasks: Task[] // 업무 내용
 }
+export type ProjectJSON = {
+  projects: Project[]
+  updatedAt: string
+}

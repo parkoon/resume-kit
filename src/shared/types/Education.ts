@@ -6,3 +6,7 @@ export type Education = {
   title: string
   subtitle: string
 }
+export type EducationJSON = {
+  educations: Education[]
+  updatedAt: string
+}

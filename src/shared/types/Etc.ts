@@ -6,3 +6,7 @@ export type Etc = {
   title: string
   subtitle: string
 }
+export type EtcJSON = {
+  etcs: Etc[]
+  updatedAt: string
+}

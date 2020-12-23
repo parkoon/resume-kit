@@ -3,3 +3,7 @@ export type Article = {
   title: string
   url: string
 }
+export type ArticleJSON = {
+  articles: Article[]
+  updatedAt: string
+}
