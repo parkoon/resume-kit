@@ -3,7 +3,7 @@ import { useState } from 'react'
 import useSWR from 'swr'
 
 import { API, CareerAPI, CareerGETResponse } from '@Admin/api'
-import CommonDescription from '@Admin/components/Descriptions/CommonDescription'
+import CommonDescription from '@Admin/components/CommonDescription'
 import CommonForm from '@Admin/components/Forms/CommonForm'
 import Confirm from '@Admin/helpers/confirm'
 import useModal from '@Admin/hooks/useModal'

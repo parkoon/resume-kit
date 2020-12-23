@@ -3,7 +3,7 @@ import { useState } from 'react'
 import useSWR from 'swr'
 
 import { API, EducationAPI, EducationGETResponse } from '@Admin/api'
-import CommonDescription from '@Admin/components/Descriptions/CommonDescription'
+import CommonDescription from '@Admin/components/CommonDescription'
 import CommonForm, { CommonFormValues } from '@Admin/components/Forms/CommonForm'
 import useModal from '@Admin/hooks/useModal'
 import AdminLayout from '@Admin/layout'
