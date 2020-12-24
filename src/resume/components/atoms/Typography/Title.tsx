@@ -7,14 +7,15 @@ type TitleProps = {
   level?: 1 | 2 | 3 | 4
   fontWeight?: 300 | 400 | 500 | 700
   letterSpacing?: number
+  style?: React.CSSProperties
 }
 
 // Constants
 const FONT_SIZE: { [key: string]: string } = {
-  h1: '2.5rem',
-  h2: '2.2rem',
-  h3: '2rem',
-  h4: '1.8rem',
+  h1: '2.4rem',
+  h2: '2rem',
+  h3: '1.8rem',
+  h4: '1.6rem',
 }
 
 // Functions

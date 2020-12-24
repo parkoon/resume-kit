@@ -5,12 +5,11 @@ import {
   FaTwitter,
   FaPhone,
   FaLinkedinIn,
-  FaFacebookF,
   FaInstagram,
   FaBlog,
   FaHome,
   FaGithub,
-  FaFacebook,
+  FaFacebookF,
 } from 'react-icons/fa'
 
 import * as S from './styles'
@@ -21,7 +20,7 @@ const ICON: { [key: string]: React.ReactNode } = {
   github: <FaGithub />,
   linkedin: <FaLinkedinIn />,
   email: <FaEnvelope />,
-  facebook: <FaFacebook />,
+  facebook: <FaFacebookF />,
   twitter: <FaTwitter />,
   instagram: <FaInstagram />,
   youtube: <FaYoutube />,
@@ -40,11 +39,12 @@ type IconName =
 type IconProps = {
   name: IconName
   text: string
+  className?: string
 }
-function Icon({ name, text }: IconProps) {
+function Icon({ name, text, ...props }: IconProps) {
   const IconEl = ICON[name]
   return (
-    <S.Wrapper>
+    <S.Wrapper {...props}>
       <S.IconWrapper>{IconEl}</S.IconWrapper>
       <span>{text}</span>
     </S.Wrapper>

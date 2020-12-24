@@ -1,24 +1,47 @@
-import React from 'react'
+import jsonfile from 'jsonfile'
 import path from 'path'
-import fs from 'fs'
+import React from 'react'
 
-function Home(props: any) {
+import { Payload } from '@Resume/types/Payload'
+import JSONPaths from '@Shared/JSONPaths'
+import ResumeLayout from '@Resume/layout'
+import ProfileSection from '@Resume/components/templates/ProfileSection'
+import IntroduceSection from '@Resume/components/templates/IntroduceSection'
+import EducationSection from '@Resume/components/templates/EducationSection'
+import ProjectSection from '@Resume/components/templates/ProjectSection'
+import SkillSection from '@Resume/components/templates/SkillSection'
+import ArticleSection from '@Resume/components/templates/ArticleSection'
+import EtcSection from '@Resume/components/templates/EtcSection'
+
+function Resume({ payload }: { payload: Payload }) {
   return (
-    <div>
-      {props.message} {props.json}
-    </div>
+    <ResumeLayout>
+      <ProfileSection />
+      <IntroduceSection />
+      <EducationSection />
+      <ProjectSection />
+      <SkillSection />
+      <ArticleSection />
+      <EtcSection />
+    </ResumeLayout>
   )
 }
 
-export async function getStaticProps(context: any) {
-  const jsonPath = path.join(process.cwd(), '/db/sample.json')
-  const jsonData = fs.readFileSync(jsonPath, 'utf-8')
+/** JSON 파일 읽기 */
+const readJSON = (target: string) => jsonfile.readFileSync(path.join(process.cwd(), target))
+export async function getStaticProps() {
+  const payload = {
+    article: readJSON(JSONPaths.articles),
+    career: readJSON(JSONPaths.careers),
+    education: readJSON(JSONPaths.educations),
+    etc: readJSON(JSONPaths.etcs),
+    profile: readJSON(JSONPaths.profile),
+    project: readJSON(JSONPaths.projects),
+    skill: readJSON(JSONPaths.skills),
+  }
   return {
-    props: {
-      message: `Hello Next`,
-      json: jsonData,
-    },
+    props: { payload },
   }
 }
 
-export default Home
+export default Resume

@@ -2,13 +2,14 @@ import styled from 'styled-components'
 import { palette } from '@Shared/styles'
 
 export const Wrapper = styled.div`
-  margin-left: 16px;
+  margin-left: 24px;
 `
 
 export const List = styled.div<{ column: number }>`
   display: grid;
   grid-template-columns: ${({ column }) => `repeat(${column - 1}, minmax(250px, auto)) 1fr`};
   grid-column-gap: 17px;
+  grid-row-gap: 7px;
 `
 export const Item = styled.div`
   position: relative;

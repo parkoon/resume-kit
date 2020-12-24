@@ -6,7 +6,7 @@ import Text from '../Typography/Text'
 type ListProps = {
   children?: React.ReactNode
   column?: number
-  items: string[]
+  items?: string[]
 }
 function List({ column = 1, items = [], children }: ListProps) {
   if (column > 4) {

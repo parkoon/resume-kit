@@ -3,17 +3,22 @@ import React from 'react'
 import * as S from './styles'
 
 type DescriptionProps = {
-  title: React.ReactNode | string
-  content: React.ReactNode
+  left: React.ReactNode | string
+  right: React.ReactNode
   gutter?: number
+  style?: React.CSSProperties
 }
-function Description({ title, content, gutter }: DescriptionProps) {
+function Description({ left, right, ...props }: DescriptionProps) {
   return (
-    <S.Wrapper gutter={gutter}>
-      <S.Left>{title}</S.Left>
-      <S.Right>{content}</S.Right>
+    <S.Wrapper {...props}>
+      <S.Left>{left}</S.Left>
+      <S.Right>{right}</S.Right>
     </S.Wrapper>
   )
+}
+
+Description.defaultProps = {
+  gutter: 52,
 }
 
 export default Description
