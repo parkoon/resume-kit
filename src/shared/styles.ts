@@ -4,7 +4,7 @@ const GlobalStyle = createGlobalStyle`
   html {
     width: 100%;
     height: 100%;
-    font-size: 10px;
+    font-size: 14px;
     font-family: 'Noto Sans KR', sans-serif
   }
 
@@ -16,6 +16,8 @@ const GlobalStyle = createGlobalStyle`
   body {
     width: 100%;
     height: 100%;
+    margin: 0;
+    color: #333;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -129,6 +131,9 @@ export const palette = {
     700: '#616161',
     800: '#424242',
     900: '#212121',
+  },
+  solidLine() {
+    return `1px solid ${this.grey[500]}`
   },
 }
 
