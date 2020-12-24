@@ -1,3 +1,5 @@
+import 'antd/dist/antd.css'
+
 import { useState, useEffect } from 'react'
 import { Button, Space, Typography, Result } from 'antd'
 import Modal from 'antd/lib/modal/Modal'

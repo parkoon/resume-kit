@@ -1,3 +1,5 @@
+import 'antd/dist/antd.css'
+
 import { useState } from 'react'
 import useSWR from 'swr'
 import { Button, Modal } from 'antd'

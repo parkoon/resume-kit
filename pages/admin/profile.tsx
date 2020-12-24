@@ -1,3 +1,5 @@
+import 'antd/dist/antd.css'
+
 import useSWR from 'swr'
 import { Card, Row, Col } from 'antd'
 

@@ -1,3 +1,5 @@
+import 'antd/dist/antd.css'
+
 import { useState } from 'react'
 import useSWR from 'swr'
 import { Row, Col } from 'antd'
@@ -5,7 +7,7 @@ import { Row, Col } from 'antd'
 import AdminLayout from '@Admin/layout'
 import SkillCard from '@Admin/components/SKillCard'
 import DragContainer from '@Admin/components/DropContainer'
-import Skill, { SkillType, skillTypes } from '@Shared/types/Skill'
+import { SkillType, skillTypes, Skill } from '@Shared/types/Skill'
 import { SkillAPI, API, SkillGETResponse } from '@Admin/api'
 import Loading from '@Admin/components/Loding'
 
