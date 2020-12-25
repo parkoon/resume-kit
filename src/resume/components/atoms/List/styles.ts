@@ -7,11 +7,21 @@ export const Wrapper = styled.div`
 
 export const List = styled.div<{ column: number }>`
   display: grid;
-  grid-template-columns: ${({ column }) => `repeat(${column - 1}, minmax(250px, auto)) 1fr`};
+  grid-template-columns: ${({ column }) => `repeat(${column}, minmax(250px, auto))`};
   grid-column-gap: 17px;
   grid-row-gap: 7px;
+
+  ${({ theme }) => theme.medium`
+    grid-template-columns: 1fr 1fr;
+  `}
+
+  ${({ theme }) => theme.small`
+    grid-template-columns: 1fr;
+  `}
 `
 export const Item = styled.div`
+  display: flex;
+  align-items: center;
   position: relative;
   padding-left: 17px;
   &::before {
@@ -19,8 +29,8 @@ export const Item = styled.div`
     position: absolute;
     left: 0;
     top: 50%;
-    width: 8px;
-    height: 8px;
+    width: 7px;
+    height: 7px;
     background: ${palette.grey[900]};
     transform: translateY(-20%) rotate(45deg);
   }

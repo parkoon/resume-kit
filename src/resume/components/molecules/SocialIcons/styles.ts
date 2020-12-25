@@ -6,6 +6,12 @@ export const IconsWrapper = styled.div`
   position: absolute;
   right: 0;
   top: 0;
+
+  ${({ theme }) => theme.medium`
+    position: relative;
+    margin-left: -7px;
+    margin-top: 18px;
+  `}
 `
 export const IconWrapper = styled.div`
   display: inline-block;

@@ -4,6 +4,7 @@ import Title from '@Resume/components/atoms/Typography/Title'
 import Icon from '@Resume/components/atoms/ContactIcon'
 
 import SocialIcons from '../SocialIcons'
+import Space from '@Resume/components/atoms/Space'
 
 function ProfileInfo() {
   return (
@@ -15,10 +16,10 @@ function ProfileInfo() {
 
       <SocialIcons icons={{ github: 'zz', twitter: 'zz', facebook: 'fa' }} />
 
-      <div style={{ marginTop: 24 }}>
+      <Space top={20}>
         <Icon name="phone" text="010.  0917" />
         <Icon name="email" text="010. 3328. 0917" />
-      </div>
+      </Space>
     </>
   )
 }

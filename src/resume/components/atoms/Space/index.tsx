@@ -9,7 +9,6 @@ const Wrapper = styled.div<SpaceProps>`
   ${({ section }) =>
     section &&
     css`
-      margin-top: 32px;
       margin-bottom: 72px;
     `}
 `

@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { palette } from '@Shared/styles'
 
 const Wrapper = styled.div`
@@ -24,8 +24,24 @@ const Wrapper = styled.div`
 
 const Container = styled.div`
   max-width: 1140px;
+  width: 100%;
   margin: 0 auto;
-  padding: 52px 12px 32px 12px;
+  padding: 62px 20px 32px 20px;
+
+  /*  */
+  ${({ theme }) =>
+    theme.large`
+      max-width: 960px;
+    `}
+  ${({ theme }) =>
+    theme.medium`
+      max-width: 720px;
+   
+    `}
+  ${({ theme }) =>
+    theme.small`
+      max-width: 540px;
+    `}
 `
 type ResumeLayoutProps = {
   children: React.ReactNode

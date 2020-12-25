@@ -1,6 +1,13 @@
 import { createGlobalStyle, css } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
+
+  * {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box; 
+  }
+  
   html {
     width: 100%;
     height: 100%;
@@ -16,14 +23,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     width: 100%;
     height: 100%;
-    margin: 0;
     color: #333;
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    font-weight: normal;
-    font-style: normal;
-    margin: 0;
   }
 `
 
@@ -147,10 +147,10 @@ export const levelColor: { [key: string]: string } = {
 }
 
 const sizes: { [key: string]: number } = {
-  huge: 1440,
-  large: 1170,
+  huge: 1200,
+  large: 992,
   medium: 768,
-  small: 450,
+  small: 576,
 }
 
 // Ref. https://medium.com/@samuelresua/easy-media-queries-in-styled-components-690b78f50053

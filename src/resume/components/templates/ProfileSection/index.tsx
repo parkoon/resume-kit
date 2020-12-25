@@ -10,11 +10,6 @@ function ProfileSection() {
   return (
     <Space section>
       <ProfileInfo />
-
-      {/* <Description
-        left={<Hero url="https://picsum.photos/id/237/200/300" />}
-        right={<ProfileInfo />}
-      /> */}
     </Space>
   )
 }
