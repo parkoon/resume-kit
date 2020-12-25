@@ -1,6 +1,5 @@
 import React from 'react'
-import styled, { css } from 'styled-components'
-import { palette } from '@Shared/styles'
+import styled from 'styled-components'
 
 const Wrapper = styled.div`
   position: relative;
@@ -10,7 +9,7 @@ const Wrapper = styled.div`
     content: '';
     width: 100%;
     height: 16px;
-    background: ${palette.grey[700]};
+    background: ${({ theme }) => theme.primaryColor};
     position: absolute;
   }
   &::before {

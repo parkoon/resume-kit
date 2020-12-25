@@ -3,13 +3,23 @@ import { ThemeProvider } from 'styled-components'
 
 import { Media } from '@Shared/styles'
 
-const Theme: React.FC = ({ children }) => (
-  <ThemeProvider
-    theme={{
-      ...(Media as any),
-    }}
-  >
-    {children}
-  </ThemeProvider>
-)
+type ThemeProps = {
+  children: React.ReactNode
+  primaryColor: string
+  secondaryColor: string
+}
+function Theme({ children, primaryColor, secondaryColor }: ThemeProps) {
+  return (
+    <ThemeProvider
+      theme={{
+        ...(Media as any),
+        primaryColor,
+        secondaryColor,
+      }}
+    >
+      {children}
+    </ThemeProvider>
+  )
+}
+
 export default Theme

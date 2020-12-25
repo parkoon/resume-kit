@@ -2,6 +2,7 @@ import jsonfile from 'jsonfile'
 import path from 'path'
 import React from 'react'
 
+import Theme from '@Shared/theme/Theme'
 import { Payload } from '@Resume/types/Payload'
 import JSONPaths from '@Shared/JSONPaths'
 import ResumeLayout from '@Resume/layout'
@@ -16,16 +17,18 @@ import CareerSection from '@Resume/components/templates/CareerSection'
 
 function Resume({ payload }: { payload: Payload }) {
   return (
-    <ResumeLayout>
-      <ProfileSection />
-      <IntroduceSection />
-      <EducationSection />
-      <CareerSection />
-      <ProjectSection />
-      <SkillSection />
-      <ArticleSection />
-      <EtcSection />
-    </ResumeLayout>
+    <Theme primaryColor="#030852" secondaryColor="#061178">
+      <ResumeLayout>
+        <ProfileSection />
+        <IntroduceSection />
+        <EducationSection />
+        <CareerSection />
+        <ProjectSection />
+        <SkillSection />
+        <ArticleSection />
+        <EtcSection />
+      </ResumeLayout>
+    </Theme>
   )
 }
 

@@ -9,7 +9,9 @@ import Anchor from '@Resume/components/atoms/Anchor'
 function ArticleSection() {
   return (
     <Space section>
-      <Title section>ARTICLE</Title>
+      <Title level={3} section secondary>
+        ARTICLE
+      </Title>
       <List>
         <Anchor href="#" title="Lorem ipsum dolor sit amet" />
         <Anchor href="#" title="consectetur adipisicing elit. A dolorem consectetur quo" />

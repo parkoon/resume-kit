@@ -9,13 +9,15 @@ type TitleProps = {
   letterSpacing?: number
   style?: React.CSSProperties
   section?: boolean
+  primary?: boolean
+  secondary?: boolean
 }
 
 const FONT_SIZE: { [key: string]: string } = {
-  h1: '3.2rem',
-  h2: '2rem',
+  h1: '4rem',
+  h2: '3rem',
   h3: '2.5rem',
-  h4: '2rem',
+  h4: '1.8rem',
 }
 
 const fontSize = ({ level = 1 }: TitleProps) => FONT_SIZE[`h${level}`]
@@ -28,12 +30,22 @@ const styles = css`
   ${({ section }) =>
     section &&
     css`
-      font-size: 2rem;
       letter-spacing: 2;
       width: 100%;
       border-bottom: ${palette.dashedLine()};
       padding-bottom: 10px;
       margin-bottom: 32px;
+    `}
+
+  ${({ primary, theme }) =>
+    primary &&
+    css`
+      color: ${theme.primaryColor};
+    `}
+  ${({ secondary, theme }) =>
+    secondary &&
+    css`
+      color: ${theme.secondaryColor};
     `}
 `
 

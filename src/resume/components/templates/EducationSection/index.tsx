@@ -7,13 +7,14 @@ import Space from '@Resume/components/atoms/Space'
 function EducationSection() {
   return (
     <Space section>
-      <Title section>EDUCATION</Title>
+      <Title level={3} section secondary>
+        EDUCATION
+      </Title>
       <Description
-        gutter={24}
         left={<Text size="xl">2020. 10 ~ 2020. 11</Text>}
         right={
           <>
-            <Text block size="xl">
+            <Text size="xl" block>
               OO대학교
             </Text>
             <Text italic>컴퓨터 공학과 (학사)</Text>

@@ -3,10 +3,10 @@ import styled, { css } from 'styled-components'
 import { palette } from '@Shared/styles'
 
 const FONT_SIZE = {
-  sm: '1.0rem',
-  md: '1.2rem',
-  lg: '1.3rem',
-  xl: '1.7rem',
+  sm: '1.2rem',
+  md: '1.4rem',
+  lg: '1.6rem',
+  xl: '1.8rem',
 }
 
 const fontSize = ({ size }: Partial<TextProps>) => FONT_SIZE[size!]
@@ -27,7 +27,7 @@ const Wrapper = styled.span<Partial<TextProps>>`
     css`
       font-style: italic;
       color: ${palette.grey[600]};
-      font-size: ${FONT_SIZE.lg};
+      font-size: ${FONT_SIZE.sm};
       font-weight: 300;
     `}
 `

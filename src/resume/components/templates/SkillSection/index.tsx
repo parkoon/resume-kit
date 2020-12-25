@@ -8,9 +8,10 @@ import List from '@Resume/components/atoms/List'
 function SkillSection() {
   return (
     <Space section>
-      <Title section>SKILL</Title>
+      <Title level={3} section secondary>
+        SKILL
+      </Title>
       <Description
-        gutter={24}
         left={<Text size="xl">Frontend</Text>}
         right={
           <List
@@ -20,7 +21,6 @@ function SkillSection() {
         }
       />
       <Description
-        gutter={24}
         left={<Text size="xl">Backend</Text>}
         right={
           <List
@@ -30,7 +30,7 @@ function SkillSection() {
         }
       />
       <Description
-        gutter={24}
+        gutter={0}
         left={<Text size="xl">Database</Text>}
         right={
           <List

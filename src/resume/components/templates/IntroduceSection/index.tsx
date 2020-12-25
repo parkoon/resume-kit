@@ -9,7 +9,9 @@ import Text from '@Resume/components/atoms/Typography/Text'
 function IntroduceSection() {
   return (
     <Space section>
-      <Title section>ABOUT ME</Title>
+      <Title level={3} section secondary>
+        ABOUT ME
+      </Title>
 
       <Description
         left={<Hero url="https://picsum.photos/id/237/200/300" />}

@@ -7,16 +7,17 @@ import Space from '@Resume/components/atoms/Space'
 function EtcSection() {
   return (
     <Space section>
-      <Title section>ETC</Title>
+      <Title level={3} secondary section>
+        ETC
+      </Title>
       <Description
-        gutter={24}
         left={<Text size="xl">2020. 10 ~ 2020. 11</Text>}
         right={
           <>
             <Text block size="xl">
-              OO대학교
+              Lorem ipsum
             </Text>
-            <Text italic>컴퓨터 공학과 (학사)</Text>
+            <Text italic>amet consectetur adipisicing elit</Text>
           </>
         }
       />
@@ -26,9 +27,9 @@ function EtcSection() {
         right={
           <>
             <Text block size="xl">
-              OO대학교
+              Lorem ipsum
             </Text>
-            <Text italic>컴퓨터 공학과 (학사)</Text>
+            <Text italic>amet consectetur adipisicing elit</Text>
           </>
         }
       />

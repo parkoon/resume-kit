@@ -9,9 +9,9 @@ import Space from '@Resume/components/atoms/Space'
 function ProfileInfo() {
   return (
     <>
-      <Title>Jonh Smith</Title>
-      <Title level={2} fontWeight={300} style={{ marginTop: 0 }}>
-        Frontend Developer
+      <Title primary>Jonh Smith</Title>
+      <Title level={2} fontWeight={300} style={{ marginTop: -10 }}>
+        Junior Frontend Developer
       </Title>
 
       <SocialIcons
@@ -28,8 +28,8 @@ function ProfileInfo() {
       />
 
       <Space top={20}>
-        <Icon name="phone" text="010.  0917" />
-        <Icon name="email" text="010. 3328. 0917" />
+        <Icon name="phone" text="010. 1234. 5678" />
+        <Icon name="email" text="lorem@ipsum.com" />
       </Space>
     </>
   )
