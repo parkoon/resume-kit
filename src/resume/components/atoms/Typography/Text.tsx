@@ -1,5 +1,6 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
+
 import { palette } from '@Shared/styles'
 
 const FONT_SIZE = {

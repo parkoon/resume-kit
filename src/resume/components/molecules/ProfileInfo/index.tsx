@@ -2,9 +2,9 @@ import React from 'react'
 
 import Title from '@Resume/components/atoms/Typography/Title'
 import Icon from '@Resume/components/atoms/ContactIcon'
+import Space from '@Resume/components/atoms/Space'
 
 import SocialIcons from '../SocialIcons'
-import Space from '@Resume/components/atoms/Space'
 
 function ProfileInfo() {
   return (

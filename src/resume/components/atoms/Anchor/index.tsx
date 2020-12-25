@@ -1,7 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
-import Text from '../Typography/Text'
+
 import { palette } from '@Shared/styles'
+
+import Text from '../Typography/Text'
 
 const Link = styled.a`
   cursor: pointer;

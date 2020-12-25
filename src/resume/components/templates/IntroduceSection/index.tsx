@@ -1,10 +1,10 @@
 import React from 'react'
+
 import Description from '@Resume/components/atoms/Description'
-import Title from '@Resume/components/atoms/Typography/Title'
-import styled from 'styled-components'
-import Space from '@Resume/components/atoms/Space'
 import Hero from '@Resume/components/atoms/Hero'
+import Space from '@Resume/components/atoms/Space'
 import Text from '@Resume/components/atoms/Typography/Text'
+import Title from '@Resume/components/atoms/Typography/Title'
 
 function IntroduceSection() {
   return (

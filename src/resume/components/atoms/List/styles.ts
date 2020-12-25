@@ -5,7 +5,7 @@ export const Wrapper = styled.div`
   margin-left: 24px;
 `
 
-export const List = styled.div<{ column: number }>`
+export const ItemBox = styled.div<{ column: number }>`
   display: grid;
   grid-template-columns: ${({ column }) => `repeat(${column}, minmax(250px, auto))`};
   grid-column-gap: 17px;

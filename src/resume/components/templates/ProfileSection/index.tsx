@@ -1,10 +1,7 @@
 import React from 'react'
-import Description from '@Resume/components/atoms/Description'
-import Hero from '@Resume/components/atoms/Hero'
-import ProfileInfo from '@Resume/components/molecules/ProfileInfo'
-import styled from 'styled-components'
+
 import Space from '@Resume/components/atoms/Space'
-import SocialIcons from '@Resume/components/molecules/SocialIcons'
+import ProfileInfo from '@Resume/components/molecules/ProfileInfo'
 
 function ProfileSection() {
   return (

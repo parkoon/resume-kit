@@ -1,4 +1,5 @@
 import React from 'react'
+
 import Description from '@Resume/components/atoms/Description'
 import Title from '@Resume/components/atoms/Typography/Title'
 import Text from '@Resume/components/atoms/Typography/Text'

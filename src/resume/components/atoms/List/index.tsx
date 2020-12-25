@@ -1,4 +1,4 @@
-import React, { Children } from 'react'
+import React from 'react'
 
 import * as S from './styles'
 import Text from '../Typography/Text'
@@ -18,7 +18,7 @@ function List({ column = 1, items = [], children }: ListProps) {
   }
   return (
     <S.Wrapper>
-      <S.List column={column}>
+      <S.ItemBox column={column}>
         {children
           ? React.Children.map(children, (child, index) => (
               <S.Item>
@@ -30,7 +30,7 @@ function List({ column = 1, items = [], children }: ListProps) {
                 <Text key={index}>{item}</Text>
               </S.Item>
             ))}
-      </S.List>
+      </S.ItemBox>
     </S.Wrapper>
   )
 }
