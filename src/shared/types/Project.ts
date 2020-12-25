@@ -17,6 +17,6 @@ export type Project = {
   tasks: Task[] // 업무 내용
 }
 export type ProjectJSON = {
-  projects: Project[]
+  data: Project[]
   updatedAt: string
 }

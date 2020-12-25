@@ -18,6 +18,6 @@ export type Profile = {
 }
 
 export type ProfileJSON = {
-  profiles: Profile[]
+  data: Profile[]
   updatedAt: string
 }

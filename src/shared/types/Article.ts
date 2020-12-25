@@ -4,6 +4,6 @@ export type Article = {
   url: string
 }
 export type ArticleJSON = {
-  articles: Article[]
+  data: Article[]
   updatedAt: string
 }

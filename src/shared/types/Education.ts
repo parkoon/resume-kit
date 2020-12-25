@@ -7,6 +7,6 @@ export type Education = {
   subtitle: string
 }
 export type EducationJSON = {
-  educations: Education[]
+  data: Education[]
   updatedAt: string
 }

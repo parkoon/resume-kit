@@ -7,6 +7,6 @@ export type Etc = {
   subtitle: string
 }
 export type EtcJSON = {
-  etcs: Etc[]
+  data: Etc[]
   updatedAt: string
 }

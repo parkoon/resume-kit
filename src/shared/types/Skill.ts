@@ -54,6 +54,6 @@ export type Skill = {
 }
 
 export type SkillJSON = {
-  skills: Skill[]
+  data: Skill[]
   updatedAt: string
 }

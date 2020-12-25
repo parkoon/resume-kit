@@ -7,6 +7,6 @@ export type Career = {
   subtitle: string
 }
 export type CareerJSON = {
-  careers: Career[]
+  data: Career[]
   updatedAt: string
 }
