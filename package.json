@@ -1,8 +1,7 @@
 {
   "name": "resume-kit",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "resume based on next.js",
   "scripts": {
     "dev": "next -p 1207 & npm run server",
     "tslint": "tslint -p . -c tslint.json",
@@ -19,9 +18,18 @@
     "type": "git",
     "url": "git+https://github.com/parkoon/resume-kit.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "next",
+    "resume",
+    "javascript",
+    "html",
+    "css"
+  ],
+  "author": {
+    "name": "parkoon",
+    "email": "devparkoon@gmail.com"
+  },
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/parkoon/resume-kit/issues"
   },
