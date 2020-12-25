@@ -7,10 +7,8 @@ import List from '@Resume/components/atoms/List'
 
 function SkillSection() {
   return (
-    <Space bottom={32}>
-      <Title level={2} letterSpacing={2} style={{ marginBottom: 20 }}>
-        SKILL
-      </Title>
+    <Space section>
+      <Title section>SKILL</Title>
       <Description
         gutter={24}
         left={<Text size="xl">Frontend</Text>}

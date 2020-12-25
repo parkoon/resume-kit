@@ -135,6 +135,9 @@ export const palette = {
   solidLine() {
     return `1px solid ${this.grey[500]}`
   },
+  dashedLine() {
+    return `2px dashed ${this.grey[500]}`
+  },
 }
 
 export const levelColor: { [key: string]: string } = {

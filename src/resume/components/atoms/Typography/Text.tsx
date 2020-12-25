@@ -14,6 +14,7 @@ const fontSize = ({ size }: Partial<TextProps>) => FONT_SIZE[size!]
 const Wrapper = styled.span<Partial<TextProps>>`
   display: ${({ block }) => (block ? 'block' : 'inline')};
   font-size: ${fontSize};
+  font-weight: ${({ fontWeight }) => fontWeight};
 
   ${({ color }) =>
     color &&
@@ -38,6 +39,7 @@ type TextProps = {
   block?: boolean
   style?: React.CSSProperties
   italic?: boolean
+  fontWeight?: 300 | 400 | 500 | 700
 }
 function Text({ children, ...props }: TextProps) {
   return <Wrapper {...props}>{children}</Wrapper>

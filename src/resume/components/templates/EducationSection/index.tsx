@@ -6,10 +6,8 @@ import Space from '@Resume/components/atoms/Space'
 
 function EducationSection() {
   return (
-    <Space bottom={32}>
-      <Title level={2} letterSpacing={2} style={{ marginBottom: 20 }}>
-        EDUCATION
-      </Title>
+    <Space section>
+      <Title section>EDUCATION</Title>
       <Description
         gutter={24}
         left={<Text size="xl">2020. 10 ~ 2020. 11</Text>}
