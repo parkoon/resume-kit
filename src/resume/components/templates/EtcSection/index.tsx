@@ -4,36 +4,37 @@ import Description from '@Resume/components/atoms/Description'
 import Title from '@Resume/components/atoms/Typography/Title'
 import Text from '@Resume/components/atoms/Typography/Text'
 import Space from '@Resume/components/atoms/Space'
+import { usePayload } from '@Resume/context/PayloadContext'
 
 function EtcSection() {
+  const {
+    etc: { data },
+  } = usePayload()
+  console.log()
   return (
     <Space section>
       <Title level={3} secondary section>
         ETC
       </Title>
-      <Description
-        left={<Text size="xl">2020. 10 ~ 2020. 11</Text>}
-        right={
-          <>
-            <Text block size="xl">
-              Lorem ipsum
+
+      {data.map(({ id, title, subtitle, startedAt, endedAt }) => (
+        <Description
+          key={id}
+          left={
+            <Text size="xl">
+              {startedAt} ~ {endedAt}
             </Text>
-            <Text italic>amet consectetur adipisicing elit</Text>
-          </>
-        }
-      />
-      <Description
-        gutter={0}
-        left={<Text size="xl">2020. 10 ~ 2020. 11</Text>}
-        right={
-          <>
-            <Text block size="xl">
-              Lorem ipsum
-            </Text>
-            <Text italic>amet consectetur adipisicing elit</Text>
-          </>
-        }
-      />
+          }
+          right={
+            <>
+              <Text block size="xl">
+                {title}
+              </Text>
+              <Text italic>{subtitle}</Text>
+            </>
+          }
+        />
+      ))}
     </Space>
   )
 }

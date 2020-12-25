@@ -16,7 +16,7 @@ type AnchorProps = {
 }
 function Anchor({ title, href }: AnchorProps) {
   return (
-    <Link href={href}>
+    <Link href={href} target="_blank">
       <Text fontWeight={300} color={palette.blue[600]}>
         {title}
       </Text>

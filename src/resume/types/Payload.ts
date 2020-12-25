@@ -8,7 +8,7 @@ import { SkillJSON } from '@Shared/types/Skill'
 
 export type Payload = {
   article: ArticleJSON
-  careers: CareerJSON
+  career: CareerJSON
   education: EducationJSON
   etc: EtcJSON
   profile: ProfileJSON

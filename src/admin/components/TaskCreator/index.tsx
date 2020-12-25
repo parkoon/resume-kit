@@ -79,7 +79,6 @@ function TaskCreator({ items, onChange }: ListCreatorProps) {
                 <Title>{title}</Title>
                 <Action
                   onClick={() => {
-                    console.log(id)
                     setUpdatingValue({
                       id,
                       title,

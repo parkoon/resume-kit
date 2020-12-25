@@ -23,12 +23,12 @@ function Resume({ payload }: { payload: Payload }) {
         <ResumeLayout>
           <ProfileSection />
           <IntroduceSection />
-          <EducationSection />
-          <CareerSection />
           <ProjectSection />
+          <CareerSection />
           <SkillSection />
-          <ArticleSection />
+          <EducationSection />
           <EtcSection />
+          <ArticleSection />
         </ResumeLayout>
       </PayloadProvider>
     </Theme>

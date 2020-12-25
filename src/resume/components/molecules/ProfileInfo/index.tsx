@@ -4,16 +4,21 @@ import Title from '@Resume/components/atoms/Typography/Title'
 import Icon from '@Resume/components/atoms/ContactIcon'
 import Space from '@Resume/components/atoms/Space'
 
-import SocialIcons from '../SocialIcons'
 import { usePayload } from '@Resume/context/PayloadContext'
+import { phoneFormat } from '@Shared/helpers'
+
+import SocialIcons from '../SocialIcons'
 
 function ProfileInfo() {
-  const { profile } = usePayload()
+  const {
+    profile: { data },
+  } = usePayload()
+
   return (
     <>
-      <Title primary>Jonh Smith</Title>
-      <Title level={2} fontWeight={300} style={{ marginTop: -10 }}>
-        Junior Frontend Developer
+      <Title primary>{data.name}</Title>
+      <Title level={2} fontWeight={300} style={{ marginTop: -7 }}>
+        {data.position}
       </Title>
 
       <SocialIcons
@@ -30,8 +35,8 @@ function ProfileInfo() {
       />
 
       <Space top={20}>
-        <Icon name="phone" text="010. 1234. 5678" />
-        <Icon name="email" text="lorem@ipsum.com" />
+        <Icon name="phone" text={phoneFormat(data.phone)} />
+        <Icon name="email" text={data.email} />
       </Space>
     </>
   )

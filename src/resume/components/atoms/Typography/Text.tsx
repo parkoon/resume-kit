@@ -16,6 +16,8 @@ const Wrapper = styled.span<Partial<TextProps>>`
   display: ${({ block }) => (block ? 'block' : 'inline')};
   font-size: ${fontSize};
   font-weight: ${({ fontWeight }) => fontWeight};
+  word-break: keep-all;
+  white-space: pre-wrap;
 
   ${({ color }) =>
     color &&

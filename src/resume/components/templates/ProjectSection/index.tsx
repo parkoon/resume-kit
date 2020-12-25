@@ -4,80 +4,40 @@ import Title from '@Resume/components/atoms/Typography/Title'
 import Text from '@Resume/components/atoms/Typography/Text'
 import Space from '@Resume/components/atoms/Space'
 import List from '@Resume/components/atoms/List'
+import { usePayload } from '@Resume/context/PayloadContext'
 
 function ProjectSection() {
+  const {
+    project: { data },
+  } = usePayload()
+
   return (
     <Space section>
       <Title level={3} section secondary>
         PROJECT
       </Title>
-      <Description
-        left={<Text size="xl">2020. 10 ~ 2020. 11</Text>}
-        right={
-          <>
-            <Text block size="xl">
-              Lorem ipsum
+      {/* TODO. description */}
+      {/* TODO. date moment 형식으로 저장되어 있음 */}
+      {data.map(({ title, tasks, description, startedAt, endedAt, where }) => (
+        <Description
+          left={
+            <Text size="xl">
+              {startedAt} ~ {endedAt}
             </Text>
-            <Text italic>dolor, sit amet consectetur adipisicing elit</Text>
-            <Space top={12}>
-              <List
-                items={[
-                  'amet consectetur adipisicing elit',
-                  'molestias laborum praesentium quaerat consequatur facilis minima.',
-                  'Natus in suscipit beatae laudantium! Repudiandae rerum quia',
-                  'iste cumque dolore doloribus ipsa tempore libero, ',
-                  'Lorem ipsum dolor sit amet consectetur, adipisicing elit.',
-                ]}
-              />
-            </Space>
-          </>
-        }
-      />
-      <Description
-        left={<Text size="xl">2020. 10 ~ 2020. 11</Text>}
-        right={
-          <>
-            <Text block size="xl">
-              Lorem ipsum
-            </Text>
-            <Text italic>dolor, sit amet consectetur adipisicing elit</Text>
-            <Space top={12}>
-              <List
-                items={[
-                  'amet consectetur adipisicing elit',
-                  'molestias laborum praesentium quaerat consequatur facilis minima.',
-                  'Natus in suscipit beatae laudantium! Repudiandae rerum quia',
-                  'iste cumque dolore doloribus ipsa tempore libero, ',
-                  'Lorem ipsum dolor sit amet consectetur, adipisicing elit.',
-                ]}
-              />
-            </Space>
-          </>
-        }
-      />
-      <Description
-        gutter={0}
-        left={<Text size="xl">2020. 10 ~ 2020. 11</Text>}
-        right={
-          <>
-            <Text block size="xl">
-              Lorem ipsum
-            </Text>
-            <Text italic>dolor, sit amet consectetur adipisicing elit</Text>
-            <Space top={12}>
-              <List
-                items={[
-                  'amet consectetur adipisicing elit',
-                  'molestias laborum praesentium quaerat consequatur facilis minima.',
-                  'Natus in suscipit beatae laudantium! Repudiandae rerum quia',
-                  'iste cumque dolore doloribus ipsa tempore libero, ',
-                  'Lorem ipsum dolor sit amet consectetur, adipisicing elit.',
-                ]}
-              />
-            </Space>
-          </>
-        }
-      />
+          }
+          right={
+            <>
+              <Text block size="xl">
+                {title}
+              </Text>
+              <Text italic>{where.title}</Text>
+              <Space top={12}>
+                <List items={tasks.map((task) => task.title)} />
+              </Space>
+            </>
+          }
+        />
+      ))}
     </Space>
   )
 }

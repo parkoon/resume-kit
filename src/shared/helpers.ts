@@ -22,3 +22,6 @@ export const calcCareerYearAndMonth = (
     months,
   }
 }
+export const phoneFormat = (str: string) =>
+  `${str.slice(0, 3)} ${str.slice(3, 7)} ${str.slice(7, str.length)}`
+export const fUppercase = (str: string) => `${str[0].toUpperCase()}${str.slice(1, str.length)}`
