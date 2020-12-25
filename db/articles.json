@@ -1,25 +1,25 @@
 {
-    "articles": [
-        {
-            "id": "JrT_5",
-            "title": "다시 1천 명대 확산세로…내일부터 5인 사적 모임 금지",
-            "url": "https://news.naver.com/main/read.nhn?mode=LSD&mid=shm&sid1=101&oid=374&aid=0000228558"
-        },
-        {
-            "id": "z4wHx",
-            "title": "30대도 빌딩투자 늘었다는데...내년 전망 괜찮을까",
-            "url": "https://news.naver.com/main/read.nhn?mode=LSD&mid=shm&sid1=101&oid=011&aid=0003846257"
-        },
-        {
-            "id": "Z4x43",
-            "title": "파리바게뜨·배스킨라빈스, 카카오쇼핑라이브 케이크 4만세트 완판",
-            "url": "https://news.naver.com/main/read.nhn?mode=LSD&mid=shm&sid1=101&oid=014&aid=0004552385"
-        },
-        {
-            "id": "lDVTe",
-            "title": "'모잠비크 잭팟' 터졌나…한국조선해양, LNG선 3척 추가 수주(종합)",
-            "url": "https://news.naver.com/main/read.nhn?mode=LSD&mid=shm&sid1=101&oid=001&aid=0012097615"
-        }
-    ],
-    "updatedAt": "2020-12-23T02:40:08.922Z"
+  "data": [
+    {
+      "id": "JrT_5",
+      "title": "다시 1천 명대 확산세로…내일부터 5인 사적 모임 금지",
+      "url": "https://news.naver.com/main/read.nhn?mode=LSD&mid=shm&sid1=101&oid=374&aid=0000228558"
+    },
+    {
+      "id": "z4wHx",
+      "title": "30대도 빌딩투자 늘었다는데...내년 전망 괜찮을까",
+      "url": "https://news.naver.com/main/read.nhn?mode=LSD&mid=shm&sid1=101&oid=011&aid=0003846257"
+    },
+    {
+      "id": "Z4x43",
+      "title": "파리바게뜨·배스킨라빈스, 카카오쇼핑라이브 케이크 4만세트 완판",
+      "url": "https://news.naver.com/main/read.nhn?mode=LSD&mid=shm&sid1=101&oid=014&aid=0004552385"
+    },
+    {
+      "id": "lDVTe",
+      "title": "'모잠비크 잭팟' 터졌나…한국조선해양, LNG선 3척 추가 수주(종합)",
+      "url": "https://news.naver.com/main/read.nhn?mode=LSD&mid=shm&sid1=101&oid=001&aid=0012097615"
+    }
+  ],
+  "updatedAt": "2020-12-23T02:40:08.922Z"
 }

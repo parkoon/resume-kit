@@ -5,8 +5,10 @@ import Icon from '@Resume/components/atoms/ContactIcon'
 import Space from '@Resume/components/atoms/Space'
 
 import SocialIcons from '../SocialIcons'
+import { usePayload } from '@Resume/context/PayloadContext'
 
 function ProfileInfo() {
+  const { profile } = usePayload()
   return (
     <>
       <Title primary>Jonh Smith</Title>

@@ -14,20 +14,23 @@ import SkillSection from '@Resume/components/templates/SkillSection'
 import ArticleSection from '@Resume/components/templates/ArticleSection'
 import EtcSection from '@Resume/components/templates/EtcSection'
 import CareerSection from '@Resume/components/templates/CareerSection'
+import { PayloadProvider } from '@Resume/context/PayloadContext'
 
 function Resume({ payload }: { payload: Payload }) {
   return (
     <Theme primaryColor="#030852" secondaryColor="#061178">
-      <ResumeLayout>
-        <ProfileSection />
-        <IntroduceSection />
-        <EducationSection />
-        <CareerSection />
-        <ProjectSection />
-        <SkillSection />
-        <ArticleSection />
-        <EtcSection />
-      </ResumeLayout>
+      <PayloadProvider payload={payload}>
+        <ResumeLayout>
+          <ProfileSection />
+          <IntroduceSection />
+          <EducationSection />
+          <CareerSection />
+          <ProjectSection />
+          <SkillSection />
+          <ArticleSection />
+          <EtcSection />
+        </ResumeLayout>
+      </PayloadProvider>
     </Theme>
   )
 }

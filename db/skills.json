@@ -19,12 +19,6 @@
             "level": 1
         },
         {
-            "id": 5,
-            "title": "nginx",
-            "type": "none",
-            "level": 1
-        },
-        {
             "id": 6,
             "title": "Apache",
             "type": "none",
@@ -43,20 +37,8 @@
             "level": 1
         },
         {
-            "id": 16,
-            "title": "Oracle",
-            "type": "none",
-            "level": 1
-        },
-        {
             "id": 20,
             "title": "javascript",
-            "type": "none",
-            "level": 1
-        },
-        {
-            "id": 27,
-            "title": "Jira",
             "type": "none",
             "level": 1
         },
@@ -112,7 +94,7 @@
             "id": 29,
             "title": "Bitbucket",
             "type": "database",
-            "level": 1
+            "level": 2
         },
         {
             "id": 28,
@@ -197,7 +179,25 @@
             "title": "AWS",
             "type": "devOps",
             "level": 1
+        },
+        {
+            "id": 16,
+            "title": "Oracle",
+            "type": "frontend",
+            "level": 1
+        },
+        {
+            "id": 27,
+            "title": "Jira",
+            "type": "frontend",
+            "level": 1
+        },
+        {
+            "id": 5,
+            "title": "nginx",
+            "type": "etc",
+            "level": 1
         }
     ],
-    "updatedAt": "2020-12-23T02:35:42.453Z"
+    "updatedAt": "2020-12-23T09:37:51.175Z"
 }

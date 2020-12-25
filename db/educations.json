@@ -1,5 +1,5 @@
 {
-    "educations": [
+    "data": [
         {
             "id": "ExmFq",
             "completed": true,
@@ -7,7 +7,15 @@
             "endedAt": "2020/02",
             "title": "신규 확진자가 ",
             "subtitle": "오늘(23일)부터, 이밖에 지역에서는 내일"
+        },
+        {
+            "id": "r-gpf",
+            "completed": true,
+            "startedAt": "2020/01",
+            "endedAt": "2020/02",
+            "title": "심신 안정 보이",
+            "subtitle": "비긴어게인 모아듣기"
         }
     ],
-    "updatedAt": "2020-12-23T02:38:53.633Z"
+    "updatedAt": "2020-12-25T13:45:28.081Z"
 }
