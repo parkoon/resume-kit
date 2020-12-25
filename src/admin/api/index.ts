@@ -1,11 +1,11 @@
 import axios, { AxiosResponse } from 'axios'
-import Profile from '@Shared/types/Profile'
-import Skill from '@Shared/types/Skill'
 import { Project } from '@Shared/types/Project'
 import { Career } from '@Shared/types/Career'
 import { Article } from '@Shared/types/Article'
 import { Education } from '@Shared/types/Education'
 import { Etc } from '@Shared/types/Etc'
+import { Profile } from '@Shared/types/Profile'
+import { Skill } from '@Shared/types/Skill'
 
 export const API = axios.create({
   baseURL: 'http://localhost:1208/api',

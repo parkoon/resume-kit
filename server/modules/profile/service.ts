@@ -1,8 +1,8 @@
 import jsonfile from 'jsonfile'
 
-import Profile from '@Shared/types/Profile'
 import { profilePath } from '@Server/paths'
 import { updateJSON } from '@Server/helpers/JSONTool'
+import { Profile } from '@Shared/types/Profile'
 
 const Service = {
   async getProfile() {
