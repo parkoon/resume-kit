@@ -13,7 +13,7 @@ export const IconsWrapper = styled.div`
     margin-top: 18px;
   `}
 `
-export const IconWrapper = styled.div`
+export const IconWrapper = styled.div<{ color: string[] }>`
   display: inline-block;
   position: relative;
   cursor: pointer;
@@ -34,7 +34,7 @@ export const IconWrapper = styled.div`
     width: 52px;
     height: 52px;
     border-radius: 100%;
-    background: linear-gradient(45deg, ${palette.grey[900]}, ${palette.grey[600]});
+    background: ${({ color }) => `linear-gradient(45deg, ${color[0]}, ${color[1]})`};
     transition: 0.25s ease-out;
   }
 
@@ -46,6 +46,6 @@ export const IconWrapper = styled.div`
   &:hover .icon {
     transform: scale(1.5);
     transition: 0.25s ease-in;
-    color: ${palette.grey[800]};
+    color: ${({ color }) => color[0]};
   }
 `

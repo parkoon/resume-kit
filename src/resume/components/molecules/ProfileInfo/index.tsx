@@ -14,7 +14,18 @@ function ProfileInfo() {
         Frontend Developer
       </Title>
 
-      <SocialIcons icons={{ github: 'zz', twitter: 'zz', facebook: 'fa' }} />
+      <SocialIcons
+        icons={{
+          github: 'link',
+          twitter: 'link',
+          facebook: 'link',
+          blog: 'link',
+          homepage: 'link',
+          instagram: 'link',
+          youtube: 'link',
+          linkedin: 'link',
+        }}
+      />
 
       <Space top={20}>
         <Icon name="phone" text="010.  0917" />

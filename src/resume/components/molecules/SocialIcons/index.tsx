@@ -12,15 +12,21 @@ import {
 
 import * as S from './styles'
 
-const ICON: { [key: string]: React.ReactNode } = {
-  github: <FaGithub className="icon" />,
-  linkedin: <FaLinkedinIn className="icon" />,
-  facebook: <FaFacebookF className="icon" />,
-  twitter: <FaTwitter className="icon" />,
-  instagram: <FaInstagram className="icon" />,
-  youtube: <FaYoutube className="icon" />,
-  blog: <FaBlog className="icon" />,
-  homepage: <FaHome className="icon" />,
+const ICON: { [key: string]: { icon: React.ReactNode; color: string[] } } = {
+  github: {
+    icon: <FaGithub className="icon" />,
+    color: ['#212121', '#616161'],
+  },
+  linkedin: {
+    icon: <FaLinkedinIn className="icon" />,
+    color: ['#01579b', '#0288d1'],
+  },
+  facebook: { icon: <FaFacebookF className="icon" />, color: ['#0d47a1', '#1976d2'] },
+  twitter: { icon: <FaTwitter className="icon" />, color: ['#29b6f6', '#4fc3f7'] },
+  instagram: { icon: <FaInstagram className="icon" />, color: ['#880e4f', '#c2185b'] },
+  youtube: { icon: <FaYoutube className="icon" />, color: ['#bf360c', '#e64a19'] },
+  blog: { icon: <FaBlog className="icon" />, color: ['#3e2723', '#5d4037'] },
+  homepage: { icon: <FaHome className="icon" />, color: ['#263238', '#455a64'] },
 }
 type IconName =
   | 'github'
@@ -37,8 +43,12 @@ type SocialIconProps = {
   onClick(): void
 }
 function SocialIcon({ name, onClick }: SocialIconProps) {
-  const IconEl = ICON[name]
-  return <S.IconWrapper onClick={onClick}>{IconEl}</S.IconWrapper>
+  const { icon, color } = ICON[name]
+  return (
+    <S.IconWrapper color={color as string[] & string} onClick={onClick}>
+      {icon}
+    </S.IconWrapper>
+  )
 }
 type SocialIconsProps = {
   icons: {
