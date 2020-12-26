@@ -9,7 +9,8 @@ const Wrapper = styled.div`
     content: '';
     width: 100%;
     height: 16px;
-    background: ${({ theme }) => theme.primaryColor};
+    background: ${({ theme }) =>
+      `linear-gradient(45deg, ${theme.primaryColor}, ${theme.secondaryColor})`};
     position: absolute;
   }
   &::before {

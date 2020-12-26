@@ -18,7 +18,7 @@ import { PayloadProvider } from '@Resume/context/PayloadContext'
 
 function Resume({ payload }: { payload: Payload }) {
   return (
-    <Theme primaryColor="#030852" secondaryColor="#061178">
+    <Theme primaryColor="#030852" secondaryColor="#10239e">
       <PayloadProvider payload={payload}>
         <ResumeLayout>
           <ProfileSection />
