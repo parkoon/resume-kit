@@ -1,7 +1,7 @@
 {
   "name": "resume-kit",
   "version": "1.0.0",
-  "description": "resume based on next.js",
+  "description": "Resume Based on Next.js",
   "scripts": {
     "start": "concurrently \"next -p 1207\" \"npm run server\"",
     "dev": "concurrently \"next -p 1207\" \"nodemon\"",
@@ -21,6 +21,7 @@
   },
   "keywords": [
     "next",
+    "react",
     "resume",
     "javascript",
     "html",
