@@ -48,13 +48,13 @@ const GlobalStyle = createGlobalStyle`
 
   ${Media.medium`
     html {
-      font-size: 14px;
+      font-size: 15px;
     }
   `}
 
   ${Media.small`
     html {
-      font-size: 12px;
+      font-size: 14px;
     }
   `}
 

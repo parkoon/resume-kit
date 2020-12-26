@@ -4,10 +4,10 @@ import styled, { css } from 'styled-components'
 import { palette } from '@Shared/styles'
 
 const FONT_SIZE = {
-  sm: '1.2rem',
-  md: '1.3rem',
-  lg: '1.6rem',
-  xl: '1.8rem',
+  sm: '1rem',
+  md: '1.1rem',
+  lg: '1.3rem',
+  xl: '1.5rem',
 }
 
 const fontSize = ({ size }: Partial<TextProps>) => FONT_SIZE[size!]

@@ -15,10 +15,10 @@ type TitleProps = {
 }
 
 const FONT_SIZE: { [key: string]: string } = {
-  h1: '4rem',
+  h1: '3.8rem',
   h2: '2rem',
-  h3: '2.5rem',
-  h4: '2.0rem',
+  h3: '2.2rem',
+  h4: '1.8rem',
   h5: '1.7rem',
 }
 
