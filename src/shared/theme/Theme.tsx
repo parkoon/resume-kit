@@ -2,13 +2,22 @@ import React from 'react'
 import { ThemeProvider } from 'styled-components'
 
 import { Media } from '@Shared/styles'
+import { usePayload } from '@Resume/context/PayloadContext'
+
+import mainColors from './mainColors'
 
 type ThemeProps = {
   children: React.ReactNode
-  primaryColor: string
-  secondaryColor: string
 }
-function Theme({ children, primaryColor, secondaryColor }: ThemeProps) {
+function Theme({ children }: ThemeProps) {
+  const {
+    meta: { data },
+  } = usePayload()
+
+  const { dark: primaryColor, bright: secondaryColor } = mainColors.find(
+    (color) => color.dark === data.primaryColor
+  )!
+
   return (
     <ThemeProvider
       theme={{

@@ -11,6 +11,7 @@ import {
   educationPath,
   etcPath,
   skillPath,
+  metaPath,
 } from './paths'
 
 const skills = [
@@ -55,27 +56,30 @@ const skills = [
   }
 
   const updatedAt = moment()
-  const option = { spaces: 4 }
+  const option = { spaces: 2 }
 
   if (!fs.existsSync(profilePath)) {
-    jsonfile.writeFileSync(profilePath, { updatedAt, profile: {} }, option)
+    jsonfile.writeFileSync(profilePath, { updatedAt, data: {} }, option)
   }
   if (!fs.existsSync(projectPath)) {
-    jsonfile.writeFileSync(projectPath, { updatedAt, projects: [] }, option)
+    jsonfile.writeFileSync(projectPath, { updatedAt, data: [] }, option)
   }
   if (!fs.existsSync(articlePath)) {
-    jsonfile.writeFileSync(articlePath, { updatedAt, articles: [] }, option)
+    jsonfile.writeFileSync(articlePath, { updatedAt, data: [] }, option)
   }
   if (!fs.existsSync(careerPath)) {
-    jsonfile.writeFileSync(careerPath, { updatedAt, careers: [] }, option)
+    jsonfile.writeFileSync(careerPath, { updatedAt, data: [] }, option)
   }
   if (!fs.existsSync(educationPath)) {
-    jsonfile.writeFileSync(educationPath, { updatedAt, educations: [] }, option)
+    jsonfile.writeFileSync(educationPath, { updatedAt, data: [] }, option)
   }
   if (!fs.existsSync(etcPath)) {
-    jsonfile.writeFileSync(etcPath, { updatedAt, etcs: [] }, option)
+    jsonfile.writeFileSync(etcPath, { updatedAt, data: [] }, option)
   }
   if (!fs.existsSync(skillPath)) {
-    jsonfile.writeFileSync(skillPath, { updatedAt, skills }, option)
+    jsonfile.writeFileSync(skillPath, { updatedAt, data: skills }, option)
+  }
+  if (!fs.existsSync(metaPath)) {
+    jsonfile.writeFileSync(metaPath, { updatedAt, data: {} }, option)
   }
 })()

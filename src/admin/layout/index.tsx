@@ -11,6 +11,7 @@ import {
   ReadOutlined,
   ShopOutlined,
   GlobalOutlined,
+  SettingOutlined,
 } from '@ant-design/icons'
 
 import { palette } from '@Shared/styles'
@@ -52,6 +53,11 @@ export const NAV_ITEMS = [
     title: '기타',
     icon: <EllipsisOutlined />,
     to: 'etc',
+  },
+  {
+    title: '설정',
+    icon: <SettingOutlined />,
+    to: 'meta',
   },
 ]
 
@@ -100,7 +106,7 @@ function AdminLayout({ children, title, subtitle, actions = [] }: AdminLayoutPro
           ))}
         </Menu>
       </Sider>
-      <Layout>
+      <Layout style={{ maxHeight: '100vh', overflow: 'auto' }}>
         <PageHeader ghost={false} title={title} subTitle={subtitle} extra={actions} />
         <Content style={{ padding: '16px 16px' }}>{children}</Content>
       </Layout>

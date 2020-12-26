@@ -12,6 +12,7 @@ import articleRoute from './modules/article/route'
 import careerRoute from './modules/career/route'
 import educationRoute from './modules/education/route'
 import etcRoute from './modules/etc/route'
+import metaRoute from './modules/meta/route'
 
 app.use(morgan('dev'))
 app.use(express.json())
@@ -25,6 +26,7 @@ app.use('/api/articles', articleRoute)
 app.use('/api/careers', careerRoute)
 app.use('/api/educations', educationRoute)
 app.use('/api/etcs', etcRoute)
+app.use('/api/meta', metaRoute)
 
 app.use((error: any, req: Request, res: Response, next: NextFunction) => {
   console.error(error)

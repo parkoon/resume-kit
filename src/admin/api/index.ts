@@ -6,6 +6,7 @@ import { Education } from '@Shared/types/Education'
 import { Etc } from '@Shared/types/Etc'
 import { Profile } from '@Shared/types/Profile'
 import { Skill } from '@Shared/types/Skill'
+import { Meta, OGImage } from '@Shared/types/Meta'
 
 export const API = axios.create({
   baseURL: 'http://localhost:1208/api',
@@ -21,6 +22,26 @@ export const ProfileAPI = {
   },
   update(profile: Profile) {
     return API.post('/profile', profile)
+  },
+}
+
+export type MetaGETResponse = AxiosResponse<{
+  updatedAt: string
+  data: Meta
+}>
+
+export const MetaAPI = {
+  get() {
+    return '/meta'
+  },
+  update(meta: Meta) {
+    return API.put('/meta', meta)
+  },
+  createOGImage(imageInfo: OGImage) {
+    return API.post<{ filename: string }>('/meta/og/image', imageInfo)
+  },
+  updateHomage(homepage: string) {
+    return API.put('/meta/homepage', { homepage })
   },
 }
 

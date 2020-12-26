@@ -5,6 +5,7 @@ import { EtcJSON } from '@Shared/types/Etc'
 import { ProfileJSON } from '@Shared/types/Profile'
 import { ProjectJSON } from '@Shared/types/Project'
 import { SkillJSON } from '@Shared/types/Skill'
+import { MetaJSON } from '@Shared/types/Meta'
 
 export type Payload = {
   article: ArticleJSON
@@ -14,4 +15,5 @@ export type Payload = {
   profile: ProfileJSON
   project: ProjectJSON
   skill: SkillJSON
+  meta: MetaJSON
 }

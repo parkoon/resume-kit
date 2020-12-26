@@ -1,5 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
+import Head from 'next/head'
+
+import { usePayload } from '@Resume/context/PayloadContext'
 
 const Wrapper = styled.div`
   position: relative;
@@ -47,8 +50,25 @@ type ResumeLayoutProps = {
   children: React.ReactNode
 }
 function ResumeLayout({ children }: ResumeLayoutProps) {
+  const {
+    meta: { data },
+  } = usePayload()
+
+  const { title, description, keywords, image } = data
+
   return (
     <Wrapper>
+      <Head>
+        <title>{title}</title>
+        <meta name="keywords" content={keywords.join(', ')} />
+        <meta name="description" content={description} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={image} />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={image} />
+      </Head>
       <Container>{children}</Container>
     </Wrapper>
   )

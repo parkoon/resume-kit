@@ -1,7 +1,13 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.div<{ hasLabel?: boolean }>`
   display: flex;
+
+  ${({ hasLabel }) =>
+    hasLabel &&
+    css`
+      flex-direction: column;
+    `}
 `
 
 export const InputWrapper = styled.div`
