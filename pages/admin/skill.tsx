@@ -1,5 +1,3 @@
-import 'antd/dist/antd.css'
-
 import { useState } from 'react'
 import useSWR from 'swr'
 import { Row, Col } from 'antd'
@@ -22,7 +20,7 @@ function SkillManagement() {
   }
 
   const {
-    data: { skills },
+    data: { data: skills },
   } = data
 
   const handleDragStart = (skill: Skill) => () => {

@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { useRouter } from 'next/router'
 import { Layout, Menu, PageHeader } from 'antd'
+import Head from 'next/head'
+
 import {
   RadarChartOutlined,
   EllipsisOutlined,
@@ -65,6 +67,15 @@ function AdminLayout({ children, title, subtitle, actions = [] }: AdminLayoutPro
 
   return (
     <Layout style={{ minHeight: '100vh' }}>
+      <Head>
+        <title>이력서 관리</title>
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/antd/4.9.4/antd.min.css"
+          integrity="sha512-A0t6D8yn6CdUfczMxIyQEZPjdPd5SUKfemFRLAoMRfrGV9Had9p4B4b0ViJ6EtzbUCu5w6u6FwVDFECOwHQCAA=="
+          crossOrigin="anonymous"
+        />
+      </Head>
       <Sider
         collapsible
         width={150}

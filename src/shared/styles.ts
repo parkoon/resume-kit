@@ -18,7 +18,7 @@ const Media = Object.keys(sizes).reduce((acc, label) => {
   return acc
 }, {} as Record<keyof typeof sizes, (l: TemplateStringsArray, ...p: any) => string>)
 
-const GlobalStyle = createGlobalStyle`
+const ResumeGlobalStyle = createGlobalStyle`
 
   * {
    margin: 0;
@@ -57,10 +57,36 @@ const GlobalStyle = createGlobalStyle`
       font-size: 14px;
     }
   `}
+`
+
+const AdminGlobalStyle = createGlobalStyle`
+  * {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box; 
+  }
+  
+  html {
+    width: 100%;
+    height: 100%;
+    font-size: 10px;
+    font-family: 'Noto Sans KR', sans-serif
+  }
+
+  #__next {
+    height: 100%;
+    width: 100%;
+  }
+
+  body {
+    width: 100%;
+    height: 100%;
+    color: #333;
+  }
 
 `
 
-export const palette = {
+const palette = {
   white: '#fff',
   black: '#000',
   red: {
@@ -173,10 +199,10 @@ export const palette = {
   },
 }
 
-export const levelColor: { [key: string]: string } = {
+const levelColor: { [key: string]: string } = {
   low: palette.green[300],
   mid: palette.teal[400],
   high: palette.indigo[700],
 }
 
-export { GlobalStyle, Media }
+export { ResumeGlobalStyle, AdminGlobalStyle, Media, levelColor, palette }

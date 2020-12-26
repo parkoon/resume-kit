@@ -1,5 +1,3 @@
-import 'antd/dist/antd.css'
-
 import useSWR from 'swr'
 import { Card, Row, Col } from 'antd'
 
@@ -20,7 +18,7 @@ function IntroduceManagement() {
   }
 
   const {
-    data: { profile },
+    data: { data: profile },
   } = data
 
   const onSave = async (name: string, value: string) => {
@@ -28,6 +26,8 @@ function IntroduceManagement() {
     Notification.success('변경사항이 저장되었습니다.')
     mutate()
   }
+
+  console.log('PROFILE_SECTIONS', PROFILE_SECTIONS, profile)
 
   return (
     <AdminLayout
