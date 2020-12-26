@@ -18,7 +18,7 @@ function Description({ left, right, ...props }: DescriptionProps) {
 }
 
 Description.defaultProps = {
-  gutter: 42,
+  gutter: 62,
 }
 
 export default Description

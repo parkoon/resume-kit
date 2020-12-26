@@ -5,7 +5,7 @@ import { palette } from '@Shared/styles'
 
 const FONT_SIZE = {
   sm: '1.2rem',
-  md: '1.4rem',
+  md: '1.3rem',
   lg: '1.6rem',
   xl: '1.8rem',
 }

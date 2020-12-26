@@ -5,6 +5,7 @@ import Text from '@Resume/components/atoms/Typography/Text'
 import Space from '@Resume/components/atoms/Space'
 import List from '@Resume/components/atoms/List'
 import { usePayload } from '@Resume/context/PayloadContext'
+import Tag from '@Resume/components/atoms/Tag'
 
 function ProjectSection() {
   const {
@@ -17,8 +18,7 @@ function ProjectSection() {
         PROJECT
       </Title>
       {/* TODO. description */}
-      {/* TODO. date moment 형식으로 저장되어 있음 */}
-      {data.map(({ title, tasks, description, startedAt, endedAt, where }) => (
+      {data.map(({ title, tasks, description, startedAt, skills, endedAt, where }) => (
         <Description
           left={
             <Text size="xl">
@@ -27,12 +27,25 @@ function ProjectSection() {
           }
           right={
             <>
-              <Text block size="xl">
+              <Text block fontWeight={500} size="xl">
                 {title}
               </Text>
               <Text italic>{where.title}</Text>
+
               <Space top={12}>
-                <List items={tasks.map((task) => task.title)} />
+                <Title level={5}>Description</Title>
+                <Text block>{description}</Text>
+              </Space>
+              <Space top={12}>
+                <List title="What I did" items={tasks.map((task) => task.title)} />
+              </Space>
+              <Space top={12}>
+                <Title level={5}>Spec Sheet</Title>
+                <Space top={7}>
+                  {skills.map((skill, index) => (
+                    <Tag text={skill} />
+                  ))}
+                </Space>
               </Space>
             </>
           }

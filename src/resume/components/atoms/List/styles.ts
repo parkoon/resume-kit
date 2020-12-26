@@ -1,11 +1,10 @@
 import styled from 'styled-components'
 import { palette } from '@Shared/styles'
 
-export const Wrapper = styled.div`
-  margin-left: 24px;
-`
+export const Wrapper = styled.div``
 
 export const ItemBox = styled.div<{ column: number }>`
+  margin-left: 24px;
   display: grid;
   grid-template-columns: ${({ column }) => `repeat(${column}, minmax(250px, auto))`};
   grid-column-gap: 17px;
@@ -31,7 +30,7 @@ export const Item = styled.div`
     top: 50%;
     width: 7px;
     height: 7px;
-    background: ${palette.grey[900]};
+    background: ${({ theme }) => theme.secondaryColor};
     transform: translateY(-20%) rotate(45deg);
   }
 `

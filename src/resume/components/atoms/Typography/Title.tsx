@@ -5,7 +5,7 @@ import { palette } from '@Shared/styles'
 
 type TitleProps = {
   children: React.ReactNode
-  level?: 1 | 2 | 3 | 4
+  level?: 1 | 2 | 3 | 4 | 5
   fontWeight?: 300 | 400 | 500 | 700
   letterSpacing?: number
   style?: React.CSSProperties
@@ -18,7 +18,8 @@ const FONT_SIZE: { [key: string]: string } = {
   h1: '4rem',
   h2: '2rem',
   h3: '2.5rem',
-  h4: '1.8rem',
+  h4: '2.0rem',
+  h5: '1.7rem',
 }
 
 const fontSize = ({ level = 1 }: TitleProps) => FONT_SIZE[`h${level}`]
@@ -27,6 +28,7 @@ const styles = css`
   font-size: ${fontSize};
   font-weight: ${({ fontWeight = 500 }) => fontWeight};
   letter-spacing: ${({ letterSpacing = 1 }) => `${letterSpacing}px`};
+  margin-bottom: 7px;
 
   ${({ section }) =>
     section &&
