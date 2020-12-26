@@ -14,7 +14,7 @@ function IntroduceSection() {
 
   return (
     <Space section>
-      <Title level={3} section secondary>
+      <Title level={3} section>
         ABOUT ME
       </Title>
 

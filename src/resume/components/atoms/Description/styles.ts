@@ -20,7 +20,7 @@ export const Left = styled.div`
   flex-direction: column;
   align-items: flex-start;
   flex-basis: 240px;
-  margin-right: 40px;
+  /* margin-right: 40px; */
 
   ${({ theme }) => theme.medium`
     align-items: flex-start;

@@ -14,7 +14,7 @@ function ProjectSection() {
 
   return (
     <Space section>
-      <Title level={3} section secondary>
+      <Title level={3} section>
         WORK EXPERIENCE
       </Title>
       {data.map(({ title, tasks, description, startedAt, skills, endedAt, where }) => (

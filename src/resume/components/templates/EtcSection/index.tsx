@@ -13,7 +13,7 @@ function EtcSection() {
   console.log()
   return (
     <Space section>
-      <Title level={3} secondary section>
+      <Title level={3} section>
         ETC
       </Title>
 

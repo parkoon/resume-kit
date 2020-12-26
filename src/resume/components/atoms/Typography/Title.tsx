@@ -33,11 +33,22 @@ const styles = css`
   ${({ section }) =>
     section &&
     css`
+      position: relative;
       letter-spacing: 2;
       width: 100%;
-      border-bottom: ${palette.dashedLine()};
       padding-bottom: 10px;
       margin-bottom: 32px;
+      color: ${({ theme }) => theme.secondaryColor};
+
+      &::before {
+        content: '';
+        width: 62px;
+        height: 4px;
+        background: ${({ theme }) => theme.secondaryColor};
+        position: absolute;
+        bottom: 0;
+        border-radius: 4px;
+      }
     `}
 
   ${({ primary, theme }) =>

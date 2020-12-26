@@ -7,13 +7,16 @@ type DescriptionProps = {
   right: React.ReactNode
   gutter?: number
   style?: React.CSSProperties
+  divider?: boolean
 }
-function Description({ left, right, ...props }: DescriptionProps) {
+function Description({ left, right, divider, ...props }: DescriptionProps) {
   return (
-    <S.Wrapper {...props}>
-      <S.Left>{left}</S.Left>
-      <S.Right>{right}</S.Right>
-    </S.Wrapper>
+    <>
+      <S.Wrapper {...props}>
+        <S.Left>{left}</S.Left>
+        <S.Right>{right}</S.Right>
+      </S.Wrapper>
+    </>
   )
 }
 

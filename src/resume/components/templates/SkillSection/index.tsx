@@ -25,7 +25,7 @@ function SkillSection() {
 
   return (
     <Space section>
-      <Title level={3} section secondary>
+      <Title level={3} section>
         SKILL
       </Title>
 
