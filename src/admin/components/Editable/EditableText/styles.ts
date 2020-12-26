@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { palette } from '@Shared/styles'
 
 export const Wrapper = styled.div`
   display: flex;
@@ -8,7 +7,8 @@ export const Wrapper = styled.div`
 export const InputWrapper = styled.div`
   position: relative;
   width: 100%;
-  input {
+  input,
+  textarea {
     font-size: 1.8rem;
   }
 `
