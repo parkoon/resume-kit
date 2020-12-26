@@ -66,7 +66,11 @@ function SocialIcons({ icons }: SocialIconsProps) {
   return (
     <S.IconsWrapper>
       {Object.keys(icons).map((key) => (
-        <SocialIcon name={key as IconName} onClick={() => window.open(icons[key as IconName])} />
+        <SocialIcon
+          key={key}
+          name={key as IconName}
+          onClick={() => window.open(icons[key as IconName])}
+        />
       ))}
     </S.IconsWrapper>
   )

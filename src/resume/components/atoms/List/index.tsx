@@ -24,13 +24,13 @@ function List({ column = 1, items = [], title, children }: ListProps) {
       <S.ItemBox column={column}>
         {children
           ? React.Children.map(children, (child, index) => (
-              <S.Item>
-                <Text key={index}>{child}</Text>
+              <S.Item key={index}>
+                <Text>{child}</Text>
               </S.Item>
             ))
           : items.map((item, index) => (
-              <S.Item>
-                <Text key={index}>{item}</Text>
+              <S.Item key={index}>
+                <Text>{item}</Text>
               </S.Item>
             ))}
       </S.ItemBox>

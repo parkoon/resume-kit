@@ -13,7 +13,6 @@ import ProjectSection from '@Resume/components/templates/ProjectSection'
 import SkillSection from '@Resume/components/templates/SkillSection'
 import ArticleSection from '@Resume/components/templates/ArticleSection'
 import EtcSection from '@Resume/components/templates/EtcSection'
-import CareerSection from '@Resume/components/templates/CareerSection'
 import { PayloadProvider } from '@Resume/context/PayloadContext'
 
 function Resume({ payload }: { payload: Payload }) {
@@ -24,7 +23,6 @@ function Resume({ payload }: { payload: Payload }) {
           <ProfileSection />
           <IntroduceSection />
           <ProjectSection />
-          <CareerSection />
           <SkillSection />
           <EducationSection />
           <EtcSection />

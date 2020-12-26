@@ -64,7 +64,16 @@ const styles = css`
 `
 
 const Title = styled(({ level = 1, children, ...props }: TitleProps) =>
-  React.createElement(`h${level}`, props, children)
+  React.createElement(
+    `h${level}`,
+    {
+      ...props,
+      primary: props.primary ? `${props.primary}` : undefined,
+      section: props.section ? `${props.section}` : undefined,
+      secondary: props.secondary ? `${props.secondary}` : undefined,
+    },
+    children
+  )
 )`
   ${styles}
 `

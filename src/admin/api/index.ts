@@ -13,7 +13,7 @@ export const API = axios.create({
 
 export type ProfileGETResponse = AxiosResponse<{
   updatedAt: string
-  profile: Profile
+  data: Profile
 }>
 export const ProfileAPI = {
   get() {
@@ -26,7 +26,7 @@ export const ProfileAPI = {
 
 export type SkillGETResponse = AxiosResponse<{
   updatedAt: string
-  skills: Skill[]
+  data: Skill[]
 }>
 export const SkillAPI = {
   get() {

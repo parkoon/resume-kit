@@ -32,7 +32,7 @@ function ProjectContent({ projects }: ProjectContentProps) {
             <Title level={5}>Spec Sheet</Title>
             <Space top={7}>
               {skills.map((skill, index) => (
-                <Tag text={skill} />
+                <Tag key={index} text={skill} />
               ))}
             </Space>
           </Space>
@@ -67,6 +67,7 @@ function ProjectSection() {
         const corp = findCorpById(key)
         return (
           <Description
+            key={key}
             left={
               <Space>
                 <Title level={4}>{corp.title}</Title>

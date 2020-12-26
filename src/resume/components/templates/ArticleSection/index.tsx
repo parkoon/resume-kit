@@ -16,8 +16,8 @@ function ArticleSection() {
         ARTICLE
       </Title>
       <List>
-        {data.map(({ title, url }) => (
-          <Anchor href={url} title={title} />
+        {data.map(({ title, url, id }) => (
+          <Anchor key={id} href={url} title={title} />
         ))}
       </List>
     </Space>
