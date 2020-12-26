@@ -27,7 +27,6 @@ export const Wrapper = styled.div<{ dashed?: boolean; hovered?: boolean; empty?:
   border: 3px solid ${palette.grey[300]};
   transition: 0.3s;
   height: 100%;
-  min-height: 284px;
 
   ${({ empty }) =>
     empty &&
