@@ -22,6 +22,10 @@ export const calcCareerYearAndMonth = (
     months,
   }
 }
+
+/** 핸드폰 형식으로 변경 ex) 01012345678 -> 010 3328 0917 */
 export const phoneFormat = (str: string) =>
   `${str.slice(0, 3)} ${str.slice(3, 7)} ${str.slice(7, str.length)}`
+
+/** 첫 글자 대문자로 */
 export const fUppercase = (str: string) => `${str[0].toUpperCase()}${str.slice(1, str.length)}`

@@ -1,5 +1,23 @@
 import { createGlobalStyle, css } from 'styled-components'
 
+const sizes: { [key: string]: number } = {
+  huge: 1200,
+  large: 992,
+  medium: 768,
+  small: 576,
+}
+
+// Ref. https://medium.com/@samuelresua/easy-media-queries-in-styled-components-690b78f50053
+const Media = Object.keys(sizes).reduce((acc, label) => {
+  acc[label] = (literals: TemplateStringsArray, ...placeholders: any[]) =>
+    css`
+      @media (max-width: ${sizes[label]}px) {
+        ${css(literals, ...placeholders)};
+      }
+    `.join('')
+  return acc
+}, {} as Record<keyof typeof sizes, (l: TemplateStringsArray, ...p: any) => string>)
+
 const GlobalStyle = createGlobalStyle`
 
   * {
@@ -11,8 +29,10 @@ const GlobalStyle = createGlobalStyle`
   html {
     width: 100%;
     height: 100%;
-    font-size: 14px;
+    font-size: 16px;
     font-family: 'Noto Sans KR', sans-serif
+
+   
   }
 
   #__next {
@@ -25,6 +45,19 @@ const GlobalStyle = createGlobalStyle`
     height: 100%;
     color: #333;
   }
+
+  ${Media.medium`
+    html {
+      font-size: 14px;
+    }
+  `}
+
+  ${Media.small`
+    html {
+      font-size: 12px;
+    }
+  `}
+
 `
 
 export const palette = {
@@ -145,23 +178,5 @@ export const levelColor: { [key: string]: string } = {
   mid: palette.teal[400],
   high: palette.indigo[700],
 }
-
-const sizes: { [key: string]: number } = {
-  huge: 1200,
-  large: 992,
-  medium: 768,
-  small: 576,
-}
-
-// Ref. https://medium.com/@samuelresua/easy-media-queries-in-styled-components-690b78f50053
-const Media = Object.keys(sizes).reduce((acc, label) => {
-  acc[label] = (literals: TemplateStringsArray, ...placeholders: any[]) =>
-    css`
-      @media (max-width: ${sizes[label]}px) {
-        ${css(literals, ...placeholders)};
-      }
-    `.join('')
-  return acc
-}, {} as Record<keyof typeof sizes, (l: TemplateStringsArray, ...p: any) => string>)
 
 export { GlobalStyle, Media }
