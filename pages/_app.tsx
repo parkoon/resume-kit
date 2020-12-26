@@ -1,10 +1,10 @@
 import type { AppProps } from 'next/app'
-import { GlobalStyle } from '@Shared/styles'
+import { ResumeGlobalStyle, AdminGlobalStyle } from '@Shared/styles'
 
 function ResumeApp({ Component, pageProps }: AppProps) {
   return (
     <>
-      <GlobalStyle />
+      {Component.displayName === 'Resume' ? <ResumeGlobalStyle /> : <AdminGlobalStyle />}
       <Component {...pageProps} />
     </>
   )

@@ -35,6 +35,8 @@ function Resume({ payload }: { payload: Payload }) {
   )
 }
 
+Resume.displayName = 'Resume'
+
 /** JSON 파일 읽기 */
 const readJSON = (target: string) => jsonfile.readFileSync(path.join(process.cwd(), target))
 export async function getStaticProps() {
