@@ -1,14 +1,13 @@
-import { useState, useContext } from 'react'
+import { useContext, useState } from 'react'
+import moment from 'moment'
 import { Button, DatePicker, Form, Input, Select, Switch } from 'antd'
 import TextArea from 'antd/lib/input/TextArea'
 import { IdcardOutlined, MinusCircleOutlined, PlusOutlined } from '@ant-design/icons'
 
+import ProjectContext from '@Admin/components/ProjectPlayGround/context'
 import { DATE_FORMAT } from '@Admin/constants/date'
 import randomId from '@Admin/helpers/randomId'
-import { Career } from '@Shared/types/Career'
-import { Project } from '@Shared/types/Project'
 import { skillTitles } from '@Shared/types/Skill'
-import ProjectContext from '@Admin/components/ProjectPlayGround/context'
 
 const { Option } = Select
 
@@ -23,6 +22,8 @@ function ProjectForm({ id, onComplete }: ProjectFormProps) {
   const onFinish = (values: any) => {
     add({
       ...values,
+      startedAt: moment(values.startedAt).format(DATE_FORMAT),
+      endedAt: moment(values.endedAt).format(DATE_FORMAT),
       where: careers.find((career) => career.id === values.where),
       tasks: values.tasks ? values.tasks.map((title: string) => ({ title, id: randomId() })) : [],
     })
