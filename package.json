@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "description": "resume based on next.js",
   "scripts": {
-    "dev": "next -p 1207 & npm run server",
+    "start": "concurrently \"next -p 1207\" \"npm run server\"",
+    "dev": "concurrently \"next -p 1207\" \"nodemon\"",
     "tslint": "tslint -p . -c tslint.json",
     "build": "next build && next export",
-    "server": "nodemon",
+    "server": "ts-node --project tsconfig.server.json -r tsconfig-paths/register server/index.ts",
     "deploy": "rm -rf node_modules/.cache && npm run build && touch out/.nojekyll && git add out/ && git commit -m \"Deploy Next.js to gh-pages\" && git subtree push --prefix out origin gh-pages"
   },
   "husky": {
@@ -38,6 +39,8 @@
     "@ant-design/icons": "^4.3.0",
     "antd": "^4.9.2",
     "axios": "^0.21.0",
+    "canvas": "^2.6.1",
+    "concurrently": "^5.3.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "jsonfile": "^6.1.0",
