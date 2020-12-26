@@ -1,7 +1,6 @@
 import React, { useContext } from 'react'
-import { Pagination } from 'antd'
 
-import { Wrapper, Body, Item, Footer } from './styles'
+import { Wrapper, Body, Item } from './styles'
 import ProjectContext from '../context'
 
 function Summary() {
@@ -19,9 +18,6 @@ function Summary() {
           )
         })}
       </Body>
-      <Footer>
-        <Pagination simple total={projects.length} />
-      </Footer>
     </Wrapper>
   )
 }

@@ -1,18 +1,12 @@
-import { useState, useEffect } from 'react'
-import { Button, Space, Typography, Result } from 'antd'
-import Modal from 'antd/lib/modal/Modal'
-import moment from 'moment'
-
-import AdminLayout from '@Admin/layout'
-import ProjectForm from '@Admin/components/Forms/ProjectForm'
-import { calcCareerYearAndMonth } from '@Shared/helpers'
-import { Project } from '@Shared/types/Project'
-import ProjectFilter from '@Admin/components/ProjectFilter'
-import ProjectPlayGround from '@Admin/components/ProjectPlayGround'
-import useModal from '@Admin/hooks/useModal'
-import { Career } from '@Shared/types/Career'
 import { useRouter } from 'next/router'
+import { Button, Result, Modal } from 'antd'
+
+import ProjectForm from '@Admin/components/Forms/ProjectForm'
+import ProjectPlayGround from '@Admin/components/ProjectPlayGround'
 import { ProjectProvider } from '@Admin/components/ProjectPlayGround/context'
+import useModal from '@Admin/hooks/useModal'
+import AdminLayout from '@Admin/layout'
+import { Career } from '@Shared/types/Career'
 
 const careers: Career[] = [
   {
@@ -44,25 +38,6 @@ const careers: Career[] = [
 function ProjectManagement() {
   const { visible, open, close } = useModal()
   const router = useRouter()
-
-  // const items = [
-  //   {
-  //     id: 1,
-  //     title: '퀄슨 0',
-  //   },
-  //   {
-  //     id: 2,
-  //     title: '퀄슨 1',
-  //   },
-  //   {
-  //     id: 3,
-  //     title: '퀄슨 2',
-  //   },
-  //   {
-  //     id: 4,
-  //     title: '퀄슨 3',
-  //   },
-  // ]
 
   if (!Boolean(careers.length)) {
     return (
@@ -96,13 +71,6 @@ function ProjectManagement() {
       ]}
     >
       <ProjectProvider>
-        {/* <ProjectFilter
-        items={careers}
-        onChange={(values) => {
-          console.log(values)
-        }}
-      /> */}
-
         <ProjectPlayGround />
 
         <Modal

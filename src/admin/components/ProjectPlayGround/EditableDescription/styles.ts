@@ -1,7 +1,5 @@
 import styled from 'styled-components'
 
-import { palette } from '@Shared/styles'
-
 export const Wrapper = styled.div`
   flex: 1;
   margin-left: 42px;
@@ -14,7 +12,7 @@ export const Title = styled.h5`
 `
 export const Body = styled.div`
   margin-top: 20px;
-  height: calc(100vh - 160px);
+  height: calc(100vh - 170px);
   overflow: auto;
 `
 export const Section = styled.div`

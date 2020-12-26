@@ -15,7 +15,7 @@ export const Body = styled.div`
 
   border: 1px solid ${palette.grey[200]};
 
-  height: calc(100vh - 160px);
+  height: calc(100vh - 120px);
   overflow: auto;
 `
 
