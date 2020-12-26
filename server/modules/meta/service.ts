@@ -56,7 +56,6 @@ const Service = {
       context.fillText(subtitle, 600, 530)
 
       const buffer = canvas.toBuffer('image/png')
-      fs.writeFileSync('./test.png', buffer)
       fs.writeFileSync(path.join(rootPath, 'public/og.png'), buffer)
 
       return 'og.png'

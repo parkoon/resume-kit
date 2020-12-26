@@ -2,6 +2,11 @@ import fs from 'fs'
 import moment from 'moment'
 import jsonfile from 'jsonfile'
 
+import { Profile } from '@Shared/types/Profile'
+import { Meta } from '@Shared/types/Meta'
+
+import packageJSON from 'package.json'
+
 import {
   dbPath,
   profilePath,
@@ -59,7 +64,28 @@ const skills = [
   const option = { spaces: 2 }
 
   if (!fs.existsSync(profilePath)) {
-    jsonfile.writeFileSync(profilePath, { updatedAt, data: {} }, option)
+    jsonfile.writeFileSync(
+      profilePath,
+      {
+        updatedAt,
+        data: {
+          name: '이름 *',
+          position: '직책 *',
+          email: '이메일 *',
+          phone: '핸드폰번호 *',
+          about: '간단한 자기소개*',
+          github: '',
+          linkedin: '',
+          facebook: '',
+          twitter: '',
+          homepage: '',
+          blog: '',
+          youtube: '',
+          instagram: '',
+        } as Profile,
+      },
+      option
+    )
   }
   if (!fs.existsSync(projectPath)) {
     jsonfile.writeFileSync(projectPath, { updatedAt, data: [] }, option)
@@ -80,6 +106,20 @@ const skills = [
     jsonfile.writeFileSync(skillPath, { updatedAt, data: skills }, option)
   }
   if (!fs.existsSync(metaPath)) {
-    jsonfile.writeFileSync(metaPath, { updatedAt, data: {} }, option)
+    jsonfile.writeFileSync(
+      metaPath,
+      {
+        updatedAt,
+        data: {
+          title: '',
+          description: '',
+          image: '',
+          keywords: [],
+          primaryColor: '',
+          homepage: packageJSON.homepage,
+        } as Meta,
+      },
+      option
+    )
   }
 })()

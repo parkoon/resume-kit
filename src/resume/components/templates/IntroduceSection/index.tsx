@@ -17,8 +17,8 @@ function IntroduceSection() {
       <Title level={3} section>
         ABOUT ME
       </Title>
-
-      <Description left={<Hero url="/avatar.png" />} right={<Text>{data.about}</Text>} />
+      {/* TODO. 이미지 업로드 및 활성화/비활성화 기능 구현 후 추가 */}
+      <Description /*left={<Hero url="/avatar.png" />} */ right={<Text>{data.about}</Text>} />
     </Space>
   )
 }

@@ -14,16 +14,14 @@ function Theme({ children }: ThemeProps) {
     meta: { data },
   } = usePayload()
 
-  const { dark: primaryColor, bright: secondaryColor } = mainColors.find(
-    (color) => color.dark === data.primaryColor
-  )!
+  const mainColor = mainColors.find((color) => color.dark === data.primaryColor)
 
   return (
     <ThemeProvider
       theme={{
         ...(Media as any),
-        primaryColor,
-        secondaryColor,
+        primaryColor: mainColor ? mainColor.dark : mainColors[0].dark,
+        secondaryColor: mainColor ? mainColor.bright : mainColors[0].bright,
       }}
     >
       {children}

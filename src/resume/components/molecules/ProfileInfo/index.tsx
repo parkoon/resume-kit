@@ -14,29 +14,47 @@ function ProfileInfo() {
     profile: { data },
   } = usePayload()
 
+  const {
+    name,
+    position,
+    github,
+    twitter,
+    facebook,
+    instagram,
+    youtube,
+    linkedin,
+    blog,
+    homepage,
+    phone,
+    email,
+  } = data
+
+  const icons: { [key: string]: string } = {
+    github,
+    twitter,
+    facebook,
+    blog,
+    homepage,
+    instagram,
+    youtube,
+    linkedin,
+  }
+
+  // 빈 값인 필드 삭제
+  Object.keys(icons).forEach((key) => !icons[key] && delete icons[key])
+
   return (
     <>
-      <Title primary>{data.name}</Title>
+      <Title primary>{name}</Title>
       <Title level={2} fontWeight={300} style={{ marginTop: -7 }}>
-        {data.position}
+        {position}
       </Title>
 
-      <SocialIcons
-        icons={{
-          github: 'link',
-          twitter: 'link',
-          facebook: 'link',
-          blog: 'link',
-          homepage: 'link',
-          instagram: 'link',
-          youtube: 'link',
-          linkedin: 'link',
-        }}
-      />
+      <SocialIcons icons={icons} />
 
       <Space top={20}>
-        <Icon name="phone" text={phoneFormat(data.phone)} />
-        <Icon name="email" text={data.email} />
+        <Icon name="phone" text={phoneFormat(phone)} />
+        <Icon name="email" text={email} />
       </Space>
     </>
   )
