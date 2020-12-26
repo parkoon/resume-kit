@@ -18,10 +18,9 @@ export const Wrapper = styled.div<{ gutter?: number }>`
 export const Left = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: flex-start;
   flex-basis: 240px;
   margin-right: 40px;
-  color: ${palette.grey[700]};
 
   ${({ theme }) => theme.medium`
     align-items: flex-start;

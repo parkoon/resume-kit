@@ -15,22 +15,25 @@ function ProjectSection() {
   return (
     <Space section>
       <Title level={3} section secondary>
-        PROJECT
+        WORK EXPERIENCE
       </Title>
-      {/* TODO. description */}
       {data.map(({ title, tasks, description, startedAt, skills, endedAt, where }) => (
         <Description
           left={
-            <Text size="xl">
-              {startedAt} ~ {endedAt}
-            </Text>
+            <Space>
+              <Title level={4}>{where.title}</Title>
+              <Text block>{where.subtitle}</Text>
+              <Text>
+                {where.startedAt} ~ {where.endedAt}
+              </Text>
+            </Space>
           }
           right={
             <>
-              <Text block fontWeight={500} size="xl">
-                {title}
+              <Title level={4}>{title}</Title>
+              <Text italic>
+                {startedAt} ~ {endedAt}
               </Text>
-              <Text italic>{where.title}</Text>
 
               <Space top={12}>
                 <Title level={5}>Description</Title>
