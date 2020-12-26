@@ -18,10 +18,7 @@ function IntroduceSection() {
         ABOUT ME
       </Title>
 
-      <Description
-        left={<Hero url="https://picsum.photos/id/237/200/300" />}
-        right={<Text>{data.about}</Text>}
-      />
+      <Description left={<Hero url="/avatar.png" />} right={<Text>{data.about}</Text>} />
     </Space>
   )
 }
