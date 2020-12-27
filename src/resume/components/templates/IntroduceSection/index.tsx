@@ -6,6 +6,7 @@ import Space from '@Resume/components/atoms/Space'
 import Text from '@Resume/components/atoms/Typography/Text'
 import Title from '@Resume/components/atoms/Typography/Title'
 import { usePayload } from '@Resume/context/PayloadContext'
+import withEnabled from '@Resume/hoc/withEnabled'
 
 function IntroduceSection() {
   const {
@@ -23,4 +24,4 @@ function IntroduceSection() {
   )
 }
 
-export default IntroduceSection
+export default withEnabled('profile', IntroduceSection)

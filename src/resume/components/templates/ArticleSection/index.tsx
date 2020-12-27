@@ -5,6 +5,7 @@ import List from '@Resume/components/atoms/List'
 import Space from '@Resume/components/atoms/Space'
 import Title from '@Resume/components/atoms/Typography/Title'
 import { usePayload } from '@Resume/context/PayloadContext'
+import withEnabled from '@Resume/hoc/withEnabled'
 
 function ArticleSection() {
   const {
@@ -24,4 +25,4 @@ function ArticleSection() {
   )
 }
 
-export default ArticleSection
+export default withEnabled('article', ArticleSection)

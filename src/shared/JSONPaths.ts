@@ -10,6 +10,7 @@ const JSONPaths = {
   articles: path.join(DB, 'articles.json'),
   etcs: path.join(DB, 'etcs.json'),
   meta: path.join(DB, 'meta.json'),
+  system: path.join(DB, 'system.json'),
 }
 
 export default JSONPaths

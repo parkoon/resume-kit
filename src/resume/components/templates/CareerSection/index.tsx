@@ -5,6 +5,7 @@ import Title from '@Resume/components/atoms/Typography/Title'
 import Text from '@Resume/components/atoms/Typography/Text'
 import Space from '@Resume/components/atoms/Space'
 import { usePayload } from '@Resume/context/PayloadContext'
+import withEnabled from '@Resume/hoc/withEnabled'
 
 function CareerSection() {
   const {
@@ -50,4 +51,4 @@ function CareerSection() {
   )
 }
 
-export default CareerSection
+export default withEnabled('career', CareerSection)

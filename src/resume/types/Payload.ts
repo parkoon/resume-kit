@@ -6,6 +6,7 @@ import { ProfileJSON } from '@Shared/types/Profile'
 import { ProjectJSON } from '@Shared/types/Project'
 import { SkillJSON } from '@Shared/types/Skill'
 import { MetaJSON } from '@Shared/types/Meta'
+import { SystemJSON } from '@Shared/types/System'
 
 export type Payload = {
   article: ArticleJSON
@@ -16,4 +17,5 @@ export type Payload = {
   project: ProjectJSON
   skill: SkillJSON
   meta: MetaJSON
+  system: SystemJSON
 }

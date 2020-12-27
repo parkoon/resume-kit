@@ -8,6 +8,7 @@ import List from '@Resume/components/atoms/List'
 import { usePayload } from '@Resume/context/PayloadContext'
 import { Skill } from '@Shared/types/Skill'
 import { fUppercase } from '@Shared/helpers'
+import withEnabled from '@Resume/hoc/withEnabled'
 
 function SkillSection() {
   const {
@@ -40,4 +41,4 @@ function SkillSection() {
   )
 }
 
-export default SkillSection
+export default withEnabled('skill', SkillSection)

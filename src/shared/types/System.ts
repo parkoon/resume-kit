@@ -21,7 +21,7 @@ export type System = {
   sort: SystemSort
 }
 
-export type MetaJSON = {
+export type SystemJSON = {
   data: System
   updatedAt: string
 }

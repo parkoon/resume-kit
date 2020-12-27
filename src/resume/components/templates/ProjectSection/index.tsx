@@ -7,6 +7,7 @@ import List from '@Resume/components/atoms/List'
 import { usePayload } from '@Resume/context/PayloadContext'
 import Tag from '@Resume/components/atoms/Tag'
 import { Project } from '@Shared/types/Project'
+import withEnabled from '@Resume/hoc/withEnabled'
 
 type ProjectContentProps = {
   projects: Project[]
@@ -85,4 +86,4 @@ function ProjectSection() {
   )
 }
 
-export default ProjectSection
+export default withEnabled('project', ProjectSection)
