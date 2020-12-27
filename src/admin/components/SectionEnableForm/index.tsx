@@ -3,12 +3,11 @@ import { Form, Switch, Row, Col } from 'antd'
 
 import { SystemEnabled } from '@Shared/types/System'
 
-type SectioEnableFormProps = {
+type SectionEnableFormProps = {
   initialValue: SystemEnabled
   onChange(value: SystemEnabled): void
 }
-function SectioEnableForm({ initialValue, onChange }: SectioEnableFormProps) {
-  console.log('initialValue,', initialValue)
+function SectionEnableForm({ initialValue, onChange }: SectionEnableFormProps) {
   return (
     <div>
       <Form
@@ -39,6 +38,11 @@ function SectioEnableForm({ initialValue, onChange }: SectioEnableFormProps) {
               <Switch checked={initialValue.education} />
             </Form.Item>
           </Col>
+          <Col span={5}>
+            <Form.Item name="career" label="CAREER" initialValue={initialValue.career}>
+              <Switch checked={initialValue.career} />
+            </Form.Item>
+          </Col>
 
           <Col span={4}>
             <Form.Item name="etc" label="ETC" initialValue={initialValue.etc}>
@@ -46,13 +50,9 @@ function SectioEnableForm({ initialValue, onChange }: SectioEnableFormProps) {
             </Form.Item>
           </Col>
         </Row>
-
-        {/* <Form.Item name="career" label="CAREER">
-          <Switch checked={initialValueenabled..career} />
-        </Form.Item> */}
       </Form>
     </div>
   )
 }
 
-export default SectioEnableForm
+export default SectionEnableForm

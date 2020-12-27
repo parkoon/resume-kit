@@ -3,7 +3,6 @@ import { Card, Row, Col, Select, Button, Modal, Tag, Divider, Switch } from 'ant
 
 import AdminLayout from '@Admin/layout'
 import EditableText from '@Admin/components/Editable/EditableText'
-import Notification from '@Admin/helpers/notification'
 import { API, MetaGETResponse, MetaAPI, SystemGETResponse, SystemAPI } from '@Admin/api'
 import Loading from '@Admin/components/Loding'
 import mainColors from '@Shared/theme/mainColors'
@@ -15,7 +14,8 @@ import { OGImage } from '@Shared/types/Meta'
 import useModal from '@Admin/hooks/useModal'
 import SettingField from '@Admin/components/SettingField'
 import SectionEnableForm from '@Admin/components/SectionEnableForm'
-import { System, SystemEnabled } from '@Shared/types/System'
+import { SystemEnabled, SystemSort } from '@Shared/types/System'
+import SectionSortForm from '@Admin/components/SectionSortForm'
 
 const { Option } = Select
 
@@ -45,7 +45,6 @@ function SettingManagement() {
 
   const onMetaSave = async (name: string, value: string | string[]) => {
     await MetaAPI.update({ ...meta, [name]: value })
-    Notification.success('변경사항이 저장되었습니다.')
     MetaSWR.mutate()
   }
 
@@ -64,9 +63,13 @@ function SettingManagement() {
     onMetaSave(name, value)
   }
 
-  const onSystemChange = async (value: SystemEnabled) => {
+  const onEnableChange = async (value: SystemEnabled) => {
     await SystemAPI.updateEnable(value)
-    Notification.success('변경사항이 저장되었습니다.')
+    SystemSWR.mutate()
+  }
+
+  const onSortChange = async (value: SystemSort) => {
+    await SystemAPI.updateSort(value)
     SystemSWR.mutate()
   }
 
@@ -144,11 +147,13 @@ function SettingManagement() {
         <Col span={12}>
           <Card title="시스템 데이터" style={{ marginBottom: 7, height: '100%' }}>
             <SettingField title="페이지 활성화">
-              <SectionEnableForm initialValue={system.enabled} onChange={onSystemChange} />
+              <SectionEnableForm initialValue={system.enabled} onChange={onEnableChange} />
             </SettingField>
             <SettingField title="페이지 미리보기">여기(TODO)</SettingField>
             <SettingField title="깃허브 페이지로 배포하기">여기(TODO)</SettingField>
-            <SettingField title="섹션 순서 변경하기">여기(TODO)</SettingField>
+            <SettingField title="섹션 순서 변경하기">
+              <SectionSortForm initialValue={system.sort} onChange={onSortChange} />
+            </SettingField>
             <SettingField title="파일 히스토리">여기(TODO)</SettingField>
           </Card>
         </Col>

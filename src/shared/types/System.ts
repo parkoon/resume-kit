@@ -5,6 +5,7 @@ export type SystemEnabled = {
   skill: boolean
   education: boolean
   etc: boolean
+  article: boolean
 }
 export type SystemSort = {
   profile: number
@@ -13,6 +14,7 @@ export type SystemSort = {
   skill: number
   education: number
   etc: number
+  article: number
 }
 export type System = {
   enabled: SystemEnabled
