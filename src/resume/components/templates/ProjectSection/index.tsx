@@ -43,7 +43,10 @@ function ProjectContent({ projects }: ProjectContentProps) {
   )
 }
 
-function ProjectSection() {
+type ProjectSectionProps = {
+  sort: number
+}
+function ProjectSection(props: ProjectSectionProps) {
   const {
     project: { data },
     career,

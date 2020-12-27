@@ -7,7 +7,10 @@ import Title from '@Resume/components/atoms/Typography/Title'
 import { usePayload } from '@Resume/context/PayloadContext'
 import withEnabled from '@Resume/hoc/withEnabled'
 
-function ArticleSection() {
+type ArticleSectionProps = {
+  sort: number
+}
+function ArticleSection(props: ArticleSectionProps) {
   const {
     article: { data },
   } = usePayload()

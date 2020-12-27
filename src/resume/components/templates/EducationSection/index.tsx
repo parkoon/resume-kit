@@ -7,7 +7,10 @@ import Space from '@Resume/components/atoms/Space'
 import { usePayload } from '@Resume/context/PayloadContext'
 import withEnabled from '@Resume/hoc/withEnabled'
 
-function EducationSection() {
+type EducationSectionProps = {
+  sort: number
+}
+function EducationSection(props: EducationSectionProps) {
   const {
     education: { data },
   } = usePayload()

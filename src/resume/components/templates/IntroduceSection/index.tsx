@@ -8,7 +8,10 @@ import Title from '@Resume/components/atoms/Typography/Title'
 import { usePayload } from '@Resume/context/PayloadContext'
 import withEnabled from '@Resume/hoc/withEnabled'
 
-function IntroduceSection() {
+type IntroduceSectionProps = {
+  sort: number
+}
+function IntroduceSection(props: IntroduceSectionProps) {
   const {
     profile: { data },
   } = usePayload()

@@ -5,7 +5,10 @@ import ProfileInfo from '@Resume/components/molecules/ProfileInfo'
 import { usePayload } from '@Resume/context/PayloadContext'
 import withEnabled from '@Resume/hoc/withEnabled'
 
-function ProfileSection() {
+type ProfileSectionProps = {
+  sort: number
+}
+function ProfileSection(props: ProfileSectionProps) {
   return (
     <Space section>
       <ProfileInfo />

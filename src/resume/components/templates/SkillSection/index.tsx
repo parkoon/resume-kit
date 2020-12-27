@@ -10,7 +10,10 @@ import { Skill } from '@Shared/types/Skill'
 import { fUppercase } from '@Shared/helpers'
 import withEnabled from '@Resume/hoc/withEnabled'
 
-function SkillSection() {
+type SkillSectionProps = {
+  sort: number
+}
+function SkillSection(props: SkillSectionProps) {
   const {
     skill: { data },
   } = usePayload()

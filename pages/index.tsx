@@ -16,30 +16,22 @@ import EtcSection from '@Resume/components/templates/EtcSection'
 import { PayloadProvider } from '@Resume/context/PayloadContext'
 import CareerSection from '@Resume/components/templates/CareerSection'
 
-// Compare function needed by the Sort component
-// const compare = (a, b) => {
-//   return a.props.sort - b.props.sort
-// }
-
-// const Sort = ({ children, by }) => {
-//   return React.Children.toArray(children).sort(compare)
-// }
-
 function Resume({ payload }: { payload: Payload }) {
+  const { profile, project, skill, education, career, etc, article } = payload.system.data.sort
   return (
     <PayloadProvider payload={payload}>
       <Theme>
         <ResumeLayout>
-          <ProfileSection />
-          <IntroduceSection />
-
-          {/* <Sort>{[<ProfileSection sort={1} />, <IntroduceSection sort={2} />]}</Sort> */}
-          <ProjectSection />
-          <SkillSection />
-          <EducationSection />
-          <CareerSection />
-          <EtcSection />
-          <ArticleSection />
+          {[
+            <ProfileSection sort={profile} />,
+            <IntroduceSection sort={profile} />,
+            <ProjectSection sort={project} />,
+            <SkillSection sort={skill} />,
+            <EducationSection sort={education} />,
+            <CareerSection sort={career} />,
+            <EtcSection sort={etc} />,
+            <ArticleSection sort={article} />,
+          ].sort((a, b) => a.props.sort - b.props.sort)}
         </ResumeLayout>
       </Theme>
     </PayloadProvider>
@@ -60,6 +52,7 @@ export async function getStaticProps() {
     project: readJSON(JSONPaths.projects),
     skill: readJSON(JSONPaths.skills),
     meta: readJSON(JSONPaths.meta),
+    system: readJSON(JSONPaths.system),
   }
   return {
     props: { payload },

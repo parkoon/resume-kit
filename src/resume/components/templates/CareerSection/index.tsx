@@ -7,7 +7,10 @@ import Space from '@Resume/components/atoms/Space'
 import { usePayload } from '@Resume/context/PayloadContext'
 import withEnabled from '@Resume/hoc/withEnabled'
 
-function CareerSection() {
+type CareerSectionProps = {
+  sort: number
+}
+function CareerSection(props: CareerSectionProps) {
   const {
     career: { data },
   } = usePayload()

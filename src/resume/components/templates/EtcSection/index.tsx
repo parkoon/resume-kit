@@ -7,7 +7,10 @@ import Space from '@Resume/components/atoms/Space'
 import { usePayload } from '@Resume/context/PayloadContext'
 import withEnabled from '@Resume/hoc/withEnabled'
 
-function EtcSection() {
+type EtcSectionProps = {
+  sort: number
+}
+function EtcSection(props: EtcSectionProps) {
   const {
     etc: { data },
   } = usePayload()
