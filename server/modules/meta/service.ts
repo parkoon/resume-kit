@@ -3,14 +3,14 @@ import { createCanvas } from 'canvas'
 import path from 'path'
 import fs from 'fs'
 
-import { updateJSON } from '@Server/helpers/JSONTool'
+import { updateJSON, readJSON } from '@Server/helpers/JSONTool'
 import { metaPath, rootPath, packagePath } from '@Server/paths'
 import { Meta, OGImage } from '@Shared/types/Meta'
 
 const Service = {
   async getMeta() {
     try {
-      const meta = jsonfile.readFileSync(metaPath)
+      const meta = readJSON<Meta>(metaPath)
       return meta
     } catch (err) {
       throw Error(err)

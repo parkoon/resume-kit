@@ -17,6 +17,7 @@ import {
   etcPath,
   skillPath,
   metaPath,
+  systemPath,
 } from './paths'
 
 const skills = [
@@ -105,6 +106,35 @@ const skills = [
   if (!fs.existsSync(skillPath)) {
     jsonfile.writeFileSync(skillPath, { updatedAt, data: skills }, option)
   }
+
+  if (!fs.existsSync(systemPath)) {
+    jsonfile.writeFileSync(
+      systemPath,
+      {
+        updatedAt,
+        data: {
+          enabled: {
+            profile: true,
+            project: true,
+            career: false,
+            skill: true,
+            education: true,
+            etc: true,
+          },
+          sort: {
+            profile: 1,
+            project: 2,
+            career: 3,
+            skill: 4,
+            education: 5,
+            etc: 6,
+          },
+        },
+      },
+      option
+    )
+  }
+
   if (!fs.existsSync(metaPath)) {
     jsonfile.writeFileSync(
       metaPath,

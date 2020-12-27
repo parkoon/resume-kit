@@ -17,9 +17,7 @@ function IntroduceManagement() {
     return <Loading />
   }
 
-  const {
-    data: { data: profile },
-  } = data
+  const { data: profile } = data
 
   const onSave = async (name: string, value: string) => {
     await ProfileAPI.update({ ...profile, [name]: value })

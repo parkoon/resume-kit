@@ -1,0 +1,25 @@
+export type SystemEnabled = {
+  profile: boolean
+  project: boolean
+  career: boolean
+  skill: boolean
+  education: boolean
+  etc: boolean
+}
+export type SystemSort = {
+  profile: number
+  project: number
+  career: number
+  skill: number
+  education: number
+  etc: number
+}
+export type System = {
+  enabled: SystemEnabled
+  sort: SystemSort
+}
+
+export type MetaJSON = {
+  data: System
+  updatedAt: string
+}

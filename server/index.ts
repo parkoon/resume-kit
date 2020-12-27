@@ -1,6 +1,7 @@
 import express, { Request, Response, NextFunction } from 'express'
 import morgan from 'morgan'
 import cors from 'cors'
+
 import './db'
 
 const app = express()
@@ -13,6 +14,7 @@ import careerRoute from './modules/career/route'
 import educationRoute from './modules/education/route'
 import etcRoute from './modules/etc/route'
 import metaRoute from './modules/meta/route'
+import systemRoute from './modules/system/route'
 
 app.use(morgan('dev'))
 app.use(express.json())
@@ -27,6 +29,7 @@ app.use('/api/careers', careerRoute)
 app.use('/api/educations', educationRoute)
 app.use('/api/etcs', etcRoute)
 app.use('/api/meta', metaRoute)
+app.use('/api/system', systemRoute)
 
 app.use((error: any, req: Request, res: Response, next: NextFunction) => {
   console.error(error)

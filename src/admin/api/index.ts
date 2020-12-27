@@ -7,41 +7,51 @@ import { Etc } from '@Shared/types/Etc'
 import { Profile } from '@Shared/types/Profile'
 import { Skill } from '@Shared/types/Skill'
 import { Meta, OGImage } from '@Shared/types/Meta'
+import { System, SystemEnabled, SystemSort } from '@Shared/types/System'
 
 export const API = axios.create({
   baseURL: 'http://localhost:1208/api',
 })
 
-export type ProfileGETResponse = AxiosResponse<{
-  updatedAt: string
-  data: Profile
-}>
+export type ProfileGETResponse = AxiosResponse<Profile>
 export const ProfileAPI = {
+  base: '/profile',
   get() {
-    return '/profile'
+    return this.base
   },
   update(profile: Profile) {
-    return API.post('/profile', profile)
+    return API.post(this.base, profile)
   },
 }
 
-export type MetaGETResponse = AxiosResponse<{
-  updatedAt: string
-  data: Meta
-}>
-
+export type MetaGETResponse = AxiosResponse<Meta>
 export const MetaAPI = {
+  base: '/meta',
   get() {
-    return '/meta'
+    return this.base
   },
   update(meta: Meta) {
-    return API.put('/meta', meta)
+    return API.put(this.base, meta)
   },
   createOGImage(imageInfo: OGImage) {
     return API.post<{ filename: string }>('/meta/og/image', imageInfo)
   },
   updateHomage(homepage: string) {
     return API.put('/meta/homepage', { homepage })
+  },
+}
+
+export type SystemGETResponse = AxiosResponse<System>
+export const SystemAPI = {
+  base: '/system',
+  get() {
+    return this.base
+  },
+  updateEnable(value: SystemEnabled) {
+    return API.put(`${this.base}/enable`, value)
+  },
+  updateSort(value: SystemSort) {
+    return API.put(`${this.base}/sort`, value)
   },
 }
 

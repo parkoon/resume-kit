@@ -4,7 +4,7 @@ import { Card, Row, Col, Select, Button, Modal, Tag, Divider, Switch } from 'ant
 import AdminLayout from '@Admin/layout'
 import EditableText from '@Admin/components/Editable/EditableText'
 import Notification from '@Admin/helpers/notification'
-import { API, MetaGETResponse, MetaAPI } from '@Admin/api'
+import { API, MetaGETResponse, MetaAPI, SystemGETResponse, SystemAPI } from '@Admin/api'
 import Loading from '@Admin/components/Loding'
 import mainColors from '@Shared/theme/mainColors'
 import ColorBox from '@Admin/components/ColorBox'
@@ -14,29 +14,39 @@ import OpenGraphForm from '@Admin/components/OpenGraphForm'
 import { OGImage } from '@Shared/types/Meta'
 import useModal from '@Admin/hooks/useModal'
 import SettingField from '@Admin/components/SettingField'
-import SectionControlForm, { SectionControlFormValue } from '@Admin/components/SectionControlForm'
+import SectionControlForm from '@Admin/components/SectionControlForm'
+import { System, SystemEnabled } from '@Shared/types/System'
 
 const { Option } = Select
 
 function SettingManagement() {
-  const { data, mutate } = useSWR<MetaGETResponse>(MetaAPI.get(), API, {
+  const MetaSWR = useSWR<MetaGETResponse>(MetaAPI.get(), API, {
+    loadingTimeout: 9000,
+  })
+  const SystemSWR = useSWR<SystemGETResponse>(SystemAPI.get(), API, {
     loadingTimeout: 9000,
   })
 
   const { visible, open, close } = useModal()
 
-  if (!data) {
+  if (!MetaSWR.data || !SystemSWR.data) {
     return <Loading />
   }
 
   const {
     data: { data: meta },
-  } = data
+  } = MetaSWR
 
-  const onSave = async (name: string, value: string | string[]) => {
+  const {
+    data: { data: system },
+  } = SystemSWR
+
+  console.log('system', system)
+
+  const onMetaSave = async (name: string, value: string | string[]) => {
     await MetaAPI.update({ ...meta, [name]: value })
     Notification.success('변경사항이 저장되었습니다.')
-    mutate()
+    MetaSWR.mutate()
   }
 
   const createOpenGraphImage = async (values: OGImage) => {
@@ -46,16 +56,18 @@ function SettingManagement() {
 
     const { pathname } = new URL(meta.homepage)
 
-    onSave('image', `${pathname}/${filename}`)
+    onMetaSave('image', `${pathname}/${filename}`)
   }
 
   const changeHomepageURL = async (name: string, value: string) => {
     await MetaAPI.updateHomage(value)
-    onSave(name, value)
+    onMetaSave(name, value)
   }
 
-  const sectionFormChange = async (value: SectionControlFormValue) => {
-    console.log('object')
+  const onSystemChange = async (value: SystemEnabled) => {
+    await SystemAPI.updateEnable(value)
+    Notification.success('변경사항이 저장되었습니다.')
+    SystemSWR.mutate()
   }
 
   const { title, description, keywords, primaryColor, homepage } = meta
@@ -89,7 +101,7 @@ function SettingManagement() {
                 type="text"
                 placeholder="이력서 페이지의 타이틀을 입력해주세요."
                 initialValue={title}
-                onSave={onSave}
+                onSave={onMetaSave}
               />
             </SettingField>
             <SettingField title="설명">
@@ -98,14 +110,14 @@ function SettingManagement() {
                 type="text"
                 placeholder="이력서 페이지의 설명을 입력해주세요."
                 initialValue={description}
-                onSave={onSave}
+                onSave={onMetaSave}
               />
             </SettingField>
 
             <SettingField title="키워드">
               <TagInput
                 initialValues={keywords}
-                onChange={(values) => onSave('keywords', values)}
+                onChange={(values) => onMetaSave('keywords', values)}
               />
             </SettingField>
 
@@ -113,7 +125,7 @@ function SettingManagement() {
               <Select
                 defaultValue={primaryColor}
                 style={{ width: 130 }}
-                onChange={(value) => onSave('primaryColor', value)}
+                onChange={(value) => onMetaSave('primaryColor', value)}
               >
                 {mainColors.map((color) => (
                   <Option key={color.id} value={color.dark}>
@@ -132,7 +144,7 @@ function SettingManagement() {
         <Col span={12}>
           <Card title="시스템 데이터" style={{ marginBottom: 7, height: '100%' }}>
             <SettingField title="페이지 활성화">
-              <SectionControlForm initialValue={{ introduce: true }} onChange={sectionFormChange} />
+              <SectionControlForm initialValue={system.enabled} onChange={onSystemChange} />
             </SettingField>
             <SettingField title="페이지 미리보기">여기(TODO)</SettingField>
             <SettingField title="깃허브 페이지로 배포하기">여기(TODO)</SettingField>
