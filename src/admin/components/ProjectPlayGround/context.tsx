@@ -3,7 +3,7 @@ import useSWR from 'swr'
 
 import { Project } from '@Shared/types/Project'
 import { Career } from '@Shared/types/Career'
-import { ProjectAPI, ProjectGETResponse, API } from '@Admin/api'
+import { ProjectAPI, ProjectGETResponse, API, CareerAPI, CareerGETResponse } from '@Admin/api'
 
 type ProjectContextProps = {
   projects: Project[]
@@ -21,35 +21,9 @@ type ProjectProviderProps = {
 }
 
 export function ProjectProvider({ children }: ProjectProviderProps) {
-  // const [projects, setProjects] = useState<Project[]>([])
-  const { data, mutate } = useSWR<ProjectGETResponse>(ProjectAPI.get(), API)
+  const { data: projectData, mutate } = useSWR<ProjectGETResponse>(ProjectAPI.get(), API)
+  const { data: careerData } = useSWR<CareerGETResponse>(CareerAPI.get(), API)
 
-  const [careers, setCareers] = useState<Career[]>([
-    {
-      id: 'fasfa',
-      completed: true,
-      startedAt: '2012/12',
-      title: 'Qualson 1',
-      endedAt: '2012/13',
-      subtitle: 'hahaha',
-    },
-    {
-      id: 'sadas',
-      completed: true,
-      startedAt: '2012/12',
-      title: 'Qualson 2',
-      endedAt: '2012/13',
-      subtitle: 'hahaha',
-    },
-    {
-      id: 'asdasd',
-      completed: true,
-      startedAt: '2012/12',
-      title: 'Qualson 3',
-      endedAt: '2012/13',
-      subtitle: 'hahaha',
-    },
-  ])
   const [currentProject, setCurrentProject] = useState<Project | null>(null)
 
   const select = (value: Project) => {
@@ -76,13 +50,13 @@ export function ProjectProvider({ children }: ProjectProviderProps) {
   return (
     <ProjectContext.Provider
       value={{
-        careers,
         select,
         update,
         add,
         currentProject,
         remove,
-        projects: data ? data.data : [],
+        careers: careerData ? careerData.data : [],
+        projects: projectData ? projectData.data : [],
       }}
     >
       {children}

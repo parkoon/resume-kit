@@ -1,3 +1,4 @@
+import useSWR from 'swr'
 import { useRouter } from 'next/router'
 import { Button, Result, Modal } from 'antd'
 
@@ -6,41 +7,24 @@ import ProjectPlayGround from '@Admin/components/ProjectPlayGround'
 import { ProjectProvider } from '@Admin/components/ProjectPlayGround/context'
 import useModal from '@Admin/hooks/useModal'
 import AdminLayout from '@Admin/layout'
-import { Career } from '@Shared/types/Career'
 import useMetaValidation from '@Admin/hooks/useMetaValidation'
-
-const careers: Career[] = [
-  {
-    id: 'fasfa',
-    completed: true,
-    startedAt: '2012/12',
-    title: 'Qualson 1',
-    endedAt: '2012/13',
-    subtitle: 'hahaha',
-  },
-  {
-    id: 'sadas',
-    completed: true,
-    startedAt: '2012/12',
-    title: 'Qualson 2',
-    endedAt: '2012/13',
-    subtitle: 'hahaha',
-  },
-  {
-    id: 'asdasd',
-    completed: true,
-    startedAt: '2012/12',
-    title: 'Qualson 3',
-    endedAt: '2012/13',
-    subtitle: 'hahaha',
-  },
-]
+import { CareerAPI, API, CareerGETResponse } from '@Admin/api'
+import Loading from '@Admin/components/Loding'
 
 function ProjectManagement() {
   useMetaValidation()
 
   const { visible, open, close } = useModal()
   const router = useRouter()
+
+  // TODO. 등록된 회사가 있는지 확인 할 수 있는 API 로 대체하는게 나을듯!
+  const { data } = useSWR<CareerGETResponse>(CareerAPI.get(), API)
+
+  if (!data) {
+    return <Loading />
+  }
+
+  const { data: careers } = data
 
   if (!Boolean(careers.length)) {
     return (

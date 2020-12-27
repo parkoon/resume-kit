@@ -17,7 +17,7 @@ function DeployForm() {
         {error && (
           <Text type="danger">배포에 실패했습니다. 프로젝트를 실행한 커맨드를 확인해주세요.</Text>
         )}
-        {!result && (
+        {result && (
           <>
             <Link href={result} target="_blank">
               이력서 확인하기
