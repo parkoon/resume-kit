@@ -150,14 +150,14 @@ function SettingManagement() {
             <SettingField title="깃허브 페이지로 배포하기">
               <DeployForm />
             </SettingField>
-            <SettingField title="페이지 활성화">
+            <SettingField title="섹션 활성화">
               <SectionEnableForm initialValue={system.enabled} onChange={onEnableChange} />
             </SettingField>
 
-            <SettingField title="섹션 순서 변경하기">
+            <SettingField title="섹션 순서 변경">
               <SectionSortForm initialValue={system.sort} onChange={onSortChange} />
             </SettingField>
-            <SettingField title="파일 히스토리">여기(TODO)</SettingField>
+            <SettingField title="파일 히스토리">Coming soon...</SettingField>
           </Card>
         </Col>
       </Row>
@@ -171,49 +171,7 @@ function SettingManagement() {
             닫기
           </Button>
         }
-      >
-        <Space>
-          <h3>
-            홈페이지 <span style={{ color: 'red' }}>*</span>
-          </h3>
-          <p>
-            <Tag color="volcano">package.json</Tag>의 <Tag color="volcano">homepage</Tag>필드의 값을
-            설정합니다.
-            <Tag color="volcano">github-page</Tag>로 배포를 한다면 필수로 입력해야합니다.
-            <Tag color="volcano">github-page</Tag>로 배포를 하게된다면,
-            <Tag color="volcano">https://[githubname].github.io/[repo]</Tag>를 입력하면 됩니다.
-            <br />
-            ex) https://parkoon.github.io/resume
-          </p>
-          <Divider />
-          <h3>타이틀</h3>
-          <p>
-            홈페이지의 타이틀을 설정합니다. 해당 필드의 값이 없다면 탭에 <br />
-            <Tag color="volcano">https://...</Tag>이 노출됩니다.
-          </p>
-          <Divider />
-          <h3>설명</h3>
-          <p>홈페이지의 설명을 설정합니다. SEO에 도움이 됩니다.</p>
-          <Divider />
-          <h3>키워드</h3>
-          <p>홈페이지의 키워드을 설정합니다. SEO에 도움이 됩니다.</p>
-          <Divider />
-
-          <h3>메인색상</h3>
-          <p>
-            홈페이지의 메인 색상 설정합니다. 홈페이지의 상/하단 띠 및 타이틀, 서브타이틀과 같은
-            색상을 설정합니다.
-          </p>
-          <Divider />
-          <h3>오픈 그래프 이미지</h3>
-          <p>
-            홈페이지의 공유 이미지를 설정합니다. 다른 사람에게 카카오나 SNS 로 URL 을 공유할 때
-            보여질 이미지를 설정합니다. 특별한 이미지를 가지고 있지않다면 타이틀과 서브타이틀을
-            조합해 기본 이미지를 생성해서 제공하고 있습니다. 이미지를 가지고 있다면
-            <Tag color="volcano">/public/og.png</Tag>파일을 변경해주시면 됩니다.
-          </p>
-        </Space>
-      </Modal>
+      ></Modal>
     </AdminLayout>
   )
 }

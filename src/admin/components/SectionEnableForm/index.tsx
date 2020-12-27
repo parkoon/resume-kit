@@ -17,34 +17,34 @@ function SectionEnableForm({ initialValue, onChange }: SectionEnableFormProps) {
         layout="vertical"
       >
         <Row>
-          <Col span={5}>
+          <Col span={6}>
             <Form.Item name="profile" label="PROFILE" initialValue={initialValue.profile}>
               <Switch checked={initialValue.profile} />
             </Form.Item>
           </Col>
-          <Col span={4}>
+          <Col span={6}>
             <Form.Item name="project" label="PROJECT" initialValue={initialValue.project}>
               <Switch checked={initialValue.project} />
             </Form.Item>
           </Col>
 
-          <Col span={4}>
+          <Col span={6}>
             <Form.Item name="skill" label="SKILL" initialValue={initialValue.skill}>
               <Switch checked={initialValue.skill} />
             </Form.Item>
           </Col>
-          <Col span={5}>
+          <Col span={6}>
             <Form.Item name="education" label="EDUCATION" initialValue={initialValue.education}>
               <Switch checked={initialValue.education} />
             </Form.Item>
           </Col>
-          <Col span={5}>
+          <Col span={6}>
             <Form.Item name="career" label="CAREER" initialValue={initialValue.career}>
               <Switch checked={initialValue.career} />
             </Form.Item>
           </Col>
 
-          <Col span={4}>
+          <Col span={6}>
             <Form.Item name="etc" label="ETC" initialValue={initialValue.etc}>
               <Switch checked={initialValue.etc} />
             </Form.Item>
