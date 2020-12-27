@@ -3,11 +3,11 @@ import { Form, Switch, Row, Col } from 'antd'
 
 import { SystemEnabled } from '@Shared/types/System'
 
-type SectionControlFormProps = {
+type SectioEnableFormProps = {
   initialValue: SystemEnabled
   onChange(value: SystemEnabled): void
 }
-function SectionControlForm({ initialValue, onChange }: SectionControlFormProps) {
+function SectioEnableForm({ initialValue, onChange }: SectioEnableFormProps) {
   console.log('initialValue,', initialValue)
   return (
     <div>
@@ -55,4 +55,4 @@ function SectionControlForm({ initialValue, onChange }: SectionControlFormProps)
   )
 }
 
-export default SectionControlForm
+export default SectioEnableForm

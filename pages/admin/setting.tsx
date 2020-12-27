@@ -14,7 +14,7 @@ import OpenGraphForm from '@Admin/components/OpenGraphForm'
 import { OGImage } from '@Shared/types/Meta'
 import useModal from '@Admin/hooks/useModal'
 import SettingField from '@Admin/components/SettingField'
-import SectionControlForm from '@Admin/components/SectionControlForm'
+import SectionEnableForm from '@Admin/components/SectionEnableForm'
 import { System, SystemEnabled } from '@Shared/types/System'
 
 const { Option } = Select
@@ -144,7 +144,7 @@ function SettingManagement() {
         <Col span={12}>
           <Card title="시스템 데이터" style={{ marginBottom: 7, height: '100%' }}>
             <SettingField title="페이지 활성화">
-              <SectionControlForm initialValue={system.enabled} onChange={onSystemChange} />
+              <SectionEnableForm initialValue={system.enabled} onChange={onSystemChange} />
             </SettingField>
             <SettingField title="페이지 미리보기">여기(TODO)</SettingField>
             <SettingField title="깃허브 페이지로 배포하기">여기(TODO)</SettingField>
