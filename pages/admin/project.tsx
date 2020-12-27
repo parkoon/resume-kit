@@ -7,6 +7,7 @@ import { ProjectProvider } from '@Admin/components/ProjectPlayGround/context'
 import useModal from '@Admin/hooks/useModal'
 import AdminLayout from '@Admin/layout'
 import { Career } from '@Shared/types/Career'
+import useMetaValidation from '@Admin/hooks/useMetaValidation'
 
 const careers: Career[] = [
   {
@@ -36,6 +37,8 @@ const careers: Career[] = [
 ]
 
 function ProjectManagement() {
+  useMetaValidation()
+
   const { visible, open, close } = useModal()
   const router = useRouter()
 

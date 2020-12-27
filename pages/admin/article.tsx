@@ -11,8 +11,11 @@ import { palette } from '@Shared/styles'
 import { Article } from '@Shared/types/Article'
 import Loading from '@Admin/components/Loding'
 import Confirm from '@Admin/helpers/confirm'
+import useMetaValidation from '@Admin/hooks/useMetaValidation'
 
 function ArticleManagement() {
+  useMetaValidation()
+
   const { data: articleResponse, mutate } = useSWR<ArticleGETResponse>(ArticleAPI.get(), API)
 
   const [selectedArticle, setSelectedArticle] = useState<Article>()

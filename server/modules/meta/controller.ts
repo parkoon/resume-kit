@@ -20,6 +20,11 @@ const Controller = {
     }
   },
 
+  validateMeta: catchAsync(async (req: Request, res: Response) => {
+    const valid = await metaService.validateMeta()
+    res.json({ valid })
+  }),
+
   createImageForOpenGraph: catchAsync(async (req: Request, res: Response) => {
     const filename = await metaService.createImage(req.body)
     res.status(200).json({ filename })

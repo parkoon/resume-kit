@@ -8,8 +8,11 @@ import DragContainer from '@Admin/components/DropContainer'
 import { SkillType, skillTypes, Skill } from '@Shared/types/Skill'
 import { SkillAPI, API, SkillGETResponse } from '@Admin/api'
 import Loading from '@Admin/components/Loding'
+import useMetaValidation from '@Admin/hooks/useMetaValidation'
 
 function SkillManagement() {
+  useMetaValidation()
+
   const [draggingSkill, setDraggingSkill] = useState<Skill>()
   const [dragoverField, setDragoverField] = useState<SkillType>()
 

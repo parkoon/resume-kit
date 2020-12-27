@@ -11,8 +11,11 @@ import { FormCompletedType } from '@Admin/types'
 import { Education } from '@Shared/types/Education'
 import Confirm from '@Admin/helpers/confirm'
 import Loading from '@Admin/components/Loding'
+import useMetaValidation from '@Admin/hooks/useMetaValidation'
 
 function EducationManagement() {
+  useMetaValidation()
+
   const { open, close, visible } = useModal({
     afterClose() {
       setSelectedCareer(undefined)

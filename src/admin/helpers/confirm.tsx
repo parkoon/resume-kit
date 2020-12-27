@@ -1,7 +1,7 @@
 import { Modal } from 'antd'
 import { ExclamationCircleOutlined } from '@ant-design/icons'
 
-type ConfirmProps = { title: string; onConfirm?(): void }
+type ConfirmProps = { title?: string; onConfirm?(): void }
 
 const Confirm = {
   delete({ title, onConfirm }: ConfirmProps) {
@@ -14,6 +14,18 @@ const Confirm = {
       onOk: onConfirm,
       okButtonProps: {
         danger: true,
+      },
+    })
+  },
+  invalidMeta({ onConfirm }: ConfirmProps) {
+    Modal.confirm({
+      title: `메타데이터가 입력되어 있지 않습니다.`,
+      content: '데이터를 먼저 입력해주세요.',
+      icon: <ExclamationCircleOutlined style={{ color: 'red' }} />,
+      okText: '입력하기',
+      onOk: onConfirm,
+      cancelButtonProps: {
+        hidden: true,
       },
     })
   },

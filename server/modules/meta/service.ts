@@ -20,7 +20,21 @@ const Service = {
     try {
       updateJSON(metaPath, meta)
     } catch (err) {
-      console.error(err)
+      throw Error(err)
+    }
+  },
+
+  async validateMeta() {
+    try {
+      const meta = await this.getMeta()
+      return Boolean(
+        meta.title &&
+          meta.description &&
+          meta.image &&
+          Boolean(meta.keywords.length) &&
+          meta.homepage
+      )
+    } catch (err) {
       throw Error(err)
     }
   },

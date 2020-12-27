@@ -33,6 +33,14 @@ export const MetaAPI = {
   update(meta: Meta) {
     return API.put(this.base, meta)
   },
+  /**
+   * 세팅되어 있는 메타 데이터가 유효한지 체크
+   * 이력서 페이지를 정상적으로 구동하기 위해서는 메타 설정이 필요
+   * 어드민 페이지 접속 시 체크
+   */
+  validate() {
+    return API.get<{ valid: boolean }>(`${this.base}/validation`)
+  },
   createOGImage(imageInfo: OGImage) {
     return API.post<{ filename: string }>('/meta/og/image', imageInfo)
   },

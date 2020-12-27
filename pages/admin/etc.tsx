@@ -10,8 +10,11 @@ import AdminLayout from '@Admin/layout'
 import { FormCompletedType } from '@Admin/types'
 import { Etc } from '@Shared/types/Etc'
 import Loading from '@Admin/components/Loding'
+import useMetaValidation from '@Admin/hooks/useMetaValidation'
 
 function EtcManagement() {
+  useMetaValidation()
+
   const { open, close, visible } = useModal({
     afterClose() {
       setSelectedCareer(undefined)

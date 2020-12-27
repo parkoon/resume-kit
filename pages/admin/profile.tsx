@@ -7,8 +7,11 @@ import Notification from '@Admin/helpers/notification'
 import { PROFILE_SECTIONS } from '@Admin/constants/profile'
 import { API, ProfileAPI, ProfileGETResponse } from '@Admin/api'
 import Loading from '@Admin/components/Loding'
+import useMetaValidation from '@Admin/hooks/useMetaValidation'
 
 function IntroduceManagement() {
+  useMetaValidation()
+
   const { data, mutate } = useSWR<ProfileGETResponse>(ProfileAPI.get(), API, {
     loadingTimeout: 9000,
   })

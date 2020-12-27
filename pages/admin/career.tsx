@@ -11,8 +11,11 @@ import AdminLayout from '@Admin/layout'
 import { FormCompletedType } from '@Admin/types'
 import { Career } from '@Shared/types/Career'
 import Loading from '@Admin/components/Loding'
+import useMetaValidation from '@Admin/hooks/useMetaValidation'
 
 function ProjectManagement() {
+  useMetaValidation()
+
   const { open, close, visible } = useModal({
     afterClose() {
       setSelectedCareer(undefined)
