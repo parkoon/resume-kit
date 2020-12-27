@@ -57,19 +57,21 @@ export const NAV_ITEMS = [
   {
     title: '설정',
     icon: <SettingOutlined />,
-    to: 'meta',
+    to: 'setting',
   },
 ]
 
 type AdminLayoutProps = {
   children: React.ReactNode
-  title: string
-  subtitle: string
+  title?: string
+  subtitle?: string
   actions?: React.ReactNode[]
 }
 function AdminLayout({ children, title, subtitle, actions = [] }: AdminLayoutProps) {
   const router = useRouter()
   const [visible, setVisible] = useState(false)
+
+  const hasHeader = !!title || !!subtitle
 
   return (
     <Layout style={{ minHeight: '100vh' }}>
@@ -107,7 +109,9 @@ function AdminLayout({ children, title, subtitle, actions = [] }: AdminLayoutPro
         </Menu>
       </Sider>
       <Layout style={{ maxHeight: '100vh', overflow: 'auto' }}>
-        <PageHeader ghost={false} title={title} subTitle={subtitle} extra={actions} />
+        {hasHeader && (
+          <PageHeader ghost={false} title={title} subTitle={subtitle} extra={actions} />
+        )}
         <Content style={{ padding: '16px 16px' }}>{children}</Content>
       </Layout>
     </Layout>

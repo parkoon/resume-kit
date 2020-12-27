@@ -16,7 +16,7 @@ import useModal from '@Admin/hooks/useModal'
 
 const { Option } = Select
 
-function MetaManagement() {
+function SettingManagement() {
   const { data, mutate } = useSWR<MetaGETResponse>(MetaAPI.get(), API, {
     loadingTimeout: 9000,
   })
@@ -176,4 +176,4 @@ function MetaManagement() {
   )
 }
 
-export default MetaManagement
+export default SettingManagement
