@@ -15,6 +15,15 @@ import ArticleSection from '@Resume/components/templates/ArticleSection'
 import EtcSection from '@Resume/components/templates/EtcSection'
 import { PayloadProvider } from '@Resume/context/PayloadContext'
 
+// Compare function needed by the Sort component
+// const compare = (a, b) => {
+//   return a.props.sort - b.props.sort
+// }
+
+// const Sort = ({ children, by }) => {
+//   return React.Children.toArray(children).sort(compare)
+// }
+
 function Resume({ payload }: { payload: Payload }) {
   return (
     <PayloadProvider payload={payload}>
@@ -22,6 +31,7 @@ function Resume({ payload }: { payload: Payload }) {
         <ResumeLayout>
           <ProfileSection />
           <IntroduceSection />
+          {/* <Sort>{[<ProfileSection sort={1} />, <IntroduceSection sort={2} />]}</Sort> */}
           <ProjectSection />
           <SkillSection />
           <EducationSection />
