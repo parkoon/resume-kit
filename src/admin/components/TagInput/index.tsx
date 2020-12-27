@@ -32,7 +32,7 @@ function TagInput({ initialValues, onChange }: TagInputProps) {
   return (
     <S.Wrapper>
       <Input
-        style={{ width: 120 }}
+        style={{ width: 130 }}
         onKeyDown={handleEnter}
         value={value}
         onChange={(e) => setValue(e.target.value)}

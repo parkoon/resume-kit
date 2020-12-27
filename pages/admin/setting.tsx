@@ -1,5 +1,5 @@
 import useSWR from 'swr'
-import { Card, Row, Col, Select, Button, Modal, Tag, Divider } from 'antd'
+import { Card, Row, Col, Select, Button, Modal, Tag, Divider, Switch } from 'antd'
 
 import AdminLayout from '@Admin/layout'
 import EditableText from '@Admin/components/Editable/EditableText'
@@ -13,6 +13,8 @@ import TagInput from '@Admin/components/TagInput'
 import OpenGraphForm from '@Admin/components/OpenGraphForm'
 import { OGImage } from '@Shared/types/Meta'
 import useModal from '@Admin/hooks/useModal'
+import SettingField from '@Admin/components/SettingField'
+import SectionControlForm, { SectionControlFormValue } from '@Admin/components/SectionControlForm'
 
 const { Option } = Select
 
@@ -51,6 +53,11 @@ function SettingManagement() {
     await MetaAPI.updateHomage(value)
     onSave(name, value)
   }
+
+  const sectionFormChange = async (value: SectionControlFormValue) => {
+    console.log('object')
+  }
+
   const { title, description, keywords, primaryColor, homepage } = meta
 
   return (
@@ -63,59 +70,74 @@ function SettingManagement() {
         </Button>,
       ]}
     >
-      <Row style={{ height: '100%' }}>
-        <Col span={24}>
+      <Row gutter={12} style={{ height: '100%' }}>
+        <Col span={12}>
           <Card title="메타 데이터" style={{ marginBottom: 7, height: '100%' }}>
-            <EditableText
-              name="homepage"
-              type="text"
-              label="홈페이지"
-              placeholder="이력서 페이지의 주소를 입력해주세요. ex) github --> https://parkoon.github.com/resume"
-              initialValue={homepage}
-              onSave={changeHomepageURL}
-            />
-            <Divider />
+            <SettingField title="홈페이지">
+              <EditableText
+                name="homepage"
+                type="text"
+                placeholder="이력서 페이지의 주소를 입력해주세요. ex) github --> https://parkoon.github.com/resume"
+                initialValue={homepage}
+                onSave={changeHomepageURL}
+              />
+            </SettingField>
 
-            <EditableText
-              name="title"
-              type="text"
-              label="타이틀"
-              placeholder="이력서 페이지의 타이틀을 입력해주세요."
-              initialValue={title}
-              onSave={onSave}
-            />
-            <Divider />
+            <SettingField title="타이틀">
+              <EditableText
+                name="title"
+                type="text"
+                placeholder="이력서 페이지의 타이틀을 입력해주세요."
+                initialValue={title}
+                onSave={onSave}
+              />
+            </SettingField>
+            <SettingField title="설명">
+              <EditableText
+                name="description"
+                type="text"
+                placeholder="이력서 페이지의 설명을 입력해주세요."
+                initialValue={description}
+                onSave={onSave}
+              />
+            </SettingField>
 
-            <EditableText
-              name="description"
-              type="text"
-              label="설명"
-              placeholder="이력서 페이지의 설명을 입력해주세요."
-              initialValue={description}
-              onSave={onSave}
-            />
-            <Divider />
+            <SettingField title="키워드">
+              <TagInput
+                initialValues={keywords}
+                onChange={(values) => onSave('keywords', values)}
+              />
+            </SettingField>
 
-            <h3>키워드</h3>
-            <TagInput initialValues={keywords} onChange={(values) => onSave('keywords', values)} />
-            <Divider />
+            <SettingField title="메인색상">
+              <Select
+                defaultValue={primaryColor}
+                style={{ width: 130 }}
+                onChange={(value) => onSave('primaryColor', value)}
+              >
+                {mainColors.map((color) => (
+                  <Option key={color.id} value={color.dark}>
+                    <ColorBox color={color.dark} />
+                  </Option>
+                ))}
+              </Select>
+            </SettingField>
 
-            <h3>메인 색상</h3>
-            <Select
-              defaultValue={primaryColor}
-              style={{ width: 130 }}
-              onChange={(value) => onSave('primaryColor', value)}
-            >
-              {mainColors.map((color) => (
-                <Option key={color.id} value={color.dark}>
-                  <ColorBox color={color.dark} />
-                </Option>
-              ))}
-            </Select>
-            <Divider />
+            <SettingField title="오픈 그래프 이미지 생성">
+              <OpenGraphForm url="/og.png" onComplete={createOpenGraphImage} />
+            </SettingField>
+          </Card>
+        </Col>
 
-            <h3>오픈 그래프 이미지 생성</h3>
-            <OpenGraphForm url="/og.png" onComplete={createOpenGraphImage} />
+        <Col span={12}>
+          <Card title="시스템 데이터" style={{ marginBottom: 7, height: '100%' }}>
+            <SettingField title="페이지 활성화">
+              <SectionControlForm initialValue={{ introduce: true }} onChange={sectionFormChange} />
+            </SettingField>
+            <SettingField title="페이지 미리보기">여기(TODO)</SettingField>
+            <SettingField title="깃허브 페이지로 배포하기">여기(TODO)</SettingField>
+            <SettingField title="섹션 순서 변경하기">여기(TODO)</SettingField>
+            <SettingField title="파일 히스토리">여기(TODO)</SettingField>
           </Card>
         </Col>
       </Row>

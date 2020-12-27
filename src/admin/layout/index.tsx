@@ -110,7 +110,13 @@ function AdminLayout({ children, title, subtitle, actions = [] }: AdminLayoutPro
       </Sider>
       <Layout style={{ maxHeight: '100vh', overflow: 'auto', paddingBottom: 16 }}>
         {hasHeader && (
-          <PageHeader ghost={false} title={title} subTitle={subtitle} extra={actions} />
+          <PageHeader
+            style={{ borderBottom: `1px solid ${palette.grey[200]}` }}
+            ghost={false}
+            title={title}
+            subTitle={subtitle}
+            extra={actions}
+          />
         )}
         <Content style={{ paddingTop: 16, paddingLeft: 16, paddingRight: 16, overflow: 'auto' }}>
           {children}
