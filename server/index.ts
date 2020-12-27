@@ -32,8 +32,7 @@ app.use('/api/meta', metaRoute)
 app.use('/api/system', systemRoute)
 
 app.use((error: any, req: Request, res: Response, next: NextFunction) => {
-  console.error(error)
-  res.status(500).end()
+  res.status(500).json({ error: error.message })
 })
 
 app.listen(1208, () => {

@@ -61,6 +61,9 @@ export const SystemAPI = {
   updateSort(value: SystemSort) {
     return API.put(`${this.base}/sort`, value)
   },
+  deploy() {
+    return API.post<{ homepage: string }>(`${this.base}/deploy`)
+  },
 }
 
 export type SkillGETResponse = AxiosResponse<{

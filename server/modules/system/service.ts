@@ -1,6 +1,9 @@
+import shell from 'shelljs'
+
 import { updateJSON, readJSON } from '@Server/helpers/JSONTool'
-import { systemPath } from '@Server/paths'
+import { systemPath, metaPath } from '@Server/paths'
 import { SystemSort, SystemEnabled, System } from '@Shared/types/System'
+import { Meta } from '@Shared/types/Meta'
 
 const Service = {
   async getSystem() {
@@ -34,6 +37,16 @@ const Service = {
       console.error(err)
       throw Error(err)
     }
+  },
+  async deploy() {
+    const result = shell.exec('npm run deploy')
+
+    if (result.code !== 0) {
+      throw Error(result)
+    }
+
+    const { homepage } = readJSON<Meta>(metaPath)
+    return homepage
   },
 }
 

@@ -1,21 +1,23 @@
 import useSWR from 'swr'
-import { Card, Row, Col, Select, Button, Modal, Tag, Divider, Switch } from 'antd'
+import { Button, Card, Col, Divider, Modal, Row, Select, Tag } from 'antd'
 
-import AdminLayout from '@Admin/layout'
-import EditableText from '@Admin/components/Editable/EditableText'
-import { API, MetaGETResponse, MetaAPI, SystemGETResponse, SystemAPI } from '@Admin/api'
-import Loading from '@Admin/components/Loding'
-import mainColors from '@Shared/theme/mainColors'
+import { API, MetaAPI, MetaGETResponse, SystemAPI, SystemGETResponse } from '@Admin/api'
 import ColorBox from '@Admin/components/ColorBox'
-import Space from '@Resume/components/atoms/Space'
-import TagInput from '@Admin/components/TagInput'
+import DeployForm from '@Admin/components/DeployForm'
+import EditableText from '@Admin/components/Editable/EditableText'
+import Loading from '@Admin/components/Loding'
 import OpenGraphForm from '@Admin/components/OpenGraphForm'
-import { OGImage } from '@Shared/types/Meta'
-import useModal from '@Admin/hooks/useModal'
-import SettingField from '@Admin/components/SettingField'
 import SectionEnableForm from '@Admin/components/SectionEnableForm'
-import { SystemEnabled, SystemSort } from '@Shared/types/System'
 import SectionSortForm from '@Admin/components/SectionSortForm'
+import SettingField from '@Admin/components/SettingField'
+import TagInput from '@Admin/components/TagInput'
+import useDeploy from '@Admin/hooks/useDeploy'
+import useModal from '@Admin/hooks/useModal'
+import AdminLayout from '@Admin/layout'
+import Space from '@Resume/components/atoms/Space'
+import mainColors from '@Shared/theme/mainColors'
+import { OGImage } from '@Shared/types/Meta'
+import { SystemEnabled, SystemSort } from '@Shared/types/System'
 
 const { Option } = Select
 
@@ -28,6 +30,7 @@ function SettingManagement() {
   })
 
   const { visible, open, close } = useModal()
+  const { deploy, loading, error, result } = useDeploy()
 
   if (!MetaSWR.data || !SystemSWR.data) {
     return <Loading />
@@ -40,8 +43,6 @@ function SettingManagement() {
   const {
     data: { data: system },
   } = SystemSWR
-
-  console.log('system', system)
 
   const onMetaSave = async (name: string, value: string | string[]) => {
     await MetaAPI.update({ ...meta, [name]: value })
@@ -87,7 +88,7 @@ function SettingManagement() {
     >
       <Row gutter={12} style={{ height: '100%' }}>
         <Col span={12}>
-          <Card title="메타 데이터" style={{ marginBottom: 7, height: '100%' }}>
+          <Card title="메타 데이터 관리" style={{ marginBottom: 7, height: '100%' }}>
             <SettingField title="홈페이지">
               <EditableText
                 name="homepage"
@@ -145,12 +146,14 @@ function SettingManagement() {
         </Col>
 
         <Col span={12}>
-          <Card title="시스템 데이터" style={{ marginBottom: 7, height: '100%' }}>
+          <Card title="시스템 관리" style={{ marginBottom: 7, height: '100%' }}>
+            <SettingField title="깃허브 페이지로 배포하기">
+              <DeployForm />
+            </SettingField>
             <SettingField title="페이지 활성화">
               <SectionEnableForm initialValue={system.enabled} onChange={onEnableChange} />
             </SettingField>
-            <SettingField title="페이지 미리보기">여기(TODO)</SettingField>
-            <SettingField title="깃허브 페이지로 배포하기">여기(TODO)</SettingField>
+
             <SettingField title="섹션 순서 변경하기">
               <SectionSortForm initialValue={system.sort} onChange={onSortChange} />
             </SettingField>

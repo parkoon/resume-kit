@@ -1,6 +1,7 @@
 import { Request, Response } from 'express'
-import systemService from './service'
 import catchAsync from '@Server/helpers/catchAsync'
+
+import systemService from './service'
 
 const Controller = {
   getSystem: catchAsync(async (req: Request, res: Response) => {
@@ -14,6 +15,10 @@ const Controller = {
   updateSort: catchAsync(async (req: Request, res: Response) => {
     await systemService.updateSort(req.body)
     res.status(200).end()
+  }),
+  deploy: catchAsync(async (req: Request, res: Response) => {
+    const homepage = await systemService.deploy()
+    res.json({ homepage })
   }),
 }
 
