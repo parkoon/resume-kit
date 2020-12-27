@@ -1,5 +1,5 @@
 import useSWR from 'swr'
-import { Button, Card, Col, Divider, Modal, Row, Select, Tag } from 'antd'
+import { Button, Card, Col, Modal, Row, Select } from 'antd'
 
 import { API, MetaAPI, MetaGETResponse, SystemAPI, SystemGETResponse } from '@Admin/api'
 import ColorBox from '@Admin/components/ColorBox'
@@ -14,10 +14,10 @@ import TagInput from '@Admin/components/TagInput'
 import useDeploy from '@Admin/hooks/useDeploy'
 import useModal from '@Admin/hooks/useModal'
 import AdminLayout from '@Admin/layout'
-import Space from '@Resume/components/atoms/Space'
 import mainColors from '@Shared/theme/mainColors'
 import { OGImage } from '@Shared/types/Meta'
 import { SystemEnabled, SystemSort } from '@Shared/types/System'
+import SettingGuide from '@Admin/components/SettingGuide'
 
 const { Option } = Select
 
@@ -82,7 +82,7 @@ function SettingManagement() {
       subtitle="웹 페이지를 표현할 데이터를 입력하세요. SEO 및 배포에 영향이 있을 수 있으니 정확하게 입력해주세요."
       actions={[
         <Button type="primary" onClick={open}>
-          작성 가이드 보기
+          설정 가이드 보기
         </Button>,
       ]}
     >
@@ -163,15 +163,18 @@ function SettingManagement() {
       </Row>
 
       <Modal
-        title="메타 데이터 작성 가이드"
+        title="설정 가이드"
         visible={visible}
         onCancel={close}
+        bodyStyle={{ height: '70vh', overflow: 'auto' }}
         footer={
           <Button key="back" onClick={close}>
             닫기
           </Button>
         }
-      ></Modal>
+      >
+        <SettingGuide />
+      </Modal>
     </AdminLayout>
   )
 }
