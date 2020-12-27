@@ -15,6 +15,7 @@ import {
 } from '@ant-design/icons'
 
 import { palette } from '@Shared/styles'
+import ResumePreviewButton from '@Admin/components/ResumePreviewButton'
 
 const { Content, Sider } = Layout
 
@@ -122,6 +123,8 @@ function AdminLayout({ children, title, subtitle, actions = [] }: AdminLayoutPro
           {children}
         </Content>
       </Layout>
+
+      <ResumePreviewButton />
     </Layout>
   )
 }
