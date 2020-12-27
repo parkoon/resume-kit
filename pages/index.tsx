@@ -14,6 +14,7 @@ import SkillSection from '@Resume/components/templates/SkillSection'
 import ArticleSection from '@Resume/components/templates/ArticleSection'
 import EtcSection from '@Resume/components/templates/EtcSection'
 import { PayloadProvider } from '@Resume/context/PayloadContext'
+import CareerSection from '@Resume/components/templates/CareerSection'
 
 // Compare function needed by the Sort component
 // const compare = (a, b) => {
@@ -31,10 +32,12 @@ function Resume({ payload }: { payload: Payload }) {
         <ResumeLayout>
           <ProfileSection />
           <IntroduceSection />
+
           {/* <Sort>{[<ProfileSection sort={1} />, <IntroduceSection sort={2} />]}</Sort> */}
           <ProjectSection />
           <SkillSection />
           <EducationSection />
+          <CareerSection />
           <EtcSection />
           <ArticleSection />
         </ResumeLayout>
