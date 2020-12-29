@@ -3,8 +3,8 @@ import { palette } from '@Shared/styles'
 
 export const Wrapper = styled.div``
 
-export const ItemBox = styled.div<{ column: number }>`
-  margin-left: 24px;
+export const ItemBox = styled.div<{ column: number; margin: boolean }>`
+  margin-left: ${({ margin }) => (margin ? '24px' : 0)};
   display: grid;
   grid-template-columns: ${({ column }) => `repeat(${column}, minmax(250px, auto))`};
   grid-column-gap: 17px;

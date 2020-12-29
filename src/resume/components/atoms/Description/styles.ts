@@ -21,6 +21,7 @@ export const Left = styled.div`
   align-items: flex-start;
   flex-basis: 240px;
   margin-right: 24px;
+  flex-shrink: 0;
 
   ${({ theme }) => theme.medium`
     align-items: flex-start;

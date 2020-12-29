@@ -37,7 +37,9 @@ function SkillSection(props: SkillSectionProps) {
         <Description
           key={key}
           left={<Text size="xl">{fUppercase(key)}</Text>}
-          right={<List column={3} items={validSkills[key].map((skill) => skill.title)} />}
+          right={
+            <List column={1} items={validSkills[key].map((skill) => skill.title)} margin={false} />
+          }
         />
       ))}
     </Space>

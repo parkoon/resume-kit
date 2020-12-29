@@ -9,8 +9,9 @@ type ListProps = {
   column?: number
   items?: string[]
   title?: string
+  margin?: boolean
 }
-function List({ column = 1, items = [], title, children }: ListProps) {
+function List({ column = 1, margin = true, items = [], title, children }: ListProps) {
   if (column > 4) {
     console.warn('column must be less than 4')
   }
@@ -21,7 +22,7 @@ function List({ column = 1, items = [], title, children }: ListProps) {
   return (
     <S.Wrapper>
       {title && <Title level={5}>{title}</Title>}
-      <S.ItemBox column={column}>
+      <S.ItemBox column={column} margin={margin}>
         {children
           ? React.Children.map(children, (child, index) => (
               <S.Item key={index}>
