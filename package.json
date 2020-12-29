@@ -6,9 +6,9 @@
     "start": "concurrently \"next -p 1207\" \"ts-node --project tsconfig.server.json -r tsconfig-paths/register server/index.ts\"",
     "dev": "concurrently \"next -p 1207\" \"nodemon\"",
     "tslint": "tslint -p . -c tslint.json",
-    "build": "next build && next export",
-    "server": "",
-    "deploy": "rm -rf node_modules/.cache && npm run build && touch out/.nojekyll && git add out/ && git commit -m \"Deploy Next.js to gh-pages\" && git subtree push --prefix out origin gh-pages"
+    "export": "next build && next export",
+    "postexport": "node sh.js",
+    "deploy": "rimraf node_modules/.cache && npm run export && git add out/ && git commit -m \"Deploy Next.js to gh-pages\" && git subtree push --prefix out origin gh-pages"
   },
   "husky": {
     "hooks": {
@@ -70,6 +70,7 @@
     "open": "^7.3.0",
     "pm2": "^4.5.1",
     "prettier": "^2.2.1",
+    "rimraf": "^3.0.2",
     "shelljs": "^0.8.4",
     "ts-node": "^9.1.0",
     "tsconfig-paths": "^3.9.0",

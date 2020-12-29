@@ -42,7 +42,8 @@ $ git clone https://github.com/parkoon/resume-kit.git
 `2.1` 또는 `2.2` 를 압축 풀었던 곳 또는 클론을 받은 폴더로 가서 아래 명령어를 실행합니다. ([노드](https://nodejs.org/ko/)가 설치되어 있어야 합니다)
 
 ```
-$ node startScript.js
+$ npm install
+$ npm start
 ```
 
 ## 관리 페이지
