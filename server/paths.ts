@@ -1,6 +1,6 @@
 import path from 'path'
 
-export const rootPath = path.resolve(__dirname).split('/server')[0]
+export const rootPath = path.resolve(__dirname).split('server')[0]
 export const packagePath = path.join(rootPath, 'package.json')
 export const dbPath = path.join(rootPath, 'db')
 export const profilePath = path.join(dbPath, 'profile.json')
