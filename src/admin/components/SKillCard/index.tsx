@@ -20,7 +20,7 @@ function SkillCard({ title, level, onLevelChange, ...props }: SkillCardProps) {
 
   return (
     <Wrapper {...props}>
-      <Popover
+      {/* <Popover
         placement="top"
         content={
           <div style={{ display: 'flex' }}>
@@ -41,7 +41,7 @@ function SkillCard({ title, level, onLevelChange, ...props }: SkillCardProps) {
         onVisibleChange={handleVisibleChange}
       >
         <Level type={level === 3 ? 'high' : level === 2 ? 'mid' : 'low'}>{level}</Level>
-      </Popover>
+      </Popover> */}
       <Title>{title}</Title>
     </Wrapper>
   )
