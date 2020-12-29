@@ -6,6 +6,8 @@ import Text from '@Resume/components/atoms/Typography/Text'
 import Space from '@Resume/components/atoms/Space'
 import { usePayload } from '@Resume/context/PayloadContext'
 import withEnabled from '@Resume/hoc/withEnabled'
+import { sortByStartedAt } from '@Shared/helpers'
+import { Career } from '@Shared/types/Career'
 
 type CareerSectionProps = {
   sort: number
@@ -22,7 +24,7 @@ function CareerSection(props: CareerSectionProps) {
       </Title>
 
       {/* TODO. 회사에서 무슨 업무를 했는지 */}
-      {data.map(({ id, title, subtitle, startedAt, endedAt }) => (
+      {sortByStartedAt<Career[]>(data).map(({ id, title, subtitle, startedAt, endedAt }) => (
         <Description
           key={id}
           left={

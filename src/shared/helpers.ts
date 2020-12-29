@@ -29,3 +29,12 @@ export const phoneFormat = (str: string) =>
 
 /** 첫 글자 대문자로 */
 export const fUppercase = (str: string) => `${str[0].toUpperCase()}${str.slice(1, str.length)}`
+
+/** 시작일 기준으로 정렬 */
+export const sortByStartedAt = <T extends any[]>(values: T, order: 1 | -1 = 1) =>
+  values.sort(
+    (p, k) =>
+      order *
+      ((moment(p.startedAt).format('YYYYMMDD') as any) -
+        (moment(k.startedAt).format('YYYYMMDD') as any))
+  )

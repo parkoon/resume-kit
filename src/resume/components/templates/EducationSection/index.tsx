@@ -6,6 +6,8 @@ import Text from '@Resume/components/atoms/Typography/Text'
 import Space from '@Resume/components/atoms/Space'
 import { usePayload } from '@Resume/context/PayloadContext'
 import withEnabled from '@Resume/hoc/withEnabled'
+import { sortByStartedAt } from '@Shared/helpers'
+import { Education } from '@Shared/types/Education'
 
 type EducationSectionProps = {
   sort: number
@@ -21,7 +23,7 @@ function EducationSection(props: EducationSectionProps) {
         EDUCATION
       </Title>
 
-      {data.map(({ id, title, subtitle, startedAt, endedAt }) => (
+      {sortByStartedAt<Education[]>(data).map(({ id, title, subtitle, startedAt, endedAt }) => (
         <Description
           key={id}
           left={

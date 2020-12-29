@@ -8,6 +8,7 @@ import { usePayload } from '@Resume/context/PayloadContext'
 import Tag from '@Resume/components/atoms/Tag'
 import { Project } from '@Shared/types/Project'
 import withEnabled from '@Resume/hoc/withEnabled'
+import { sortByStartedAt } from '@Shared/helpers'
 
 type ProjectContentProps = {
   projects: Project[]
@@ -15,30 +16,32 @@ type ProjectContentProps = {
 function ProjectContent({ projects }: ProjectContentProps) {
   return (
     <>
-      {projects.map(({ id, title, startedAt, endedAt, description, tasks, skills }, index) => (
-        <div key={id} style={{ marginBottom: index === projects.length - 1 ? 0 : 42 }}>
-          <Title level={4}>{title}</Title>
-          <Text italic>
-            {startedAt} ~ {endedAt}
-          </Text>
+      {sortByStartedAt<Project[]>(projects, -1).map(
+        ({ id, title, startedAt, endedAt, description, tasks, skills }, index) => (
+          <div key={id} style={{ marginBottom: index === projects.length - 1 ? 0 : 42 }}>
+            <Title level={4}>{title}</Title>
+            <Text italic>
+              {startedAt} ~ {endedAt}
+            </Text>
 
-          <Space top={12}>
-            <Title level={5}>Description</Title>
-            <Text block>{description}</Text>
-          </Space>
-          <Space top={12}>
-            <List title="What I did" items={tasks.map((task) => task.title)} />
-          </Space>
-          <Space top={12}>
-            <Title level={5}>Spec Sheet</Title>
-            <Space top={7}>
-              {skills.map((skill, index) => (
-                <Tag key={index} text={skill} />
-              ))}
+            <Space top={12}>
+              <Title level={5}>Description</Title>
+              <Text block>{description}</Text>
             </Space>
-          </Space>
-        </div>
-      ))}
+            <Space top={12}>
+              <List title="What I did" items={tasks.map((task) => task.title)} />
+            </Space>
+            <Space top={12}>
+              <Title level={5}>Spec Sheet</Title>
+              <Space top={7}>
+                {skills.map((skill, index) => (
+                  <Tag key={index} text={skill} />
+                ))}
+              </Space>
+            </Space>
+          </div>
+        )
+      )}
     </>
   )
 }

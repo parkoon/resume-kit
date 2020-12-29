@@ -6,6 +6,8 @@ import Text from '@Resume/components/atoms/Typography/Text'
 import Space from '@Resume/components/atoms/Space'
 import { usePayload } from '@Resume/context/PayloadContext'
 import withEnabled from '@Resume/hoc/withEnabled'
+import { sortByStartedAt } from '@Shared/helpers'
+import { Etc } from '@Shared/types/Etc'
 
 type EtcSectionProps = {
   sort: number
@@ -21,7 +23,7 @@ function EtcSection(props: EtcSectionProps) {
         ETC
       </Title>
 
-      {data.map(({ id, title, subtitle, startedAt, endedAt }) => (
+      {sortByStartedAt<Etc[]>(data).map(({ id, title, subtitle, startedAt, endedAt }) => (
         <Description
           key={id}
           left={
