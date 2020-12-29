@@ -69,6 +69,16 @@ function ResumeLayout({ children }: ResumeLayoutProps) {
         <meta name="twitter:description" content={description} />
         <meta name="twitter:image" content={image} />
       </Head>
+      <a href="https://github.com/parkoon/resume-kit" style={{ position: 'absolute', right: 0 }}>
+        <img
+          loading="lazy"
+          width="149"
+          height="149"
+          src="https://github.blog/wp-content/uploads/2008/12/forkme_right_darkblue_121621.png?resize=149%2C149"
+          alt="Fork me on GitHub"
+        />
+      </a>
+
       <Container>{children}</Container>
     </Wrapper>
   )
