@@ -11,7 +11,7 @@ function ResumePreviewButton() {
 
   return (
     <Wrapper>
-      <Tooltip placement="left" title="이력서 미리보기" defaultVisible>
+      <Tooltip placement="left" title="이력서 미리보기">
         <IconWrapper>
           <FileTextOutlined onClick={open} />
         </IconWrapper>

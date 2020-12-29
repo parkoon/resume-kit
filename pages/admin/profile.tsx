@@ -28,8 +28,6 @@ function IntroduceManagement() {
     mutate()
   }
 
-  console.log('PROFILE_SECTIONS', PROFILE_SECTIONS, profile)
-
   return (
     <AdminLayout
       title="프로필"

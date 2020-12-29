@@ -44,7 +44,7 @@ function EtcManagement() {
       title="기타 등등"
       subtitle="올림피아드, 봉사, 논문과 같은 기타 정보를 입력해주세요."
       actions={[
-        <Button type="primary" onClick={open}>
+        <Button key="button" type="primary" onClick={open}>
           만들기
         </Button>,
       ]}

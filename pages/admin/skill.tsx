@@ -108,6 +108,7 @@ function SkillManagement() {
           .map((type) => {
             return (
               <Col
+                key={type}
                 style={{
                   width: `calc(100% / ${skillTypes.filter((type) => type !== 'none').length})`,
                 }}

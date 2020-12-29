@@ -52,7 +52,7 @@ function ProjectManagement() {
       title="나의 프로젝트"
       subtitle="this is subtitle"
       actions={[
-        <Button type="primary" onClick={open}>
+        <Button key="button" type="primary" onClick={open}>
           만들기
         </Button>,
       ]}

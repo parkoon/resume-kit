@@ -11,7 +11,6 @@ import SectionEnableForm from '@Admin/components/SectionEnableForm'
 import SectionSortForm from '@Admin/components/SectionSortForm'
 import SettingField from '@Admin/components/SettingField'
 import TagInput from '@Admin/components/TagInput'
-import useDeploy from '@Admin/hooks/useDeploy'
 import useModal from '@Admin/hooks/useModal'
 import AdminLayout from '@Admin/layout'
 import mainColors from '@Shared/theme/mainColors'
@@ -30,7 +29,6 @@ function SettingManagement() {
   })
 
   const { visible, open, close } = useModal()
-  const { deploy, loading, error, result } = useDeploy()
 
   if (!MetaSWR.data || !SystemSWR.data) {
     return <Loading />
@@ -81,7 +79,7 @@ function SettingManagement() {
       title="설정"
       subtitle="웹 페이지를 표현할 데이터를 입력하세요. SEO 및 배포에 영향이 있을 수 있으니 정확하게 입력해주세요."
       actions={[
-        <Button type="primary" onClick={open}>
+        <Button key="guide" type="primary" onClick={open}>
           설정 가이드 보기
         </Button>,
       ]}

@@ -14,7 +14,7 @@ function EtcSection(props: EtcSectionProps) {
   const {
     etc: { data },
   } = usePayload()
-  console.log()
+
   return (
     <Space section>
       <Title level={3} section>

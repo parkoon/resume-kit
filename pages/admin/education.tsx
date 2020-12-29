@@ -48,7 +48,7 @@ function EducationManagement() {
       title="나의 학문은 갈고닦은 곳"
       subtitle="다녔던 학교를 입력해주세요."
       actions={[
-        <Button type="primary" onClick={open}>
+        <Button key="button" type="primary" onClick={open}>
           만들기
         </Button>,
       ]}

@@ -21,13 +21,15 @@ function CommonDescription({ source, onModify, onDelete }: CommonDescriptionProp
         bordered
         extra={[
           <Button
+            key="modify"
             type="dashed"
             style={{ marginRight: 7 }}
             onClick={() => onModify && onModify(source.id)}
           >
             수정하기
           </Button>,
-          <Button danger onClick={() => onDelete && onDelete(source.id)}>
+
+          <Button key="delete" danger onClick={() => onDelete && onDelete(source.id)}>
             삭제하기
           </Button>,
         ]}

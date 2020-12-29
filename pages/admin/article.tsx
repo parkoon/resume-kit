@@ -53,7 +53,7 @@ function ArticleManagement() {
       title="내가 작성한 기사들"
       subtitle="this is subtitle"
       actions={[
-        <Button type="primary" onClick={open}>
+        <Button key="button" type="primary" onClick={open}>
           만들기
         </Button>,
       ]}

@@ -23,15 +23,15 @@ function Resume({ payload }: { payload: Payload }) {
       <Theme>
         <ResumeLayout>
           {[
-            <ProfileSection sort={profile} />,
-            <IntroduceSection sort={profile} />,
-            <ProjectSection sort={project} />,
-            <SkillSection sort={skill} />,
-            <EducationSection sort={education} />,
-            <CareerSection sort={career} />,
-            <EtcSection sort={etc} />,
-            <ArticleSection sort={article} />,
-          ].sort((a, b) => a.props.sort - b.props.sort)}
+            <ProfileSection key="profile" sort={profile} />,
+            <IntroduceSection key="introduce" sort={profile} />,
+            <ProjectSection key="project" sort={project} />,
+            <SkillSection key="skill" sort={skill} />,
+            <EducationSection key="education" sort={education} />,
+            <CareerSection key="career" sort={career} />,
+            <EtcSection key="etc" sort={etc} />,
+            <ArticleSection key="article" sort={article} />,
+          ].sort((p, k) => p.props.sort - k.props.sort)}
         </ResumeLayout>
       </Theme>
     </PayloadProvider>

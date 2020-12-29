@@ -13,7 +13,7 @@ import { Career } from '@Shared/types/Career'
 import Loading from '@Admin/components/Loding'
 import useMetaValidation from '@Admin/hooks/useMetaValidation'
 
-function ProjectManagement() {
+function CareerManagement() {
   useMetaValidation()
 
   const { open, close, visible } = useModal({
@@ -45,7 +45,7 @@ function ProjectManagement() {
       title="내가 성장 할 수 있었던 곳"
       subtitle="this is subtitle"
       actions={[
-        <Button type="primary" onClick={open}>
+        <Button key="button" type="primary" onClick={open}>
           만들기
         </Button>,
       ]}
@@ -91,4 +91,4 @@ function ProjectManagement() {
   )
 }
 
-export default ProjectManagement
+export default CareerManagement
