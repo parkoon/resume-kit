@@ -14,7 +14,7 @@
 
 ### Step 2.1 - Download
 
-[여기](https://github.com)를 눌러 압축된 파일을 받고 클론 받은 당신의 레파지토리에 압축을 풀어줍니다.
+[여기](https://github.com/parkoon/resume-kit/archive/v0.2.0.zip)를 눌러 압축된 파일을 받고 클론 받은 당신의 레파지토리에 압축을 풀어줍니다.
 
 ### Step 2.2 - Clone
 
