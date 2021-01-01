@@ -8,7 +8,6 @@ import { IconWrapper, Iframe, Wrapper } from './styles'
 
 function ResumePreviewButton() {
   const { visible, close, open } = useModal()
-
   return (
     <Wrapper>
       <Tooltip placement="left" title="이력서 미리보기">
@@ -24,12 +23,7 @@ function ResumePreviewButton() {
         width={1120}
         bodyStyle={{ height: '70vh', paddingTop: 52 }}
       >
-        <Iframe
-          key={Date.now()}
-          src={typeof window !== 'undefined' ? window.location.href.split('/admin')[0] : ''}
-          frameBorder="0"
-          height="100vh"
-        />
+        <Iframe key={Date.now()} src="http://localhost:3000" frameBorder="0" height="100vh" />
       </Modal>
     </Wrapper>
   )
