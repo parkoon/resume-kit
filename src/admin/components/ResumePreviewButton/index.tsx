@@ -26,7 +26,7 @@ function ResumePreviewButton() {
       >
         <Iframe
           key={Date.now()}
-          src={window.location.href.split('/admin')[0]}
+          src={typeof window !== 'undefined' ? window.location.href.split('/admin')[0] : ''}
           frameBorder="0"
           height="100vh"
         />
