@@ -38,3 +38,15 @@ export const sortByStartedAt = <T extends any[]>(values: T, order: 1 | -1 = 1) =
       ((moment(p.startedAt).format('YYYYMMDD') as any) -
         (moment(k.startedAt).format('YYYYMMDD') as any))
   )
+
+export const periodify = (start: string, end?: string) => {
+  if (start === end) {
+    return start
+  }
+
+  if (!end) {
+    return `${start} - 현재`
+  }
+
+  return `${start} - ${end}`
+}

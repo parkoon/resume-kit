@@ -8,7 +8,7 @@ import { usePayload } from '@Resume/context/PayloadContext'
 import Tag from '@Resume/components/atoms/Tag'
 import { Project } from '@Shared/types/Project'
 import withEnabled from '@Resume/hoc/withEnabled'
-import { sortByStartedAt } from '@Shared/helpers'
+import { sortByStartedAt, periodify } from '@Shared/helpers'
 
 type ProjectContentProps = {
   projects: Project[]
@@ -20,9 +20,7 @@ function ProjectContent({ projects }: ProjectContentProps) {
         ({ id, title, startedAt, endedAt, description, tasks, skills }, index) => (
           <div key={id} style={{ marginBottom: index === projects.length - 1 ? 0 : 42 }}>
             <Title level={4}>{title}</Title>
-            <Text italic>
-              {startedAt} ~ {endedAt}
-            </Text>
+            <Text italic>{periodify(startedAt, endedAt)}</Text>
 
             <Space top={12}>
               <Title level={5}>Description</Title>
@@ -79,9 +77,7 @@ function ProjectSection(props: ProjectSectionProps) {
               <Space>
                 <Title level={4}>{corp.title}</Title>
                 <Text block>{corp.subtitle}</Text>
-                <Text>
-                  {corp.startedAt} ~ {corp.endedAt}
-                </Text>
+                <Text>{periodify(corp.startedAt, corp.endedAt)}</Text>
               </Space>
             }
             right={<ProjectContent projects={groupByCorp[key]} />}
