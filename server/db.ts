@@ -100,6 +100,11 @@ const skills = [
   { id: 77, title: 'JWT', type: 'none', level: 1 },
   { id: 78, title: 'R', type: 'none', level: 1 },
   { id: 79, title: 'Flask', type: 'none', level: 1 },
+  { id: 80, title: 'RabbitMQ', type: 'none', level: 1 },
+  { id: 81, title: 'Tomcat', type: 'none', level: 1 },
+  { id: 82, title: 'Mybatis', type: 'none', level: 1 },
+  { id: 83, title: 'kafka', type: 'none', level: 1 },
+  { id: 84, title: 'Kubernetes', type: 'none', level: 1 },
 ]
 
 ;(async () => {
