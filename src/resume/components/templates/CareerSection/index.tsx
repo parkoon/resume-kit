@@ -24,7 +24,7 @@ function CareerSection(props: CareerSectionProps) {
       </Title>
 
       {/* TODO. 회사에서 무슨 업무를 했는지 */}
-      {sortByStartedAt<Career[]>(data).map(({ id, title, subtitle, startedAt, endedAt }) => (
+      {sortByStartedAt<Career[]>(data, -1).map(({ id, title, subtitle, startedAt, endedAt }) => (
         <Description
           key={id}
           left={<Text size="xl">{periodify(startedAt, endedAt)}</Text>}

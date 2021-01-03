@@ -9,6 +9,7 @@ import Tag from '@Resume/components/atoms/Tag'
 import { Project } from '@Shared/types/Project'
 import withEnabled from '@Resume/hoc/withEnabled'
 import { sortByStartedAt, periodify } from '@Shared/helpers'
+import { Career } from '@Shared/types/Career'
 
 type ProjectContentProps = {
   projects: Project[]
@@ -47,10 +48,10 @@ function ProjectContent({ projects }: ProjectContentProps) {
 type ProjectSectionProps = {
   sort: number
 }
-function ProjectSection(props: ProjectSectionProps) {
+function ProjectSection(_: ProjectSectionProps) {
   const {
     project: { data },
-    career,
+    career: { data: careers },
   } = usePayload()
 
   const groupByCorp = data.reduce<{ [key: string]: Project[] }>((prev, project) => {
@@ -60,27 +61,25 @@ function ProjectSection(props: ProjectSectionProps) {
     return prev
   }, {})
 
-  const findCorpById = (id: string) => career.data.find((c) => c.id === id)!
-
   return (
     <Space section>
       <Title level={3} section>
         WORK EXPERIENCE
       </Title>
 
-      {Object.keys(groupByCorp).map((key) => {
-        const corp = findCorpById(key)
+      {sortByStartedAt<Career[]>(careers, -1).map((career) => {
+        if (!groupByCorp[career.id]) return null
         return (
           <Description
-            key={key}
+            key={career.id}
             left={
               <Space>
-                <Title level={4}>{corp.title}</Title>
-                <Text block>{corp.subtitle}</Text>
-                <Text>{periodify(corp.startedAt, corp.endedAt)}</Text>
+                <Title level={4}>{career.title}</Title>
+                <Text block>{career.subtitle}</Text>
+                <Text>{periodify(career.startedAt, career.endedAt)}</Text>
               </Space>
             }
-            right={<ProjectContent projects={groupByCorp[key]} />}
+            right={<ProjectContent projects={groupByCorp[career.id]} />}
           />
         )
       })}
