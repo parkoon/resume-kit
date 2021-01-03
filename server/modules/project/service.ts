@@ -1,14 +1,14 @@
 import jsonfile from 'jsonfile'
 
-import { Project } from '@Shared/types/Project'
+import { Project, ProjectJSON } from '@Shared/types/Project'
 import { readJSON, updateJSON } from '@Server/helpers/JSONTool'
 import { projectPath } from '@Server/paths'
 
 const Service = {
   async getAllProjects() {
     try {
-      const projects = readJSON<Project[]>(projectPath)
-      return projects
+      const { data } = readJSON<ProjectJSON>(projectPath)
+      return data
     } catch (err) {
       throw new Error(err)
     }

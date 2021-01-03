@@ -2,14 +2,14 @@ import shell from 'shelljs'
 
 import { updateJSON, readJSON } from '@Server/helpers/JSONTool'
 import { systemPath, metaPath } from '@Server/paths'
-import { SystemSort, SystemEnabled, System } from '@Shared/types/System'
+import { SystemSort, SystemEnabled, System, SystemJSON } from '@Shared/types/System'
 import { Meta } from '@Shared/types/Meta'
 
 const Service = {
   async getSystem() {
     try {
-      const system = readJSON<System>(systemPath)
-      return system
+      const { data } = readJSON<SystemJSON>(systemPath)
+      return data
     } catch (err) {
       throw Error(err)
     }

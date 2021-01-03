@@ -15,6 +15,7 @@ import educationRoute from './modules/education/route'
 import etcRoute from './modules/etc/route'
 import metaRoute from './modules/meta/route'
 import systemRoute from './modules/system/route'
+import payloadRoute from './modules/payload/route'
 
 app.use(morgan('dev'))
 app.use(express.json())
@@ -30,6 +31,7 @@ app.use('/api/educations', educationRoute)
 app.use('/api/etcs', etcRoute)
 app.use('/api/meta', metaRoute)
 app.use('/api/system', systemRoute)
+app.use('/api/payload', payloadRoute)
 
 app.use((error: any, req: Request, res: Response, next: NextFunction) => {
   res.status(500).json({ error: error.message })

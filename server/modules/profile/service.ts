@@ -1,12 +1,12 @@
 import { profilePath } from '@Server/paths'
 import { updateJSON, readJSON } from '@Server/helpers/JSONTool'
-import { Profile } from '@Shared/types/Profile'
+import { Profile, ProfileJSON } from '@Shared/types/Profile'
 
 const Service = {
   async getProfile() {
     try {
-      const profile = readJSON<Profile>(profilePath)
-      return profile
+      const { data } = readJSON<ProfileJSON>(profilePath)
+      return data
     } catch (err) {
       throw Error(err)
     }

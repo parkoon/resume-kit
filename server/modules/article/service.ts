@@ -1,12 +1,12 @@
-import { Article } from '@Shared/types/Article'
+import { Article, ArticleJSON } from '@Shared/types/Article'
 import { readJSON, updateJSON } from '@Server/helpers/JSONTool'
 import { articlePath } from '@Server/paths'
 
 const Service = {
   async getAllArticles() {
     try {
-      const articles = await readJSON<Article[]>(articlePath)
-      return articles
+      const { data } = await readJSON<ArticleJSON>(articlePath)
+      return data
     } catch (err) {
       throw new Error(err)
     }

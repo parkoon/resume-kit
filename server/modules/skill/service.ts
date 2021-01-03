@@ -1,14 +1,12 @@
-import jsonfile from 'jsonfile'
-
-import { updateJSON } from '@Server/helpers/JSONTool'
+import { updateJSON, readJSON } from '@Server/helpers/JSONTool'
 import { skillPath } from '@Server/paths'
-import { Skill } from '@Shared/types/Skill'
+import { Skill, SkillJSON } from '@Shared/types/Skill'
 
 const Service = {
   async getSkill() {
     try {
-      const skill = jsonfile.readFileSync(skillPath)
-      return skill
+      const { data } = readJSON<SkillJSON>(skillPath)
+      return data
     } catch (err) {
       throw new Error(err)
     }

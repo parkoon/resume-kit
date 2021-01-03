@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "description": "Resume Based on Next.js",
   "scripts": {
-    "start": "concurrently \"next -p 1207\" \"npm run server\"",
-    "start:backup": "concurrently \"npm run build && next start\" \"npm run server\"",
+    "start": "concurrently \"npm run build && next start\" \"npm run server\"",
     "dev": "concurrently \"next -p 1207\" \"nodemon\"",
     "server": "ts-node --project tsconfig.server.json -r tsconfig-paths/register server/index.ts",
     "build": "APPLY_ASSET_PREFIX=no next build",

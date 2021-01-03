@@ -26,9 +26,7 @@ function SkillManagement() {
     return <Loading />
   }
 
-  const {
-    data: { data: skills },
-  } = data
+  const { data: skills } = data
 
   const handleDragStart = (skill: Skill) => () => {
     setDraggingSkill(skill)

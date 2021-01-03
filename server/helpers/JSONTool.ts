@@ -13,7 +13,7 @@ export const updateJSON = (path: string, data: Record<any, any>) => {
 export const readJSON = <T>(path: string): T => {
   try {
     const json = jsonfile.readFileSync(path)
-    return json.data
+    return json
   } catch (err) {
     throw new Error(err)
   }

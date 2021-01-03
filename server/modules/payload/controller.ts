@@ -14,27 +14,8 @@ import {
   systemPath,
 } from '@Server/paths'
 
-import systemService from './service'
-
 const Controller = {
-  getSystem: catchAsync(async (_: Request, res: Response) => {
-    const system = await systemService.getSystem()
-    res.json(system)
-  }),
-  updateEnable: catchAsync(async (req: Request, res: Response) => {
-    await systemService.updateEnable(req.body)
-    res.status(200).end()
-  }),
-  updateSort: catchAsync(async (req: Request, res: Response) => {
-    await systemService.updateSort(req.body)
-    res.status(200).end()
-  }),
-  deploy: catchAsync(async (_: Request, res: Response) => {
-    const homepage = await systemService.deploy()
-    res.json({ homepage })
-  }),
-
-  getDB: catchAsync(async (_: Request, res: Response) => {
+  getPayload: catchAsync(async (_: Request, res: Response) => {
     const article = await readJSON(articlePath)
     const career = await readJSON(careerPath)
     const education = await readJSON(educationPath)

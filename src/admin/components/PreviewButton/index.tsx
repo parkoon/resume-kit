@@ -6,7 +6,7 @@ import useModal from '@Admin/hooks/useModal'
 
 import { IconWrapper, Iframe, Wrapper } from './styles'
 
-function ResumePreviewButton() {
+function PreviewButton() {
   const { visible, close, open } = useModal()
   return (
     <Wrapper>
@@ -23,10 +23,10 @@ function ResumePreviewButton() {
         width={1120}
         bodyStyle={{ height: '70vh', paddingTop: 52 }}
       >
-        <Iframe key={Date.now()} src="http://localhost:1207" frameBorder="0" height="100vh" />
+        <Iframe key={Date.now()} src="/admin/preview" frameBorder="0" height="100vh" />
       </Modal>
     </Wrapper>
   )
 }
 
-export default ResumePreviewButton
+export default PreviewButton

@@ -1,12 +1,12 @@
 import { readJSON, updateJSON } from '@Server/helpers/JSONTool'
-import { Education } from '@Shared/types/Education'
+import { Education, EducationJSON } from '@Shared/types/Education'
 import { educationPath } from '@Server/paths'
 
 const Service = {
   async getAllEducations() {
     try {
-      const educations = await readJSON<Education[]>(educationPath)
-      return educations
+      const { data } = await readJSON<EducationJSON>(educationPath)
+      return data
     } catch (err) {
       throw new Error(err)
     }

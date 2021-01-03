@@ -1,12 +1,12 @@
 import { readJSON, updateJSON } from '@Server/helpers/JSONTool'
-import { Etc } from '@Shared/types/Etc'
+import { Etc, EtcJSON } from '@Shared/types/Etc'
 import { etcPath } from '@Server/paths'
 
 const Service = {
   async getAllEtcs() {
     try {
-      const etcs = await readJSON<Etc[]>(etcPath)
-      return etcs
+      const { data } = await readJSON<EtcJSON>(etcPath)
+      return data
     } catch (err) {
       throw new Error(err)
     }

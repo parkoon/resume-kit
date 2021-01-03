@@ -5,13 +5,13 @@ import fs from 'fs'
 
 import { updateJSON, readJSON } from '@Server/helpers/JSONTool'
 import { metaPath, rootPath, packagePath } from '@Server/paths'
-import { Meta, OGImage } from '@Shared/types/Meta'
+import { Meta, OGImage, MetaJSON } from '@Shared/types/Meta'
 
 const Service = {
   async getMeta() {
     try {
-      const meta = readJSON<Meta>(metaPath)
-      return meta
+      const { data } = readJSON<MetaJSON>(metaPath)
+      return data
     } catch (err) {
       throw Error(err)
     }

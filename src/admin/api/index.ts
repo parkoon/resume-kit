@@ -8,6 +8,7 @@ import { Profile } from '@Shared/types/Profile'
 import { Skill } from '@Shared/types/Skill'
 import { Meta, OGImage } from '@Shared/types/Meta'
 import { System, SystemEnabled, SystemSort } from '@Shared/types/System'
+import { Payload } from '@Resume/types/Payload'
 
 export const API = axios.create({
   baseURL: 'http://localhost:1208/api',
@@ -65,11 +66,15 @@ export const SystemAPI = {
     return API.post<{ homepage: string }>(`${this.base}/deploy`)
   },
 }
+export type PayloadETResponse = AxiosResponse<Payload>
+export const PayloadAPI = {
+  base: '/payload',
+  get() {
+    return this.base
+  },
+}
 
-export type SkillGETResponse = AxiosResponse<{
-  updatedAt: string
-  data: Skill[]
-}>
+export type SkillGETResponse = AxiosResponse<Skill[]>
 export const SkillAPI = {
   get() {
     return '/skills'

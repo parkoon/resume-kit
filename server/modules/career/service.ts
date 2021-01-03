@@ -1,6 +1,6 @@
 import jsonfile from 'jsonfile'
 
-import { Career } from '@Shared/types/Career'
+import { Career, CareerJSON } from '@Shared/types/Career'
 
 import { careerPath } from '../../paths'
 import { readJSON, updateJSON } from '@Server/helpers/JSONTool'
@@ -8,8 +8,8 @@ import { readJSON, updateJSON } from '@Server/helpers/JSONTool'
 const Service = {
   async getAllCareers() {
     try {
-      const careers = await readJSON<Career[]>(careerPath)
-      return careers
+      const { data } = await readJSON<CareerJSON>(careerPath)
+      return data
     } catch (err) {
       throw new Error(err)
     }
