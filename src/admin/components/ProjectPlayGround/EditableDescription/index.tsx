@@ -7,12 +7,14 @@ import Confirm from '@Admin/helpers/confirm'
 
 import EditableText from '@Admin/components/Editable/EditableText'
 import TaskCreator from '@Admin/components/TaskCreator'
-import { skillTitles } from '@Shared/types/Skill'
 import ProjectContext from '../context'
 import { Body, Section, Title, Wrapper } from './styles'
 
 function EditableDescription() {
-  const { currentProject, update, careers, remove } = useContext(ProjectContext)
+  const { currentProject, update, careers, remove, skills } = useContext(ProjectContext)
+
+  const skillTitles = skills.map((skill) => skill.title)
+
   if (!currentProject) {
     return (
       <Wrapper>

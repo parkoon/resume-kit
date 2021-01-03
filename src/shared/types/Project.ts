@@ -1,4 +1,3 @@
-import { SkillTitle } from './Skill'
 import { Career } from './Career'
 
 export type Task = {
@@ -13,7 +12,7 @@ export type Project = {
   startedAt: string // 프로젝트 시작일
   endedAt?: string // 프로젝트 종료일
   completed: boolean // 프로젝트 종료 여부
-  skills: SkillTitle[] // 기술 스펙
+  skills: string[] // 기술 스펙
   tasks: Task[] // 업무 내용
 }
 export type ProjectJSON = {

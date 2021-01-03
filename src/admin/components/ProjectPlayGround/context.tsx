@@ -3,12 +3,22 @@ import useSWR from 'swr'
 
 import { Project } from '@Shared/types/Project'
 import { Career } from '@Shared/types/Career'
-import { ProjectAPI, ProjectGETResponse, API, CareerAPI, CareerGETResponse } from '@Admin/api'
+import {
+  ProjectAPI,
+  ProjectGETResponse,
+  API,
+  CareerAPI,
+  CareerGETResponse,
+  SkillGETResponse,
+  SkillAPI,
+} from '@Admin/api'
 import Notification from '@Admin/helpers/notification'
+import { Skill } from '@Shared/types/Skill'
 
 type ProjectContextProps = {
   projects: Project[]
   careers: Career[]
+  skills: Skill[]
   currentProject: Project | null
   select(value: Project): void
   remove(id: string): void
@@ -24,6 +34,7 @@ type ProjectProviderProps = {
 export function ProjectProvider({ children }: ProjectProviderProps) {
   const { data: projectData, mutate } = useSWR<ProjectGETResponse>(ProjectAPI.get(), API)
   const { data: careerData } = useSWR<CareerGETResponse>(CareerAPI.get(), API)
+  const { data: skillData } = useSWR<SkillGETResponse>(SkillAPI.get, API)
 
   const [currentProject, setCurrentProject] = useState<Project | null>(null)
 
@@ -62,6 +73,7 @@ export function ProjectProvider({ children }: ProjectProviderProps) {
         remove,
         careers: careerData ? careerData.data : [],
         projects: projectData ? projectData.data : [],
+        skills: skillData ? skillData.data : [],
       }}
     >
       {children}

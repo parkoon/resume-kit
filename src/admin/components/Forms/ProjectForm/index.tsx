@@ -7,7 +7,6 @@ import { IdcardOutlined, MinusCircleOutlined, PlusOutlined } from '@ant-design/i
 import ProjectContext from '@Admin/components/ProjectPlayGround/context'
 import { DATE_FORMAT } from '@Admin/constants/date'
 import randomId from '@Admin/helpers/randomId'
-import { skillTitles } from '@Shared/types/Skill'
 
 const { Option } = Select
 
@@ -17,7 +16,9 @@ type ProjectFormProps = {
 }
 function ProjectForm({ id, onComplete }: ProjectFormProps) {
   const [hasEndDate, setHasEndDate] = useState(true)
-  const { add, careers } = useContext(ProjectContext)
+  const { add, careers, skills } = useContext(ProjectContext)
+
+  const skillTitles = skills.map((skill) => skill.title)
 
   const onFinish = (values: any) => {
     add({
