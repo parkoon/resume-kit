@@ -1,8 +1,8 @@
 import { Button, Modal } from 'antd'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import useSWR from 'swr'
 
-import { API, CareerAPI, CareerGETResponse } from '@Admin/api'
+import { API, CareerAPI, CareerGETResponse, ProjectGETResponse, ProjectAPI } from '@Admin/api'
 import CommonDescription from '@Admin/components/CommonDescription'
 import CommonForm from '@Admin/components/Forms/CommonForm'
 import Confirm from '@Admin/helpers/confirm'
@@ -13,6 +13,7 @@ import { Career } from '@Shared/types/Career'
 import Loading from '@Admin/components/Loding'
 import useMetaValidation from '@Admin/hooks/useMetaValidation'
 import Notification from '@Admin/helpers/notification'
+import ProjectContext from '@Admin/components/ProjectPlayGround/context'
 
 function CareerManagement() {
   useMetaValidation()
@@ -23,6 +24,7 @@ function CareerManagement() {
     },
   })
   const { data: careerResponse, mutate } = useSWR<CareerGETResponse>(CareerAPI.get(), API)
+  const { data: projectResponse } = useSWR<ProjectGETResponse>(ProjectAPI.get(), API)
 
   const [selectedCareer, setSelectedCareer] = useState<Career>()
 
@@ -37,6 +39,25 @@ function CareerManagement() {
     }
     mutate()
     Notification.success('변경사항이 저장되었습니다.')
+  }
+
+  const hasProject = (id: string) => {
+    if (!projectResponse) return
+    return projectResponse.data.some((project) => project.where.id === id)
+  }
+
+  const deleteCareer = (id: string) => {
+    if (hasProject(id)) {
+      return alert('해당 회사로 등록되어 있는 프로젝트가 있습니다.\n프로젝트를 먼저 삭제해주세요.')
+    }
+    Confirm.delete({
+      title: '경력',
+      async onConfirm() {
+        await CareerAPI.delete(id)
+        mutate()
+        Notification.success('변경사항이 저장되었습니다.')
+      },
+    })
   }
 
   if (!careerResponse) {
@@ -64,16 +85,7 @@ function CareerManagement() {
               open()
             }
           }}
-          onDelete={(id: string) =>
-            Confirm.delete({
-              title: '경력',
-              async onConfirm() {
-                await CareerAPI.delete(id)
-                mutate()
-                Notification.success('변경사항이 저장되었습니다.')
-              },
-            })
-          }
+          onDelete={deleteCareer}
         />
       ))}
       <Modal
