@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import moment, { Moment } from 'moment'
 import { DatePicker } from 'antd'
 
@@ -17,6 +17,10 @@ type EditableDatePickerProps = {
 function EditableDatePicker({ name, size = 'md', initialValue, onSave }: EditableDatePickerProps) {
   const [updateMode, setUpdateMode] = useState(false)
   const [value, setValue] = useState<Moment | null>(moment(initialValue))
+
+  useEffect(() => {
+    initialValue && setValue(moment(initialValue))
+  }, [initialValue])
 
   const save = (value: Moment | null) => {
     if (value) {

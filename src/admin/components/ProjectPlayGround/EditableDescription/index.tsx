@@ -133,7 +133,7 @@ function EditableDescription() {
                   skills: value,
                 })
               }
-              defaultValue={currentProject.skills}
+              value={currentProject.skills}
               options={skillTitles.map((title) => ({ value: title }))}
             />
           </div>

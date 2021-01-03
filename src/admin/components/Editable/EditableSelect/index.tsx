@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import HoverText from '../HoverText'
 import { Select } from 'antd'
 
@@ -15,6 +15,10 @@ type EditableSelectProps = {
 function EditableSelect({ name, options, initialValue, style, onChange }: EditableSelectProps) {
   const [value, setValue] = useState(initialValue || '')
   const [isUpdateMode, setUpdateMode] = useState(false)
+
+  useEffect(() => {
+    initialValue && setValue(initialValue)
+  }, [initialValue])
 
   const findValueFromOption = () => {
     try {

@@ -24,8 +24,7 @@ export const Item = styled.div<{ selected?: boolean }>`
   flex-direction: column;
   align-items: flex-start;
   background: ${palette.grey[100]};
-  border-bottom: 1px solid ${palette.grey[200]};
-  margin-bottom: -1px;
+  border-bottom: 1px solid ${palette.grey[300]};
   padding: 12px;
   cursor: pointer;
   transition: 0.2s;

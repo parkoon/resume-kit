@@ -1,15 +1,13 @@
-import React, { useState, useEffect, useRef } from 'react'
-import { Input, Button, Popconfirm } from 'antd'
+import React, { useState } from 'react'
+import { Input, Popconfirm } from 'antd'
 
 import randomId from '@Admin/helpers/randomId'
 
 import { TaskWrapper, List, Title, Action } from './styles'
 import { Task } from '@Shared/types/Project'
-import useCallbackWithMount from '@Admin/hooks/useCallbackWithMount'
 
 type ListCreatorProps = { items: Task[]; onChange(values: Task[]): void }
 function TaskCreator({ items, onChange }: ListCreatorProps) {
-  const [values, setValues] = useState<Task[]>(items)
   const [value, setValue] = useState('')
 
   const [updatingValue, setUpdatingValue] = useState<Task | null>(null)
@@ -18,36 +16,29 @@ function TaskCreator({ items, onChange }: ListCreatorProps) {
     if (e.keyCode !== 13) return
     if (!value) return
 
-    setValues([...values, { id: randomId(), title: value }])
+    onChange([...items, { id: randomId(), title: value }])
     setValue('')
     setUpdatingValue(null)
   }
 
   const remove = (id: string) => () => {
-    setValues(values.filter((value) => value.id !== id))
+    onChange(items.filter((item) => item.id !== id))
   }
 
   const save = (id: string) => () => {
-    setValues(
-      values.map((value) => {
-        if (value.id === id) {
+    onChange(
+      items.map((item) => {
+        if (item.id === id) {
           return {
-            ...value,
+            ...item,
             title: updatingValue!.title,
           }
         }
-        return value
+        return item
       })
     )
     setUpdatingValue(null)
   }
-
-  useCallbackWithMount({
-    watch: values,
-    callback() {
-      onChange(values)
-    },
-  })
 
   return (
     <>
@@ -60,7 +51,7 @@ function TaskCreator({ items, onChange }: ListCreatorProps) {
         style={{ width: 320 }}
       />
       <TaskWrapper>
-        {values.map(({ id, title }) => (
+        {items.map(({ id, title }) => (
           <List key={id}>
             {updatingValue && updatingValue.id === id ? (
               <>
