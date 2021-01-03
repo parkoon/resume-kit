@@ -46,7 +46,7 @@ $ npm install
 $ npm start
 ```
 
-위 스크립트 실행이 완료되면, [관리 페이지](http://localhost:3000/admin/profile)에 접속합니다.
+위 스크립트 실행이 완료되면, [관리 페이지](http://localhost:1207/admin/profile)에 접속합니다.
 
 ## 관리 페이지
 
