@@ -9,8 +9,6 @@
 - [x] this is subtitle 제거
 - [x] 변경 알림
 - [x] 스킬 레벨 설정
-- [ ] 스킬 페이지 내 순서 변경
-- [ ] 스킬 페이지 내 타이틀 순서 변경
 - [x] 섹션 활성화 부분에 article 누락
 - [x] 빌드안하고 제공하니 느림
 - [x] 네비게이션 순서
@@ -21,13 +19,15 @@
 - [x] 중복클릭 방지 (만들기)
 - [x] 프로젝트 생성시 업무가 추가 안됨
 - [x] 이력서 미리보기 페이지 만들기 (Iframe 지우기)
-- [ ] 프로젝트 정렬 (Feat, 회사, 등록일, 초기화)
 - [x] 업무 반영이 안됨
 - [x] ~~Next SEO~~
-- [ ] 리드미 업데이트
+- [x] 리드미 업데이트
 - [x] 프로젝트에서 회사에 있는 프로젝트는 정렬되는데, 회사는 정렬이 안됨 (회사는 제일 최근부터...)
-- [ ] 회사를 만든 상태에서, 프로젝트를 생성하고, 회사를 지웠을 때 프로젝트 페이지에서 에러 발생
+- [x] 회사를 만든 상태에서, 프로젝트를 생성하고, 회사를 지웠을 때 프로젝트 페이지에서 에러 발생
 - [x] 프로젝트 페이지에서, 회사 선택하는 필드 포커스가 빠졌음에도 원상태로 돌아오지 않음
+- [ ] 프로젝트 정렬 (Feat, 회사, 등록일, 초기화)
+- [ ] 스킬 페이지 내 순서 변경
+- [ ] 스킬 페이지 내 타이틀 순서 변경
 
 ## 기능 리스트
 
@@ -50,21 +50,26 @@
 
 [깃허브](https://github.com) 계정을 로그인 합니다.
 
-### Step 2.1 - Download
+### Step 2 - Git Clone
 
-[여기](https://github.com/parkoon/resume-kit/archive/v0.2.0.zip)를 눌러 압축된 파일을 받고 클론 받은 당신의 레파지토리에 압축을 풀어줍니다.
+`https://github.com/parkoon/resume-kit.git` 를 클론 받습니다.
 
-### Step 2.2 - Clone
+클론을 받은 이후에 git history 를 모두 지우고 본인의 깃을 등록해줘야 합니다.
 
-`2.1` 방법 이외에 `https://github.com/parkoon/resume-kit.git` 를 클론 받습니다.
+이 후에 최초 커밋 및 푸시를 해줍니다.
 
 ```
 $ git clone https://github.com/parkoon/resume-kit.git
+$ rm -rf .git
+$ git remote -v // 모두 삭제되어
+$ git remote add origin https://github.com/{{your-github-repository}}
+$ git commit -am 'Init resume project'
+$ git push
 ```
 
 ### Step 3. Start
 
-`2.1` 또는 `2.2` 를 압축 풀었던 곳 또는 클론을 받은 폴더로 가서 아래 명령어를 실행합니다. ([노드](https://nodejs.org/ko/)가 설치되어 있어야 합니다)
+클론을 받은 폴더로 가서 아래 명령어를 실행합니다. ([노드](https://nodejs.org/ko/)가 설치되어 있어야 합니다)
 
 ```
 $ npm install
