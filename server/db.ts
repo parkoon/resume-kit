@@ -94,6 +94,12 @@ const skills = [
   { id: 71, title: 'Ant', type: 'none', level: 1 },
   { id: 72, title: 'Eclipse', type: 'none', level: 1 },
   { id: 73, title: 'Maven', type: 'none', level: 1 },
+  { id: 74, title: 'Hadoop', type: 'none', level: 1 },
+  { id: 75, title: 'Elasticsearch', type: 'none', level: 1 },
+  { id: 76, title: 'Logstash', type: 'none', level: 1 },
+  { id: 77, title: 'JWT', type: 'none', level: 1 },
+  { id: 78, title: 'R', type: 'none', level: 1 },
+  { id: 79, title: 'Flask', type: 'none', level: 1 },
 ]
 
 ;(async () => {
