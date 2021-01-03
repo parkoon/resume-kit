@@ -28,6 +28,8 @@ function EducationManagement() {
   const [selectedCareer, setSelectedCareer] = useState<CommonFormValues>()
 
   const handleComplete = async (type: FormCompletedType, value: Education) => {
+    close()
+
     if (type === 'add') {
       await EducationAPI.add(value)
     }
@@ -37,7 +39,6 @@ function EducationManagement() {
     }
 
     mutate()
-    close()
     Notification.success('변경사항이 저장되었습니다.')
   }
 

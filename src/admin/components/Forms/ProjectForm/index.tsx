@@ -21,6 +21,7 @@ function ProjectForm({ id, onComplete }: ProjectFormProps) {
   const skillTitles = skills.map((skill) => skill.title)
 
   const onFinish = (values: any) => {
+    onComplete()
     add({
       ...values,
       startedAt: moment(values.startedAt).format(DATE_FORMAT),
@@ -28,8 +29,6 @@ function ProjectForm({ id, onComplete }: ProjectFormProps) {
       where: careers.find((career) => career.id === values.where),
       tasks: values.tasks ? values.tasks.map((title: string) => ({ title, id: randomId() })) : [],
     })
-
-    onComplete()
   }
   return (
     <Form id={id} onFinish={onFinish} autoComplete="off" layout="vertical">

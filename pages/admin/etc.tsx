@@ -27,6 +27,8 @@ function EtcManagement() {
   const [selectedEtc, setSelectedEtc] = useState<CommonFormValues>()
 
   const handleComplete = async (type: FormCompletedType, value: Etc) => {
+    close()
+
     if (type === 'add') {
       await EtcAPI.add(value)
     }
@@ -34,7 +36,6 @@ function EtcManagement() {
       await EtcAPI.update(value.id, value)
     }
     mutate()
-    close()
     Notification.success('변경사항이 저장되었습니다.')
   }
 

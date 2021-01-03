@@ -28,6 +28,7 @@ function ArticleManagement() {
   })
 
   const saveOrUpdateArticle = async (type: FormCompletedType, value: Article) => {
+    close()
     if (type === 'add') {
       await ArticleAPI.add(value)
     }
@@ -37,7 +38,6 @@ function ArticleManagement() {
     }
 
     mutate()
-    close()
     Notification.success('변경사항이 저장되었습니다.')
   }
 

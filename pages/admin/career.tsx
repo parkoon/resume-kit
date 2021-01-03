@@ -27,6 +27,8 @@ function CareerManagement() {
   const [selectedCareer, setSelectedCareer] = useState<Career>()
 
   const handleComplete = async (type: FormCompletedType, value: Career) => {
+    close()
+
     if (type === 'add') {
       await CareerAPI.add(value)
     }
@@ -34,7 +36,6 @@ function CareerManagement() {
       await CareerAPI.update(value.id, value)
     }
     mutate()
-    close()
     Notification.success('변경사항이 저장되었습니다.')
   }
 
