@@ -10,8 +10,9 @@ type EditableSelectProps = {
   options: Option[]
   onChange(name: string, value: string): void
   initialValue?: string
+  style?: React.CSSProperties
 }
-function EditableSelect({ name, options, initialValue, onChange }: EditableSelectProps) {
+function EditableSelect({ name, options, initialValue, style, onChange }: EditableSelectProps) {
   const [value, setValue] = useState(initialValue || '')
   const [isUpdateMode, setUpdateMode] = useState(false)
 
@@ -32,7 +33,7 @@ function EditableSelect({ name, options, initialValue, onChange }: EditableSelec
         <Select
           autoFocus
           defaultOpen
-          style={{ width: '100%' }}
+          style={{ width: '100%', ...style }}
           defaultValue={value}
           onChange={(value) => {
             setValue(value)

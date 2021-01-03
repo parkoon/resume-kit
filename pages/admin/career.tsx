@@ -12,6 +12,7 @@ import { FormCompletedType } from '@Admin/types'
 import { Career } from '@Shared/types/Career'
 import Loading from '@Admin/components/Loding'
 import useMetaValidation from '@Admin/hooks/useMetaValidation'
+import Notification from '@Admin/helpers/notification'
 
 function CareerManagement() {
   useMetaValidation()
@@ -28,12 +29,13 @@ function CareerManagement() {
   const handleComplete = async (type: FormCompletedType, value: Career) => {
     if (type === 'add') {
       await CareerAPI.add(value)
-      mutate()
-    } else {
-      await CareerAPI.update(value.id, value)
-      mutate()
     }
+    if (type === 'modify') {
+      await CareerAPI.update(value.id, value)
+    }
+    mutate()
     close()
+    Notification.success('변경사항이 저장되었습니다.')
   }
 
   if (!careerResponse) {
@@ -67,6 +69,7 @@ function CareerManagement() {
               async onConfirm() {
                 await CareerAPI.delete(id)
                 mutate()
+                Notification.success('변경사항이 저장되었습니다.')
               },
             })
           }

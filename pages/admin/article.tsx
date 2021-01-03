@@ -12,6 +12,7 @@ import { Article } from '@Shared/types/Article'
 import Loading from '@Admin/components/Loding'
 import Confirm from '@Admin/helpers/confirm'
 import useMetaValidation from '@Admin/hooks/useMetaValidation'
+import Notification from '@Admin/helpers/notification'
 
 function ArticleManagement() {
   useMetaValidation()
@@ -37,11 +38,13 @@ function ArticleManagement() {
 
     mutate()
     close()
+    Notification.success('변경사항이 저장되었습니다.')
   }
 
   const deleteArticle = async (id: string) => {
     await ArticleAPI.delete(id)
     mutate()
+    Notification.success('변경사항이 저장되었습니다.')
   }
 
   if (!articleResponse) {

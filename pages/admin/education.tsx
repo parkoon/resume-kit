@@ -12,6 +12,7 @@ import { Education } from '@Shared/types/Education'
 import Confirm from '@Admin/helpers/confirm'
 import Loading from '@Admin/components/Loding'
 import useMetaValidation from '@Admin/hooks/useMetaValidation'
+import Notification from '@Admin/helpers/notification'
 
 function EducationManagement() {
   useMetaValidation()
@@ -37,6 +38,7 @@ function EducationManagement() {
 
     mutate()
     close()
+    Notification.success('변경사항이 저장되었습니다.')
   }
 
   if (!educationResponse) {
@@ -70,6 +72,7 @@ function EducationManagement() {
               async onConfirm() {
                 await EducationAPI.delete(id)
                 mutate()
+                Notification.success('변경사항이 저장되었습니다.')
               },
             })
           }}

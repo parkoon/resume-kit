@@ -9,6 +9,7 @@ import { SkillType, skillTypes, Skill } from '@Shared/types/Skill'
 import { SkillAPI, API, SkillGETResponse } from '@Admin/api'
 import Loading from '@Admin/components/Loding'
 import useMetaValidation from '@Admin/hooks/useMetaValidation'
+import Notification from '@Admin/helpers/notification'
 
 function SkillManagement() {
   useMetaValidation()
@@ -51,6 +52,7 @@ function SkillManagement() {
 
     await SkillAPI.update(updatedSkills)
     mutate()
+    Notification.success('변경사항이 저장되었습니다.')
     setDraggingSkill(undefined)
     setDragoverField(undefined)
   }

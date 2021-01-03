@@ -56,7 +56,8 @@ function TaskCreator({ items, onChange }: ListCreatorProps) {
         onKeyUp={handleEnter}
         onFocus={() => setUpdatingValue(null)}
         onChange={(e) => setValue(e.target.value)}
-        placeholder="업무 추가..."
+        placeholder="업무를 입력하고 엔터키를 눌러주세요."
+        style={{ width: 320 }}
       />
       <TaskWrapper>
         {values.map(({ id, title }) => (

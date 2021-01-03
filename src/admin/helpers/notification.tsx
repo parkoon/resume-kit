@@ -9,6 +9,7 @@ const Notification = {
       message,
       description,
       icon: <CheckCircleOutlined style={{ color: palette.green[700] }} />,
+      duration: 2,
     })
   },
 }

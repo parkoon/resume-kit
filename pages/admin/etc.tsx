@@ -11,18 +11,20 @@ import { FormCompletedType } from '@Admin/types'
 import { Etc } from '@Shared/types/Etc'
 import Loading from '@Admin/components/Loding'
 import useMetaValidation from '@Admin/hooks/useMetaValidation'
+import Notification from '@Admin/helpers/notification'
+import Confirm from '@Admin/helpers/confirm'
 
 function EtcManagement() {
   useMetaValidation()
 
   const { open, close, visible } = useModal({
     afterClose() {
-      setSelectedCareer(undefined)
+      setSelectedEtc(undefined)
     },
   })
   const { data: etcResponse, mutate } = useSWR<EtcGETResponse>(EtcAPI.get(), API)
 
-  const [selectedCareer, setSelectedCareer] = useState<CommonFormValues>()
+  const [selectedEtc, setSelectedEtc] = useState<CommonFormValues>()
 
   const handleComplete = async (type: FormCompletedType, value: Etc) => {
     if (type === 'add') {
@@ -33,6 +35,7 @@ function EtcManagement() {
     }
     mutate()
     close()
+    Notification.success('변경사항이 저장되었습니다.')
   }
 
   if (!etcResponse) {
@@ -54,15 +57,22 @@ function EtcManagement() {
           key={education.id}
           source={education}
           onModify={(id) => {
-            const foundCareer = etcResponse.data.find((education) => education.id === id)
-            if (foundCareer) {
-              setSelectedCareer(foundCareer)
-              close()
+            const foundEtc = etcResponse.data.find((etc) => etc.id === id)
+
+            if (foundEtc) {
+              setSelectedEtc(foundEtc)
+              open()
             }
           }}
           onDelete={async (id) => {
-            await EtcAPI.delete(id)
-            mutate()
+            Confirm.delete({
+              title: '교육',
+              async onConfirm() {
+                await EtcAPI.delete(id)
+                mutate()
+                Notification.success('변경사항이 저장되었습니다.')
+              },
+            })
           }}
         />
       ))}
@@ -75,11 +85,11 @@ function EtcManagement() {
         destroyOnClose
         footer={[
           <Button form="etc" type="primary" key="submit" htmlType="submit">
-            {selectedCareer ? '수정하기' : '만들기'}
+            {selectedEtc ? '수정하기' : '만들기'}
           </Button>,
         ]}
       >
-        <CommonForm id="etc" onComplete={handleComplete} initialValue={selectedCareer} />
+        <CommonForm id="etc" onComplete={handleComplete} initialValue={selectedEtc} />
       </Modal>
     </AdminLayout>
   )

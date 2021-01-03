@@ -13,7 +13,6 @@ import { Body, Section, Title, Wrapper } from './styles'
 
 function EditableDescription() {
   const { currentProject, update, careers, remove } = useContext(ProjectContext)
-
   if (!currentProject) {
     return (
       <Wrapper>
@@ -68,6 +67,7 @@ function EditableDescription() {
                 [name]: careers.find((career) => career.id === value),
               })
             }
+            style={{ width: 320 }}
           />
         </Section>
         <Section>
@@ -106,7 +106,7 @@ function EditableDescription() {
         <Section>
           <Title>설명</Title>
           <EditableText
-            name="title"
+            name="description"
             type="textarea"
             initialValue={currentProject.description}
             onSave={(name, value) =>
@@ -123,7 +123,7 @@ function EditableDescription() {
           <div style={{ marginLeft: '11px', marginTop: '7px' }}>
             <Select
               mode="multiple"
-              style={{ width: '100%' }}
+              style={{ minWidth: 320 }}
               placeholder="프로젝트에 사용된 기술을 선택해주세요."
               onChange={(value) =>
                 update({

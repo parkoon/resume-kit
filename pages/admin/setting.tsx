@@ -17,6 +17,7 @@ import mainColors from '@Shared/theme/mainColors'
 import { OGImage } from '@Shared/types/Meta'
 import { SystemEnabled, SystemSort } from '@Shared/types/System'
 import SettingGuide from '@Admin/components/SettingGuide'
+import Notification from '@Admin/helpers/notification'
 
 const { Option } = Select
 
@@ -45,6 +46,7 @@ function SettingManagement() {
   const onMetaSave = async (name: string, value: string | string[]) => {
     await MetaAPI.update({ ...meta, [name]: value })
     MetaSWR.mutate()
+    Notification.success('변경사항이 저장되었습니다.')
   }
 
   const createOpenGraphImage = async (values: OGImage) => {
@@ -65,11 +67,13 @@ function SettingManagement() {
   const onEnableChange = async (value: SystemEnabled) => {
     await SystemAPI.updateEnable(value)
     SystemSWR.mutate()
+    Notification.success('변경사항이 저장되었습니다.')
   }
 
   const onSortChange = async (value: SystemSort) => {
     await SystemAPI.updateSort(value)
     SystemSWR.mutate()
+    Notification.success('변경사항이 저장되었습니다.')
   }
 
   const { title, description, keywords, primaryColor, homepage } = meta

@@ -4,6 +4,7 @@ import useSWR from 'swr'
 import { Project } from '@Shared/types/Project'
 import { Career } from '@Shared/types/Career'
 import { ProjectAPI, ProjectGETResponse, API, CareerAPI, CareerGETResponse } from '@Admin/api'
+import Notification from '@Admin/helpers/notification'
 
 type ProjectContextProps = {
   projects: Project[]
@@ -33,18 +34,22 @@ export function ProjectProvider({ children }: ProjectProviderProps) {
 
   const update = async (value: Project) => {
     await ProjectAPI.update(value.id, value)
+    setCurrentProject(value)
     mutate()
+    Notification.success('변경사항이 저장되었습니다.')
   }
 
   const add = async (value: Project) => {
     await ProjectAPI.add(value)
     mutate()
+    Notification.success('변경사항이 저장되었습니다.')
   }
 
   const remove = async (id: string) => {
     await ProjectAPI.delete(id)
     mutate()
     setCurrentProject(null)
+    Notification.success('변경사항이 저장되었습니다.')
   }
 
   return (
