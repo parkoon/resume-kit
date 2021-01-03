@@ -105,6 +105,8 @@ const skills = [
   { id: 82, title: 'Mybatis', type: 'none', level: 'none' },
   { id: 83, title: 'kafka', type: 'none', level: 'none' },
   { id: 84, title: 'Kubernetes', type: 'none', level: 'none' },
+  { id: 85, title: 'WebOS', type: 'none', level: 'none' },
+  { id: 86, title: 'SVN', type: 'none', level: 'none' },
 ]
 
 ;(async () => {
