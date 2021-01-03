@@ -44,6 +44,7 @@ function EditableSelect({ name, options, initialValue, style, onChange }: Editab
             onChange(name, value)
             setUpdateMode(false)
           }}
+          onBlur={() => setUpdateMode(false)}
         >
           {options.map((option) => (
             <Option key={option.id} value={option.id}>

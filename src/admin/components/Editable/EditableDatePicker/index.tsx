@@ -31,7 +31,7 @@ function EditableDatePicker({ name, size = 'md', initialValue, onSave }: Editabl
   }
 
   const cancel = () => {
-    setUpdateMode(true)
+    setUpdateMode(false)
   }
 
   return (
