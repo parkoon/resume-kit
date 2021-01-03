@@ -50,7 +50,7 @@ function ProjectManagement() {
   return (
     <AdminLayout
       title="나의 프로젝트"
-      subtitle="this is subtitle"
+      subtitle="경험했던 프로젝트를 입력해주세요."
       actions={[
         <Button key="button" type="primary" onClick={open}>
           만들기
@@ -61,7 +61,7 @@ function ProjectManagement() {
         <ProjectPlayGround />
 
         <Modal
-          title="경험 만들기"
+          title="프로젝트 만들기"
           visible={visible}
           onOk={close}
           onCancel={close}

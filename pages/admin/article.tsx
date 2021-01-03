@@ -51,7 +51,7 @@ function ArticleManagement() {
   return (
     <AdminLayout
       title="내가 작성한 기사들"
-      subtitle="this is subtitle"
+      subtitle="블로그나 타 플랫폼에 작성한 포스팅을 공유해주세요."
       actions={[
         <Button key="button" type="primary" onClick={open}>
           만들기
@@ -105,7 +105,7 @@ function ArticleManagement() {
       </Card>
 
       <Modal
-        title="내가 작성한 기사 🏢"
+        title="포스팅 만들기"
         visible={visible}
         onOk={close}
         onCancel={close}

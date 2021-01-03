@@ -76,7 +76,7 @@ function EducationManagement() {
         />
       ))}
       <Modal
-        title="학교 만들기 🏢"
+        title="교육 만들기"
         visible={visible}
         onOk={close}
         onCancel={close}

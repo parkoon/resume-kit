@@ -43,7 +43,7 @@ function CareerManagement() {
   return (
     <AdminLayout
       title="내가 성장 할 수 있었던 곳"
-      subtitle="this is subtitle"
+      subtitle="지금까지 다녔거나 다니고 있는 회사를 입력해주세요."
       actions={[
         <Button key="button" type="primary" onClick={open}>
           만들기
@@ -73,7 +73,7 @@ function CareerManagement() {
         />
       ))}
       <Modal
-        title="내가 성장 할 수 있던 곳은 🏢"
+        title="회사 만들기"
         visible={visible}
         onOk={close}
         onCancel={close}
