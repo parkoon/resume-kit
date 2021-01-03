@@ -26,9 +26,9 @@ export const NAV_ITEMS = [
     to: 'profile',
   },
   {
-    title: '기술',
-    icon: <RadarChartOutlined />,
-    to: 'skill',
+    title: '회사',
+    icon: <ShopOutlined />,
+    to: 'career',
   },
   {
     title: '프로젝트',
@@ -36,9 +36,9 @@ export const NAV_ITEMS = [
     to: 'project',
   },
   {
-    title: '회사',
-    icon: <ShopOutlined />,
-    to: 'career',
+    title: '기술',
+    icon: <RadarChartOutlined />,
+    to: 'skill',
   },
   {
     title: '교육',
