@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { levelColor, palette } from '@Shared/styles'
+import { Tag } from 'antd'
 
 export const Wrapper = styled.div`
   background: ${palette.white};
@@ -31,4 +32,8 @@ export const Level = styled.div<{ type: 'low' | 'mid' | 'high' }>`
   margin-right: 0.7rem;
   cursor: pointer;
   background: ${({ type }) => levelColor[type]};
+`
+
+export const PointerTag = styled(Tag)`
+  cursor: pointer;
 `

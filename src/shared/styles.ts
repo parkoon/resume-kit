@@ -197,6 +197,12 @@ const palette = {
   dashedLine() {
     return `2px dashed ${this.grey[500]}`
   },
+  level: {
+    senior: '#4caf50',
+    middle: '#ffeb3b',
+    junior: '#ff9800',
+    trainee: '#d84315',
+  },
 }
 
 const levelColor: { [key: string]: string } = {

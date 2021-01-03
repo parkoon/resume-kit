@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from 'react'
-import { Wrapper, Title, Level } from './styles'
+import React, { useEffect, useState } from 'react'
 import { Popover } from 'antd'
 
+import { SkillLevel } from '@Shared/types/Skill'
+
+import { Title, Wrapper, PointerTag } from './styles'
+
 interface SkillCardProps extends React.HTMLAttributes<HTMLDivElement> {
-  onLevelChange(level: number): void
-  level: number
+  onLevelChange(level: SkillLevel): void
+  level: SkillLevel
   title: string
 }
 function SkillCard({ title, level, onLevelChange, ...props }: SkillCardProps) {
@@ -13,6 +16,17 @@ function SkillCard({ title, level, onLevelChange, ...props }: SkillCardProps) {
     setVisibility(status)
   }
 
+  const levelColor = (level: SkillLevel) =>
+    level === 'none'
+      ? 'default'
+      : level === 'trainee'
+      ? 'red'
+      : level === 'junior'
+      ? 'orange'
+      : level === 'middle'
+      ? 'yellow'
+      : 'green'
+
   // Hide Popover Effect (When Level Changed)
   useEffect(() => {
     setVisibility(false)
@@ -20,28 +34,34 @@ function SkillCard({ title, level, onLevelChange, ...props }: SkillCardProps) {
 
   return (
     <Wrapper {...props}>
-      {/* <Popover
+      <Popover
         placement="top"
         content={
           <div style={{ display: 'flex' }}>
-            <Level type="low" onClick={() => onLevelChange(1)}>
-              1
-            </Level>
-            <Level type="mid" onClick={() => onLevelChange(2)}>
-              2
-            </Level>
-            <Level type="high" onClick={() => onLevelChange(3)}>
-              3
-            </Level>
+            <PointerTag color={levelColor('none')} onClick={() => onLevelChange('none')}>
+              None
+            </PointerTag>
+            <PointerTag color={levelColor('trainee')} onClick={() => onLevelChange('trainee')}>
+              Trainee
+            </PointerTag>
+            <PointerTag color={levelColor('junior')} onClick={() => onLevelChange('junior')}>
+              Junior
+            </PointerTag>
+            <PointerTag color={levelColor('middle')} onClick={() => onLevelChange('middle')}>
+              Middle
+            </PointerTag>
+            <PointerTag color={levelColor('senior')} onClick={() => onLevelChange('senior')}>
+              Senior
+            </PointerTag>
           </div>
         }
         title="당신의 스킬 수준"
-        trigger="click"
+        trigger="hover"
         visible={visibility}
         onVisibleChange={handleVisibleChange}
       >
-        <Level type={level === 3 ? 'high' : level === 2 ? 'mid' : 'low'}>{level}</Level>
-      </Popover> */}
+        <PointerTag color={levelColor(level)}>{level.charAt(0).toUpperCase()}</PointerTag>
+      </Popover>
       <Title>{title}</Title>
     </Wrapper>
   )

@@ -16,7 +16,7 @@ import AdminLayout from '@Admin/layout'
 import mainColors from '@Shared/theme/mainColors'
 import { OGImage } from '@Shared/types/Meta'
 import { SystemEnabled, SystemSort } from '@Shared/types/System'
-import SettingGuide from '@Admin/components/SettingGuide'
+import SettingGuide from '@Admin/components/Guide/SettingGuide'
 import Notification from '@Admin/helpers/notification'
 
 const { Option } = Select

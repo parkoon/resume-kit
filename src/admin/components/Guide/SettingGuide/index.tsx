@@ -1,20 +1,10 @@
 import React from 'react'
-import Space from '@Resume/components/atoms/Space'
-import { Divider, Tag } from 'antd'
+import { Tag } from 'antd'
 
-type GuideSectionProps = {
-  title: string
-  children: React.ReactNode
-}
-function GuideSection({ title, children }: GuideSectionProps) {
-  return (
-    <>
-      <h3>{title}</h3>
-      <p>{children}</p>
-      <Divider style={{ margin: '12px 0' }} />
-    </>
-  )
-}
+import Space from '@Resume/components/atoms/Space'
+
+import GuideSection from '../GuideSection'
+
 function SettingGuide() {
   return (
     <div>

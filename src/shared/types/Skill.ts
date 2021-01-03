@@ -46,11 +46,16 @@ export const skillTitles = tuple(
 export type SkillType = typeof skillTypes[number]
 export const skillTypes = tuple('none', 'backend', 'frontend', 'database', 'etc', 'devOps')
 
+/**
+ * 스킬 레벨
+ */
+export type SkillLevel = 'none' | 'trainee' | 'junior' | 'middle' | 'senior'
+
 export type Skill = {
   id: number
   title: SkillTitle
   type: SkillType
-  level: number
+  level: SkillLevel
 }
 
 export type SkillJSON = {
