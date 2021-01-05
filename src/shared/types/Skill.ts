@@ -18,6 +18,23 @@ export type Skill = {
   level: SkillLevel
 }
 
+export type SkillConfig = {
+  sheets: SkillSheet[]
+  categories: SkillCategory[]
+}
+export type SkillSheet = {
+  id: string
+  title: string
+}
+export type SkillCategory = {
+  id: string
+  title: string
+}
+export type SkillConfigJSON = {
+  data: SkillConfig
+  updatedAt: string
+}
+
 export type SkillJSON = {
   data: Skill[]
   updatedAt: string

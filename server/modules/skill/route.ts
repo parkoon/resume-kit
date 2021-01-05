@@ -1,9 +1,16 @@
 import express from 'express'
-import profileController from './controller'
+import skillController from './controller'
 
 const router = express.Router()
 
-router.get('/', profileController.getSkill)
-router.post('/', profileController.saveSkill)
+router.get('/', skillController.getSkill)
+router.post('/', skillController.saveSkill)
+router.get('/config', skillController.getSkillConfig)
+router.get('/config/sheet', skillController.getSkillSheet)
+router.post('/config/sheet', skillController.addSkillSheet)
+router.delete('/config/sheet/:id', skillController.removeSkillSheet)
+router.get('/config/category', skillController.getSkillCategory)
+router.post('/config/category', skillController.addSkillCategory)
+router.delete('/config/category/:id', skillController.removeSkillCategory)
 
 export default router

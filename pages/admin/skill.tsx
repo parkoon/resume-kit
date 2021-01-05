@@ -12,6 +12,7 @@ import useMetaValidation from '@Admin/hooks/useMetaValidation'
 import Notification from '@Admin/helpers/notification'
 import useModal from '@Admin/hooks/useModal'
 import LevelGuide from '@Admin/components/Guide/LevelGuide'
+import SkillConfigForm from '@Admin/components/SkillConfigForm'
 
 function SkillManagement() {
   useMetaValidation()
@@ -20,7 +21,8 @@ function SkillManagement() {
   const [dragoverField, setDragoverField] = useState<SkillType>()
 
   const { data, mutate } = useSWR<SkillGETResponse>(SkillAPI.get(), API)
-  const { open, close, visible } = useModal()
+  const guideModal = useModal()
+  const addModal = useModal()
 
   if (!data) {
     return <Loading />
@@ -78,12 +80,15 @@ function SkillManagement() {
       title="다룰 수 있는 기술"
       subtitle="각 영역에 드래그 하고 기술 정도를 설정해주세요."
       actions={[
-        <Button key="guide" type="primary" onClick={open}>
+        <Button key="add" type="primary" onClick={addModal.open}>
+          스킬 등록하기
+        </Button>,
+        <Button key="guide" onClick={guideModal.open}>
           레벨 가이드 보기
         </Button>,
       ]}
     >
-      <Row style={{ margin: '2rem 0' }}>
+      {/* <Row style={{ margin: '2rem 0' }}>
         <Col span={24}>
           <DragContainer
             id="skills"
@@ -147,20 +152,34 @@ function SkillManagement() {
               </Col>
             )
           })}
-      </Row>
+      </Row> */}
 
       <Modal
         title="레벨 가이드"
-        visible={visible}
-        onCancel={close}
+        visible={guideModal.visible}
+        onCancel={guideModal.close}
         bodyStyle={{ height: '70vh', overflow: 'auto' }}
         footer={
-          <Button key="back" onClick={close}>
+          <Button key="back" onClick={guideModal.close}>
             닫기
           </Button>
         }
       >
         <LevelGuide />
+      </Modal>
+
+      <Modal
+        title="스킬 관리"
+        visible={addModal.visible}
+        onCancel={addModal.close}
+        bodyStyle={{ height: '70vh', overflow: 'auto' }}
+        footer={
+          <Button key="back" onClick={addModal.close}>
+            닫기
+          </Button>
+        }
+      >
+        <SkillConfigForm />
       </Modal>
     </AdminLayout>
   )
