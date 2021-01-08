@@ -25,6 +25,13 @@ const Controller = {
       res.status(500).end()
     }
   },
+  async deleteSkill(req: Request, res: Response) {
+    try {
+      await skillService.deleteSkill(req.params.id)
+    } catch (err) {
+      res.status(500).end()
+    }
+  },
   async getSkillConfig(req: Request, res: Response) {
     try {
       const config = await skillService.getSkillConfig()

@@ -157,7 +157,7 @@ const skills = [
     jsonfile.writeFileSync(etcPath, { updatedAt, data: [] }, option)
   }
   if (!fs.existsSync(skillPath)) {
-    jsonfile.writeFileSync(skillPath, { updatedAt, data: skills }, option)
+    jsonfile.writeFileSync(skillPath, { updatedAt, data: [] }, option)
   }
 
   if (!fs.existsSync(systemPath)) {

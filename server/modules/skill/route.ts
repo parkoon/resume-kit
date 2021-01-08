@@ -6,6 +6,7 @@ const router = express.Router()
 router.get('/', skillController.getSkill)
 router.put('/', skillController.updateSkill)
 router.post('/', skillController.addSkill)
+router.delete('/:id', skillController.deleteSkill)
 
 //
 //
