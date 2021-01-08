@@ -4,7 +4,13 @@ import skillController from './controller'
 const router = express.Router()
 
 router.get('/', skillController.getSkill)
-router.post('/', skillController.saveSkill)
+router.put('/', skillController.updateSkill)
+router.post('/', skillController.addSkill)
+
+//
+//
+//
+
 router.get('/config', skillController.getSkillConfig)
 router.get('/config/sheet', skillController.getSkillSheet)
 router.post('/config/sheet', skillController.addSkillSheet)

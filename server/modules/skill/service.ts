@@ -1,6 +1,6 @@
 import { updateJSON, readJSON } from '@Server/helpers/JSONTool'
 import { skillPath, skillConfigPath } from '@Server/paths'
-import { Skill, SkillJSON, SkillConfigJSON, SkillSheet, SkillCategory } from '@Shared/types/Skill'
+import { SkillJSON, SkillConfigJSON, SkillSheet, SkillCategory, SKill } from '@Shared/types/Skill'
 
 const Service = {
   async getSkill() {
@@ -11,9 +11,18 @@ const Service = {
       throw new Error(err)
     }
   },
-  async saveSkill(skills: Skill) {
+  async updateSkill(skills: SKill) {
     try {
       updateJSON(skillPath, skills)
+    } catch (err) {
+      throw new Error(err)
+    }
+  },
+  async addSkill(newSkill: SKill) {
+    try {
+      const skills = await this.getSkill()
+
+      updateJSON(skillPath, [...skills, newSkill])
     } catch (err) {
       throw new Error(err)
     }
