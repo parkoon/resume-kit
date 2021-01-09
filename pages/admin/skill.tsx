@@ -60,7 +60,7 @@ function SkillManagement() {
   return (
     <AdminLayout
       title="다룰 수 있는 기술"
-      subtitle="각 영역에 드래그 하고 기술 정도를 설정해주세요."
+      subtitle="아래 추가 버튼을 눌러 포지션을 추가하고 스킬을 입력해주세요."
       actions={[
         <Button key="add" type="primary" onClick={addModal.open}>
           스킬 등록하기
