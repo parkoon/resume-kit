@@ -49,7 +49,7 @@ function SkillForm({
           danger
           onClick={() =>
             Confirm.delete({
-              title: '기사',
+              title: '포지션',
               onConfirm() {
                 onDelete(id)
               },

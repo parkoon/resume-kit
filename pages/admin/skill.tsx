@@ -12,6 +12,7 @@ import useMetaValidation from '@Admin/hooks/useMetaValidation'
 import useModal from '@Admin/hooks/useModal'
 import AdminLayout from '@Admin/layout'
 import { Skill } from '@Shared/types/Skill'
+import Notification from '@Admin/helpers/notification'
 
 function SkillManagement() {
   useMetaValidation()
@@ -35,21 +36,25 @@ function SkillManagement() {
     }
     await SkillAPI.add(skill)
     mutate()
+    Notification.success('변경사항이 저장되었습니다.')
   }
 
   const deleteSkill = async (id: string) => {
     await SkillAPI.delete(id)
     mutate()
+    Notification.success('변경사항이 저장되었습니다.')
   }
 
   const updateSkill = async (id: string, skills: string[]) => {
     await SkillAPI.update(id, { id, values: skills })
     mutate()
+    Notification.success('변경사항이 저장되었습니다.')
   }
 
   const updateSkillTitle = async (id: string, title: string) => {
     await SkillAPI.update(id, { id, position: title })
     mutate()
+    Notification.success('변경사항이 저장되었습니다.')
   }
 
   return (
