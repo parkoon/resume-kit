@@ -19,6 +19,7 @@ type EditableTextFieldProps = {
   bold?: boolean
   size?: ComponentSize
   style?: React.CSSProperties
+  allowSave?: boolean
 }
 function EditableText({
   name,
@@ -28,6 +29,7 @@ function EditableText({
   initialValue,
   bold = false,
   size = 'md',
+  allowSave = true,
   style,
   onSave,
 }: EditableTextFieldProps) {
@@ -77,9 +79,12 @@ function EditableText({
       {isUpdateMode ? (
         <InputWrapper>
           {renderInput}
-          <ButtonWrapper>
-            <Button icon={<CheckOutlined />} onClick={save} />
-          </ButtonWrapper>
+
+          {allowSave && (
+            <ButtonWrapper>
+              <Button icon={<CheckOutlined />} onClick={save} />
+            </ButtonWrapper>
+          )}
         </InputWrapper>
       ) : (
         <HoverText

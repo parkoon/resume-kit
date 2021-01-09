@@ -1,26 +1,23 @@
-import { useState } from 'react'
 import useSWR from 'swr'
-import { Row, Col, Button, Modal } from 'antd'
+import { Button, Col, Modal, Row } from 'antd'
 
-import AdminLayout from '@Admin/layout'
-import SkillCard from '@Admin/components/SKillCard'
-import DragContainer from '@Admin/components/DropContainer'
-import { SkillType, skillTypes, Skill, SkillLevel } from '@Shared/types/Skill'
-import { SkillAPI, API, SkillGETResponse } from '@Admin/api'
-import Loading from '@Admin/components/Loding'
-import useMetaValidation from '@Admin/hooks/useMetaValidation'
-import Notification from '@Admin/helpers/notification'
-import useModal from '@Admin/hooks/useModal'
+import { API, SkillAPI, SkillGETResponse } from '@Admin/api'
+import DashedAddButton from '@Admin/components/DashedAddButton'
 import LevelGuide from '@Admin/components/Guide/LevelGuide'
+import Loading from '@Admin/components/Loding'
 import SkillConfigForm from '@Admin/components/SkillConfigForm'
+import SkillForm from '@Admin/components/SkillForm'
+import randomId from '@Admin/helpers/randomId'
+import useMetaValidation from '@Admin/hooks/useMetaValidation'
+import useModal from '@Admin/hooks/useModal'
+import AdminLayout from '@Admin/layout'
+import { Skill } from '@Shared/types/Skill'
 
 function SkillManagement() {
   useMetaValidation()
 
-  const [draggingSkill, setDraggingSkill] = useState<Skill>()
-  const [dragoverField, setDragoverField] = useState<SkillType>()
-
   const { data, mutate } = useSWR<SkillGETResponse>(SkillAPI.get(), API)
+
   const guideModal = useModal()
   const addModal = useModal()
 
@@ -30,49 +27,29 @@ function SkillManagement() {
 
   const { data: skills } = data
 
-  const handleDragStart = (skill: Skill) => () => {
-    setDraggingSkill(skill)
-  }
-
-  const dragOver = (field: SkillType) => (e: React.DragEvent<HTMLDivElement>) => {
-    setDragoverField(field)
-    e.preventDefault()
-  }
-
-  const drop = async (type: SkillType) => {
-    if (!draggingSkill) return
-
-    const index = skills.findIndex((skill) => skill.id === draggingSkill.id)
-
-    const updatedSkills = [
-      ...skills.slice(0, index),
-      ...skills.slice(index + 1),
-      {
-        ...draggingSkill,
-        type,
-      },
-    ]
-
-    await SkillAPI.update(updatedSkills)
+  const addSkill = async () => {
+    const skill: Skill = {
+      id: randomId(),
+      position: '',
+      values: [],
+    }
+    await SkillAPI.add(skill)
     mutate()
-    Notification.success('변경사항이 저장되었습니다.')
-    setDraggingSkill(undefined)
-    setDragoverField(undefined)
   }
 
-  const handleLevelChange = async (id: number, level: SkillLevel) => {
-    const updatedSkills = skills.map((skill) => {
-      if (skill.id === id) {
-        return {
-          ...skill,
-          level,
-        }
-      }
-      return skill
-    })
-    await SkillAPI.update(updatedSkills)
+  const deleteSkill = async (id: string) => {
+    await SkillAPI.delete(id)
     mutate()
-    Notification.success('변경사항이 저장되었습니다.')
+  }
+
+  const updateSkill = async (id: string, skills: string[]) => {
+    await SkillAPI.update(id, { id, values: skills })
+    mutate()
+  }
+
+  const updateSkillTitle = async (id: string, title: string) => {
+    await SkillAPI.update(id, { id, position: title })
+    mutate()
   }
 
   return (
@@ -83,77 +60,27 @@ function SkillManagement() {
         <Button key="add" type="primary" onClick={addModal.open}>
           스킬 등록하기
         </Button>,
-        <Button key="guide" onClick={guideModal.open}>
-          레벨 가이드 보기
-        </Button>,
+        // <Button key="guide" onClick={guideModal.open}>
+        //   레벨 가이드 보기
+        // </Button>,
       ]}
     >
-      {/* <Row style={{ margin: '2rem 0' }}>
-        <Col span={24}>
-          <DragContainer
-            id="skills"
-            title="SPEC SHEET"
-            totalCount={skills.filter((skill) => skill.type === 'none').length}
-            onDragOver={dragOver('none')}
-            onDrop={() => drop('none')}
-            dashed={draggingSkill && draggingSkill.type !== 'none'}
-            hovered={dragoverField && dragoverField === 'none'}
-          >
-            {skills.map(
-              (skill) =>
-                skill.type === 'none' && (
-                  <SkillCard
-                    key={skill.id}
-                    title={skill.title}
-                    level={skill.level}
-                    onLevelChange={(level) => handleLevelChange(skill.id, level)}
-                    draggable
-                    onDragStart={handleDragStart(skill)}
-                  />
-                )
-            )}
-          </DragContainer>
-        </Col>
+      <DashedAddButton onClick={addSkill} style={{ marginBottom: 42 }} />
+
+      <Row gutter={[12, 24]}>
+        {skills.map((skill) => (
+          <Col key={skill.id} span={12}>
+            <SkillForm
+              id={skill.id}
+              onDelete={deleteSkill}
+              onSkillChange={updateSkill}
+              onTitleChange={updateSkillTitle}
+              defaultSkills={skill.values}
+              defaultTitle={skill.position}
+            />
+          </Col>
+        ))}
       </Row>
-
-      <Row gutter={[12, 0]}>
-        {skillTypes
-          .filter((type) => type !== 'none')
-          .map((type) => {
-            return (
-              <Col
-                key={type}
-                style={{
-                  width: `calc(100% / ${skillTypes.filter((type) => type !== 'none').length})`,
-                }}
-              >
-                <DragContainer
-                  title={type.toUpperCase()}
-                  totalCount={skills.filter((skill) => skill.type === type).length}
-                  onDragOver={dragOver(type)}
-                  onDrop={() => drop(type)}
-                  dashed={draggingSkill && draggingSkill.type !== type}
-                  hovered={dragoverField && dragoverField === type}
-                >
-                  {skills.map(
-                    (skill) =>
-                      skill.type === type && (
-                        <SkillCard
-                          key={skill.id}
-                          title={skill.title}
-                          level={skill.level}
-                          onLevelChange={(level) => handleLevelChange(skill.id, level)}
-                          draggable
-                          onDragStart={handleDragStart(skill)}
-                        />
-                      )
-                  )}
-                </DragContainer>
-              </Col>
-            )
-          })}
-      </Row> */}
-
       <Modal
         title="레벨 가이드"
         visible={guideModal.visible}

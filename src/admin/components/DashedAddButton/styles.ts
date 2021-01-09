@@ -3,7 +3,7 @@ import { palette } from '@Shared/styles'
 
 export const Wrapper = styled.div`
   position: relative;
-  height: 160px;
+  height: 52px;
   border: ${palette.dashedLine()};
   cursor: pointer;
   transition: 0.2s;
@@ -15,7 +15,7 @@ export const Wrapper = styled.div`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 32px;
+    width: 18px;
     height: 1px;
     border-bottom: ${palette.dashedLine()};
     transition: 0.2s;
