@@ -1,6 +1,6 @@
 # Resume Kit
 
-_`next.js` 의 [Static HTML Export](https://nextjs.org/docs/advanced-features/static-html-export) 를 활용해 이력서를 관리할 수 있는 템플릿입니다. 공짜로 Github 에 이력서를 관리하세요. _
+*`next.js` 의 [Static HTML Export](https://nextjs.org/docs/advanced-features/static-html-export) 를 활용해 이력서를 관리할 수 있는 템플릿입니다. 공짜로 Github 에 이력서를 관리하세요.*
 
 ![img](resources/demo.png)
 
