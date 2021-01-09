@@ -11,8 +11,9 @@ const Controller = {
     }
   },
   async updateSkill(req: Request, res: Response) {
+    const id = req.params.id
     try {
-      await skillService.updateSkill(req.body)
+      await skillService.updateSkill(id, req.body)
       res.status(200).end()
     } catch (err) {
       res.status(500).end()
@@ -64,33 +65,6 @@ const Controller = {
 
     try {
       await skillService.removeSkillSheet(id)
-      res.status(200).end()
-    } catch (err) {
-      res.status(500).end()
-    }
-  },
-  async addSkillCategory(req: Request, res: Response) {
-    const { category } = req.body
-    try {
-      await skillService.addSkillCategory(category)
-      res.status(200).end()
-    } catch (err) {
-      res.status(500).end()
-    }
-  },
-  async getSkillCategory(req: Request, res: Response) {
-    try {
-      const categories = await skillService.getSkillCategory()
-      res.json(categories)
-    } catch (err) {
-      res.status(500).end()
-    }
-  },
-  async removeSkillCategory(req: Request, res: Response) {
-    const { id } = req.params
-
-    try {
-      await skillService.removeSkillCategory(id)
       res.status(200).end()
     } catch (err) {
       res.status(500).end()

@@ -1,6 +1,6 @@
 import { updateJSON, readJSON } from '@Server/helpers/JSONTool'
 import { skillPath, skillConfigPath } from '@Server/paths'
-import { SkillJSON, SkillConfigJSON, SkillSheet, SkillCategory, Skill } from '@Shared/types/Skill'
+import { SkillJSON, SkillConfigJSON, SkillSheet, Skill } from '@Shared/types/Skill'
 
 const Service = {
   async getSkill() {
@@ -11,9 +11,25 @@ const Service = {
       throw new Error(err)
     }
   },
-  async updateSkill(skills: Skill) {
+  async updateSkill(id: string, newSkill: Partial<Skill>) {
     try {
-      updateJSON(skillPath, skills)
+      const skills = await this.getSkill()
+      const index = skills.findIndex((skill) => skill.id === id)
+
+      const updatedSkill = skills.map((skill) => {
+        if (skill.id !== id) {
+          return skill
+        }
+
+        return {
+          ...skill,
+          ...newSkill,
+        }
+      })
+
+      if (index < 0) throw new Error('skill not found')
+
+      updateJSON(skillPath, updatedSkill)
     } catch (err) {
       throw new Error(err)
     }
@@ -58,8 +74,7 @@ const Service = {
   async addSkillSheet(sheet: SkillSheet) {
     try {
       const sheets = await this.getSkillSheet()
-      const categories = await this.getSkillCategory()
-      updateJSON(skillConfigPath, { categories, sheets: [...sheets, sheet] })
+      updateJSON(skillConfigPath, { sheets: [...sheets, sheet] })
     } catch (err) {
       throw new Error(err)
     }
@@ -67,37 +82,8 @@ const Service = {
   async removeSkillSheet(id: string) {
     try {
       const sheets = await this.getSkillSheet()
-      const categories = await this.getSkillCategory()
 
-      updateJSON(skillPath, { categories, sheets: sheets.filter((s) => s.id === id) })
-    } catch (err) {
-      throw new Error(err)
-    }
-  },
-  async getSkillCategory() {
-    try {
-      const { data } = readJSON<SkillConfigJSON>(skillConfigPath)
-      return data.categories
-    } catch (err) {
-      throw new Error(err)
-    }
-  },
-  async addSkillCategory(category: SkillCategory) {
-    try {
-      const sheets = await this.getSkillSheet()
-      const categories = await this.getSkillCategory()
-      updateJSON(skillConfigPath, { sheets, categories: [...categories, category] })
-    } catch (err) {
-      throw new Error(err)
-    }
-  },
-  async removeSkillCategory(id: string) {
-    try {
-      const sheets = await this.getSkillSheet()
-
-      const categories = await this.getSkillCategory()
-
-      updateJSON(skillPath, { sheets, categories: categories.filter((c) => c.id === id) })
+      updateJSON(skillPath, { sheets: sheets.filter((s) => s.id === id) })
     } catch (err) {
       throw new Error(err)
     }

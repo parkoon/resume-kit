@@ -5,7 +5,7 @@ import { Article } from '@Shared/types/Article'
 import { Education } from '@Shared/types/Education'
 import { Etc } from '@Shared/types/Etc'
 import { Profile } from '@Shared/types/Profile'
-import { Skill, SkillSheet, SkillCategory, SkillConfig } from '@Shared/types/Skill'
+import { Skill, SkillSheet, SkillConfig } from '@Shared/types/Skill'
 import { Meta, OGImage } from '@Shared/types/Meta'
 import { System, SystemEnabled, SystemSort } from '@Shared/types/System'
 import { Payload } from '@Resume/types/Payload'
@@ -75,14 +75,20 @@ export const PayloadAPI = {
 }
 
 export type SkillGETResponse = AxiosResponse<Skill[]>
-export type SkillConfigResponse = AxiosResponse<SkillConfig>
+export type SkillConfigGETResponse = AxiosResponse<SkillConfig>
 export const SkillAPI = {
   base: '/skills',
   get() {
     return this.base
   },
-  update(skill: Skill[]) {
+  update(id: string, skill: Partial<Skill>) {
+    return API.put(`${this.base}/${id}`, skill)
+  },
+  add(skill: Skill) {
     return API.post(this.base, skill)
+  },
+  delete(id: string) {
+    return API.delete(`${this.base}/${id}`)
   },
   getConfig() {
     return `${this.base}/config`
@@ -95,15 +101,6 @@ export const SkillAPI = {
   },
   removeSheet(id: string) {
     return API.delete(`${this.base}/config/sheet/${id}`)
-  },
-  getCategories() {
-    return `${this.base}/config/category`
-  },
-  addCategory(category: SkillCategory) {
-    return API.post(`${this.base}/config/category`, { category })
-  },
-  removeCategory(id: string) {
-    return API.delete(`${this.base}/config/category/${id}`)
   },
 }
 
