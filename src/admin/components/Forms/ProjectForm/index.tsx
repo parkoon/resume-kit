@@ -16,9 +16,7 @@ type ProjectFormProps = {
 }
 function ProjectForm({ id, onComplete }: ProjectFormProps) {
   const [hasEndDate, setHasEndDate] = useState(true)
-  const { add, careers, skills } = useContext(ProjectContext)
-
-  const skillTitles = skills.map((skill) => skill.title)
+  const { add, careers, sheets } = useContext(ProjectContext)
 
   const onFinish = (values: any) => {
     onComplete()
@@ -99,7 +97,7 @@ function ProjectForm({ id, onComplete }: ProjectFormProps) {
           mode="multiple"
           style={{ width: '100%' }}
           placeholder="프로젝트에 사용된 기술을 선택해주세요."
-          options={skillTitles.map((title) => ({ value: title }))}
+          options={sheets.map((sheet) => ({ value: sheet.title }))}
         />
       </Form.Item>
 

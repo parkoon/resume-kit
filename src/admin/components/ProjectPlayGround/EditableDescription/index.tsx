@@ -11,9 +11,7 @@ import ProjectContext from '../context'
 import { Body, Section, Title, Wrapper } from './styles'
 
 function EditableDescription() {
-  const { currentProject, update, careers, remove, skills } = useContext(ProjectContext)
-
-  const skillTitles = skills.map((skill) => skill.title)
+  const { currentProject, update, careers, remove, sheets } = useContext(ProjectContext)
 
   if (!currentProject) {
     return (
@@ -134,7 +132,7 @@ function EditableDescription() {
                 })
               }
               value={currentProject.skills}
-              options={skillTitles.map((title) => ({ value: title }))}
+              options={sheets.map((sheet) => ({ value: sheet.title }))}
             />
           </div>
         </Section>
