@@ -1,6 +1,5 @@
 import { nanoid } from 'nanoid'
 
-const LENGTH = 5
-const randomId = () => nanoid(5)
+const randomId = () => nanoid(6)
 
 export default randomId
