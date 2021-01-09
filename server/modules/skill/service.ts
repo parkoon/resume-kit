@@ -83,7 +83,7 @@ const Service = {
     try {
       const sheets = await this.getSkillSheet()
 
-      updateJSON(skillPath, { sheets: sheets.filter((s) => s.id === id) })
+      updateJSON(skillConfigPath, { sheets: sheets.filter((s) => s.id !== id) })
     } catch (err) {
       throw new Error(err)
     }
