@@ -6,7 +6,6 @@ import Text from '@Resume/components/atoms/Typography/Text'
 import Space from '@Resume/components/atoms/Space'
 import List from '@Resume/components/atoms/List'
 import { usePayload } from '@Resume/context/PayloadContext'
-import { Skill } from '@Shared/types/Skill'
 import { fUppercase } from '@Shared/helpers'
 import withEnabled from '@Resume/hoc/withEnabled'
 
@@ -15,17 +14,8 @@ type SkillSectionProps = {
 }
 function SkillSection(props: SkillSectionProps) {
   const {
-    skill: { data },
+    skill: { data: skills },
   } = usePayload()
-
-  const validSkills = data.reduce<{ [key: string]: Skill[] }>((prev, skill) => {
-    if (skill.type === 'none') return prev
-
-    prev[skill.type] = prev[skill.type] || []
-    prev[skill.type].push(skill)
-
-    return prev
-  }, {})
 
   return (
     <Space section>
@@ -33,15 +23,18 @@ function SkillSection(props: SkillSectionProps) {
         SKILL
       </Title>
 
-      {Object.keys(validSkills).map((key) => (
-        <Description
-          key={key}
-          left={<Text size="xl">{fUppercase(key)}</Text>}
-          right={
-            <List column={1} items={validSkills[key].map((skill) => skill.title)} margin={false} />
-          }
-        />
-      ))}
+      {skills.map((skill) => {
+        const canRender = skill.values.length > 0 && skill.position
+
+        if (!canRender) return null
+        return (
+          <Description
+            key={skill.id}
+            left={<Text size="xl">{fUppercase(skill.position)}</Text>}
+            right={<List column={1} items={skill.values} margin={false} />}
+          />
+        )
+      })}
     </Space>
   )
 }
