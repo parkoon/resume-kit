@@ -1,4 +1,5 @@
 import React from 'react'
+
 import Description from '@Resume/components/atoms/Description'
 import Title from '@Resume/components/atoms/Typography/Title'
 import Text from '@Resume/components/atoms/Typography/Text'
@@ -11,6 +12,8 @@ import withEnabled from '@Resume/hoc/withEnabled'
 import { sortByStartedAt, periodify } from '@Shared/helpers'
 import { Career } from '@Shared/types/Career'
 
+import * as S from './styles'
+
 type ProjectContentProps = {
   projects: Project[]
 }
@@ -19,7 +22,7 @@ function ProjectContent({ projects }: ProjectContentProps) {
     <>
       {sortByStartedAt<Project[]>(projects, -1).map(
         ({ id, title, startedAt, endedAt, description, tasks, skills }, index) => (
-          <div key={id} style={{ marginBottom: index === projects.length - 1 ? 0 : 42 }}>
+          <S.Wrapper key={id} last={index === projects.length - 1}>
             <Title level={4}>{title}</Title>
             <Text italic>{periodify(startedAt, endedAt)}</Text>
 
@@ -38,7 +41,7 @@ function ProjectContent({ projects }: ProjectContentProps) {
                 ))}
               </Space>
             </Space>
-          </div>
+          </S.Wrapper>
         )
       )}
     </>
