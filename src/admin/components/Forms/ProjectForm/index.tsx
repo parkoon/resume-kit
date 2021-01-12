@@ -2,7 +2,7 @@ import { useContext, useState } from 'react'
 import moment from 'moment'
 import { Button, DatePicker, Form, Input, Select, Switch } from 'antd'
 import TextArea from 'antd/lib/input/TextArea'
-import { IdcardOutlined, MinusCircleOutlined, PlusOutlined } from '@ant-design/icons'
+import { IdcardOutlined, LinkOutlined, MinusCircleOutlined, PlusOutlined } from '@ant-design/icons'
 
 import ProjectContext from '@Admin/components/ProjectPlayGround/context'
 import { DATE_FORMAT } from '@Admin/constants/date'
@@ -79,6 +79,13 @@ function ProjectForm({ id, onComplete }: ProjectFormProps) {
         rules={[{ required: true, message: '프로젝트 이름을 입력해주세요.' }]}
       >
         <Input placeholder="프로젝트 이름을 입력해주세요." prefix={<IdcardOutlined />} />
+      </Form.Item>
+
+      <Form.Item
+        name="url"
+        label="프로젝트 링크"
+      >
+        <Input placeholder="프로젝트 링크 입력해주세요." prefix={<LinkOutlined />} />
       </Form.Item>
       <Form.Item
         name="description"

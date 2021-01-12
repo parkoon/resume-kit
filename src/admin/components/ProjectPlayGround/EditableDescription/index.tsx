@@ -104,6 +104,23 @@ function EditableDescription() {
         )}
 
         <Section>
+          <Title>링크</Title>
+          <EditableText
+            name="url"
+            type="text"
+            initialValue={currentProject.url}
+            onSave={(name, value) =>
+              update({
+                ...currentProject,
+                [name]: value,
+              })
+            }
+            size="sm"
+            style={{ width: 320 }}
+          />
+        </Section>
+
+        <Section>
           <Title>설명</Title>
           <EditableText
             name="description"

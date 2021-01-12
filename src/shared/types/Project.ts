@@ -7,6 +7,7 @@ export type Task = {
 export type Project = {
   id: string
   title: string // 프로젝명
+  url?: string // 프로젝트 링크
   description: string // 프로젝트 간단 설명
   where: Career // 회사명
   startedAt: string // 프로젝트 시작일
