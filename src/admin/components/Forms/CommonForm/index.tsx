@@ -27,7 +27,7 @@ function CommonForm({ id, onComplete, initialValue }: CommonFormProps) {
       ...values,
       id: commonId,
       startedAt: moment(values.startedAt).format(DATE_FORMAT),
-      endedAt: moment(values.endedAt).format(DATE_FORMAT),
+      endedAt: values.endedAt ? moment(values.endedAt).format(DATE_FORMAT) : undefined,
     })
   }
 

@@ -22,7 +22,7 @@ function EditableDescription() {
   }
 
   return (
-    <Wrapper>
+    <Wrapper key={Date.now()}>
       <div style={{ display: 'flex', alignItems: 'center' }}>
         <EditableText
           style={{ flex: 1, marginRight: 7 }}

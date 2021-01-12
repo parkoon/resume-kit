@@ -23,7 +23,7 @@ function ProjectForm({ id, onComplete }: ProjectFormProps) {
     add({
       ...values,
       startedAt: moment(values.startedAt).format(DATE_FORMAT),
-      endedAt: moment(values.endedAt).format(DATE_FORMAT),
+      endedAt: values.endedAt ? moment(values.endedAt).format(DATE_FORMAT) : undefined,
       where: careers.find((career) => career.id === values.where),
       tasks: values.tasks ? values.tasks.map((title: string) => ({ title, id: randomId() })) : [],
     })
@@ -81,10 +81,7 @@ function ProjectForm({ id, onComplete }: ProjectFormProps) {
         <Input placeholder="프로젝트 이름을 입력해주세요." prefix={<IdcardOutlined />} />
       </Form.Item>
 
-      <Form.Item
-        name="url"
-        label="프로젝트 링크"
-      >
+      <Form.Item name="url" label="프로젝트 링크">
         <Input placeholder="프로젝트 링크 입력해주세요." prefix={<LinkOutlined />} />
       </Form.Item>
       <Form.Item
