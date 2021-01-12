@@ -37,7 +37,7 @@ function ProjectContent({ projects }: ProjectContentProps) {
               <Text block>{description}</Text>
             </Space>
             <Space top={12}>
-              <List title="What I did" items={tasks.map((task) => task.title)} />
+              <List title="What I do" items={tasks.map((task) => task.title)} />
             </Space>
             <Space top={12}>
               <Title level={5}>Spec Sheet</Title>

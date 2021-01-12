@@ -37,7 +37,7 @@ const styles = css`
       letter-spacing: 2;
       width: 100%;
       padding-bottom: 10px;
-      margin-bottom: 32px;
+      margin-bottom: 20px;
       color: ${({ theme }) => theme.secondaryColor};
 
       &::before {
