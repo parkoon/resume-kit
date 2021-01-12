@@ -14,3 +14,7 @@ export const Wrapper = styled.div<{ last?: boolean }>`
       border: none;
     `}
 `
+
+export const Anchor = styled.a`
+  color: ${palette.grey[600]};
+`

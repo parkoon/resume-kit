@@ -18,12 +18,18 @@ type ProjectContentProps = {
   projects: Project[]
 }
 function ProjectContent({ projects }: ProjectContentProps) {
+
+
   return (
     <>
       {sortByStartedAt<Project[]>(projects, -1).map(
-        ({ id, title, startedAt, endedAt, description, tasks, skills }, index) => (
+        ({ id, title,url,  startedAt, endedAt, description, tasks, skills }, index) => (
           <S.Wrapper key={id} last={index === projects.length - 1}>
-            <Title level={4}>{title}</Title>
+            <Title level={4}>
+              {
+                url ? <S.Anchor href={url} target="blank">{title}</S.Anchor> : {title}
+              }
+            </Title>
             <Text italic>{periodify(startedAt, endedAt)}</Text>
 
             <Space top={12}>
