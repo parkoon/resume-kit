@@ -26,12 +26,18 @@ function SkillSection(props: SkillSectionProps) {
 
         if (!canRender) return null
         return (
-          <div style={{ marginBottom: skills.length - 1 === index ? 0 :  14 }}>
+          <div
+            key={`${skill}#${index}`}
+            style={{ marginBottom: skills.length - 1 === index ? 0 : 14 }}
+          >
             <Title level={5}>{fUppercase(skill.position)}</Title>
             <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-              {
-                skill.values.map((value, index) => <Text key={`${value}#${index}`} style={{ marginRight: 7}}>{value}{index !== skill.values.length - 1 && <span>,</span>}</Text>)
-              }
+              {skill.values.map((value, index) => (
+                <Text key={`${value}#${index}`} style={{ marginRight: 7 }}>
+                  {value}
+                  {index !== skill.values.length - 1 && <span>,</span>}
+                </Text>
+              ))}
             </div>
           </div>
         )
